@@ -2600,7 +2600,9 @@ details.navigator-evidence {
     top: 12px;
     bottom: auto;
     left: 12px;
-    right: auto;
+    /* Clear the top-right view-toggle corner: the legend paints later and would
+       otherwise overlap the toggle on narrow screens (390px). */
+    right: 168px;
     z-index: 25;
     flex-wrap: wrap;
     gap: 10px;
@@ -2609,6 +2611,21 @@ details.navigator-evidence {
     border: 1px solid rgba(169, 142, 230, 0.22);
     border-radius: 6px;
     background: rgba(13, 13, 19, 0.85);
+  }
+}
+
+@media (max-width: 420px) {
+  .view-toggle button {
+    min-width: 0;
+    padding: 0 8px;
+  }
+
+  .view-toggle button span {
+    margin-left: 3px;
+  }
+
+  .legend {
+    right: 156px;
   }
 }
 
