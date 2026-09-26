@@ -907,6 +907,94 @@ Verified:
 Next:
 - Next session runs the kickoff prompt (Phase 5.0, three committed stages).
 
+### 2026-09-27 — Lead agent — Phase 5.0: intake tooling + dry run complete
+
+Changed:
+- Stage 1 — seed artifacts (commit `cc4ad08`):
+  - `scripts/research/fetch-defillama-monad.js` — build-time fetch of `api.llama.fi/protocols`
+    filtered to the Monad chain tag (140 protocols captured; name/symbol/category/site/address/
+    slug/chains/twitter kept; nothing else). Exclusive file creation; refuses to overwrite.
+  - `scripts/research/fetch-app-portal.js` — build-time capture of the official Monad App Portal
+    (app.monad.xyz): statically parses the server-rendered Next.js flight payload (no JS
+    executed) into 143 directory apps, 4 featured sections (with external `appLink`s), and the
+    5-app "Most Active Apps" gas ranking; records HTML SHA-256 for audit.
+  - `data/research/defillama-monad-2026-09-26.json`, `data/research/monad-app-portal-2026-09-26.json`
+    (artifact dates are UTC capture dates; local capture time was 2026-09-27).
+  - `data/research/README.md` — dating rules, new-source rules, hard boundaries.
+  - `package.json` — `research:fetch-defillama`, `research:fetch-app-portal` scripts.
+- Stage 2 — intake tooling (commit `6c21f7c`):
+  - `scripts/ecosystem-intake.js` (dependency-free Node, build-time only): loads the latest
+    seed artifacts, resolves identities across sources (normalized names incl. trailing
+    variant-token stripping, cross-source registrable-domain join, App Portal slugs), applies
+    the scale-plan §3 inclusion bar, drafts manifests + `proposed` evidence candidates mirroring
+    the v2 App Portal record shape (official-directory-listing | mutable-url, Observed,
+    artifact-observation-only), validates every candidate with the evidence-contract runtime
+    gate (extended with the new proposal ids) plus workspace-shape checks, and writes dated
+    outputs. Refuses to write outside `data/research/` and never touches
+    `data/evidence-snapshots/`, `src/evidence-snapshots/`, or `src/`. Existing city identities
+    are mirrored from `src/main.js` with fictional-demo guards (Pixel Forge/"kintsu",
+    Nad Arcade vs Nad.fun) surfaced as human-review flags instead of auto-decisions.
+  - `package.json` — `research:intake` script.
+- Stage 3 — dry run (this commit):
+  - `data/research/proposals-draft-2026-09-26.json` — 231 identity groups → **35 full draft
+    proposals for NEW projects** (each with one exact-source evidence candidate), 85
+    manifest-only drafts (pass the bar via DefiLlama but need exact-source work), 105 pending
+    (App Portal only, no verifiable deployment record), 3 CEX exclusions, 3 existing matches
+    (Kuru, aPriori, Magma). All candidates `reviewStatus: proposed`, `reviewedAt: null`.
+    No relationship candidates: the seeds contain no citable typed-edge basis.
+  - `data/research/intake-report-2026-09-26.json` — identity/dedupe report: per-group outcomes,
+    alias/domain/slug rules, 9 near-miss alias groups left unmerged for human review,
+    human-review flags, honest address-matching limitation (DefiLlama `address` is the
+    dominant-chain address, not a Monad explorer record).
+  - Nothing was promoted; the active `phase-3.5-v2` snapshot, its generated module, and
+    governance files are untouched; exact claim sentences from approved snapshots were not
+    reworded or reused.
+
+Files changed:
+- `scripts/research/fetch-defillama-monad.js`, `scripts/research/fetch-app-portal.js`
+- `scripts/ecosystem-intake.js`
+- `data/research/README.md`, `data/research/defillama-monad-2026-09-26.json`,
+  `data/research/monad-app-portal-2026-09-26.json`, `data/research/proposals-draft-2026-09-26.json`,
+  `data/research/intake-report-2026-09-26.json`
+- `package.json`, `docs/WORKLOG.md`
+
+Verified:
+- `npm run build` green before every commit (evidence verify-promotion gate; SHA-256
+  `8edfddcce8caadb5861b5e2164f7a1d8755e01f6c369eb1cab8e0ffd996d3e58` unchanged).
+- Every drafted evidence candidate passes `validateCandidateEvidenceRecord` (runtime gate with
+  extended project-id set) and the workspace-shape checks (network Monad mainnet/143, cadence
+  pair, support-mode pairing, supportedProposition === scope, provenance consistency).
+- Output-path guards: intake refuses to write to `data/evidence-snapshots/`, `src/`, or outside
+  the repo (tested).
+- Intake re-run determinism: same inputs produce identical outcomes (35/85/105/3/3).
+
+Limitations:
+- Pre-existing: `npm run evidence:validate` requires `--workspace` and cannot pass against any
+  checked-in artifact today, because approved-only snapshots/exports lack retained predecessor
+  lineage (e.g. `E-KURU-MEM-001`). Unrelated to this phase; the build's verify-promotion gate
+  is the active snapshot validation. New review flows need a lineage-complete workspace.
+- DefiLlama-only projects get manifest-only drafts: no auto-draftable exact-source claim yet;
+  `protocol-registry-snapshot` requires a pinned snapshot URL that api.llama.fi cannot provide.
+- Deployment addresses are not captured: DefiLlama's `address` field is dominant-chain only;
+  explorer verification is Batch 1 source work (stated in every draft manifest).
+- Districts are derived from a category mapping and are illustrative layout only; unmapped
+  categories stay unassigned for human decision (33 DeFi / 1 Gaming / 1 Infrastructure of the
+  35 full drafts).
+- Portal taglines/blurbs are publisher marketing copy, kept attributed and out of descriptions;
+  descriptions are neutral registry statements.
+- Seed artifacts and drafts are dated 2026-09-26 (UTC capture date).
+
+Next:
+- HUMAN REVIEW WINDOW (required): Batch 1 selection from the 35 full drafts + 85 manifest-only
+  drafts; per-project source inspection and phase-3.7 review decisions; then `evidence:prepare`
+  into a lineage-complete workspace, snapshot v3, promotion, city layout, and data-driven
+  Navigator copy (scale plan §5.1). Do not self-approve these proposals.
+- Deferred seed extension: retain DefiLlama `oraclesBreakdown` to source future
+  relationship candidates (needs the curated-six endpoint contract expanded first).
+- v2.2 visual backlog (separate tasks/commits): relationship hover tooltip on beams; 390px
+  view-toggle clip; district ground-label occlusion.
+
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
