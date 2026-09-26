@@ -994,6 +994,50 @@ Next:
 - v2.2 visual backlog (separate tasks/commits): relationship hover tooltip on beams; 390px
   view-toggle clip; district ground-label occlusion.
 
+### 2026-09-27 — Lead agent / frontend — v2.2 stretch: beam tooltip + narrow-layout fixes
+
+Changed:
+- `src/style.css` (commit `8c76604`): fixed the 390px view-toggle overlap. Root cause: in the
+  ≤940px layer the legend strip pins `top: 12px; left: 12px` with no right constraint and
+  paints after the toggle, so at 390px its chips ran across the City/Graph toggle. The legend
+  now reserves the toggle corner (`right: 168px`, `156px` at ≤420px) and the toggle buttons
+  compact at ≤420px. Verified overlap-free at 320/390/480/768/940.
+- `src/city3d.js` (commit `b374f0f`): district ground labels render above buildings — the
+  label planes now use `depthTest: false` + `renderOrder 10`, so tall buildings no longer
+  occlude them (scale plan: district ground labels stay always-on).
+- `src/city3d.js` + `src/style.css` (commit `a44fe9d`): relationship hover tooltip on beams.
+  Invisible thicker hitbox per beam (zero-opacity, volume for the raycaster); buildings keep
+  hover/click priority; tooltip names the two projects, relationship type, and evidence state,
+  reusing `RELATIONSHIP_TYPES`/`RELATIONSHIP_STATES` from `src/data.js`. Trust semantics:
+  sourced edges read "Limited source-backed record; supports only its cited scope — not
+  verification, endorsement, or current operation"; Demo edges show their existing state
+  meaning. Tooltip hides on drag, click, pointer leave, and Graph view; hovered beam
+  brightens via the same base-opacity formula used by `sync()`.
+
+Files changed:
+- `src/city3d.js`, `src/style.css`, `docs/WORKLOG.md`
+
+Verified:
+- `npm run build` green per commit (SHA-256 gate unchanged).
+- In-browser at 1440×900 and 390×844: demo-edge tooltip ("Kuru ↔ Pyth Network · Onchain
+  interaction · Onchain observed" + demo meaning) and sourced-edge tooltip ("Monad ↔ aPriori ·
+  Ecosystem membership · Sourced · Observed" + bounded-scope disclosure) both render; building
+  click still opens the Passport and hides the tooltip; Graph view hides it; no console errors;
+  no horizontal overflow at 390px; district labels readable across buildings.
+- Phase 5.0 stages unaffected (visual-only changes).
+
+Limitations:
+- Beam tooltips are desktop hover (pointer without buttons); touch users keep the Graph View
+  and Passport as relationship surfaces.
+- Ground labels with `depthTest: false` show through buildings behind them — intended
+  always-on wayfinding; opacity 0.55 keeps them background.
+- The legend wraps to two rows at 390px (three at 320px) to keep the toggle clear.
+
+Next:
+- HUMAN REVIEW WINDOW for the Phase 5.0 dry-run proposals (see Phase 5.0 handoff above) —
+  Batch 1 selection, source inspection, phase-3.7 decisions.
+
+
 
 ## Open questions
 
