@@ -1,4 +1,5 @@
 import * as THREE from './vendor/three.module.min.js';
+import { RELATIONSHIP_STATES, RELATIONSHIP_TYPES } from './data.js';
 
 // Voxel Island City View (visual architecture v2, docs/VOXEL_ISLAND_SPEC.md).
 // Deterministic: every placement derives from project data or a seeded hash.
@@ -243,6 +244,7 @@ export function createCity3D({
   const matchBeacons = new Map();
 
   // ---------- relationship beams ----------
+  const beamHitboxes = [];
   const beamViews = relationships.map((relationship) => {
     const from = projects.find((item) => item.id === relationship.from);
     const to = projects.find((item) => item.id === relationship.to);
@@ -270,6 +272,18 @@ export function createCity3D({
       beam.rotation.y = -angle;
       group.add(beam);
     }
+
+    // Invisible, thicker hitbox so the thin beam is hoverable (raycast targets need volume;
+    // the zero-opacity material keeps it visually absent).
+    const hitbox = new THREE.Mesh(
+      new THREE.BoxGeometry(Math.max(length - 2.4, 1), 1.6, 1.6),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }),
+    );
+    hitbox.position.copy(a).add(b).multiplyScalar(0.5);
+    hitbox.rotation.y = -angle;
+    hitbox.userData.relationshipId = relationship.id;
+    group.add(hitbox);
+    beamHitboxes.push(hitbox);
 
     scene.add(group);
     return { relationship, material, group };
@@ -450,23 +464,117 @@ export function createCity3D({
     return null;
   }
 
+  // ---------- relationship beam hover tooltip ----------
+  // Disclosure only: the tooltip names the relationship and its evidence state; it never
+  // implies verification, endorsement, or onchain fact.
+  const beamTooltip = document.createElement('div');
+  beamTooltip.className = 'beam-tooltip';
+  beamTooltip.setAttribute('role', 'tooltip');
+  beamTooltip.hidden = true;
+  container.appendChild(beamTooltip);
+  let hoveredBeamId = null;
+  const escapeHtml = (value) =>
+    String(value).replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    })[char]);
+
+  function raycastBeam(event) {
+    const rect = renderer.domElement.getBoundingClientRect();
+    const pointer = new THREE.Vector2(
+      ((event.clientX - rect.left) / rect.width) * 2 - 1,
+      -((event.clientY - rect.top) / rect.height) * 2 + 1,
+    );
+    raycaster.setFromCamera(pointer, camera);
+    const hits = raycaster.intersectObjects(beamHitboxes, false);
+    return hits.length ? hits[0].object.userData.relationshipId : null;
+  }
+
+  function beamBaseOpacity(view) {
+    const { relationship } = view;
+    const active = relationship.from === state.selected || relationship.to === state.selected;
+    const match = state.highlightRelationships.has(relationship.id);
+    const fromVisible = isVisible(projects.find((item) => item.id === relationship.from));
+    const toVisible = isVisible(projects.find((item) => item.id === relationship.to));
+    return !state.showLinks ? 0.02
+      : !fromVisible || !toVisible ? 0.03
+      : match ? 1
+      : active ? 0.85
+      : 0.24;
+  }
+
+  function fillBeamTooltip(relationship) {
+    const from = projects.find((item) => item.id === relationship.from);
+    const to = projects.find((item) => item.id === relationship.to);
+    const sourced = relationship.dataMode === 'sourced-limited' && relationship.reviewStatus === 'approved';
+    const stateInfo = RELATIONSHIP_STATES[relationship.evidenceState];
+    const typeLabel = RELATIONSHIP_TYPES[relationship.type]?.label ?? relationship.type;
+    const stateLabel = sourced
+      ? `Sourced · ${relationship.claimStatus ?? 'sourced-limited'}`
+      : stateInfo?.label ?? relationship.evidenceState;
+    const meaning = sourced
+      ? 'Limited source-backed record; supports only its cited scope — not verification, endorsement, or current operation.'
+      : stateInfo?.meaning ?? 'Illustrative presentation; asserts no factual relationship.';
+    beamTooltip.innerHTML =
+      `<strong>${escapeHtml(from?.name ?? relationship.from)} ↔ ${escapeHtml(to?.name ?? relationship.to)}</strong>` +
+      `<span>${escapeHtml(typeLabel)} · ${escapeHtml(stateLabel)}</span>` +
+      `<small>${escapeHtml(meaning)}</small>`;
+  }
+
+  function positionBeamTooltip(event) {
+    const rect = container.getBoundingClientRect();
+    const x = Math.min(Math.max(event.clientX - rect.left, 130), Math.max(rect.width - 130, 130));
+    const y = event.clientY - rect.top;
+    const below = y < 96;
+    beamTooltip.style.left = `${x}px`;
+    beamTooltip.style.top = `${y}px`;
+    beamTooltip.classList.toggle('below', below);
+  }
+
+  function setBeamHover(relationshipId, event) {
+    if (relationshipId === hoveredBeamId) {
+      if (relationshipId && event) positionBeamTooltip(event);
+      return;
+    }
+    if (hoveredBeamId) {
+      const previous = beamViews.find((view) => view.relationship.id === hoveredBeamId);
+      if (previous) previous.material.opacity = beamBaseOpacity(previous);
+    }
+    hoveredBeamId = relationshipId;
+    if (relationshipId) {
+      const view = beamViews.find((item) => item.relationship.id === relationshipId);
+      if (view) view.material.opacity = Math.max(beamBaseOpacity(view), 0.6);
+      fillBeamTooltip(view.relationship);
+      beamTooltip.hidden = false;
+      requestAnimationFrame(() => beamTooltip.classList.add('visible'));
+      positionBeamTooltip(event);
+    } else {
+      beamTooltip.classList.remove('visible');
+      beamTooltip.hidden = true;
+    }
+  }
+
   renderer.domElement.addEventListener('pointerdown', (event) => {
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     movedDistance = 0;
     introSkipped = true;
+    setBeamHover(null);
     renderer.domElement.setPointerCapture(event.pointerId);
   });
 
   renderer.domElement.addEventListener('pointermove', (event) => {
     if (!pointers.has(event.pointerId)) {
       const hit = raycastProject(event);
+      // Buildings keep hover priority; beams only hover where no building is behind the cursor.
+      const beamHit = hit ? null : raycastBeam(event);
       if (hit !== hoveredId) {
         hoveredId = hit;
-        renderer.domElement.style.cursor = hit ? 'pointer' : 'grab';
         labelElements.forEach((element, id) => element.classList.toggle('hover', id === hit));
       }
+      setBeamHover(beamHit, event);
+      renderer.domElement.style.cursor = hit || beamHit ? 'pointer' : 'grab';
       return;
     }
+    setBeamHover(null);
     const previous = pointers.get(event.pointerId);
     const dx = event.clientX - previous.x;
     const dy = event.clientY - previous.y;
@@ -500,6 +608,9 @@ export function createCity3D({
   }
   renderer.domElement.addEventListener('pointerup', endPointer);
   renderer.domElement.addEventListener('pointercancel', endPointer);
+  renderer.domElement.addEventListener('pointerleave', () => {
+    setBeamHover(null);
+  });
   renderer.domElement.addEventListener('wheel', (event) => {
     event.preventDefault();
     control.radiusGoal = Math.min(160, Math.max(45, control.radiusGoal * Math.exp(event.deltaY * 0.0011)));
@@ -520,6 +631,7 @@ export function createCity3D({
     container.classList.toggle('is-graph', state.graph);
     if (state.graph) {
       labelElements.forEach((element) => { element.style.opacity = '0'; });
+      setBeamHover(null);
     }
 
     projectViews.forEach((view, id) => {
@@ -566,16 +678,10 @@ export function createCity3D({
     });
 
     beamViews.forEach((view) => {
-      const { relationship } = view;
-      const active = relationship.from === state.selected || relationship.to === state.selected;
-      const match = state.highlightRelationships.has(relationship.id);
-      const fromVisible = isVisible(projects.find((item) => item.id === relationship.from));
-      const toVisible = isVisible(projects.find((item) => item.id === relationship.to));
-      view.material.opacity = !state.showLinks ? 0.02
-        : !fromVisible || !toVisible ? 0.03
-        : match ? 1
-        : active ? 0.85
-        : 0.24;
+      view.material.opacity = Math.max(
+        beamBaseOpacity(view),
+        view.relationship.id === hoveredBeamId && !state.graph && state.showLinks ? 0.6 : 0,
+      );
       view.group.visible = !state.graph && state.showLinks;
     });
   }

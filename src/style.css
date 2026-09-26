@@ -2758,3 +2758,53 @@ details.navigator-evidence {
   color: #9a92b2 !important;
   font-size: 11px !important;
 }
+
+/* =====================================================================
+   V2.2 — relationship beam hover tooltip (disclosure only, never proof)
+   ===================================================================== */
+
+.beam-tooltip {
+  position: absolute;
+  z-index: 40;
+  max-width: 264px;
+  padding: 8px 11px 9px;
+  border: 1px solid rgba(169, 142, 230, 0.32);
+  border-radius: 8px;
+  background: rgba(13, 13, 19, 0.93);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+  color: #cfc7dd;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: left;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, calc(-100% - 14px));
+  transition: opacity 120ms ease;
+}
+
+.beam-tooltip.below {
+  transform: translate(-50%, 18px);
+}
+
+.beam-tooltip.visible {
+  opacity: 1;
+}
+
+.beam-tooltip strong {
+  display: block;
+  color: #ece5f8;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.beam-tooltip span {
+  display: block;
+  margin-top: 2px;
+  color: #a9d0ff;
+}
+
+.beam-tooltip small {
+  display: block;
+  margin-top: 3px;
+  color: #8d8499;
+}
