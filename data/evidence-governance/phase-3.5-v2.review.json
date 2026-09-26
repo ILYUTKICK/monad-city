@@ -1,0 +1,294 @@
+{
+  "kind": "monad-city-evidence-review-governance",
+  "schemaVersion": "1",
+  "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+  "snapshotBinding": {
+    "version": "phase-3.5-v2",
+    "canonicalSha256": "8edfddcce8caadb5861b5e2164f7a1d8755e01f6c369eb1cab8e0ffd996d3e58",
+    "reviewedAt": "2026-09-22T22:02:32Z"
+  },
+  "evidenceDecisions": [
+    {
+      "subjectId": "E-MONAD-CAP-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-MONAD-MAINNET-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-MONAD-NET-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-KURU-CAP-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-KURU-CONTRACTS-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-KURU-REGISTRY-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-KURU-CHAIN-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-APRIORI-CAP-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-APRIORI-REGISTRY-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-APRIORI-CHAIN-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-MAGMA-CAP-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-MAGMA-REGISTRY-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-MAGMA-CHAIN-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-SWITCHBOARD-CAP-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-SWITCHBOARD-MEM-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-SWITCHBOARD-REGISTRY-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-PYTH-PUSH-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-PYTH-MEM-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-PYTH-REGISTRY-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-PYTH-CHAIN-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-MAGMA-SWITCHBOARD-001",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "E-KURU-MEM-002",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    }
+  ],
+  "relationshipDecisions": [
+    {
+      "subjectId": "monad-apriori",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "monad-magma",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "monad-switchboard",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "magma-switchboard",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-09T07:43:40Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "monad-kuru-002",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    },
+    {
+      "subjectId": "monad-pyth-002",
+      "decision": "approved",
+      "reviewerRef": "legacy-unattributed:phase-3.5-v2",
+      "reviewerRole": "legacy-unattributed",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "reviewMethod": "legacy-approved-projection-import",
+      "decisionReason": "legacy-approved-projection",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+    }
+  ]
+}

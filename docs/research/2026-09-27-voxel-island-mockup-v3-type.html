@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Monad City — Voxel Island mockup (dark, type pass)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#0a0a0f;overflow:hidden}
+  #stage{position:relative;width:1728px;height:1000px}
+  canvas{position:absolute;inset:0;width:1728px;height:1000px;display:block}
+  .panel{
+    position:absolute;font:13px/1.55 'DM Sans',system-ui,-apple-system,sans-serif;
+    color:#ece6f8;background:rgba(13,13,19,.93);
+    border:1px solid rgba(169,142,230,.28);border-radius:8px;
+    box-shadow:0 18px 44px rgba(0,0,0,.55);padding:15px 17px;
+  }
+  .head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .eyebrow{color:#a98ee6;font-family:'Space Grotesk','DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+  .collapse{color:#8b84a3;border:1px solid rgba(169,142,230,.3);border-radius:5px;
+    width:22px;height:22px;line-height:20px;text-align:center;font-size:12px;flex:none;font-family:ui-monospace,Menlo,monospace}
+  .dim{color:#9a92b2}
+  .q{border:1px solid rgba(169,142,230,.35);border-radius:6px;background:rgba(6,6,10,.7);
+    padding:9px 11px;color:#f3edff;margin-top:10px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px}
+  .q .cur{color:#a98ee6}
+  .sug{color:#c3b6e6;margin-top:7px}
+  .sug::before{content:"› ";color:#a98ee6;font-family:ui-monospace,Menlo,monospace}
+  .hr{border-top:1px solid rgba(169,142,230,.18);margin:12px 0}
+  .sec{color:#a98ee6;font-family:'Space Grotesk','DM Sans',sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-top:13px}
+  .line{margin-top:6px}
+  .src{color:#a9d0ff}
+  .legend{position:absolute;left:50%;transform:translateX(-50%);bottom:22px;
+    font:12.5px/1.4 'DM Sans',system-ui,sans-serif;color:#9a92b2;background:rgba(13,13,19,.85);
+    border:1px solid rgba(169,142,230,.22);border-radius:6px;padding:8px 14px;letter-spacing:.02em}
+  .legend b{color:#ece6f8;font-family:'Space Grotesk',sans-serif;font-weight:600}
+  .legend .s1{color:#8ebbd7}.legend .s2{color:#a99bc4}.legend .s3{color:#b39ddb}
+  .hint{position:absolute;right:22px;bottom:22px;color:#8b84a3;font:10.5px ui-monospace,Menlo,monospace;
+    letter-spacing:.16em;text-transform:uppercase;background:rgba(13,13,19,.85);
+    border:1px solid rgba(169,142,230,.2);border-radius:6px;padding:8px 12px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="cv" width="3456" height="2000"></canvas>
+
+  <div class="panel" style="top:22px;left:22px;width:440px">
+    <div class="head">
+      <div class="eyebrow">AI Navigator</div>
+      <div class="collapse">—</div>
+    </div>
+    <div class="q"><span class="cur">›</span> find lending protocols with audited contracts</div>
+    <div style="margin-top:11px;font:600 15px 'Space Grotesk','DM Sans',sans-serif">2 matches — Kuru · aPriori</div>
+    <div class="dim" style="font-size:12.5px;margin-top:3px">Both are CLOB-style DeFi protocols. Beacons are placed on the map, DeFi district is in focus.</div>
+    <div class="hr"></div>
+    <div class="sug">Show me the DeFi landscape</div>
+    <div class="sug">Who is connected to Monad?</div>
+    <div class="sug">Find AI projects with active contracts</div>
+  </div>
+
+  <div class="panel" style="top:22px;right:22px;width:330px">
+    <div class="head"><div class="eyebrow">Project Passport</div><div class="collapse">—</div></div>
+    <div style="font:700 24px 'Space Grotesk','DM Sans',sans-serif;margin-top:8px">Kuru</div>
+    <div class="dim" style="font-size:12.5px;margin-top:2px">DeFi · CLOB exchange on Monad</div>
+    <div class="sec">Status</div>
+    <div class="line">Claimed — stated by the project, independent proof pending.</div>
+    <div class="sec">Evidence</div>
+    <div class="line">Exchange contract deployed<br><span class="src">docs.kuru.exchange</span> · contract scope only</div>
+    <div class="sec">Relationships</div>
+    <div class="line">Switchboard — <span class="s1">Sourced · onchain</span></div>
+    <div class="line">aPriori — <span class="s2">Declared · owner statement</span></div>
+    <div class="line">Magma — <span class="s3">AI-inferred · similarity</span></div>
+  </div>
+
+  <div class="legend"><b>Relationships</b> &nbsp;—&nbsp; <span class="s1">— Sourced</span> &nbsp;&nbsp; <span class="s2">— Declared</span> &nbsp;&nbsp; <span class="s3">⋯ AI-inferred</span></div>
+  <div class="hint">drag orbit · scroll zoom · r reset</div>
+</div>
+
+<script>
+const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+ctx.scale(2,2);
+
+const TW = 21, TH = 10.2, ZH = 20, OX = 864, OY = 205, C = 22;
+const iso = (x, y, z = 0) => [OX + (x - y) * TW, OY + (x + y) * TH - z * ZH];
+const hash = (x, y) => { const s = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453; return s - Math.floor(s); };
+const R = 14.6;
+const m = (x, y) => { const dx = Math.abs(x - C), dy = Math.abs(y - C); return Math.max(dx, dy) + 0.35 * Math.min(dx, dy); };
+const inside = (x, y) => m(x, y) < R + (hash(x, y) - 0.5) * 1.8;
+const streets = (x, y) => (x === 22 || y === 22 || x === 15 || x === 29 || y === 15 || y === 29);
+const ring = (x, y) => Math.abs(m(x, y) - 12.5) < 0.55;
+const isRoad = (x, y) => inside(x, y) && (streets(x, y) || ring(x, y));
+const isPlaza = (x, y) => m(x, y) < 3.4;
+
+// buildings: dark bodies, bright per-project roof accents (previous version palette)
+const TEAL = '#93d6c6', BLUE = '#91baff', PURPLE = '#a58aff', AMBER = '#e9b07c', PINK = '#e5a5cd';
+const buildings = [
+  { id:'kuru',  x:12, y:13, w:2, d:2, h:4, roof:TEAL,   L:'K', beacon:'#7d7490', sel:true },
+  { id:'apri',  x:19, y:12, w:2, d:1, h:3, roof:TEAL,   L:'a', beacon:'#8ebbd7', nav:true },
+  { id:'magma', x:11, y:19, w:1, d:2, h:3, roof:AMBER,  L:'▲', beacon:null },
+  { id:'swtc',  x:25, y:9,  w:2, d:2, h:3, roof:BLUE,   L:'S', beacon:null },
+  { id:'pyth',  x:30, y:14, w:1, d:1, h:2, roof:PURPLE, L:'P', beacon:'#8ebbd7', nav:true, ant:true },
+  { id:'talus', x:26, y:26, w:2, d:2, h:4, roof:BLUE,   L:'T', beacon:'#9d81bd' },
+  { id:'nad',   x:12, y:26, w:2, d:1, h:2, roof:AMBER,  L:'n', beacon:null },
+  { id:'forge', x:17, y:29, w:2, d:2, h:3, roof:AMBER,  L:'F', beacon:null },
+  { id:'moca',  x:24, y:31, w:3, d:1, h:2, roof:PINK,   L:'◆', beacon:null },
+];
+const towers = [[13,17,5],[27,17,4],[26,13,4],[18,24,3],[13,23,3],[31,21,2]];
+
+const occupied = new Set();
+for (const b of [...buildings, ...towers.map(t => ({x:t[0], y:t[1], w:1, d:1}))])
+  for (let i = 0; i < b.w; i++) for (let j = 0; j < b.d; j++) occupied.add((b.x+i)+','+(b.y+j));
+const nearB = (x, y, r) => { for (const k of occupied) { const [a,b] = k.split(',').map(Number);
+  if (Math.abs(a-x) <= r && Math.abs(b-y) <= r) return true; } return false; };
+
+const vox = [];
+const push = (x, y, z, h, color, opts = {}) => vox.push({ x, y, z, h, color, ...opts });
+const shade = (hex, f) => {
+  const n = parseInt(hex.slice(1), 16), r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return `rgb(${Math.round(r*f)},${Math.round(g*f)},${Math.round(b*f)})`;
+};
+
+// ground tiles (night island)
+const tiles = [];
+for (let x = 0; x < 46; x++) for (let y = 0; y < 46; y++) {
+  if (inside(x, y)) {
+    const coast = !(inside(x+1,y)&&inside(x-1,y)&&inside(x,y+1)&&inside(x,y-1));
+    const sand = coast || m(x, y) > R - 1.1 + (hash(x,y)-0.5);
+    let col = sand ? '#3f3656' : (isPlaza(x,y) ? '#453d63' : (isRoad(x,y) ? '#3a3454' : ((x+y)%2 ? '#272238' : '#242030')));
+    if (!sand && !isRoad(x,y) && !isPlaza(x,y) && hash(x*3,y*7) > 0.93) col = '#2a2542';
+    tiles.push({ x, y, col, skirt: sand ? '#241f36' : '#1d1928', coast });
+  } else if (inside(x+1,y)||inside(x-1,y)||inside(x,y+1)||inside(x,y-1)||inside(x+1,y+1)||inside(x-1,y-1)||inside(x+1,y-1)||inside(x-1,y+1)) {
+    tiles.push({ x, y, col:'#1e1a2d', water:true });
+  }
+}
+
+const trees = [], houses = [];
+for (let x = 4; x < 42; x++) for (let y = 4; y < 42; y++) {
+  if (!inside(x, y) || isRoad(x, y) || isPlaza(x, y)) continue;
+  if (m(x, y) > R - 2.4) continue;
+  const r = hash(x * 7.13, y * 3.71);
+  if (nearB(x, y, 1)) continue;
+  if (r > 0.955 && trees.length < 30) trees.push([x, y]);
+  else if (r > 0.9 && r <= 0.955 && !nearB(x, y, 2) && houses.length < 30) houses.push([x, y]);
+}
+
+function poly(pts, fill, stroke) {
+  ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.closePath();
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1; ctx.stroke(); }
+}
+function drawCube(x, y, z, h, color, alpha = 1, s = 1) {
+  const t = iso(x, y, z + h), a = iso(x+s, y, z+h), b = iso(x+s, y+s, z+h), c = iso(x, y+s, z+h);
+  const a0 = iso(x+s, y, z), b0 = iso(x+s, y+s, z), c0 = iso(x, y+s, z);
+  ctx.globalAlpha = alpha;
+  poly([a, b, b0, a0], shade(color, 0.62));
+  poly([c, b, b0, c0], shade(color, 0.8));
+  poly([t, a, b, c], shade(color, 1.0));
+  ctx.globalAlpha = 1;
+}
+function shadow(x, y, w, d) {
+  const o = 0.55;
+  poly([iso(x+o,y+o,1.02), iso(x+w+o,y+o,1.02), iso(x+w+o,y+d+o,1.02), iso(x,y+d+o,1.02)], 'rgba(0,0,0,.3)');
+}
+function label(x, y, z, text, kind) {
+  const [sx, sy] = iso(x, y, z);
+  ctx.font = '600 11.5px "DM Sans", system-ui, sans-serif';
+  const w = ctx.measureText(text).width + 16;
+  const bx = sx - w/2, by = sy - 30;
+  ctx.fillStyle = 'rgba(13,13,19,.94)';
+  ctx.beginPath(); ctx.roundRect(bx, by, w, 20, 10); ctx.fill();
+  ctx.strokeStyle = kind === 'sel' ? '#c8acff' : 'rgba(169,142,230,.45)'; ctx.lineWidth = 1.2; ctx.stroke();
+  ctx.fillStyle = kind === 'sel' ? '#f3edff' : '#d9d2ee';
+  ctx.textAlign = 'center'; ctx.fillText(text, sx, by + 14); ctx.textAlign = 'left';
+}
+function districtLabel(x, y, text, col) {
+  const [sx, sy] = iso(x, y, 1);
+  ctx.font = '700 10px ui-monospace, Menlo, monospace';
+  ctx.fillStyle = col; ctx.textAlign = 'center';
+  ctx.fillText(text.split('').join('\u200a'), sx, sy); ctx.textAlign = 'left';
+}
+
+// ---- render ----
+// night sky + dark water
+const g = ctx.createLinearGradient(0, 0, 0, 1000);
+g.addColorStop(0, '#0a0a0f'); g.addColorStop(1, '#151122');
+ctx.fillStyle = g; ctx.fillRect(0, 0, 1728, 1000);
+// sparse stars
+for (let i = 0; i < 46; i++) {
+  const sx = (hash(i*13.7, 7.1) * 1728), sy = (hash(i*3.1, 11.9) * 520);
+  ctx.fillStyle = `rgba(226,211,255,${0.12 + hash(i, i) * 0.3})`;
+  ctx.fillRect(sx, sy, 1.6, 1.6);
+}
+for (const t of tiles) if (t.water) { const p = [iso(t.x,t.y,0.55),iso(t.x+1,t.y,0.55),iso(t.x+1,t.y+1,0.55),iso(t.x,t.y+1,0.55)]; poly(p, t.col); }
+
+tiles.filter(t => !t.water).sort((a,b) => (a.x+a.y)-(b.x+b.y)).forEach(t => {
+  if (t.coast || m(t.x,t.y) > R - 1.2) {
+    const z = 1;
+    const pE = [iso(t.x+1,t.y,z), iso(t.x+1,t.y+1,z), iso(t.x+1,t.y+1,0.35), iso(t.x+1,t.y,0.35)];
+    const pS = [iso(t.x,t.y+1,z), iso(t.x+1,t.y+1,z), iso(t.x+1,t.y+1,0.35), iso(t.x,t.y+1,0.35)];
+    if (inside(t.x+1, t.y) || !inside(t.x+1,t.y)) poly(pE, shade(t.skirt, 0.8));
+    poly(pS, shade(t.skirt, 1));
+    if (!inside(t.x+1,t.y) && inside(t.x,t.y+1)) poly(pE, shade(t.skirt, 0.8));
+  }
+  poly([iso(t.x,t.y,1), iso(t.x+1,t.y,1), iso(t.x+1,t.y+1,1), iso(t.x,t.y+1,1)], t.col);
+});
+
+// avenue dashes
+ctx.strokeStyle = 'rgba(169,142,230,.3)'; ctx.lineWidth = 1.4; ctx.setLineDash([5,7]);
+for (const [p, q] of [[[C+14.4, C], [C-14.4, C]], [[C, C-14.4], [C, C+14.4]]]) {
+  ctx.beginPath(); ctx.moveTo(...iso(p[0], p[1], 1.01)); ctx.lineTo(...iso(q[0], q[1], 1.01)); ctx.stroke();
+}
+ctx.setLineDash([]);
+
+for (const b of buildings) shadow(b.x, b.y, b.w, b.d);
+for (const t of towers) shadow(t[0], t[1], 1, 1);
+for (const h of houses) shadow(h[0], h[1], 1, 1);
+for (const t of trees) shadow(t[0], t[1], 1, 1);
+
+// bridges (elevated, glowing class colors)
+function bridge(points, color) {
+  for (let seg = 0; seg < points.length - 1; seg++) {
+    const [x0, y0] = points[seg], [x1, y1] = points[seg + 1];
+    const dx = Math.sign(x1 - x0), dy = Math.sign(y1 - y0);
+    let x = x0, y = y0, i = 0;
+    while (true) {
+      push(x, y, 1.9, 0.22, color, { alpha: 1 });
+      if (i % 2 === 0) push(x, y, 1.0, 0.9, '#4a4260');
+      if (x === x1 && y === y1) break;
+      if (x !== x1) x += dx; else y += dy; i++;
+    }
+  }
+}
+bridge([[21, 12], [25, 12], [25, 11]], '#8ebbd7');  // aPriori ↔ Switchboard — sourced
+bridge([[23, 23], [25, 25]], '#9d81bd');            // Monad ↔ Talus — AI-inferred
+
+// filler fabric (quiet dark family)
+for (const [x, y] of houses) {
+  push(x, y, 1, 0.9, '#443c60');
+  push(x, y, 1.9, 0.38, '#655886');
+}
+for (const [x, y, h] of towers) {
+  push(x, y, 1, h - 0.6, '#4d4470');
+  push(x, y, h + 0.4, 0.35, '#7a6ba0');
+}
+// project buildings: dark body + bright roof + monogram
+for (const b of buildings) {
+  push(b.x, b.y, 1, 0.35, '#3a3356');
+  push(b.x, b.y, 1.35, b.h - 0.35, '#574a80');
+  push(b.x, b.y, b.h + 0.75, 0.45, b.roof);
+  if (b.beacon) push(b.x + b.w/2 - 0.5, b.y + b.d/2 - 0.5, b.h + 1.35, 0.3, b.beacon);
+  if (b.ant) { push(b.x, b.y, b.h + 1.3, 1.3, '#8b84a3'); }
+}
+// Monad spire (central, light — distinct)
+push(21, 21, 1, 0.5, '#4a4266', { s: 2 });
+push(21.3, 21.3, 1.5, 2.2, '#e2d3ff', { s: 1.4 });
+push(21.55, 21.55, 3.7, 1.2, '#a58aff', { s: 0.9 });
+push(21.75, 21.75, 4.9, 0.5, '#e2d3ff', { s: 0.5 });
+// trees (night, muted)
+for (const [x, y] of trees) {
+  push(x, y, 1, 0.6, '#262433');
+  push(x - 0.1, y - 0.1, 1.6, 1.1, '#1f3a2e');
+  push(x + 0.05, y + 0.05, 2.7, 0.7, '#28473a');
+}
+// construction site
+push(19, 31, 1, 0.8, '#3a3350'); push(19.2, 31.2, 1.8, 0.5, '#3a3350');
+push(20, 31, 1, 2.6, '#e9b07c'); push(20, 30.4, 2.6, 0.25, '#e9b07c');
+
+vox.sort((a, b) => ((a.x + a.y) - (b.x + b.y)) || (a.z - b.z));
+for (const v of vox) drawCube(v.x, v.y, v.z, v.h, v.color, v.alpha || 1, v.s || 1);
+
+// roof monograms
+for (const b of buildings) {
+  const [lx, ly] = iso(b.x + b.w/2, b.y + b.d/2, b.h + 1.28);
+  ctx.font = '800 12px ui-monospace, Menlo, monospace';
+  ctx.fillStyle = '#16121f'; ctx.textAlign = 'center';
+  ctx.fillText(b.L, lx, ly + 4); ctx.textAlign = 'left';
+}
+// spire antenna + tip
+{
+  const [ax, ay] = iso(22, 22, 5.4);
+  ctx.strokeStyle = '#e2d3ff'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ax, ay - 24); ctx.stroke();
+  ctx.fillStyle = '#a58aff';
+  ctx.beginPath(); ctx.moveTo(ax, ay - 36); ctx.lineTo(ax + 6, ay - 28); ctx.lineTo(ax, ay - 20); ctx.lineTo(ax - 6, ay - 28); ctx.closePath(); ctx.fill();
+}
+// selected: lavender ground ring + roof outline (Kuru)
+{
+  const b = buildings[0];
+  const ringPts = [iso(b.x-0.35,b.y-0.35,1.05), iso(b.x+b.w+0.35,b.y-0.35,1.05), iso(b.x+b.w+0.35,b.y+b.d+0.35,1.05), iso(b.x-0.35,b.y+b.d+0.35,1.05)];
+  poly(ringPts, 'rgba(169,142,230,.16)', 'rgba(200,172,255,.95)');
+  ctx.lineWidth = 2;
+  const top = [iso(b.x,b.y,b.h+1.25), iso(b.x+b.w,b.y,b.h+1.25), iso(b.x+b.w,b.y+b.d,b.h+1.25), iso(b.x,b.y+b.d,b.h+1.25)];
+  poly(top, null, 'rgba(200,172,255,.9)');
+}
+// navigator beacons
+for (const b of buildings.filter(b => b.nav)) {
+  const [bx, by] = iso(b.x + b.w/2, b.y + b.d/2, b.h + 3.4);
+  ctx.fillStyle = '#a9d0ff';
+  ctx.beginPath(); ctx.moveTo(bx, by - 16); ctx.lineTo(bx + 12, by); ctx.lineTo(bx, by + 16); ctx.lineTo(bx - 12, by); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = 'rgba(169,208,255,.5)'; ctx.setLineDash([2,4]);
+  ctx.beginPath(); ctx.moveTo(bx, by + 17); ctx.lineTo(bx, by + 48); ctx.stroke(); ctx.setLineDash([]);
+}
+// Pyth antenna tip
+{
+  const [ax, ay] = iso(30.5, 14.5, 4.6);
+  ctx.strokeStyle = '#8b84a3'; ctx.lineWidth = 1.6;
+  ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ax, ay - 18); ctx.stroke();
+  ctx.fillStyle = '#e9b07c'; ctx.beginPath(); ctx.arc(ax, ay - 21, 3, 0, 7); ctx.fill();
+}
+// boats (muted)
+const boats = [[6.5, 26.5], [35.5, 18.5], [16.5, 38.5]];
+for (const [x, y] of boats) {
+  const [sx, sy] = iso(x, y, 0.62);
+  poly([[sx-11,sy],[sx+11,sy],[sx+6,sy+6],[sx-6,sy+6]], '#8b84a3');
+  ctx.strokeStyle = '#6a6480'; ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.moveTo(sx, sy + 2); ctx.lineTo(sx, sy - 16); ctx.stroke();
+  ctx.fillStyle = '#d9d2ee'; ctx.beginPath(); ctx.moveTo(sx, sy - 16); ctx.lineTo(sx + 10, sy - 2); ctx.lineTo(sx, sy - 2); ctx.closePath(); ctx.fill();
+}
+
+// labels
+districtLabel(10, 15, 'DEFI', 'rgba(147,214,198,.55)'); districtLabel(22, 11, 'INFRASTRUCTURE', 'rgba(165,138,255,.55)');
+districtLabel(30, 28, 'AI', 'rgba(145,186,255,.55)'); districtLabel(11.5, 31, 'GAMING', 'rgba(233,176,124,.55)');
+districtLabel(26, 35, 'IDENTITY', 'rgba(229,165,205,.55)');
+label(22, 22, 9.4, 'Monad', 'plain');
+label(13.4, 12.4, 6.4, 'Kuru — Claimed', 'sel');
+</script>
+</body>
+</html>
