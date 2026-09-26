@@ -1,0 +1,2148 @@
+{
+  "kind": "monad-city-research-seed",
+  "source": "Monad App Portal (official Monad app directory)",
+  "sourceUrl": "https://app.monad.xyz/",
+  "fetchedAtUtc": "2026-09-26T23:17:15Z",
+  "parseMethod": "Static extraction of the server-rendered Next.js flight payload from the HTML response. No JavaScript was executed and no browser was driven.",
+  "htmlSha256": "7d4c1cb85a6ef7a62a8fc051e297335ca00b85e55e9eff75336da5a53f785496",
+  "note": "Research seed for the ecosystem intake pipeline. Names, taglines, and blurbs are the publisher’s own marketing copy and stay attributed to the Monad App Portal; they are not independent verification of any project capability. This artifact is not an evidence snapshot and carries no review status.",
+  "counts": {
+    "directoryApps": 143,
+    "featuredSections": 4,
+    "featuredApps": 23,
+    "mostActiveApps": 5
+  },
+  "directory": [
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM0JHdTdsSTBHN0lqSTZhVEdQcHZteg==",
+      "slug": "kuru",
+      "name": "Kuru",
+      "tagline": "Trading Hub on Monad",
+      "logo": "/images/app-logo-kuru.webp",
+      "categories": [
+        "Launchpad",
+        "Trading"
+      ],
+      "blurb": "Kuru is an all-in-one trading hub for Monad. Trade any spot asset with our smart aggregator and trading interface. Deploy liquidity on our hybrid AMM-orderbook. Launch a new token in seconds."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTU0NTkzNzY4YTMyNjk4ZDcxMThl",
+      "slug": "metamask_money_account",
+      "name": "MetaMask Money Account",
+      "tagline": "Turn Your Money On.",
+      "logo": "/images/app-logo-metamask-money-account.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Move stablecoins to your MetaMask Money Account, and start earning up to 4% APY automatically, with no conversion fees.\n\nAPY is variable and not guaranteed."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNjhVdFQ1YkVvVjVwd0JudkFLMDc5TA==",
+      "slug": "monday_trade",
+      "name": "Monday Trade",
+      "tagline": "Trade on Monday. Everyday.",
+      "logo": "/images/app-logo-monday-trade.webp",
+      "categories": [
+        "Leverage Trading"
+      ],
+      "blurb": "Monday Trade is Monad’s native DEX combining the best of CEX and DEX trading. Powered by Monad’s low latency, it executes trades within milliseconds, letting traders capture every market move without giving up asset ownership. A highly efficient hybrid DEX built for beginner, pro, and institutional traders."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMktYV0hyaXVKcVJaZEdCcjRDNFV2dQ==",
+      "slug": "nad_fun",
+      "name": "Nad.fun",
+      "tagline": "Launch. Trade. Predict. On Monad.",
+      "logo": "/images/app-logo-nad-fun.webp",
+      "categories": [
+        "Launchpad",
+        "Trading"
+      ],
+      "blurb": "Native launchpad on Monad. We’re building a real user flywheel: LP fees fuel buybacks, creator rewards, and long-term ecosystem growth. Hypeboard adds a jackpot-style cycle for tokens, and prediction markets turn volatility into a game for users."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTgyNDVjYTRhZmUwMjQ2ZjM4M2Vl",
+      "slug": "lumiterra",
+      "name": "Lumiterra",
+      "tagline": "AI-Powered Open-World Game",
+      "logo": "/images/app-logo-lumiterra.webp",
+      "categories": [
+        "Agent",
+        "Entertainment"
+      ],
+      "blurb": "Lumiterra is an open-world MMORPG where you team up with an AI smart-companion that learns your playstyle, helping you win battles, farm faster, and explore smarter. Join other players for battles, gathering, farming, trading, and cooperative survival in a dynamic world where your progress and skill earn valuable rewards."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNUJwNUU0MEhGd0JqVFFQM3BlUHgybA==",
+      "slug": "leverup",
+      "name": "LeverUp",
+      "tagline": "LP-Free Perps,1001x Leverage.",
+      "logo": "/images/app-logo-leverup.webp",
+      "categories": [
+        "Leverage Trading"
+      ],
+      "blurb": "LeverUp is an LP-Free perpetuals exchange offering uncapped open interest, extreme leverage up to 1001x, and fully on-chain transparency. All protocol fees are returned to traders and every market settles in native LVUSD/LVMON, enabling unmatched capital efficiency and scalable, trader-first perps."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNFh2Z1NKNDlqaVNkUEQ2SDU0d3pJQQ==",
+      "slug": "bro_fun",
+      "name": "Bro.fun",
+      "tagline": "Sink cups, become a legend.",
+      "logo": "/images/app-logo-bro-fun.webp",
+      "categories": [
+        "Entertainment"
+      ],
+      "blurb": "Bro.fun turns every degen’s favorite game digital, blending luck, crypto, and chaos. It’s like if Vegas and a frat basement had a baby. On-chain, verifiably fair, risk-on gaming."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNUtpUGdoWHRTZlF5SDhRa3VDTUtwWg==",
+      "slug": "townsquare",
+      "name": "TownSquare",
+      "tagline": "Monad-Native Lending Market",
+      "logo": "/images/app-logo-townsquare.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "TownSquare is a Monad-native modular lending market, powered by a crosschain borrowing & lending engine. Backed by Monad early contributors including Monad co-founder James Hunsaker and other top tier VCs."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMkx3UXIwOVNSUm1oc0Z0ZHBkTkhtMA==",
+      "slug": "levr_bet",
+      "name": "Levr Bet",
+      "tagline": "Bet Less. Win More.",
+      "logo": "/images/app-logo-levr-bet.webp",
+      "categories": [
+        "Prediction Market",
+        "Sports"
+      ],
+      "blurb": "Levr Bet is the first ever leveraged sports betting exchange. Fans pick one line, choose a multiplier, and get parlay-style upside from a single straight bet in a clean, familiar sportsbook experience."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNWZXa0RPQWN3YkRGSlNJTUFjNnlaNw==",
+      "slug": "neverland",
+      "name": "Neverland",
+      "tagline": "Self-repaying loans & veTokenomics",
+      "logo": "/images/app-logo-neverland.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "Neverland is a next-generation, Monad-exclusive lending protocol fusing secure, battle-tested lending tech with proprietary veTokenomics that allow users to direct 100% of revenue. Featuring self-repaying loans, flexible governance locks, and automated yield strategies, designed to maximize capital efficiency and long-term alignment."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMXlSNE9meU56UmN4emMwMEFEMEc2Qw==",
+      "slug": "matcha",
+      "name": "Matcha",
+      "tagline": "Discover and swap tokens instantly",
+      "logo": "/images/app-logo-matcha.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Matcha delivers optimal trade execution and helps you discover new token, by aggregating hundreds of DEXs and private market makers. Get complete token coverage, gasless swaps, and deep liquidity on Monad and 15 other chains with unbeatable pricing on any token pair."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvU0VsQW9KajhkV1N6b0QyRzUzb0hx",
+      "slug": "curvance",
+      "name": "Curvance",
+      "tagline": "Click less, earn more",
+      "logo": "/images/app-logo-curvance.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "Curvance is a capital-efficient lending platform on Monad. Users can deposit and borrow against productive assets, earn Bytes through on-chain activity, unlock milestone rewards, and access lootbox incentives. Built for users aiming to position early and capture real yield across the ecosystem."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMVFjbFA5a3p3akd4UUd2TVF1WnY4NA==",
+      "slug": "uniswap",
+      "name": "Uniswap",
+      "tagline": "The largest onchain marketplace",
+      "logo": "/images/app-logo-uniswap.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "The world's largest onchain marketplace, trusted by millions. Buy and sell crypto on Ethereum, Monad and 14+ other chains."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvZ2pZYmRTVm5aVnhWU1NrZXJTVUox",
+      "slug": "lfj",
+      "name": "LFJ",
+      "tagline": "Winners Trade Here",
+      "logo": "/images/app-logo-lfj.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "High performance DEX meets high performance chain. JOE's Liquidity Book DLMM is the most powerful fee capture tech in DeFi. Zero slippage trade flow, custom liquidity distribution, and ultrasound capital efficiency meets Monad 10K TPS to create an absolutely cracked fee machine, with the JOE token capturing and funneling these ecosystem fees."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM2lnWXpBUVhPWU1jVFp1Y1oxQ2pLMw==",
+      "slug": "opensea",
+      "name": "OpenSea",
+      "tagline": "OpenSea | Trade Everything.",
+      "logo": "/images/app-logo-opensea.webp",
+      "categories": [
+        "Collectibles"
+      ],
+      "blurb": "OpenSea is your home for trading everything onchain. Founded in 2017, OpenSea pioneered the first non-custodial marketplace for digital assets and has evolved into the destination for the entire onchain economy. Trade tokens, culture, ideas, digital assets, and physical assets across all major blockchains."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvbU42eWJTOGFoYWF2RFBtUEZLZ1JR",
+      "slug": "accountable",
+      "name": "YieldApp by Accountable",
+      "tagline": "Verifiable Yield Opportunities",
+      "logo": "/images/app-logo-accountable.png",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "YieldApp is the first yield marketplace built on top of Accountable's Data Verification Network. Every opportunity from borrower vaults to structured credit strategies is backed by live, cryptographically verifiable data. Designed for allocators, YieldApp makes it easy to discover, assess, and deploy into yield opportunities you can trust."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNUEwdU9SQkJVeTBWcXlGSGtVRFo4WQ==",
+      "slug": "capricorn",
+      "name": "Capricorn",
+      "tagline": "A DEX with HFT-grade liquidity",
+      "logo": "/images/app-logo-capricorn.webp",
+      "categories": [
+        "Trading",
+        "Yield"
+      ],
+      "blurb": "Capricorn delivers optimal onchain swap experience through hyper capital efficient liquidity. The flagship proactive liquidity pool uses a pricing engine that actively refreshes spreads and depths every block using up-to-the-moment oracle feeds rather than the pool’s balance of assets as the key mechanism to price assets."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMjY4NHoyRGUwUkxabmZMWnlteGduVg==",
+      "slug": "mellow",
+      "name": "Mellow",
+      "tagline": "Onchain yield made transparent",
+      "logo": "/images/app-logo-mellow.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Mellow makes earning onchain yield simple and transparent. Through secure vaults connected to DeFi apps and protocols, anyone can access diversified yield strategies with full visibility and control - no complex setup, monitorings or intermediaries required!"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTZlYjIyNDZmOGY4MDQzYWFhYjQx",
+      "slug": "morpho",
+      "name": "Morpho",
+      "tagline": "The Universal Lending Network",
+      "logo": "/images/app-logo-morpho.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "Morpho is an open network that connects lenders and borrowers to optimal opportunities worldwide. Any enterprise, institution, or application can integrate Morpho to offer their users best-in-class lending and borrowing products."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMnJJNWhDcmxMNUtJMGFUT1dmQTREOQ==",
+      "slug": "pancakeswap",
+      "name": "PancakeSwap",
+      "tagline": "All-in-one decentralized exchange.",
+      "logo": "/images/app-logo-pancakeswap.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Trade and earn crypto on the all-in-one decentralized exchange. Enjoy low fees, high liquidity, and a user-friendly interface."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWJlYWNhNjZiMTY1ZTQ0MTVhNzM2",
+      "slug": "covenant",
+      "name": "Covenant",
+      "tagline": "Liquid Leverage and Yield",
+      "logo": "/images/app-logo-covenant.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "Covenant is liquid credit market that powers leverage and yield backed by any collateral asset."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNTdocGFSRUJKNGZvU0xNbjhESHNueA==",
+      "slug": "fastlane",
+      "name": "FastLane",
+      "tagline": "Alignment-Powered Liquid Staking",
+      "logo": "/images/app-logo-fastlane.webp",
+      "categories": [
+        "Liquid Staking"
+      ],
+      "blurb": "ShMonad is the first liquid staking token to have its yield boosted by validators (MEV), applications (MEV, UX), and more."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNFF0S2x4a1hFSjNNZWFKUVU2eGVFdg==",
+      "slug": "agora",
+      "name": "Agora",
+      "tagline": "Digital dollars are public goods",
+      "logo": "/images/app-logo-agora.webp",
+      "categories": [
+        "Asset Issuer",
+        "Yield"
+      ],
+      "blurb": "Agora is a stablecoin issuer of AUSD, backed 1:1 by cash and cash equivalent reserves managed by VanEck and custodied by State Street."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNVRZdENXc0g2T0xWNEpPczU4QkplNw==",
+      "slug": "magma",
+      "name": "Magma",
+      "tagline": "Monad Native Liquid Staking",
+      "logo": "/images/app-logo-magma.webp",
+      "categories": [
+        "Liquid Staking"
+      ],
+      "blurb": "Magma is a native LST on Monad, powered by the fastest block engine in crypto. Stake MON for gMON to earn yield and points across DeFi."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM3FBU2lwNENVb05Ybnl2SDZaemx3Sg==",
+      "slug": "kintsu",
+      "name": "Kintsu",
+      "tagline": "Composable Liquid Staking",
+      "logo": "/images/app-logo-kintsu.webp",
+      "categories": [
+        "Liquid Staking"
+      ],
+      "blurb": "Kintsu is the first liquid staking protocol truly engineered as a public good, without central control. Built to maximize capital efficiency and infuse staking yield into everything, Kintsu unifies liquidity and network security with its novel DAO curated gauge stake delegation solution."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvWnlkQ3pzendvaVp6S1pQeGYzMmVH",
+      "slug": "farcaster",
+      "name": "Farcaster",
+      "tagline": "Discover, trade, and create",
+      "logo": "/images/app-logo-farcaster.webp",
+      "categories": [
+        "Social"
+      ],
+      "blurb": "Farcaster is the best place to find new people, projects and ideas in crypto. It's a social network and crypto wallet reimagined."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvVU03MW9NRHZBVW9NNWpPTnJxUVBq",
+      "slug": "fomo",
+      "name": "fomo",
+      "tagline": "Never Miss Out Again",
+      "logo": "/images/app-logo-fomo.webp",
+      "categories": [
+        "Trading",
+        "Social"
+      ],
+      "blurb": "fomo is a trading app for the rest of us. Discover top traders and trending tokens in real time. Follow strategies, track positions, and share your own moves.\n\nFrom Bitcoin to memes - access any asset in seconds. Fast, transparent, and intuitive for everyone, not just crypto natives."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMkZ6ck52MlJEbDFQR3FqeWRNOGhXVg==",
+      "slug": "bonad",
+      "name": "BONAD",
+      "tagline": "Create, Build, Trade on BONAD",
+      "logo": "/images/app-logo-bonk-fun.webp",
+      "categories": [
+        "Launchpad"
+      ],
+      "blurb": "Launch a great token, build with your community, and win together. \n\nBONAD is a permissionless meme & ICM launchpad built by BONK in collaboration with the Doppler Protocol. \n\nThe majority of fees on BONAD go towards growing the BONAD ecosystem. "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWNlYzMwMDBkZGJhZDQ2Zjc5MzM1",
+      "slug": "curve",
+      "name": "Curve",
+      "tagline": "The Home of Stablecoins",
+      "logo": "/images/app-logo-curve.webp",
+      "categories": [
+        "Trading",
+        "Yield"
+      ],
+      "blurb": "Curve powers stablecoin and crypto markets with deep liquidity, reliable pricing, and efficient onchain execution. Users get high yield on savings, protected borrowing, and low slippage swaps in one protocol."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN2FnejBTMkY1NkZBcWRMQ1dsUU54Rw==",
+      "slug": "kyberswap",
+      "name": "KyberSwap",
+      "tagline": "Your Finance, Your Freedom",
+      "logo": "/images/app-logo-kyberswap.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "KyberSwap is a decentralized trading solution that helps users find optimized token swap rates by routing trades through multiple DEXs and other liquidity sources across multiple chains."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTc1ODhjZjhmZTQyZjQwODE4ZTA0",
+      "slug": "lido",
+      "name": "Lido",
+      "tagline": "Lido - Liquid Staking for Ethereum",
+      "logo": "/images/app-logo-lido.webp",
+      "categories": [
+        "Asset Issuer"
+      ],
+      "blurb": "Lido is an open-source liquid staking protocol that makes Ethereum staking simple and accessible. Users can stake ETH through professional node operators and receive liquid staking tokens that integrate broadly across DeFi. Lido also offers staking-related tools like CSM for home staking and Lido Earn, a one-stop shop for DeFi strategies."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM2dPYmFYdXpMR1FDc1ZSd244a2Zhbw==",
+      "slug": "pingme",
+      "name": "PingMe",
+      "tagline": "Send stablecoin like messages",
+      "logo": "/images/app-logo-pingme.webp",
+      "categories": [
+        "Payment"
+      ],
+      "blurb": "The easiest way to send, receive, and pay with stablecoin: no wallet, gas, or seed phrases. Anyone can instantly receive tokens via claimable links or QR codes, and use them to pay friends, creators, or merchants worldwide. Turns crypto from something complicated and technical into human and social, as simple as sending a message. Just a Ping."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM1VOclFkWjZNcWN1ODNQWDR5dThwZw==",
+      "slug": "lootgo",
+      "name": "LootGO",
+      "tagline": "Pokémon GO meets crypto rewards",
+      "logo": "/images/app-logo-lootgo.webp",
+      "categories": [
+        "Collectibles",
+        "Entertainment"
+      ],
+      "blurb": "LootGO is a walk to earn mobile app that turns your steps into a real-world crypto treasure hunt."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvUDQzTDJKVGlxa2t3cUx1NmwxYlNv",
+      "slug": "monorail",
+      "name": "Monorail",
+      "tagline": "Trade anything across Monad",
+      "logo": "/images/app-logo-monorail.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Monorail combines AMMs, on-chain orderbooks, and RFQ liquidity into one unified model ensuring reliable and efficient trade execution of any token across the entire Monad ecosystem"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTdlNjFiMzc4MDQyMTRmZDI5NWJm",
+      "slug": "aarna",
+      "name": "aarna",
+      "tagline": "Agentic onchain treasury",
+      "logo": "/images/app-logo-aarna.webp",
+      "categories": [
+        "Agent",
+        "Yield"
+      ],
+      "blurb": "aarna is an agentic onchain treasury for defi. It is the infra where high value users, project treasuries and funds deploy capital into a full stack onchain asset management layer. Over time, the aarna token becomes meta exposure to curated, low risk defi markets."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTE1NTNiOGUxMTg4YjQyZTlhNjBl",
+      "slug": "aco-labs",
+      "name": "ACO Labs",
+      "tagline": "Create AI videos at API cost",
+      "logo": "/images/app-logo-aco-labs.webp",
+      "categories": [
+        "Entertainment",
+        "Social"
+      ],
+      "blurb": "~THE AI CREATIVE STACK~\nHigh quality AI content + Engagement automation \n\nMade For Companies and Creators"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMTFnUldnMmIwUFhLdTVkbGJzdW5ZUA==",
+      "slug": "across",
+      "name": "Across",
+      "tagline": "Bridge across chains in seconds.",
+      "logo": "/images/app-logo-across.jpg",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": " Bridge ETH, WBTC, and stablecoins across chains in seconds with Across."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWRmMDNkM2ZlZGFiMDQzYWE4OTRi",
+      "slug": "apebond",
+      "name": "ApeBond",
+      "tagline": "Decentralized OTC Marketplace",
+      "logo": "/images/app-logo-apebond.webp",
+      "categories": [
+        "Yield",
+        "Trading"
+      ],
+      "blurb": "ApeBond is a decentralized bonding platform where users can buy tokens at a discount that vest over time, while projects grow long-term liquidity and strengthen their treasury."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWJiMzdlMTM0MjNjNjQzZmI5ZGI3",
+      "slug": "apriori",
+      "name": "aPriori",
+      "tagline": "Intelligent Order Flow Coordination",
+      "logo": "/images/app-logo-apriori.webp",
+      "categories": [
+        "Liquid Staking",
+        "Trading"
+      ],
+      "blurb": "The Intelligent Order Flow Coordination Layer for High-Performance Blockchains"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTg5M2MwOTZiNTczMzQxNzA5MTJj",
+      "slug": "axal",
+      "name": "Axal",
+      "tagline": "The Wealth App",
+      "logo": "/images/app-logo-axal.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Axal puts your money to work. Build wealth with yield on proven assets: 6-10% APY on dollars, yield on Bitcoin, and secure, physical gold bars."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWJmZGFkNGQ4MmY3NDRkZDJhNDAx",
+      "slug": "balancer",
+      "name": "Balancer",
+      "tagline": " Programmable AMM infrastructure",
+      "logo": "/images/app-logo-balancer.webp",
+      "categories": [
+        "Trading",
+        "Launchpad"
+      ],
+      "blurb": "Balancer is a programmable and customizable DEX and AMM infrastructure supporting multiple pool types: Weighted and Stable Pools (both available as Boosted for yield generation via lending protocols), LBPs for fair token launches, and reCLAMMs for passive concentrated liquidity. All pools are extendable via V3 hooks for custom logic"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM1F5QUVCNDlHNjR0ZGhKTEQ5azdDRw==",
+      "slug": "bean_exchange",
+      "name": "Bean Exchange",
+      "tagline": "Perps & DLMM DEX on Monad",
+      "logo": "/images/app-logo-beanexchange.webp",
+      "categories": [
+        "Leverage Trading"
+      ],
+      "blurb": "Bean Exchange is a capital-efficient Perps & DLMM Spot on Monad. Trade Perps with deep liquidity. Multi-asset collateral, cross-margin, Vault, Guild, Bean Point, and up to 50x leverage across varied assets. Provide liquidity in price range. Wide pool support, preset LP strategies, Vault, and dynamic fee built to earn yield"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTU2MWE5NmI1MDA5ZTQ5YmVhN2Uz",
+      "slug": "beefy",
+      "name": "Beefy",
+      "tagline": "Multichain Yield Optimizer",
+      "logo": "/images/app-logo-beefy.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Beefy is a Yield Optimizer helping users safely autocompound yields on their crypto. Our advanced web app offers hundreds of DeFi strategies across dozens of chains in one easy-to-use service. Saving time, gas, and boosting returns through liquidity automation and aggregation."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTMzMjUxOTI0YWM3MjQ3M2E4ZTA1",
+      "slug": "bidali",
+      "name": "Bidali",
+      "tagline": "Buy giftcards with crypto",
+      "logo": "/images/app-logo-bidali.webp",
+      "categories": [
+        "Entertainment"
+      ],
+      "blurb": "Bidali allows you to purchase giftcards from thousands of brands worldwide using your cryptocurrency on Monad. \n\nCash out and offramp quickly to purchase groceries, pay for travel, buy everyday goods and much more."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTE3ZjBhZjRkMWRmMTRhODRiYzZh",
+      "slug": "birdeye",
+      "name": "Birdeye",
+      "tagline": "Instant Accurate Trading Data Tool",
+      "logo": "/images/app-logo-birdeye.webp",
+      "categories": [
+        "Analytics"
+      ],
+      "blurb": "Birdeye is the all-in-one trading data tool built for alpha traders that offers real-time price charts, smart money flows, undiscovered gems, and rich historical data across 300+ exchanges. Trusted by millions of users over the past few years, Birdeye.so is the go-to platform for the winning minds."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTg0ZGFkNzBmZjg3YjQyMGVhZWUx",
+      "slug": "blinq",
+      "name": "Blinq",
+      "tagline": "Trading Terminal for Opinions.",
+      "logo": "/images/app-logo-blinq.webp",
+      "categories": [
+        "Prediction Market"
+      ],
+      "blurb": "Blinq is a professional terminal for the Opinion Economy, combining gamified formats like Price Duels and Candle Crush, advanced 10x leverage trading on Polymarket and Kalshi, and permissionless markets for creators, plus a reward system earning users and creators 30–38% of protocol fees through referrals and tiered levels."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTk5Y2JmNzMzMWRhYjQ4YzY4ZTM3",
+      "slug": "bungee",
+      "name": "Bungee",
+      "tagline": "Liquidity marketplace",
+      "logo": "/images/app-logo-bungee.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Bungee lets anyone trade any token across any chain in a single tap: fast, reliable, and without worrying about gas or routing complexity. Built on SOCKET’s infra, Bungee powers 23B+ in volume and reaches 30M+ users through partners like MetaMask, Coinbase, Rabby, OKX, and more."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN0hhajdPcGVKeFRQOUtpVlRrNkRHYQ==",
+      "slug": "call-of-odins-chosen",
+      "name": "Call of Odin's Chosen",
+      "tagline": "VWA-powered GameFi",
+      "logo": "/images/app-logo-coc.webp",
+      "categories": [
+        "Entertainment"
+      ],
+      "blurb": "Welcome to Call of Odin's Chosen.\n\nInspired by Bitcoin’s halving model, $COC releases 42% of its total supply to players in the first month.\nPowered by VWA (Vitural World Asset), $COC makes every reward transparent, verifiable, and truly yours on chain.\nThe more you play, the higher your value. Start your mining journey today!"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTc1MGI5ZDkyMmU4ODQ5YzU5NDM0",
+      "slug": "cashmere",
+      "name": "Cashmere",
+      "tagline": "Autonomous Monetary Infrastructure",
+      "logo": "/images/app-logo-cashmere.png",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "We are building the Autonomous Monetary Infrastructure for stablecoins, a unified layer that powers zero-slippage omnichain transfers, yield agent, on/off ramps, privacy transfers directly on app.cashmere.exchange. Incubated by BinanceLabs. Circle Alliance."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTcyNTAyYTEwNTIwMTQ3Y2RhMWYw",
+      "slug": "cctp_exchange",
+      "name": "CCTP Exchange",
+      "tagline": "The Seamless way to move USDC.",
+      "logo": "/images/app-logo-cctp-exchange.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "CCTP Exchange lets you move native USDC across chains with speed, reliability, and zero slippage. Powered by Rath.fi and Circle CCTP."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTNjNzIxYTZhNzc2ODQ4YzliZTAw",
+      "slug": "chainpro",
+      "name": "Chainpro",
+      "tagline": "Advanced onchain trading",
+      "logo": "/images/app-logo-chainpro.webp",
+      "categories": [
+        "Leverage Trading"
+      ],
+      "blurb": "the zero-fee, non-custodial trading terminal for pros"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTgxMGM3ZDdhY2M2OTQ5ZDRiN2Vi",
+      "slug": "clanker_world",
+      "name": "Clanker World",
+      "tagline": "Deploy Tokens, Earn from Attention",
+      "logo": "/images/app-logo-clanker-world.webp",
+      "categories": [
+        "Launchpad",
+        "Trading"
+      ],
+      "blurb": "Clanker lets you launch instantly tradable tokens on Monad. No dev needed. Airdrop to your community, vault a portion, or insta-buy to show skin in the game."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNjhXd09tZmpZdGlZUkxrdUN6Zll1UA==",
+      "slug": "clober",
+      "name": "Clober",
+      "tagline": "Have CEX on DEX",
+      "logo": "/images/app-logo-clober.webp",
+      "categories": [
+        "Trading",
+        "Yield"
+      ],
+      "blurb": "Clober is a performant on-chain CLOB protocol with a gas-efficient matching engine designed for decentralized execution, powering the next generation of DeFi. "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWYzNGViNDc5MjJhMjRhZTY4MDJi",
+      "slug": "cp0x-staking",
+      "name": "cp0x Staking",
+      "tagline": "Stake MON securely with cp0x",
+      "logo": "/images/app-logo-cp0x-monad-staking.webp",
+      "categories": [
+        "Staking"
+      ],
+      "blurb": "A simple, permissionless interface to stake MON with Monad validators. Delegate your tokens to cp0x_by_STAKRspace and earn staking rewards. No smart contracts, just a clean UI for native Monad staking."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM3BSaVhrUmtockRzdDFiVDRWWWF2MQ==",
+      "slug": "debridge",
+      "name": "deBridge",
+      "tagline": "Trade any opportunity, instantly",
+      "logo": "/images/app-logo-debridge.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "deBridge is the universal execution engine for onchain markets, putting traders ahead of the curve on every opportunity. With enterprise-level speed, security, and composability, deBridge powers borderless trading for individuals and institutions alike. "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMmZLa3p6ZVFwYjlrM3Q4VDk0VWR2cA==",
+      "slug": "definitive",
+      "name": "Definitive",
+      "tagline": "Trade like the pros",
+      "logo": "/images/app-logo-definitive.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Definitive is an onchain trading terminal trusted by funds, DAOs, and pro traders.\nSet advanced orders like Limit, TWAP, Stop Loss & Take Profit for ANY token.\nRotate liquidity instantly using Crosschain swap - no gas, bridging, or new wallet required.\nTrade like the pros on Definitive."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWU3NWQ2MDY3ZDJlNjQzNDNhZDE2",
+      "slug": "dfusion_ai",
+      "name": "dFusion AI",
+      "tagline": "Most Accurate and Powerful AI",
+      "logo": "/images/app-logo-dfusion-ai.webp",
+      "categories": [
+        "Data"
+      ],
+      "blurb": "dFusion AI is building the most accurate and powerful AI, FREE and driven by the community. Think Google's Notebook LM on Web3 rails: economic incentives, social and monetizable.  "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM0tIUWlPSEt3T2prNTU2S1UzV0Nlbw==",
+      "slug": "dirol",
+      "name": "Dirol",
+      "tagline": "All-in-one aggregator on Monad",
+      "logo": "/images/app-logo-dirol.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Dirol is the all-in-one trading aggregator for the Monad ecosystem, designed to be a single gateway to everything in DeFi.\n\nWe aggregate all token launches, launchpads, and DEX liquidity from multiple sources into one seamless platform, giving to user the best route possible.\n"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMjM0RzZ2bWwzcjMydmdncEwwQnVFeg==",
+      "slug": "euler",
+      "name": "Euler",
+      "tagline": "The DeFi Super App",
+      "logo": "/images/app-logo-euler.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "Euler is the DeFi Super App that unites permissionless lending, borrowing, earning and swapping in a single app."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNFZ0NHpNU3czTEpqSGE4ejVsMzdZMg==",
+      "slug": "fereai",
+      "name": "FereAI",
+      "tagline": "Crypto Trading on Autopilot",
+      "logo": "/images/app-logo-fereai.webp",
+      "categories": [
+        "Agent",
+        "Trading"
+      ],
+      "blurb": "Autonomous AI agents for crypto trading. Research markets, analyze social signals, discover trends, and trade onchain.All automated so you can move faster than the market."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTkzYWI3NTkyNDI5ZDQ1MDM5MDE4",
+      "slug": "flap",
+      "name": "Flap",
+      "tagline": "A Premier Token Launchpad",
+      "logo": "/images/app-logo-flap.webp",
+      "categories": [
+        "Launchpad"
+      ],
+      "blurb": "Flap is a user-centric, multi-chain token launchpad, which supports Monad, BNB, Xlayer and Morph ecosystems. Flap features open protocol bonding curves, integrated tax tokens, and streamlined DAO launches to support fun, competitive and transparent token discoveries and releases."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWQ5MTFjMzMzYjdlYTQ4NTFhOGE3",
+      "slug": "folks_finance",
+      "name": "Folks Finance",
+      "tagline": "Crosschain DeFi lending hub",
+      "logo": "/images/app-logo-folks-finance.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "Folks Finance is a crosschain DeFi protocol for lending, borrowing, staking & trading. Folks unifies liquidity and functionalities across blockchains, removing the inefficiencies of bridges."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWQzYzFmOTg2ZWY3ZDQ4MGNhMWMx",
+      "slug": "forest-staking",
+      "name": "Forest Staking",
+      "tagline": "Enterprise Validator Infrastructure",
+      "logo": "/images/app-logo-forest-staking.webp",
+      "categories": [
+        "Staking"
+      ],
+      "blurb": "Forest Staking is a blockchain infrastructure provider operating secure, high-availability validator and node infrastructure across multiple networks. We focus on uptime, security, and operational discipline to support resilient, production-ready blockchain ecosystems."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN0pwOWgwMzd5RTlhNG5ocVdrd3B3eg==",
+      "slug": "gearbox_protocol",
+      "name": "Gearbox Protocol",
+      "tagline": "Permissionless Leverage",
+      "logo": "/images/app-logo-gearbox-protocol.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "The credit layer for DeFi. Borrow and lend with market-leading rates and institutional-grade risk controls. Start optimizing your capital today."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWM4YzJlZjkzNThkZDQxOTdiYzU5",
+      "slug": "geckoterminal",
+      "name": "GeckoTerminal",
+      "tagline": "Onchain Price Tracker",
+      "logo": "/images/app-logo-geckoterminal.webp",
+      "categories": [
+        "Analytics"
+      ],
+      "blurb": "GeckoTerminal your go-to DEX tracker and onchain price charting tool, built by the team behind CoinGecko. Monitor real-time crypto prices, volume, transactions, liquidity and more on decentralized exchanges (DEX) across hundreds of blockchains."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTVlYzEzMGI1NWFhYzQ5OTBhYzEy",
+      "slug": "gmgn",
+      "name": "GMGN",
+      "tagline": "Discover faster, Trade in seconds🚀",
+      "logo": "/images/app-logo-gmgn.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "- World-leading on-chain trading terminal: zero-lag new token spotting, millisecond instant buys-stay ahead, double your win rate!\n- Fastest X Tracker pushes and wallets tracking to seize opportunities first\n- Multi-metrics parsing on-chain data & AI narrative analysis + the most representative trading page design-master it & become a trading Degen"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTFjM2VlYmUwYzM1NDRiYjM4MDA1",
+      "slug": "grimmys",
+      "name": "Grimmy's",
+      "tagline": "Flip burgers → earn $GRIMMY",
+      "logo": "/images/app-logo-grimmy-s.webp",
+      "categories": [
+        "Entertainment"
+      ],
+      "blurb": "Grimmy’s Is Hiring. Crypto didn’t work out. So now you flip burgers. A play-to-own decentralized casino in the Monad universe. Flip burgers → earn $GRIMMY. Stake it → own the restaurant. Own it → earn from everyone else flipping burgers. Apply now. 🍔💸"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWYwODAyMWMzOGFmODRmZDA4MTJl",
+      "slug": "hyperlane-nexus",
+      "name": "Hyperlane Nexus",
+      "tagline": "Cross-Chain Interoperability",
+      "logo": "/images/app-logo-hyperlane-nexus.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Bridge to and from Monad using Hyperlane Nexus. Hyperlane is a GMP open interoperability framework that enables secure routes across 180+ chains and virtual machines."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLThiNTA0N2Y4MDc4ZjQ3NDI5NDA0",
+      "slug": "hyperstitions",
+      "name": "Hyperstitions",
+      "tagline": "MANIPULATE THE FUTURE",
+      "logo": "/images/app-logo-hyperstitions.webp",
+      "categories": [
+        "Entertainment",
+        "Prediction Market"
+      ],
+      "blurb": "[ Prediction markets that manufacture reality ]\n\nPolymarket proved markets shape outcomes. But those markets are passive observers. We’re building the active version: reflexivity becomes the core feature, weaponized to manipulate the future."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNTZ0SmRYVFFwS2lLVEFFWG5PTjVXdA==",
+      "slug": "infinex",
+      "name": "Infinex",
+      "tagline": "The crypto superapp",
+      "logo": "/images/app-logo-infinex.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Meet Infinex - the crypto superapp combining a non-custodial wallet, portfolio manager, and trading terminal in one."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMUVjamhSeHJlMnBiNW5MS3RYRVQ2Ng==",
+      "slug": "infinit",
+      "name": "INFINIT",
+      "tagline": "Agentic DeFi Ecosystem ",
+      "logo": "/images/app-logo-infinit.webp",
+      "categories": [
+        "Yield",
+        "Agent"
+      ],
+      "blurb": "INFINIT is an agentic DeFi ecosystem powered by INFINIT AI Agent Infrastructure to simplify DeFi. Users can convert natural-language strategy ideas into on-chain actions (Prompt-to-DeFi), execute sophisticated DeFi strategies with full asset custody (INFINIT Strategies), and discover personalized yield opportunities (INFINIT Intelligence)."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTNiNzUyODQzMThlZDRhZjU5ZDlj",
+      "slug": "interport-finance",
+      "name": "Interport Finance",
+      "tagline": "Secure Cross-Chain Asset Routing",
+      "logo": "/images/app-logo-interport-finance.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Interport is a cross-chain hub that enables seamless asset bridging and swaps across blockchain networks. Built for reliability and scale, Interport supports secure cross-chain routing, zero-slippage transfers, and gas-efficient execution powered by leading messaging infrastructure."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTM5ZGY5ZWMwMjU5NzQ2NGNhOTM2",
+      "slug": "itrocket-staking",
+      "name": "ITRocket Staking",
+      "tagline": "Manage your stake effectively",
+      "logo": "/images/app-logo-itrocket-staking.webp",
+      "categories": [
+        "Staking",
+        "Analytics"
+      ],
+      "blurb": "ITRocket team provides enterprise-level infrastructure and state-of-the-art solutions for node operators, developers, and analysts. Our cross-network expertise lets us design adaptable, multichain products that solve real problems, while prioritizing security, reliability and utility."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNWdIWnRpNEpEb05VWGRsdmxuTElDaA==",
+      "slug": "jumper-exchange",
+      "name": "Jumper.Exchange",
+      "tagline": "One Stop Degen Swap",
+      "logo": "/images/app-logo-jumper-exchange.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Jumper Exchange is a platform to swap and bridge any crypto asset across 50+ chains, including EVM chains, Hyperliquid, SUI, Solana, and Bitcoin. Powered by LI.FI, Jumper aggregates 20+ DEXs and 20+ bridges to enable swaps at the best available rates."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvd1VTMnV2ZGNDRndaUkZ0ckREVGtY",
+      "slug": "kinetk",
+      "name": "KINETK",
+      "tagline": "KINETK: TRACK. DETECT. PROTECT.",
+      "logo": "/images/app-logo-kinetk.webp",
+      "categories": [
+        "Agent"
+      ],
+      "blurb": "KINETK is building the IP infrastructure layer for the next generation of digital creativity. Through the combination of proprietary invisible watermarking, agentic AI detection and tracking, and on-chain registration, KINETK is providing the tools that will underpin the future data models of the digital landscape."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMVV6VmlCTHJ5QWVVbXdiek5jeWZoWQ==",
+      "slug": "kinic",
+      "name": "Kinic",
+      "tagline": "AI memory agent",
+      "logo": "/images/app-logo-kinic.png",
+      "categories": [
+        "Agent"
+      ],
+      "blurb": "Give your AI agent a memory it can use cand prove. Store insights, research, and data with semantic search powered by Kinic. Unlike traditional databases, every memory operation logs human-readable metadata to Monad blockchain - titles, summaries, tags anyone can verify. Build trust through transparency."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvVVRweWF4d1VBMzZ4SVR6eDJIeGNy",
+      "slug": "kizzy",
+      "name": "Kizzy",
+      "tagline": "Social Media Betting ",
+      "logo": "/images/app-logo-kizzy.webp",
+      "categories": [
+        "Entertainment",
+        "Prediction Market"
+      ],
+      "blurb": "Kizzy is the world's first social media betting app allowing you to bet on metrics of influencers on Youtube and X. \n\nDownload our mobile first app to bet over/under on popular influencers like Mr.Beast, Elon Musk, Pokimane, and so many more. "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTNlODkzN2ZkZjQxMzRhNDM4NjQy",
+      "slug": "lagoon",
+      "name": "Lagoon",
+      "tagline": "Build yield products that scale",
+      "logo": "/images/app-logo-lagoon.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Lagoon provides general-purpose, permissionless, modular vault infrastructure for asset curation.\n\nAny strategy can become a tokenized product: scalable, composable, and LP-ready.\n\nLagoon empowers Web3 businesses and ecosystems to deliver one-click crypto yield through the apps users already know and trust."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN21DNHZEaHFEVU5kQjJzeXJrOWdiYg==",
+      "slug": "matcha-meta",
+      "name": "Matcha Meta",
+      "tagline": "Meta Aggregator on Monad",
+      "logo": "/images/app-logo-matcha-meta.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Matcha Meta is a transparent meta-aggregator that compares quotes across aggregators to find the best real execution for your swap."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN2Z3dnlHZUFXd1NWREZnYjQ0cDVqQw==",
+      "slug": "mayan",
+      "name": "Mayan",
+      "tagline": "Bridge faster. Get more. ",
+      "logo": "/images/app-logo-mayan.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Mayan is a lightning-fast, intent-based cross-chain swap protocol that makes transfers seamless, instant, and cost-effective. Move any asset directly into Monad through our simple swap interface or integrate Mayan’s SDK and widget for seamless cross-chain liquidity."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTI5YWNkYzhlZDhhOTQ1ZDk4OGQw",
+      "slug": "memetok",
+      "name": "MemeTok",
+      "tagline": "The Home of Scroll-Trading",
+      "logo": "/images/app-logo-memetok.webp",
+      "categories": [
+        "Trading",
+        "Social"
+      ],
+      "blurb": "The mobile app where content is the signal and every scroll is a trading opportunity. Post, earn fees. Spot the momentum. Trade instantly. And never miss the move again."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTNkNjFkMTQzYzZlZTRiODZiZGU4",
+      "slug": "mento",
+      "name": "Mento",
+      "tagline": "The Future of Onchain FX",
+      "logo": "/images/app-logo-mento.webp",
+      "categories": [
+        "Trading",
+        "Asset Issuer"
+      ],
+      "blurb": "Mento is a decentralized protocol that enables the creation and exchange of multi-currency stablecoins without centralized intermediaries."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNlVaQ1hnU005T2lPRG5zRzJWTTE3NQ==",
+      "slug": "mevx",
+      "name": "MevX",
+      "tagline": "Real-time Trading Terminal on Monad",
+      "logo": "/images/app-logo-mevx.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Real-Time Trading Terminal & Sniping"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTkwZjVlZDkzNmRkZjRmZjhhN2Q3",
+      "slug": "midas",
+      "name": "Midas",
+      "tagline": "Onchain Investment Products",
+      "logo": "/images/app-logo-midas.webp",
+      "categories": [
+        "Yield",
+        "Asset Issuer"
+      ],
+      "blurb": "Midas is a platform for composable onchain investment products. It enables asset managers to turn institutional strategies into regulatory-compliant tokens that offer full transparency, instant redemptions, and native composability across DeFi. "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNERrMFRWMTBuUmtBZU9ETkJlSTNWUg==",
+      "slug": "mona_trading_bot",
+      "name": "Mona Trading Bot",
+      "tagline": "Monad native trading bot",
+      "logo": "/images/app-logo-mona-trading-bot.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Super fast trading bot built on Monad, by nads and for nads."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvY3hLSkJHWUJidURUbmtmemJua1A2",
+      "slug": "muku",
+      "name": "MUKU",
+      "tagline": "Be the Star. Be the Voice.",
+      "logo": "/images/app-logo-muku.webp",
+      "categories": [
+        "Entertainment",
+        "Social"
+      ],
+      "blurb": "MUKU is combining AI Technology and Web3 transparency in one platform where anyone can upload, collaborate, and earn. Transparent, fair, and powered by creators and fans."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTFhMjdmMjY4OTQxMTQxNmZiNmU2",
+      "slug": "multipli",
+      "name": "Multipli",
+      "tagline": "The Yield Layer of RWAs",
+      "logo": "/images/app-logo-multipli.webp",
+      "categories": [
+        "Asset Issuer",
+        "Yield"
+      ],
+      "blurb": "Multipli is the world’s first yield infrastructure designed to generate yield on real-world assets such as Gold, Stocks, and Stablecoins."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMXhwWVRqd1l6RTNsSGQzY0V5b0pacQ==",
+      "slug": "nabla_finance",
+      "name": "Nabla Finance",
+      "tagline": "The open \"Prop AMM\"",
+      "logo": "/images/app-logo-nabla-finance.webp",
+      "categories": [
+        "Trading",
+        "Yield"
+      ],
+      "blurb": "Nabla Finance brings the disruptive concept of actively-priced “Prop AMMs” to Monad, yet with the twist of crowdsourced liquidity pools. Its HFT-grade pricing engine and super-concentrated liquidity allows it to profitably offer deep swap liquidity with minimal swap fees and marginal slippage to traders, Dex aggregators and arbitrage bots."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTlhNWFlNDkzNWYyMTRmOWY4MGZk",
+      "slug": "nadradar",
+      "name": "Nadradar",
+      "tagline": "Monad Ecosystem Analytics.",
+      "logo": "/images/app-logo-nadradar.webp",
+      "categories": [
+        "Analytics"
+      ],
+      "blurb": "Real-time analytics for Monad blockchain. Track validators, MEV transactions, LST protocols, and dApp performance. Essential metrics and insights for the Monad ecosystem."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMnlndDRyZ0E3djdEM2YxamhCbllENQ==",
+      "slug": "narbet",
+      "name": "Narbet",
+      "tagline": "Provably Fair Crypto Casino",
+      "logo": "/images/app-logo-narbet.webp",
+      "categories": [
+        "Entertainment"
+      ],
+      "blurb": "Nar.bet is a community-driven, fully onchain casino on Monad. Players can bet and play provably fair games powered by Pyth. Earn rewards, enjoy transparent odds, and experience crypto gaming as it was meant to be.\n"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNEE5dFVYeXZWNnNkOWFabkVPOVQwTA==",
+      "slug": "narwhal_finance",
+      "name": "Narwhal Finance",
+      "tagline": "Next-gen Perpetual Trading Engine",
+      "logo": "/images/app-logo-narwhal-finance.webp",
+      "categories": [
+        "Leverage Trading"
+      ],
+      "blurb": "Trade smarter with Narwhal Finance, a next-gen perpetual DEX on Monad. Trade while you earn across crypto, forex, and stocks.\n"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNDdyUHhwbDNvY0NqcFNPbHFlZnhPYQ==",
+      "slug": "noah-ai",
+      "name": "Noah AI ",
+      "tagline": "Build dApps by chatting with AI ",
+      "logo": "/images/app-logo-noah-ai.png",
+      "categories": [
+        "Agent"
+      ],
+      "blurb": "Noah is an AI powered no-code builder that helps anyone create and deploy full onchain apps on Monad, just by chatting with it. Whether it’s a DeFi protocol, prediction market, onchain game, or liquid staking app, Noah builds the smart contract, generates the frontend, and deploys it live."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWMyYjhkNjQ0ZTNhNTRiMGU5Y2Zm",
+      "slug": "nubila-network",
+      "name": "Nubila Network",
+      "tagline": "Physical Layer for Autonomous AI",
+      "logo": "/images/app-logo-nubila-network.png",
+      "categories": [
+        "Data"
+      ],
+      "blurb": "Nubila provides the physical perception layer for AI and prediction markets. By collecting and verifying real-world data through decentralized hardware and validator nodes, Nubila delivers trusted on-chain signals that power autonomous AI agents and enhance market accuracy."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvRUZLZTNqWmxOTUtkT052Zm5CRHBp",
+      "slug": "omnia",
+      "name": "Omnia",
+      "tagline": "Pet Battling & Adventure Game",
+      "logo": "/images/app-logo-omnia.webp",
+      "categories": [
+        "Collectibles",
+        "Entertainment"
+      ],
+      "blurb": "Action TCG Pet Battler that combines deck-building strategy with fighting game agency, wrapped in a fun and familiar creature collector experience. Immerse yourself in a world full of new adventures, climb dungeon-filled landscapes, enter mysterious glitch portals, and climb the ranks in the grand arena."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWU4NWExOWVmNjQwNTQ2YzM5NDI5",
+      "slug": "openocean",
+      "name": "OpenOcean",
+      "tagline": "Leading Multi-chain DEX Aggregator",
+      "logo": "/images/app-logo-openocean.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "OpenOcean is a leading multi-chain DEX aggregator, integrating liquidity from the most comprehensive set of DEXs across both EVM and non-EVM chains. Designed for both traders and enterprise partners, it provides optimized execution, cross-chain token swaps, and a full suite of DeFi tools, along with a robust API for easy integration."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTc1OTVlMGQzODU5YTQ0NGU4ZDlk",
+      "slug": "perpl",
+      "name": "Perpl",
+      "tagline": "Trade perps fully onchain",
+      "logo": "/images/app-logo-perpl.webp",
+      "categories": [
+        "Trading",
+        "Leverage Trading"
+      ],
+      "blurb": "The first true on-chain CLOB on a generalized L1, to deliver all three: efficiency, full EVM composability, and security. Trade perps on Perpl's CLOB on the Monad blockchain."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWRkYzQ5NDdkYmI4YTQxYmQ4ZGQw",
+      "slug": "playkami",
+      "name": "PlayKami",
+      "tagline": "Gamified Collectibles Marketplace",
+      "logo": "/images/app-logo-playkami.webp",
+      "categories": [
+        "Collectibles",
+        "Entertainment"
+      ],
+      "blurb": "PlayKami is a gamified marketplace where users can collect real and redeemable collectibles, backed by transparent odds and verified inventory. Every pack purchased includes a real physical collectible, from Pokemon and One Piece TCG cards to luxury watches and bags, that can be traded, sold back instantly, or redeemed physically to your location."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNFdVN3hXbzhnU0xBaUtJb0hiOEVZNg==",
+      "slug": "prismax",
+      "name": "PrismaX",
+      "tagline": "Teleop A Robot Today",
+      "logo": "/images/app-logo-prismax.webp",
+      "categories": [
+        "Robotics"
+      ],
+      "blurb": "Building the bridge between robotics and mainstream adoption.\n"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN2Q1RlNoeVVhNm05Z1drNnJxQWt0cw==",
+      "slug": "puffer",
+      "name": "Puffer",
+      "tagline": "Infra Yield for Assets",
+      "logo": "/images/app-logo-puffer.webp",
+      "categories": [
+        "Asset Issuer",
+        "Yield"
+      ],
+      "blurb": "Puffer | Premier Infrastructure and Yield for Digital Assets, leading innovation in Ethereum infrastructure through Puffer UniFi, the next-generation rollup powered by liquid restaking (LRT) and preconfirmation as an AVS."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLThlM2Y4Zjk1YmFhODQ1NzI5ZmY4",
+      "slug": "relay",
+      "name": "Relay",
+      "tagline": "Swap and bridge on any chain",
+      "logo": "/images/app-logo-relay.webp",
+      "categories": [
+        "Trading",
+        "Payment"
+      ],
+      "blurb": "The interoperability infrastructure for onchain money."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvSXFSa3ZHaXI5RUVPWUpXV1FwM1dQ",
+      "slug": "renzo",
+      "name": "Renzo",
+      "tagline": "Institutional DeFi Gateway",
+      "logo": "/images/app-logo-renzo.webp",
+      "categories": [
+        "Asset Issuer",
+        "Yield"
+      ],
+      "blurb": "Renzo: institutional-grade DeFi gateway with one-click access to advanced restaking & liquidity yields. Manages strategies and liquid restaking for EigenLayer, Symbiotic, Jito. Unifies DeFi in one interface for institutions & retail. Assets & vaults provide diversified, composable exposure. Secure, efficient, compliant, scalable."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTIwNzY0YmNlN2RkMzQ1MjRhNjBl",
+      "slug": "rhea-finance",
+      "name": "RHEA Finance",
+      "tagline": "Chain Abstracted Liquidity",
+      "logo": "/images/app-logo-rhea-finance.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "Rhea Finance is redefining the user experience of decentralized finance by eliminating fragmentation. Born from the strategic consolidation of NEAR’s foundational DEX and lending protocols, Rhea provides a resilient, chain-abstracted liquidity layer"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNG1hRUhTdE5HS3VkV1JvSmtpWG04dQ==",
+      "slug": "rug_rumble",
+      "name": "Rug Rumble",
+      "tagline": "The home for Monad gambloors",
+      "logo": "/images/app-logo-rug-rumble.webp",
+      "categories": [
+        "Entertainment"
+      ],
+      "blurb": "Rug Rumble is platform where users can bet on short, fun games and try to multiply their holdings! Our first game is Rug Rumble Run, an infinite runner type game of chance, where users select which doors they run through till they either cash out or get rugged."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWY1MWZhNmYwMzA1YTQ5MGZiYWMz",
+      "slug": "silk-nodes",
+      "name": "Silk Nodes",
+      "tagline": "Stake • Track • Explore • Operate",
+      "logo": "/images/app-logo-silk-nodes.webp",
+      "categories": [
+        "Staking",
+        "Analytics"
+      ],
+      "blurb": "Silknodes' Monad Hub is a unified ecosystem interface for the Monad network, built to help users, builders, and operators access staking, track network activity, explore ecosystem projects, and operate infrastructure through a single, open platform."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN3JFc0R0eEwzSGlVVXB6QTBwMHVCcA==",
+      "slug": "solv-protocol",
+      "name": "Solv Protocol",
+      "tagline": "Productive Bitcoin Yields",
+      "logo": "/images/app-logo-solv-protocol.webp",
+      "categories": [
+        "Asset Issuer",
+        "Yield"
+      ],
+      "blurb": "Solv Protocol, the onchain Bitcoin asset manager bridging TradFi, CeFi, and DeFi, is powering the next era of RWAfi through Bitcoin reserves. Through SolvBTC and its five specialized LSTs (including SolvBTC.JUP and SolvBTC.BBN), Solv transforms Bitcoin into a productive institutional asset while powering stablecoin, credit, and RWA markets. "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWFjMzJhNzE1NDQ1ZTRhN2ViYzM4",
+      "slug": "spectra",
+      "name": "Spectra",
+      "tagline": "Open Interest Rates Protocol",
+      "logo": "/images/app-logo-spectra.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Fix rates, trade yield, or earn on liquidity with Spectra. The protocol enables exposure to fixed and floating rates on interest-bearing assets through Principal and Yield Tokens, allowing users to choose between predictability, speculation, or liquidity provision."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTc3OWQzMThlYTU1YTQyNTY5NjQ5",
+      "slug": "stakemonad",
+      "name": "StakeMON.ad",
+      "tagline": "Next-gen staking, powered by AI.",
+      "logo": "/images/app-logo-stakemon-ad.webp",
+      "categories": [
+        "Staking"
+      ],
+      "blurb": "A secure and intelligent portal to stake and delegate your MON tokens on the Monad network, powered by an integrated AI assistant."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNWZFVU9LVGJMMDVNdzJCYXNXOHYxTQ==",
+      "slug": "stakestone",
+      "name": "StakeStone",
+      "tagline": "Autonomous Neo Banking",
+      "logo": "/images/app-logo-stakestone.webp",
+      "categories": [
+        "Asset Issuer",
+        "Yield"
+      ],
+      "blurb": "\nCrypto-native Neo Bank reimagined for the autonomous economy with agentic payments and omnichain yield. Compliant-by-design, trustless at the core, powering an open value network for humans, AI & machines."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLThiMGIwZjc1NTY5MTQ2NzhhYTcy",
+      "slug": "staking-with-energy",
+      "name": "Staking with Synergy",
+      "tagline": "Secure staking with SynergyNodes",
+      "logo": "/images/app-logo-staking-with-synergy.webp",
+      "categories": [
+        "Staking"
+      ],
+      "blurb": "Synergy Nodes provides secure and reliable MON staking on the Monad blockchain. Delegators earn rewards while supporting network security through professionally operated validator infrastructure. With a focus on uptime, performance, and sustainability, Synergy Nodes delivers a dependable staking experience."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMTIzZ2ZDUWlaZFl0OTI4Wm9BaGxucg==",
+      "slug": "stargate-finance",
+      "name": "Stargate Finance",
+      "tagline": "Move money faster onchain",
+      "logo": "/images/app-logo-stargate-finance.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Stargate is a composable cross-chain liquidity transport protocol enabling seamless asset transfers between blockchains. "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN2FIVDlpdUtBSFEyV1AyVXYzVlZGNQ==",
+      "slug": "sumer_money",
+      "name": "Sumer Money",
+      "tagline": "Lending & Synthetic Asset Protocol",
+      "logo": "/images/app-logo-sumer-money.webp",
+      "categories": [
+        "Lend & Borrow"
+      ],
+      "blurb": "Sumer unifies lending, borrowing, synthetic minting, and cross-chain bridging into one capital-efficient liquidity layer. Its correlation-aware risk framework enables higher LTVs and smarter leverage, while Sumer Synthetic Assets let users access yields across chains without moving liquidity or leaving their native chains."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNkg4ZkNDSzloNERPQVJGQjdlR09qbw==",
+      "slug": "sushiswap",
+      "name": "Sushiswap",
+      "tagline": "Swap anything",
+      "logo": "/images/app-logo-sushiswap.png",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "The ultimate multi-chain DEX + Aggregator that lets you SWAP ANYTHING."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTYwNmY5YjhhNDEyMDRkOTg4ODg2",
+      "slug": "symbiosis",
+      "name": "Symbiosis",
+      "tagline": "Cross-chain bridge",
+      "logo": "/images/app-logo-symbiosis.png",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Symbiosis is a cross-chain bridge that pools together liquidity from different networks: L1s and L2s, EVM and non-EVM. With Symbiosis, you can easily swap any token and move your assets across different networks "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWI4ZDE5MTdlNTYxYzQwOWViYzU3",
+      "slug": "tadle",
+      "name": "Tadle",
+      "tagline": "Parallel Sandbox for dApps",
+      "logo": "/images/app-logo-tadle.webp",
+      "categories": [
+        "Lend & Borrow",
+        "Trading"
+      ],
+      "blurb": "Tadle, a visionary protocol incubated by Chainlink, unifies and boosts on-chain blockchain activity by supporting strong communities and unique marketing. Its Sandbox feature enables automation across various blockchain applications, like DEXs, bridges, prediction markets, staking, launchpads, NFTs, domains, and lending services."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLThjNDZlYmZhMGI1NzQxOTRhMTZl",
+      "slug": "the-arena",
+      "name": "The Arena",
+      "tagline": "Connect. Engage. Earn.",
+      "logo": "/images/app-logo-the-arena.webp",
+      "categories": [
+        "Launchpad",
+        "Social"
+      ],
+      "blurb": "The Arena brings creators together through streaming, social audio, and ticket-gated chats. An in-app wallet enables memecoin tipping, smooth earning, and community rewards. The integrated Launchpad helps users launch, discover and support exciting new creator-driven projects across different ecosystems and blockchains."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNFU3T3hsYXZyREVwQllJZFNwaWY0bg==",
+      "slug": "token-mill",
+      "name": "Token Mill",
+      "tagline": "Community-First Launchpad",
+      "logo": "/images/app-logo-token-mill.webp",
+      "categories": [
+        "Launchpad"
+      ],
+      "blurb": "The launchpad that turns trading fees into MON airdrops.\nBuilt for the strongest nads communities."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTdjOGJlYjI5N2YwYzQ2ZjNhMmU0",
+      "slug": "universalx",
+      "name": "UniversalX",
+      "tagline": "Trade Tokens on Monad Seamlessly",
+      "logo": "/images/app-logo-universalx.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "UniversalX - Trade On Any Chain, Using SOL, BNB, ETH, and Stables "
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNE82YnFtQmdlZEdCcWFJZWdzVlJaRQ==",
+      "slug": "upshift",
+      "name": "Upshift",
+      "tagline": "Liquid yield token for AUSD",
+      "logo": "/images/app-logo-upshift.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Upshift’s liquid yield token systematically allocates AUSD across basis trade and delta-neutral DeFi opportunities, making it the simplest way to earn optimized risk-adjusted yield on your stables."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTMxZmVjM2UzYjczZjRjN2Y4Zjhh",
+      "slug": "ur",
+      "name": "UR",
+      "tagline": "Unified Crypto & Fiat Bank Account",
+      "logo": "/images/app-logo-ur.webp",
+      "categories": [
+        "Yield",
+        "Payment"
+      ],
+      "blurb": "UR is a borderless smart money app that allows you to move freely between traditional banking and digital assets. Deposit or withdraw on Monad, spend, and manage your crypto and fiat in one app, powered by blockchain."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTVjYzY4ZjFiMzRiNjQyNDNhZTA1",
+      "slug": "valor-quest",
+      "name": "Valor Quest ",
+      "tagline": "Anytime Fun, Anytime Earn",
+      "logo": "/images/app-logo-valor-quest.webp",
+      "categories": [
+        "Entertainment"
+      ],
+      "blurb": "Valor Quest is a mythic AFK GameFi on Monad & Telegram platform. NFT gears, idle mining, epic battles, real rewards, played by over 1M adventurers."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWNiZmUxODc0ZTgxYzQxY2NhZDRl",
+      "slug": "woofi",
+      "name": "WOOFi",
+      "tagline": "Powered by WOO",
+      "logo": "/images/app-logo-woofi.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "WOOFi is a DeFi trading and earn platform from WOO. Swap with deep liquidity and low slippage, trade perps with tight pricing, and put idle assets to work through vaults and staking. Built for fast execution, clear fees, and a smooth experience across web and mobile."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTU2YTQ2MDdmZWYzZDQ3YzNiNDI3",
+      "slug": "wormhole_portal",
+      "name": "Wormhole Portal",
+      "tagline": "Secure multichain bridge",
+      "logo": "/images/app-logo-wormhole-portal.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "Wormhole Portal is the go-to bridge for fast, secure token transfers and swaps on any chain. $56B+ transferred by 1M+ users"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM1p6R2VkVjFkMXFJSXhPeWsxZjFmZw==",
+      "slug": "yuzu-money",
+      "name": "Yuzu Money",
+      "tagline": "High Yield. Transparent. Protected.",
+      "logo": "/images/app-logo-yuzu-money.webp",
+      "categories": [
+        "Asset Issuer",
+        "Yield"
+      ],
+      "blurb": "DeFi’s high yields made simple and safer. Start today and watch your assets grow."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWU0ZWZhMGFhZDUwNjQ0YTFiNmJk",
+      "slug": "pendle",
+      "name": "Pendle",
+      "tagline": "Yield Trading Protocol",
+      "logo": "/images/app-logo-pendle.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Permissionless yield-trading protocol enabling users to tokenize and trade future yield via Principal Tokens (PT) and Yield Tokens (YT)."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTQxNDg1NjBlZjRkODRhYTc5YzM1",
+      "slug": "trendle",
+      "name": "Trendle",
+      "tagline": "Trade the world’s attention",
+      "logo": "/images/app-logo-trendle.webp",
+      "categories": [
+        "Trading",
+        "Leverage Trading"
+      ],
+      "blurb": "Trendle is a mobile-first trading app where users go long or short on global attention. Markets are powered by a real-time Attention Index that tracks how much attention topics like people, brands, events, and narratives are receiving online."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTg0MzY4M2ZkZGM3YjRiMDM4N2Y4",
+      "slug": "plabs",
+      "name": "PLabs",
+      "tagline": "Privacy Hub on EVM",
+      "logo": "/images/app-logo-plabs.webp",
+      "categories": [
+        "Trading",
+        "Asset Issuer"
+      ],
+      "blurb": "A Private protocol for onchain Payment, Trading and DeFi"
+    },
+    {
+      "id": "app-7d33f4c69e0764184e23",
+      "slug": "aave-v3",
+      "name": "Aave",
+      "tagline": "The original DeFi protocol.",
+      "logo": "/images/app-logo-aave.svg",
+      "categories": [
+        "Lend & Borrow",
+        "Leverage Trading"
+      ],
+      "blurb": "Aave v3 is a non-custodial liquidity protocol on Monad, Ethereum, and other major networks. It provides onchain infrastructure to integrate supply and borrow into applications via battle-tested smart contracts and AaveKit."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTlhYzQyOGNiZGIzZDU1NTQ4MWU2",
+      "slug": "crsh_market",
+      "name": "CRSH Market",
+      "tagline": "The First Livestream Prediction Market",
+      "logo": "/images/app-logo-crsh-market.webp",
+      "categories": [
+        "Prediction Market"
+      ],
+      "blurb": "The First Livestream Prediction Market"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLThkODcwZjQxMDNjMDMyYTNjMmM1",
+      "slug": "drake",
+      "name": "Drake",
+      "tagline": "The People's Perp Dex",
+      "logo": "/images/app-logo-drake.webp",
+      "categories": [
+        "Leverage Trading",
+        "Yield"
+      ],
+      "blurb": "Trade perpetuals without limits. Drake's Universal Asset Margin means never sell your holdings: use any asset as collateral. Tokenized strategy vaults democratize sophisticated market-making and arbitrage into one-click yield strategies. Institutional-grade tools for everyone, only on Drake"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTRkNmYzNzk3NTdmYjgwNzQ1MjU1",
+      "slug": "ample",
+      "name": "Ample",
+      "tagline": "Amplify your assets.",
+      "logo": "/images/app-logo-ample.webp",
+      "categories": [
+        "Yield",
+        "Asset Issuer"
+      ],
+      "blurb": "Ample is a new way to hold exposure to assets and earn weekly prize-linked variable upside."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTdjOWFkNmE4OWI4MTY0M2JiZGE0",
+      "slug": "ethena",
+      "name": "Ethena",
+      "tagline": "Digital Dollars for the Internet Economy",
+      "logo": "/images/app-logo-ethena.webp",
+      "categories": [
+        "Yield",
+        "Asset Issuer"
+      ],
+      "blurb": "Ethena's synthetic dollar, USDe, provides the crypto-native, scalable solution for money achieved by delta-hedging Bitcoin, Ethereum and other governance-approved spot assets using perpetual and deliverable futures contracts, as well as holding liquid stables such as USDC and USDT."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWI2NDJiZDZmMDQ2MDZhNjFkODRh",
+      "slug": "saturn",
+      "name": "Saturn",
+      "tagline": "Built on digital credit",
+      "logo": "/images/app-logo-saturn.webp",
+      "categories": [
+        "Asset Issuer",
+        "Yield"
+      ],
+      "blurb": "Saturn is a digital-credit protocol built on Monad. Deposit into USDat, a U.S. Treasury Bill–backed stablecoin with no lock-up, or stake into sUSDat for yield. Verified strategies route deposits across leading protocols to accrue points toward the seasonal emission pool."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTBmOTc2NjM1ZTRjNTYxNDA5NTI3",
+      "slug": "xstable",
+      "name": "XStable",
+      "tagline": "RWA DEX · Gold, Forex & More",
+      "logo": "/images/app-logo-xstable.webp",
+      "categories": [
+        "Leverage Trading"
+      ],
+      "blurb": "XStable is an RWA perpetuals DEX for trading precious metals and forex (gold, silver, and major currency pairs) with up to 100x leverage, long or short."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWE2ODBmNDVmNDgxMDQ3M2E5Yjc5",
+      "slug": "strata",
+      "name": "Strata",
+      "tagline": "Structured yield products, engineered for tailored risk-reward",
+      "logo": "/images/app-logo-strata.webp",
+      "categories": [
+        "Yield"
+      ],
+      "blurb": "Strata is a risk-tranching protocol that splits any yield strategy into two liquid tokens: a Senior tranche for capital preservation with a floored, protected yield, and a Junior tranche for leveraged, higher-yield exposure. On Monad, it brings structured, fixed-rate yield to assets like srUSDat."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWNhMWZmODI2ZTcxOGY4OGRlMDgw",
+      "slug": "coinfello",
+      "name": "CoinFello",
+      "tagline": "Your Always On DeFi Super Agent.",
+      "logo": "/images/app-logo-coinfello.webp",
+      "categories": [
+        "Yield",
+        "Agent"
+      ],
+      "blurb": "The first agent with full onchain context for research, execution, or automation any contract. The agent can do complex cross-chain token swaps to advanced automated management of yield and LP positions."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTQzMDhiNTVkOTU1NWYzZDA3Yzcw",
+      "slug": "usdc_bridge",
+      "name": "USDC Bridge",
+      "tagline": "Circle's USDC Bridge enables you to directly move USDC across chains",
+      "logo": "/images/app-logo-usdc-bridge.webp",
+      "categories": [
+        "Bridge"
+      ],
+      "blurb": "The USDC Bridge is a consumer-facing app built by Circle using CCTP. It gives users a direct and transparent way to move USDC across supported blockchains through a simple, transparent interface"
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTNmOThmYjZmNjhlNmI2YmE5ODcx",
+      "slug": "collective_memory",
+      "name": "Collective Memory",
+      "tagline": "The decentralized memory layer",
+      "logo": "/images/app-logo-collective-memory.webp",
+      "categories": [
+        "Social"
+      ],
+      "blurb": "Collective Memory is a decentralized social network and \"memory layer\", a living archive of authentic moments captured by people worldwide. Users post real events as photos, videos, and text (\"Memories\"), verified by time and location, and stake the ATTN token on the content they think matters. Community attention, not corporate algorithms, decides what surfaces, and creators and early supporters earn when the moments they back gain relevance."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTc0YWM4NDc3OWNjMzhiNjBiMDEy",
+      "slug": "oripa",
+      "name": "Oripa",
+      "tagline": "Pull. Collect. Win.",
+      "logo": "/images/app-logo-oripa.webp",
+      "categories": [
+        "Collectibles",
+        "Entertainment"
+      ],
+      "blurb": "Oripa brings the thrill of oripa — Japanese-style trading-card gacha — fully on-chain. Buy digital packs, open them live, and pull authentic, PSA-graded collectibles like Pokémon cards. Keep what you pull or sell it back instantly at market value, with every opening settled transparently on Monad."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTFkNzRmMjI0MTQxOGQ3MTdkMWQ1",
+      "slug": "1inch",
+      "name": "1inch",
+      "tagline": "Swap crypto tokens at the best rates in DeFi",
+      "logo": "/images/app-logo-1inch.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "1inch is a DEX aggregator that sources liquidity from hundreds of exchanges to find the best swap rates in DeFi. It routes each trade across multiple liquidity sources for optimal execution, with gasless, MEV-protected swaps on Monad and other supported chains."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTUxOWRiYjZmZDRmMzZlMTdmZDYz",
+      "slug": "anomapay",
+      "name": "AnomaPay",
+      "tagline": "Private payments made easy",
+      "logo": "/images/app-logo-anomapay.webp",
+      "categories": [
+        "Payment"
+      ],
+      "blurb": "AnomaPay is a crypto payments app for private transactions, making it easy to pay anyone privately with any asset across Monad and other supported chains. Built on Anoma, it lets you send assets like USDC, USDT, and ETH while keeping your onchain history confidential. Features include a confidential payment card, MEV-resistant swaps, tokenized stocks, and paying contacts by email or through apps like Telegram and X — no new software required."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWI2OTJmNzlkMDA4ODgzMGZkYTY2",
+      "slug": "glider",
+      "name": "Glider",
+      "tagline": "The automated investing app for anyone, anywhere.",
+      "logo": "/images/app-logo-glider.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Glider is an automated onchain portfolio app that makes sophisticated investing accessible to anyone, anywhere. Fund with USDC and pick a curated portfolio — or copy one shared by another investor — and Glider automatically rebalances your allocation on a cadence you choose, across crypto, tokenized stocks, and tokenized gold. It's non-custodial, so your assets stay in your own smart wallet under revocable, limited permissions, while Glider handles the routing and rebalancing behind the scenes."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTU5MGI3NDU5MWU3OTAxMGQ3NDY2",
+      "slug": "o1_exchange",
+      "name": "o1 exchange",
+      "tagline": "Onchain Everything Exchange",
+      "logo": "/images/app-logo-o1-exchange.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "o1 is an onchain \"everything exchange\" that brings token swaps, market discovery, and a no-code token launchpad together in a single app. Traders can swap assets, follow trending markets, and manage a portfolio, while creators can launch new tokens in seconds. o1 makes discovering, launching, and trading onchain assets simple from one interface."
+    },
+    {
+      "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLWU3OWFkMDkxNjE3MTUzZDhjZjhi",
+      "slug": "crystal",
+      "name": "Crystal",
+      "tagline": "Fully onchain order book on Monad",
+      "logo": "/images/app-logo-crystal.webp",
+      "categories": [
+        "Trading"
+      ],
+      "blurb": "Crystal is a fully onchain central limit order book (CLOB) built on Monad. Traders keep self-custody while getting CEX-grade speed. Orders are placed, matched, and settled onchain, and a router picks between the order book and a backstop AMM for best execution."
+    }
+  ],
+  "featuredSections": [
+    {
+      "section": "Spot Trading",
+      "apps": [
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN2FnejBTMkY1NkZBcWRMQ1dsUU54Rw==",
+          "name": "KyberSwap",
+          "tagline": "Your Finance, Your Freedom",
+          "blurb": "KyberSwap is a decentralized trading solution that helps users find optimized token swap rates by routing trades through multiple DEXs and other liquidity sources across multiple chains.",
+          "categories": [
+            "Trading"
+          ],
+          "appLink": "https://kyberswap.com/swap/monad",
+          "twitterLink": "https://x.com/KyberNetwork",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-20T11:53:47.956Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMXlSNE9meU56UmN4emMwMEFEMEc2Qw==",
+          "name": "Matcha",
+          "tagline": "Discover and swap tokens instantly",
+          "blurb": "Matcha delivers optimal trade execution and helps you discover new token, by aggregating hundreds of DEXs and private market makers. Get complete token coverage, gasless swaps, and deep liquidity on Monad and 15 other chains with unbeatable pricing on any token pair.",
+          "categories": [
+            "Trading"
+          ],
+          "appLink": "https://matcha.xyz/",
+          "twitterLink": "https://x.com/matchaxyz",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-20T11:59:17.562Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvM0JHdTdsSTBHN0lqSTZhVEdQcHZteg==",
+          "name": "Kuru",
+          "tagline": "Trading Hub on Monad",
+          "blurb": "Kuru is an all-in-one trading hub for Monad. Trade any spot asset with our smart aggregator and trading interface. Deploy liquidity on our hybrid AMM-orderbook. Launch a new token in seconds.",
+          "categories": [
+            "Launchpad",
+            "Trading"
+          ],
+          "appLink": "https://www.kuru.io/swap?from=0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a&to=0x0000000000000000000000000000000000000000",
+          "twitterLink": "https://x.com/KuruExchange",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": true,
+          "firstPublishedAt": "2025-11-20T11:58:01.627Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNjhXd09tZmpZdGlZUkxrdUN6Zll1UA==",
+          "name": "Clober",
+          "tagline": "Have CEX on DEX",
+          "blurb": "Clober is a performant on-chain CLOB protocol with a gas-efficient matching engine designed for decentralized execution, powering the next generation of DeFi. ",
+          "categories": [
+            "Trading",
+            "Yield"
+          ],
+          "appLink": "https://app.clober.io",
+          "twitterLink": "https://x.com/CloberDEX",
+          "platforms": [
+            "Desktop",
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-20T11:56:43.462Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMVFjbFA5a3p3akd4UUd2TVF1WnY4NA==",
+          "name": "Uniswap",
+          "tagline": "The largest onchain marketplace",
+          "blurb": "The world's largest onchain marketplace, trusted by millions. Buy and sell crypto on Ethereum, Monad and 14+ other chains.",
+          "categories": [
+            "Trading"
+          ],
+          "appLink": "https://app.uniswap.org/swap?chain=monad&inputCurrency=0x754704Bc059F8C67012fEd69BC8A327a5aafb603&outputCurrency=NATIVE",
+          "twitterLink": "https://x.com/Uniswap",
+          "platforms": [
+            "Desktop",
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-21T14:12:01.752Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMnJJNWhDcmxMNUtJMGFUT1dmQTREOQ==",
+          "name": "PancakeSwap",
+          "tagline": "All-in-one decentralized exchange.",
+          "blurb": "Trade and earn crypto on the all-in-one decentralized exchange. Enjoy low fees, high liquidity, and a user-friendly interface.",
+          "categories": [
+            "Trading"
+          ],
+          "appLink": "https://pancakeswap.finance/swap?chain=monad&inputCurrency=0x754704Bc059F8C67012fEd69BC8A327a5aafb603&outputCurrency=MON",
+          "twitterLink": "https://x.com/PancakeSwap/",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-21T12:46:40.504Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvZ2pZYmRTVm5aVnhWU1NrZXJTVUox",
+          "name": "LFJ",
+          "tagline": "Winners Trade Here",
+          "blurb": "High performance DEX meets high performance chain. JOE's Liquidity Book DLMM is the most powerful fee capture tech in DeFi. Zero slippage trade flow, custom liquidity distribution, and ultrasound capital efficiency meets Monad 10K TPS to create an absolutely cracked fee machine, with the JOE token capturing and funneling these ecosystem fees.",
+          "categories": [
+            "Trading"
+          ],
+          "appLink": "https://lfj.gg",
+          "twitterLink": "https://x.com/LFJ_gg",
+          "platforms": [
+            "Desktop",
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-21T14:13:34.307Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvVU03MW9NRHZBVW9NNWpPTnJxUVBq",
+          "name": "fomo",
+          "tagline": "Never Miss Out Again",
+          "blurb": "fomo is a trading app for the rest of us. Discover top traders and trending tokens in real time. Follow strategies, track positions, and share your own moves.\n\nFrom Bitcoin to memes - access any asset in seconds. Fast, transparent, and intuitive for everyone, not just crypto natives.",
+          "categories": [
+            "Trading",
+            "Social"
+          ],
+          "appLink": "https://fomo.family/?utm_source=monad_website&utm_medium=home_page&utm_id=monad_home_page",
+          "twitterLink": "",
+          "platforms": [
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-24T07:54:24.396Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTFkNzRmMjI0MTQxOGQ3MTdkMWQ1",
+          "name": "1inch",
+          "tagline": "Swap crypto tokens at the best rates in DeFi",
+          "blurb": "1inch is a DEX aggregator that sources liquidity from hundreds of exchanges to find the best swap rates in DeFi. It routes each trade across multiple liquidity sources for optimal execution, with gasless, MEV-protected swaps on Monad and other supported chains.",
+          "categories": [
+            "Trading"
+          ],
+          "appLink": "https://1inch.com",
+          "twitterLink": "https://x.com/1inch",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2026-09-09T17:46:07.209Z"
+        }
+      ]
+    },
+    {
+      "section": "Perp Trading",
+      "apps": [
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTc1OTVlMGQzODU5YTQ0NGU4ZDlk",
+          "name": "Perpl",
+          "tagline": "Trade perps fully onchain",
+          "blurb": "The first true on-chain CLOB on a generalized L1, to deliver all three: efficiency, full EVM composability, and security. Trade perps on Perpl's CLOB on the Monad blockchain.",
+          "categories": [
+            "Trading",
+            "Leverage Trading"
+          ],
+          "appLink": "https://app.perpl.xyz/",
+          "twitterLink": "http://twitter.com/perpltrade",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": false,
+          "firstPublishedAt": "2026-03-10T18:46:34.650Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNUJwNUU0MEhGd0JqVFFQM3BlUHgybA==",
+          "name": "LeverUp",
+          "tagline": "LP-Free Perps,1001x Leverage.",
+          "blurb": "LeverUp is an LP-Free perpetuals exchange offering uncapped open interest, extreme leverage up to 1001x, and fully on-chain transparency. All protocol fees are returned to traders and every market settles in native LVUSD/LVMON, enabling unmatched capital efficiency and scalable, trader-first perps.",
+          "categories": [
+            "Leverage Trading"
+          ],
+          "appLink": "https://app.leverup.xyz/",
+          "twitterLink": "https://x.com/LeverUp_xyz",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": true,
+          "firstPublishedAt": "2025-11-20T11:57:56.368Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLThkODcwZjQxMDNjMDMyYTNjMmM1",
+          "name": "Drake",
+          "tagline": "The People's Perp Dex",
+          "blurb": "Trade perpetuals without limits. Drake's Universal Asset Margin means never sell your holdings: use any asset as collateral. Tokenized strategy vaults democratize sophisticated market-making and arbitrage into one-click yield strategies. Institutional-grade tools for everyone, only on Drake",
+          "categories": [
+            "Leverage Trading",
+            "Yield"
+          ],
+          "appLink": "https://drake.exchange/trade",
+          "twitterLink": "https://x.com/DrakeExchange",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": true,
+          "firstPublishedAt": "2026-07-09T14:48:39.896Z"
+        }
+      ]
+    },
+    {
+      "section": "Launchpads",
+      "apps": [
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMktYV0hyaXVKcVJaZEdCcjRDNFV2dQ==",
+          "name": "Nad.fun",
+          "tagline": "Launch. Trade. Predict. On Monad.",
+          "blurb": "Native launchpad on Monad. We’re building a real user flywheel: LP fees fuel buybacks, creator rewards, and long-term ecosystem growth. Hypeboard adds a jackpot-style cycle for tokens, and prediction markets turn volatility into a game for users.",
+          "categories": [
+            "Launchpad",
+            "Trading"
+          ],
+          "appLink": "https://nad.fun",
+          "twitterLink": "https://x.com/naddotfun",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": true,
+          "firstPublishedAt": "2025-11-20T11:59:21.818Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMkZ6ck52MlJEbDFQR3FqeWRNOGhXVg==",
+          "name": "BONAD",
+          "tagline": "Create, Build, Trade on BONAD",
+          "blurb": "Launch a great token, build with your community, and win together. \n\nBONAD is a permissionless meme & ICM launchpad built by BONK in collaboration with the Doppler Protocol. \n\nThe majority of fees on BONAD go towards growing the BONAD ecosystem. ",
+          "categories": [
+            "Launchpad"
+          ],
+          "appLink": "https://bonad.fun",
+          "twitterLink": "https://x.com/bonadfun",
+          "platforms": [
+            "Desktop",
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-24T07:48:09.095Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTgxMGM3ZDdhY2M2OTQ5ZDRiN2Vi",
+          "name": "Clanker World",
+          "tagline": "Deploy Tokens, Earn from Attention",
+          "blurb": "Clanker lets you launch instantly tradable tokens on Monad. No dev needed. Airdrop to your community, vault a portion, or insta-buy to show skin in the game.",
+          "categories": [
+            "Launchpad",
+            "Trading"
+          ],
+          "appLink": "https://clanker.world/",
+          "twitterLink": "https://x.com/clanker_world",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-24T07:55:16.350Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNFU3T3hsYXZyREVwQllJZFNwaWY0bg==",
+          "name": "Token Mill",
+          "tagline": "Community-First Launchpad",
+          "blurb": "The launchpad that turns trading fees into MON airdrops.\nBuilt for the strongest nads communities.",
+          "categories": [
+            "Launchpad"
+          ],
+          "appLink": "https://lfj.gg/mill",
+          "twitterLink": "https://x.com/token_mill",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-21T12:47:49.531Z"
+        }
+      ]
+    },
+    {
+      "section": "Lend & Borrow",
+      "apps": [
+        {
+          "id": "app-7d33f4c69e0764184e23",
+          "name": "Aave",
+          "tagline": "The original DeFi protocol.",
+          "blurb": "Aave v3 is a non-custodial liquidity protocol on Monad, Ethereum, and other major networks. It provides onchain infrastructure to integrate supply and borrow into applications via battle-tested smart contracts and AaveKit.",
+          "categories": [
+            "Lend & Borrow",
+            "Leverage Trading"
+          ],
+          "appLink": "https://app.aave.com/markets?marketName=proto_monad_v3",
+          "twitterLink": "https://x.com/aave",
+          "platforms": [
+            "Desktop",
+            "iOS"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2026-07-06T12:00:00.000Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvMjM0RzZ2bWwzcjMydmdncEwwQnVFeg==",
+          "name": "Euler",
+          "tagline": "The DeFi Super App",
+          "blurb": "Euler is the DeFi Super App that unites permissionless lending, borrowing, earning and swapping in a single app.",
+          "categories": [
+            "Lend & Borrow"
+          ],
+          "appLink": "https://app.euler.finance/?network=monad",
+          "twitterLink": "https://x.com/eulerfinance",
+          "platforms": [
+            "Desktop",
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-20T11:58:09.038Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvYXBwLTZlYjIyNDZmOGY4MDQzYWFhYjQx",
+          "name": "Morpho",
+          "tagline": "The Universal Lending Network",
+          "blurb": "Morpho is an open network that connects lenders and borrowers to optimal opportunities worldwide. Any enterprise, institution, or application can integrate Morpho to offer their users best-in-class lending and borrowing products.",
+          "categories": [
+            "Lend & Borrow"
+          ],
+          "appLink": "https://app.morpho.org/vaults?chains=143",
+          "twitterLink": "https://x.com/morpho",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-24T13:21:01.669Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvU0VsQW9KajhkV1N6b0QyRzUzb0hx",
+          "name": "Curvance",
+          "tagline": "Click less, earn more",
+          "blurb": "Curvance is a capital-efficient lending platform on Monad. Users can deposit and borrow against productive assets, earn Bytes through on-chain activity, unlock milestone rewards, and access lootbox incentives. Built for users aiming to position early and capture real yield across the ecosystem.",
+          "categories": [
+            "Lend & Borrow"
+          ],
+          "appLink": "https://app.curvance.com/",
+          "twitterLink": "https://x.com/Curvance",
+          "platforms": [
+            "Desktop",
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-24T07:55:06.651Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNWZXa0RPQWN3YkRGSlNJTUFjNnlaNw==",
+          "name": "Neverland",
+          "tagline": "Self-repaying loans & veTokenomics",
+          "blurb": "Neverland is a next-generation, Monad-exclusive lending protocol fusing secure, battle-tested lending tech with proprietary veTokenomics that allow users to direct 100% of revenue. Featuring self-repaying loans, flexible governance locks, and automated yield strategies, designed to maximize capital efficiency and long-term alignment.",
+          "categories": [
+            "Lend & Borrow"
+          ],
+          "appLink": "https://app.neverland.money",
+          "twitterLink": "https://x.com/neverland_money",
+          "platforms": [
+            "Desktop",
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-21T14:16:55.951Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvN0pwOWgwMzd5RTlhNG5ocVdrd3B3eg==",
+          "name": "Gearbox Protocol",
+          "tagline": "Permissionless Leverage",
+          "blurb": "The credit layer for DeFi. Borrow and lend with market-leading rates and institutional-grade risk controls. Start optimizing your capital today.",
+          "categories": [
+            "Lend & Borrow"
+          ],
+          "appLink": "https://app.gearbox.finance/pools",
+          "twitterLink": "https://x.com/GearboxProtocol",
+          "platforms": [
+            "Desktop"
+          ],
+          "onlyOnMonad": false,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-21T14:16:14.953Z"
+        },
+        {
+          "id": "MTpjcm46Y29udGVudGZ1bDo6OmNvbnRlbnQ6c3BhY2VzLzhqMTEzaXVoeDh5dS9lbnZpcm9ubWVudHMvbWFzdGVyL2VudHJpZXMvNUtpUGdoWHRTZlF5SDhRa3VDTUtwWg==",
+          "name": "TownSquare",
+          "tagline": "Monad-Native Lending Market",
+          "blurb": "TownSquare is a Monad-native modular lending market, powered by a crosschain borrowing & lending engine. Backed by Monad early contributors including Monad co-founder James Hunsaker and other top tier VCs.",
+          "categories": [
+            "Lend & Borrow"
+          ],
+          "appLink": "https://app.townsq.xyz/",
+          "twitterLink": "https://x.com/TownSquarexyz",
+          "platforms": [
+            "Desktop",
+            "Android",
+            "iOS"
+          ],
+          "onlyOnMonad": true,
+          "monadMomentum": false,
+          "firstPublishedAt": "2025-11-20T11:58:07.584Z"
+        }
+      ]
+    }
+  ],
+  "mostActiveApps": [
+    {
+      "rank": "#01",
+      "rankDelta": 0,
+      "slug": "fastlane",
+      "name": "FastLane",
+      "tagline": "Alignment-Powered Liquid Staking",
+      "category": "Liquid Staking",
+      "tags": [
+        "Liquid Staking"
+      ],
+      "badge": "$undefined",
+      "onlyOnMonad": true
+    },
+    {
+      "rank": "#02",
+      "rankDelta": 0,
+      "slug": "kuru",
+      "name": "Kuru",
+      "tagline": "Trading Hub on Monad",
+      "category": "Launchpad",
+      "tags": [
+        "Launchpad",
+        "Trading"
+      ],
+      "badge": "$undefined",
+      "onlyOnMonad": true
+    },
+    {
+      "rank": "#03",
+      "rankDelta": 0,
+      "slug": "perpl",
+      "name": "Perpl",
+      "tagline": "Trade perps fully onchain",
+      "category": "Trading",
+      "tags": [
+        "Trading",
+        "Leverage Trading"
+      ],
+      "badge": "$undefined",
+      "onlyOnMonad": true
+    },
+    {
+      "rank": "#04",
+      "rankDelta": 2,
+      "slug": "uniswap",
+      "name": "Uniswap",
+      "tagline": "The largest onchain marketplace",
+      "category": "Trading",
+      "tags": [
+        "Trading"
+      ],
+      "badge": "$undefined",
+      "onlyOnMonad": false
+    },
+    {
+      "rank": "#05",
+      "rankDelta": 0,
+      "slug": "drake",
+      "name": "Drake",
+      "tagline": "The People's Perp Dex",
+      "category": "Leverage Trading",
+      "tags": [
+        "Leverage Trading",
+        "Yield"
+      ],
+      "badge": "$undefined",
+      "onlyOnMonad": true
+    }
+  ]
+}
