@@ -847,6 +847,21 @@ Next:
 - v2.2 backlog unchanged; add focus trap/visibility toggle for off-screen panels if it bothers
   keyboard testing.
 
+### 2026-09-27 — Lead — Git repository initialized and published
+
+Changed:
+- `git init` (branch `main`), local identity `ILYUTKICK` (noreply email), `.gitignore` extended
+  with `dist/` (build output; the handoff zip was already excluded via `*.zip`).
+- Initial commit `62dff6f` (48 files: src, docs, data, scripts) pushed to the public repo
+  https://github.com/ILYUTKICK/monad-city (created via gh, account ILYUTKICK).
+
+Verified:
+- `origin/main` tracks and matches local `main`; nothing generated is tracked (dist/ ignored).
+
+Next:
+- Continue v2.2 (relationship hover tooltip, intro/demo polish, 390px toggle clip, label
+  occlusion) with a commit per completed task.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
