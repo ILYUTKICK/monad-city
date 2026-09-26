@@ -862,6 +862,34 @@ Next:
 - Continue v2.2 (relationship hover tooltip, intro/demo polish, 390px toggle clip, label
   occlusion) with a commit per completed task.
 
+### 2026-09-27 — Lead / product — Phase 5 planned: full ecosystem scale
+
+Owner direction: expand the map to the full Monad ecosystem with all relationships. Feasibility
+researched and documented; the honest answer is phased scale, not a runtime indexer.
+
+Changed:
+- Added `docs/ECOSYSTEM_SCALE_PLAN.md` — Phase 5 master plan: feasibility split (rendering =
+  easy; profiles = pipeline + review throughput; "all relationships verified" = reframed to
+  sourced-or-inferred edges), identity/inclusion bar (Monad deployment + independent source),
+  build-time intake architecture (DefiLlama/official directory seeds → scripts/ecosystem-intake.js
+  → evidence proposals → phase-3.7 review → SHA-256 promotion), batches 30 → 100 → full sweep,
+  rendering LOD strategy, data-driven Navigator copy, risks.
+- Added `docs/PROJECT_INTAKE_PIPELINE.md` — per-project and per-batch runbook (seed artifacts in
+  data/research/, identity/dedup rules, manifest drafting, proposal commands, batch discipline,
+  non-goals).
+- `docs/IMPLEMENTATION_PLAN.md` — Phase 5 section added; Phase 5.4 (runtime indexer) explicitly
+  closed pending an owner stack decision.
+
+Research grounding (2026-09-27): Monad mainnet launched 2025-11-24; ~150 projects at launch,
+300+ reported since (Bitget); DefiLlama free API provides a machine-readable Monad protocol list.
+
+Verified:
+- Docs only; no runtime code changed; build untouched.
+
+Next:
+- Phase 5.0: scripts/ecosystem-intake.js skeleton + first seed-list export into data/research/;
+  then Batch 1 (30 projects) through the intake runbook.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

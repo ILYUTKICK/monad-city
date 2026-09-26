@@ -128,6 +128,22 @@ Exit criteria: a founder can claim a project without the UI overstating what the
 Status: deferred. Do not start without an explicit scope and trust-model decision after the
 bounded governance workflow remains stable through a real human-reviewed cadence refresh.
 
+### Phase 5 — Full ecosystem scale (approved direction)
+
+Owner: Trust/Data + Source Research + Frontend agents (lead coordinates)
+
+- expand the city from the 10-project prototype toward the full Monad ecosystem (300+ reported
+  projects at the time of writing) via a build-time intake pipeline;
+- every new entity passes the inclusion bar (verifiable Monad deployment + independent source)
+  and the existing review/promotion gates; nothing enters as verified;
+- relationships enter only with a citable basis or as explicitly dashed AI-inferred suggestions;
+- rendering, label LOD, district layout, and Navigator copy scale per batch (30 → 100 → full).
+
+Full architecture, phases, and exit criteria: `docs/ECOSYSTEM_SCALE_PLAN.md`.
+Operational runbook: `docs/PROJECT_INTAKE_PIPELINE.md`.
+Status: planned; not started. Phase 5.4 (runtime indexer) stays closed without an explicit
+stack decision.
+
 ## Parallel workstreams
 
 ### Product agent
