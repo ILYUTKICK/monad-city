@@ -295,10 +295,19 @@ export function createCity3D({
     ctx.fillText(zone.label.toUpperCase().split('').join('\u200a'), width / 2, 34);
     const mesh = new THREE.Mesh(
       new THREE.PlaneGeometry(4 * (width / 64), 4),
-      new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(canvas), transparent: true, opacity: 0.55, depthWrite: false }),
+      // District labels are wayfinding, not geometry: exempt them from depth testing so
+      // tall buildings never occlude them (scale plan: district ground labels stay always-on).
+      new THREE.MeshBasicMaterial({
+        map: new THREE.CanvasTexture(canvas),
+        transparent: true,
+        opacity: 0.55,
+        depthWrite: false,
+        depthTest: false,
+      }),
     );
     mesh.rotation.x = -Math.PI / 2;
     mesh.position.set(zone.x, 0.09, zone.z);
+    mesh.renderOrder = 10;
     scene.add(mesh);
   });
 
