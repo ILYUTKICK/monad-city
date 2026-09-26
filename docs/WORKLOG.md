@@ -890,6 +890,23 @@ Next:
 - Phase 5.0: scripts/ecosystem-intake.js skeleton + first seed-list export into data/research/;
   then Batch 1 (30 projects) through the intake runbook.
 
+### 2026-09-27 — Lead — App Portal seed source + Phase 5 kickoff prompt
+
+Changed:
+- Owner supplied https://app.monad.xyz/ (official Monad App Portal): server-rendered app
+  directory with taglines, category tags, links, and a gas-usage "Most Active Apps" ranking.
+  Added as a canonical seed source in `docs/ECOSYSTEM_SCALE_PLAN.md` and
+  `docs/PROJECT_INTAKE_PIPELINE.md` (artifact: data/research/monad-app-portal-<date>.json).
+- Added `docs/PHASE5_KICKOFF_PROMPT.md` — ready-to-paste kickoff prompt for the next agent
+  session: mandatory reading order, Phase 5.0 stages (seed artifacts → intake script → dry run
+  of 10 draft proposals), per-stage commit discipline, non-negotiable rules, stretch backlog.
+
+Verified:
+- Docs only; build untouched.
+
+Next:
+- Next session runs the kickoff prompt (Phase 5.0, three committed stages).
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

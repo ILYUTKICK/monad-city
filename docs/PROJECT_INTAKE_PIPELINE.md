@@ -20,6 +20,7 @@ backend or change claim semantics.
 | Source | What it gives | Artifact |
 | --- | --- | --- |
 | DefiLlama free API — `https://api.llama.fi/protocols` filtered by `chain: "Monad"` | project list, categories, site URLs, TVL/activity signals | `data/research/defillama-monad-<date>.json` |
+| Official Monad App Portal — `https://app.monad.xyz/` | canonical app list with taglines, category tags, links, and a "Most Active Apps" gas-usage ranking; server-rendered, parseable without JS | `data/research/monad-app-portal-<date>.json` |
 | Official Monad ecosystem directory export | canonical names, categories, links | `data/research/monad-directory-<date>.json` |
 | Manual research notes | anything the directories miss | `data/research/manual-<topic>.md` |
 

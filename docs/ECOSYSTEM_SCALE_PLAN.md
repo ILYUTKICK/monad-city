@@ -56,6 +56,8 @@ Detailed runbook: `docs/PROJECT_INTAKE_PIPELINE.md`. Summary:
 ```
 seed lists (checked-in research artifacts)
   ├─ DefiLlama api.llama.fi/protocols filtered by chain "Monad"  (TVL, categories, URLs)
+  ├─ official Monad App Portal https://app.monad.xyz/  (app list, categories, gas-usage ranking;
+  │   server-rendered and parseable without JS)
   ├─ official Monad ecosystem directory export
   └─ manual submissions / research notes
         ↓
