@@ -1,0 +1,377 @@
+{
+  "kind": "monad-city-batch-1-selection",
+  "schemaVersion": "1",
+  "generatedAtUtc": "2026-09-27T10:19:02Z",
+  "inputs": {
+    "draft": "data/research/proposals-draft-2026-09-26.json",
+    "defillama": "data/research/defillama-monad-2026-09-27.json"
+  },
+  "rule": "Top 30 full intake drafts by DefiLlama TVL (max across the project's DefiLlama slugs), ties by name. Batch-composition signal only — TVL is not rendered, ranked, or implied in the city.",
+  "batchSize": 30,
+  "counts": {
+    "fullDrafts": 35,
+    "selected": 30,
+    "deferred": 5
+  },
+  "selected": [
+    {
+      "proposalId": "aave-v3",
+      "name": "Aave",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-AAVE-V3-MEM-001",
+      "defillamaSlugs": [
+        "aave-v3"
+      ],
+      "tvlUsd": 18346552740.586678
+    },
+    {
+      "proposalId": "pancakeswap",
+      "name": "PancakeSwap",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PANCAKESWAP-MEM-001",
+      "defillamaSlugs": [
+        "pancakeswap-amm",
+        "pancakeswap-amm-v3"
+      ],
+      "tvlUsd": 1905064575.6883802
+    },
+    {
+      "proposalId": "uniswap",
+      "name": "Uniswap",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-UNISWAP-MEM-001",
+      "defillamaSlugs": [
+        "uniswap-v2",
+        "uniswap-v3",
+        "uniswap-v4"
+      ],
+      "tvlUsd": 1673496345.828363
+    },
+    {
+      "proposalId": "curve",
+      "name": "Curve",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-CURVE-MEM-001",
+      "defillamaSlugs": [
+        "curve-dex"
+      ],
+      "tvlUsd": 1312752674.589786
+    },
+    {
+      "proposalId": "pendle",
+      "name": "Pendle",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PENDLE-MEM-001",
+      "defillamaSlugs": [
+        "pendle-v2"
+      ],
+      "tvlUsd": 1258315734.939127
+    },
+    {
+      "proposalId": "upshift",
+      "name": "Upshift",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-UPSHIFT-MEM-001",
+      "defillamaSlugs": [
+        "upshift"
+      ],
+      "tvlUsd": 431751063.84288776
+    },
+    {
+      "proposalId": "euler",
+      "name": "Euler",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-EULER-MEM-001",
+      "defillamaSlugs": [
+        "euler-v2"
+      ],
+      "tvlUsd": 355578504.2099391
+    },
+    {
+      "proposalId": "lagoon",
+      "name": "Lagoon",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-LAGOON-MEM-001",
+      "defillamaSlugs": [
+        "lagoon"
+      ],
+      "tvlUsd": 155731857.45416257
+    },
+    {
+      "proposalId": "curvance",
+      "name": "Curvance",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-CURVANCE-MEM-001",
+      "defillamaSlugs": [
+        "curvance"
+      ],
+      "tvlUsd": 129211866.4952065
+    },
+    {
+      "proposalId": "renzo",
+      "name": "Renzo",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-RENZO-MEM-001",
+      "defillamaSlugs": [
+        "renzo"
+      ],
+      "tvlUsd": 126913994.29241729
+    },
+    {
+      "proposalId": "beefy",
+      "name": "Beefy",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-BEEFY-MEM-001",
+      "defillamaSlugs": [
+        "beefy"
+      ],
+      "tvlUsd": 121165257.51513517
+    },
+    {
+      "proposalId": "yuzu-money",
+      "name": "Yuzu Money",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-YUZU-MONEY-MEM-001",
+      "defillamaSlugs": [
+        "yuzu-money"
+      ],
+      "tvlUsd": 78310220.40513866
+    },
+    {
+      "proposalId": "balancer",
+      "name": "Balancer",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-BALANCER-MEM-001",
+      "defillamaSlugs": [
+        "balancer-v3"
+      ],
+      "tvlUsd": 22597911.255537055
+    },
+    {
+      "proposalId": "spectra",
+      "name": "Spectra",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SPECTRA-MEM-001",
+      "defillamaSlugs": [
+        "spectra-v2"
+      ],
+      "tvlUsd": 19077162.005164966
+    },
+    {
+      "proposalId": "mento",
+      "name": "Mento",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MENTO-MEM-001",
+      "defillamaSlugs": [
+        "mento-v2",
+        "mento-v3"
+      ],
+      "tvlUsd": 13212107.322513591
+    },
+    {
+      "proposalId": "symbiosis",
+      "name": "Symbiosis",
+      "district": "Infrastructure",
+      "evidenceCandidateId": "E-SYMBIOSIS-MEM-001",
+      "defillamaSlugs": [
+        "symbiosis"
+      ],
+      "tvlUsd": 8262110.865191719
+    },
+    {
+      "proposalId": "neverland",
+      "name": "Neverland",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NEVERLAND-MEM-001",
+      "defillamaSlugs": [
+        "neverland"
+      ],
+      "tvlUsd": 7498091.998354186
+    },
+    {
+      "proposalId": "ample",
+      "name": "Ample",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-AMPLE-MEM-001",
+      "defillamaSlugs": [
+        "ample"
+      ],
+      "tvlUsd": 4743329.7812744025
+    },
+    {
+      "proposalId": "perpl",
+      "name": "Perpl",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PERPL-MEM-001",
+      "defillamaSlugs": [
+        "perpl"
+      ],
+      "tvlUsd": 3988141.298978678
+    },
+    {
+      "proposalId": "woofi",
+      "name": "WOOFi",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-WOOFI-MEM-001",
+      "defillamaSlugs": [
+        "woofi-swap"
+      ],
+      "tvlUsd": 3538620.610196194
+    },
+    {
+      "proposalId": "leverup",
+      "name": "LeverUp",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-LEVERUP-MEM-001",
+      "defillamaSlugs": [
+        "leverup"
+      ],
+      "tvlUsd": 2838880.2475309647
+    },
+    {
+      "proposalId": "kintsu",
+      "name": "Kintsu",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-KINTSU-MEM-001",
+      "defillamaSlugs": [
+        "kintsu"
+      ],
+      "tvlUsd": 2427709.0033423724
+    },
+    {
+      "proposalId": "levr-bet",
+      "name": "Levr Bet",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-LEVR-BET-MEM-001",
+      "defillamaSlugs": [
+        "levr-bet"
+      ],
+      "tvlUsd": 1906231.5831792331
+    },
+    {
+      "proposalId": "sumer-money",
+      "name": "Sumer Money",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SUMER-MONEY-MEM-001",
+      "defillamaSlugs": [
+        "sumer.money"
+      ],
+      "tvlUsd": 1354899.4907867918
+    },
+    {
+      "proposalId": "monday-trade",
+      "name": "Monday Trade",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MONDAY-TRADE-MEM-001",
+      "defillamaSlugs": [
+        "monday-trade-perps",
+        "monday-trade-spot"
+      ],
+      "tvlUsd": 580003.8697508262
+    },
+    {
+      "proposalId": "capricorn",
+      "name": "Capricorn",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-CAPRICORN-MEM-001",
+      "defillamaSlugs": [
+        "capricorn"
+      ],
+      "tvlUsd": 461161.9076281838
+    },
+    {
+      "proposalId": "nad-fun",
+      "name": "Nad.fun",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NAD-FUN-MEM-001",
+      "defillamaSlugs": [
+        "nad.fun-v1",
+        "nad.fun-v2"
+      ],
+      "tvlUsd": 459650.99303903646
+    },
+    {
+      "proposalId": "drake",
+      "name": "Drake",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-DRAKE-MEM-001",
+      "defillamaSlugs": [
+        "drake-exchange"
+      ],
+      "tvlUsd": 209973.19346475293
+    },
+    {
+      "proposalId": "kizzy",
+      "name": "Kizzy",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-KIZZY-MEM-001",
+      "defillamaSlugs": [
+        "kizzy"
+      ],
+      "tvlUsd": 72571.82232148488
+    },
+    {
+      "proposalId": "nabla-finance",
+      "name": "Nabla Finance",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NABLA-FINANCE-MEM-001",
+      "defillamaSlugs": [
+        "nabla-finance"
+      ],
+      "tvlUsd": 52884.95354490876
+    }
+  ],
+  "deferred": [
+    {
+      "proposalId": "clober",
+      "name": "Clober",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-CLOBER-MEM-001",
+      "defillamaSlugs": [
+        "clober-liquidity-vault",
+        "clober-v2"
+      ],
+      "tvlUsd": 51415.00969093773
+    },
+    {
+      "proposalId": "covenant",
+      "name": "Covenant",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-COVENANT-MEM-001",
+      "defillamaSlugs": [
+        "covenant"
+      ],
+      "tvlUsd": 33501.429444489135
+    },
+    {
+      "proposalId": "narbet",
+      "name": "Narbet",
+      "district": "Gaming",
+      "evidenceCandidateId": "E-NARBET-MEM-001",
+      "defillamaSlugs": [
+        "narbet"
+      ],
+      "tvlUsd": 13785.5121427175
+    },
+    {
+      "proposalId": "bean-exchange",
+      "name": "Bean Exchange",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-BEAN-EXCHANGE-MEM-001",
+      "defillamaSlugs": [
+        "bean-exchange"
+      ],
+      "tvlUsd": 5044.106049611827
+    },
+    {
+      "proposalId": "narwhal-finance",
+      "name": "Narwhal Finance",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NARWHAL-FINANCE-MEM-001",
+      "defillamaSlugs": [
+        "narwhal-finance"
+      ],
+      "tvlUsd": 1268.9704428423777
+    }
+  ]
+}

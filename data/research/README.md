@@ -9,10 +9,11 @@ here is an approved claim, and nothing here enters `data/evidence-snapshots/` or
 
 | Artifact | Produced by | Content |
 | --- | --- | --- |
-| `defillama-monad-<date>.json` | `npm run research:fetch-defillama` | DefiLlama protocol listing filtered to the Monad chain tag (name, symbol, category, site, address, slug, chains, twitter) |
+| `defillama-monad-<date>.json` | `npm run research:fetch-defillama` | DefiLlama protocol listing filtered to the Monad chain tag (name, symbol, category, site, address, slug, chains, twitter; `tvl` for batch composition only) |
 | `monad-app-portal-<date>.json` | `npm run research:fetch-app-portal` | Official Monad App Portal: full app directory (name, slug, tagline, categories, blurb), featured sections with external links, "Most Active Apps" gas-usage ranking |
 | `proposals-draft-<date>.json` | `npm run research:intake` | Dry-run intake output: draft manifests + evidence-record candidates, all `proposed`, never approved |
 | `intake-report-<date>.json` | `npm run research:intake` | Identity/dedupe/inclusion report for the same run |
+| `batch-1-selection-<date>.json` | `npm run research:select-batch-1` | Batch 1 composition: top 30 full drafts by DefiLlama TVL + deferred remainder |
 
 ## Dating rules
 
@@ -25,6 +26,13 @@ here is an approved claim, and nothing here enters `data/evidence-snapshots/` or
   old one. Old artifacts stay as the audit trail.
 - One capture per source per UTC date. If a second capture is genuinely needed on the same
   date, use an explicit `--out` path suffix (e.g. `-a`) and explain it in the WORKLOG.
+
+## Ranking boundary
+
+`defillama-monad` artifacts carry `tvl` since 2026-09-27. It is a **batch-composition input
+only** (scale plan §5.1 sizes Batch 1 as the top 30 by activity/TVL). TVL never reaches
+manifests, placement, building size/order, Navigator copy, or any city visual — evidence
+status is the only visual distinction, per the trust model.
 
 ## Adding a new source
 

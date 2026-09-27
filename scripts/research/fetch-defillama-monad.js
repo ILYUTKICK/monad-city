@@ -75,7 +75,9 @@ async function main() {
     .map((protocol) => ({
       // Fields kept per docs/PROJECT_INTAKE_PIPELINE.md §1: name, symbol, category, site, address.
       // `slug` identifies the DefiLlama protocol page URL; `chains` proves the Monad tag filter;
-      // `twitter` is an alias signal for identity resolution. Nothing else is retained.
+      // `twitter` is an alias signal for identity resolution. `tvl` is used ONLY for batch
+      // composition (scale plan §5.1 "top 30 by activity/TVL") — it never reaches manifests,
+      // placement, size, order, or any city visual.
       name: typeof protocol.name === 'string' ? protocol.name : null,
       symbol: typeof protocol.symbol === 'string' ? protocol.symbol : null,
       category: typeof protocol.category === 'string' && protocol.category.length > 0 ? protocol.category : null,
@@ -84,6 +86,7 @@ async function main() {
       slug: typeof protocol.slug === 'string' ? protocol.slug : null,
       chains: protocol.chains,
       twitter: typeof protocol.twitter === 'string' ? protocol.twitter : null,
+      tvl: typeof protocol.tvl === 'number' && Number.isFinite(protocol.tvl) ? protocol.tvl : null,
     }))
     .sort((left, right) => left.name.localeCompare(right.name));
 
