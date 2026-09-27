@@ -1068,6 +1068,58 @@ Next:
 - Refresh cadence: batch-1 records are 30-day-cadence directory listings; the governance
   report computes due dates from the inline metadata.
 
+### 2026-09-27 — Lead agent / visual — Phase 5.2 (pulled forward): district archipelago
+
+Owner direction after seeing the single-island Batch 1 render: «Давай сделаем отдельно
+каждый остров по дистриктам, потому что на одном острове ничего непонятно». The data-driven
+district-layout item of scale plan §5.2 is pulled forward as the visual answer.
+
+Changed:
+- `src/city3d.js` — the single voxel island became an archipelago:
+  - one island per district cluster, derived from the buildings themselves (centroid center,
+    farthest-building radius + beach margin), plus a small central islet for the Monad spire —
+    re-placing buildings reshapes islands automatically, no hardcoded terrain geometry;
+  - wobbly coastline, per-island sand ring, plaza at each island center; roads removed
+    (they crossed buildings at district scale); filler houses/trees per island with
+    island-scaled caps, still seeded and never beside a project;
+  - district ground labels moved to each island's outward shore (offset 0.78·radius,
+    opacity 0.74, depthTest off — always-on wayfinding), sized per island;
+  - water plane widened to r=340, fog 240–560, shadow camera ±90, camera default
+    radius 176 / elevation 0.62, zoom clamps 38–215, pan clamp ±60, district focus radius 92;
+  - relationship beams now span water between islands — the graph metaphor reads as bridges.
+- `scripts/research/compose-archipelago-city.js` — deterministic composer rewriting ONLY the
+  x/y coordinates of all 40 project entries in src/main.js: Monad at (0,0), five district
+  clusters on a ring (radius 520 project units, angles 45°/117°/189°/261°/333°), buildings
+  spiraling out per island (gap 54–68 project units), cross-island clearance ≥150 asserted.
+  Ring angles and spiral order encode no ranking.
+- `src/main.js` — archipelago coordinates applied; SVG graph view plate and viewBox became
+  data-driven (fit to projected node bounds, zoom recenters on the plate dynamically).
+
+Files changed:
+- `src/city3d.js`, `src/main.js`, `scripts/research/compose-archipelago-city.js`, `docs/WORKLOG.md`
+
+Verified:
+- `npm run build` green (SHA-256 gate unchanged — visual-only change, snapshot untouched).
+- In-browser 1440×900: whole archipelago frames at the default camera; district ground labels
+  (AI, IDENTITY, GAMING, INFRASTRUCTURE, DEFI) read on their shores; DeFi focus shows the
+  32-building quarter on its own island with the DEFI shore label; district filter dims
+  foreign islands — much more readable than the single-island dimming; beams cross water as
+  bridges; passport/Navigator/selection unaffected; Graph view auto-fits 40 nodes.
+- 390×844: city-first layout intact, no horizontal overflow, zero console errors.
+
+Limitations:
+- DeFi quarter remains dense (32 buildings at one label tier) — per-tier label LOD and
+  building-count-based heights stay in the Phase 5.2 backlog.
+- Beam hover hitboxes and beams ignore water height (flat at y=2) — acceptable; arched
+  bridges are a possible polish item.
+- Ring angles/spiral are fixed in the composer; Batch 2 (100+) will need multi-ring islands
+  and per-island label tiers.
+
+Next:
+- Continue Phase 5.2 per plan: Batch 2 intake, explorer/contract verification, label LOD,
+  performance budget.
+
+
 
 ### 2026-09-27 — Lead agent / frontend — v2.2 stretch: beam tooltip + narrow-layout fixes
 

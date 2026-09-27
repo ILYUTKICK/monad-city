@@ -44,8 +44,8 @@ const projects = [
     tag: 'Liquidity, without limits.',
     description:
       'An onchain order book built for the speed of Monad. Discover how its liquidity connects across the ecosystem.',
-    x: -170,
-    y: 0,
+    x: 368,
+    y: 368,
     h: 92,
     color: '#93d6c6',
     state: 'Attested',
@@ -60,8 +60,8 @@ const projects = [
     tag: 'Putting staked capital to work.',
     description:
       'A liquid staking and MEV infrastructure protocol connecting Monad validators, stakers, and DeFi applications.',
-    x: -175,
-    y: 105,
+    x: 414,
+    y: 396,
     h: 75,
     color: '#93d6c6',
     state: 'Claimed',
@@ -76,8 +76,8 @@ const projects = [
     tag: 'A more liquid ecosystem.',
     description:
       'A liquid staking project exploring productive capital and composable staking on Monad.',
-    x: -80,
-    y: 150,
+    x: 367,
+    y: 422,
     h: 62,
     color: '#93d6c6',
     state: 'Observed',
@@ -92,8 +92,8 @@ const projects = [
     tag: 'A data layer in the graph.',
     description:
       'A customizable oracle network connecting applications with external data and verifiable randomness.',
-    x: 95,
-    y: -100,
+    x: -236,
+    y: 463,
     h: 94,
     color: '#a58aff',
     state: 'Attested',
@@ -108,8 +108,8 @@ const projects = [
     tag: 'Market data at city speed.',
     description:
       'A financial oracle network delivering price feeds to connected DeFi applications.',
-    x: -15,
-    y: -160,
+    x: -178,
+    y: 499,
     h: 88,
     color: '#a58aff',
     state: 'Attested',
@@ -124,8 +124,8 @@ const projects = [
     tag: 'Agents with a place in the city.',
     description:
       'An agent infrastructure concept for discovering autonomous services and their ecosystem dependencies.',
-    x: 185,
-    y: 0,
+    x: -81,
+    y: -514,
     h: 104,
     color: '#91baff',
     state: 'AI-inferred',
@@ -140,8 +140,8 @@ const projects = [
     tag: 'Where community comes to play.',
     description:
       'An illustrative onchain arcade where players discover games, build reputation, and carry achievements across the ecosystem.',
-    x: 70,
-    y: 170,
+    x: -514,
+    y: -81,
     h: 78,
     color: '#e9b07c',
     state: 'Claimed',
@@ -156,8 +156,8 @@ const projects = [
     tag: 'Explore the edges of the graph.',
     description:
       'A fictional game studio connecting verifiable randomness, player-owned worlds, and shared achievements. Created for this prototype.',
-    x: 190,
-    y: 125,
+    x: -456,
+    y: -45,
     h: 57,
     color: '#e9b07c',
     state: 'Observed',
@@ -172,8 +172,8 @@ const projects = [
     tag: 'An identity that travels with you.',
     description:
       'A digital identity network represented here to explore identity and reputation relationships across the city.',
-    x: 110,
-    y: -210,
+    x: 463,
+    y: -236,
     h: 65,
     color: '#e5a5cd',
     state: 'AI-inferred',
@@ -191,8 +191,8 @@ const projects = [
     tag: 'Listed under ‘Lending’.',
     description:
       'Aave is a DefiLlama-listed protocol in the ’Lending’ category with TVL tracked on the Monad chain.',
-    x: -192,
-    y: 165,
+    x: 321,
+    y: 394,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -207,8 +207,8 @@ const projects = [
     tag: 'Listed under ‘Dexs’.',
     description:
       'PancakeSwap is a DefiLlama-listed protocol in the ’Dexs’ category with TVL tracked on the Monad chain.',
-    x: -130,
-    y: 179,
+    x: 322,
+    y: 340,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -223,8 +223,8 @@ const projects = [
     tag: 'Listed under ‘Dexs’.',
     description:
       'Uniswap is a DefiLlama-listed protocol in the ’Dexs’ category with TVL tracked on the Monad chain.',
-    x: -165,
-    y: 205,
+    x: 369,
+    y: 314,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -239,8 +239,8 @@ const projects = [
     tag: 'Listed under ‘Dexs’.',
     description:
       'Curve is a DefiLlama-listed protocol in the ’Dexs’ category with TVL tracked on the Monad chain.',
-    x: -254,
-    y: 46,
+    x: 415,
+    y: 342,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -255,8 +255,8 @@ const projects = [
     tag: 'Listed under ‘Yield’.',
     description:
       'Pendle is a DefiLlama-listed protocol in the ’Yield’ category with TVL tracked on the Monad chain.',
-    x: -133,
-    y: 57,
+    x: 417,
+    y: 464,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -271,8 +271,8 @@ const projects = [
     tag: 'Listed under ‘Onchain Capital Allocator’.',
     description:
       'Upshift is a DefiLlama-listed protocol in the ’Onchain Capital Allocator’ category with TVL tracked on the Monad chain.',
-    x: -111,
-    y: 96,
+    x: 367,
+    y: 476,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -287,8 +287,8 @@ const projects = [
     tag: 'Listed under ‘Lending’.',
     description:
       'Euler is a DefiLlama-listed protocol in the ’Lending’ category with TVL tracked on the Monad chain.',
-    x: -131,
-    y: 240,
+    x: 317,
+    y: 463,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -303,8 +303,8 @@ const projects = [
     tag: 'Listed under ‘Onchain Capital Allocator’.',
     description:
       'Lagoon is a DefiLlama-listed protocol in the ’Onchain Capital Allocator’ category with TVL tracked on the Monad chain.',
-    x: -174,
-    y: 256,
+    x: 278,
+    y: 428,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -319,8 +319,8 @@ const projects = [
     tag: 'Listed under ‘Lending’.',
     description:
       'Curvance is a DefiLlama-listed protocol in the ’Lending’ category with TVL tracked on the Monad chain.',
-    x: -248,
-    y: -9,
+    x: 261,
+    y: 380,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -335,8 +335,8 @@ const projects = [
     tag: 'Listed under ‘Liquid Restaking’.',
     description:
       'Renzo is a DefiLlama-listed protocol in the ’Liquid Restaking’ category with TVL tracked on the Monad chain.',
-    x: -86,
-    y: 42,
+    x: 268,
+    y: 328,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -351,8 +351,8 @@ const projects = [
     tag: 'Listed under ‘Yield Aggregator’.',
     description:
       'Beefy is a DefiLlama-listed protocol in the ’Yield Aggregator’ category with TVL tracked on the Monad chain.',
-    x: -67,
-    y: 83,
+    x: 297,
+    y: 286,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -367,8 +367,8 @@ const projects = [
     tag: 'Listed under ‘Yield’.',
     description:
       'Yuzu Money is a DefiLlama-listed protocol in the ’Yield’ category with TVL tracked on the Monad chain.',
-    x: -96,
-    y: 211,
+    x: 343,
+    y: 263,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -383,8 +383,8 @@ const projects = [
     tag: 'Listed under ‘Dexs’.',
     description:
       'Balancer is a DefiLlama-listed protocol in the ’Dexs’ category with TVL tracked on the Monad chain.',
-    x: -169,
-    y: 301,
+    x: 395,
+    y: 263,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -399,8 +399,8 @@ const projects = [
     tag: 'Listed under ‘Yield’.',
     description:
       'Spectra is a DefiLlama-listed protocol in the ’Yield’ category with TVL tracked on the Monad chain.',
-    x: -254,
-    y: -56,
+    x: 441,
+    y: 288,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -415,8 +415,8 @@ const projects = [
     tag: 'Listed under ‘Algo-Stables’.',
     description:
       'Mento is a DefiLlama-listed protocol in the ’Algo-Stables’ category with TVL tracked on the Monad chain.',
-    x: -208,
-    y: -64,
+    x: 469,
+    y: 331,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -431,8 +431,8 @@ const projects = [
     tag: 'Listed under ‘Lending’.',
     description:
       'Neverland is a DefiLlama-listed protocol in the ’Lending’ category with TVL tracked on the Monad chain.',
-    x: -162,
-    y: -60,
+    x: 475,
+    y: 382,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -447,8 +447,8 @@ const projects = [
     tag: 'Listed under ‘Yield Lottery’.',
     description:
       'Ample is a DefiLlama-listed protocol in the ’Yield Lottery’ category with TVL tracked on the Monad chain.',
-    x: -119,
-    y: -45,
+    x: 456,
+    y: 430,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -463,8 +463,8 @@ const projects = [
     tag: 'Listed under ‘Derivatives’.',
     description:
       'Perpl is a DefiLlama-listed protocol in the ’Derivatives’ category with TVL tracked on the Monad chain.',
-    x: -80,
-    y: -20,
+    x: 355,
+    y: 529,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -479,8 +479,8 @@ const projects = [
     tag: 'Listed under ‘Dexs’.',
     description:
       'WOOFi is a DefiLlama-listed protocol in the ’Dexs’ category with TVL tracked on the Monad chain.',
-    x: -28,
-    y: 55,
+    x: 303,
+    y: 517,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -495,8 +495,8 @@ const projects = [
     tag: 'Listed under ‘Derivatives’.',
     description:
       'LeverUp is a DefiLlama-listed protocol in the ’Derivatives’ category with TVL tracked on the Monad chain.',
-    x: -17,
-    y: 100,
+    x: 259,
+    y: 488,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -511,8 +511,8 @@ const projects = [
     tag: 'Listed under ‘Liquid Staking’.',
     description:
       'Kintsu is a DefiLlama-listed protocol in the ’Liquid Staking’ category with TVL tracked on the Monad chain.',
-    x: -18,
-    y: 146,
+    x: 226,
+    y: 446,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -527,8 +527,8 @@ const projects = [
     tag: 'Listed under ‘Prediction Market’.',
     description:
       'Levr Bet is a DefiLlama-listed protocol in the ’Prediction Market’ category with TVL tracked on the Monad chain.',
-    x: -30,
-    y: 191,
+    x: 208,
+    y: 395,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -543,8 +543,8 @@ const projects = [
     tag: 'Listed under ‘Lending’.',
     description:
       'Sumer Money is a DefiLlama-listed protocol in the ’Lending’ category with TVL tracked on the Monad chain.',
-    x: -53,
-    y: 231,
+    x: 208,
+    y: 342,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -559,8 +559,8 @@ const projects = [
     tag: 'Listed under ‘Derivatives’.',
     description:
       'Monday Trade is a DefiLlama-listed protocol in the ’Dexs’ category with TVL tracked on the Monad chain.',
-    x: -85,
-    y: 264,
+    x: 225,
+    y: 291,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -575,8 +575,8 @@ const projects = [
     tag: 'Listed under ‘Dexs’.',
     description:
       'Capricorn is a DefiLlama-listed protocol in the ’Dexs’ category with TVL tracked on the Monad chain.',
-    x: -125,
-    y: 288,
+    x: 258,
+    y: 249,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -591,8 +591,8 @@ const projects = [
     tag: 'Listed under ‘Launchpad’.',
     description:
       'Nad.fun is a DefiLlama-listed protocol in the ’Launchpad’ category with TVL tracked on the Monad chain.',
-    x: -229,
-    y: -108,
+    x: 302,
+    y: 220,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -607,8 +607,8 @@ const projects = [
     tag: 'Listed under ‘Derivatives’.',
     description:
       'Drake is a DefiLlama-listed protocol in the ’Derivatives’ category with TVL tracked on the Monad chain.',
-    x: -182,
-    y: -109,
+    x: 354,
+    y: 207,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -623,8 +623,8 @@ const projects = [
     tag: 'Listed under ‘Prediction Market’.',
     description:
       'Kizzy is a DefiLlama-listed protocol in the ’Prediction Market’ category with TVL tracked on the Monad chain.',
-    x: -136,
-    y: -101,
+    x: 407,
+    y: 211,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -639,8 +639,8 @@ const projects = [
     tag: 'Listed under ‘Dexs’.',
     description:
       'Nabla Finance is a DefiLlama-listed protocol in the ’Dexs’ category with TVL tracked on the Monad chain.',
-    x: -93,
-    y: -84,
+    x: 456,
+    y: 232,
     h: 50,
     color: '#93d6c6',
     state: 'Observed',
@@ -655,8 +655,8 @@ const projects = [
     tag: 'Listed under ‘Cross Chain Bridge’.',
     description:
       'Symbiosis is a DefiLlama-listed protocol in the ’Cross Chain Bridge’ category with TVL tracked on the Monad chain.',
-    x: 53,
-    y: -60,
+    x: -238,
+    y: 531,
     h: 50,
     color: '#a58aff',
     state: 'Observed',
@@ -1004,7 +1004,23 @@ function renderCity() {
 }
 
 function renderSvgCity() {
-  let out = `<path d="M425 145L835 365 425 585 15 365Z" fill="#111019" stroke="#2a2634" stroke-width="1" />`;
+  // Data-driven graph framing: fit the plate and viewBox to the projected node bounds so the
+  // layout scales with the city (archipelago coordinates span much wider than the original ten).
+  const projected = projects.map((project) => iso(project.x, project.y));
+  const bounds = {
+    minX: Math.min(...projected.map(([x]) => x)),
+    maxX: Math.max(...projected.map(([x]) => x)),
+    minY: Math.min(...projected.map(([, y]) => y)),
+    maxY: Math.max(...projected.map(([, y]) => y)),
+  };
+  const pad = 90;
+  const plateHalfW = (bounds.maxX - bounds.minX) / 2 + pad;
+  const plateHalfH = plateHalfW * 0.5;
+  const plateCx = (bounds.maxX + bounds.minX) / 2;
+  const plateCy = (bounds.maxY + bounds.minY) / 2;
+  svgPlateCenter = { x: plateCx, y: plateCy };
+
+  let out = `<path d="M${plateCx} ${plateCy - plateHalfH}L${plateCx + plateHalfW} ${plateCy} ${plateCx} ${plateCy + plateHalfH} ${plateCx - plateHalfW} ${plateCy}Z" fill="#111019" stroke="#2a2634" stroke-width="1" />`;
 
   if (showLinks) {
     relationships.forEach((relationship) => {
@@ -1077,6 +1093,14 @@ function renderSvgCity() {
     });
 
   document.querySelector('#world').innerHTML = out;
+  if (graph && projects.length) {
+    const vbMinX = plateCx - plateHalfW - 40;
+    const vbMinY = plateCy - plateHalfH - 70;
+    document.querySelector('#city-svg').setAttribute(
+      'viewBox',
+      `${vbMinX} ${vbMinY} ${plateHalfW * 2 + 80} ${plateHalfH * 2 + 140}`,
+    );
+  }
   transform();
 
   document.querySelectorAll('.building').forEach((element) => {
@@ -1607,12 +1631,14 @@ function renderDistricts() {
   });
 }
 
+let svgPlateCenter = { x: 425, y: 365 };
+
 function transform() {
   document
     .querySelector('#world')
     .setAttribute(
       'transform',
-      `translate(${425 * (1 - zoom) + offset.x} ${365 * (1 - zoom) + offset.y}) scale(${zoom})`,
+      `translate(${svgPlateCenter.x * (1 - zoom) + offset.x} ${svgPlateCenter.y * (1 - zoom) + offset.y}) scale(${zoom})`,
     );
 }
 

@@ -5,22 +5,13 @@ import { RELATIONSHIP_STATES, RELATIONSHIP_TYPES } from './data.js';
 // Deterministic: every placement derives from project data or a seeded hash.
 
 const SCALE = 0.1;
-const ISLAND_R = 31.5;
 const HASH_SEED = (x, z) => {
   const s = Math.sin(x * 12.9898 + z * 78.233) * 43758.5453;
   return s - Math.floor(s);
 };
-const roundedMetric = (x, z) => {
-  const dx = Math.abs(x), dz = Math.abs(z);
-  return Math.max(dx, dz) + 0.35 * Math.min(dx, dz);
-};
-const insideIsland = (x, z) => roundedMetric(x, z) < ISLAND_R + (HASH_SEED(x, z) - 0.5) * 1.6;
-const nearLine = (v, c) => Math.abs(v - c) < 0.5;
-const isRoadCell = (x, z) =>
-  insideIsland(x, z) && roundedMetric(x, z) < ISLAND_R - 1.6 &&
-  (nearLine(x, 0) || nearLine(z, 0) || nearLine(x, 14) || nearLine(x, -14) || nearLine(z, 20) ||
-    Math.abs(roundedMetric(x, z) - 26.5) < 0.6);
-const isPlazaCell = (x, z) => roundedMetric(x, z) < 5;
+// District islands are derived from the actual building clusters (docs/WORKLOG Phase 5.1→5.2):
+// center = centroid of the group's buildings, radius = farthest building + beach margin.
+// The layout stays data-driven — re-placing buildings reshapes the islands automatically.
 
 const COLORS = {
   grassA: '#272238',
@@ -63,23 +54,41 @@ export function createCity3D({
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#0a0a0f');
-  scene.fog = new THREE.Fog('#0a0a0f', 150, 340);
+  scene.fog = new THREE.Fog('#0a0a0f', 240, 560);
 
-  const camera = new THREE.PerspectiveCamera(40, 1, 0.5, 600);
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.5, 700);
 
   scene.add(new THREE.AmbientLight('#8a7fb8', 0.75));
   const sun = new THREE.DirectionalLight('#ffffff', 1.6);
-  sun.position.set(35, 60, 18);
+  sun.position.set(60, 90, 30);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
-  Object.assign(sun.shadow.camera, { left: -45, right: 45, top: 45, bottom: -45, near: 10, far: 160 });
+  Object.assign(sun.shadow.camera, { left: -90, right: 90, top: 90, bottom: -90, near: 10, far: 260 });
   sun.shadow.camera.updateProjectionMatrix();
   sun.shadow.bias = -0.0006;
   scene.add(sun);
 
-  // ---------- terrain ----------
+  // ---------- terrain: archipelago ----------
+  // One island per district cluster; the Monad spire sits on its own central islet. Islands
+  // are derived from the buildings themselves, so layout stays data-driven.
+  const ISLAND_GROUPS = (() => {
+    const groups = new Map();
+    projects.forEach((project) => {
+      const key = project.id === 'monad' ? '__monad' : project.district;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(project);
+    });
+    return [...groups.entries()].map(([key, list]) => {
+      const cx = (list.reduce((sum, p) => sum + p.x, 0) / list.length) * SCALE;
+      const cz = (list.reduce((sum, p) => sum + p.y, 0) / list.length) * SCALE;
+      const farthest = Math.max(...list.map((p) => Math.hypot(p.x * SCALE - cx, p.y * SCALE - cz)));
+      const radius = Math.max(farthest + 4.4, key === '__monad' ? 6.2 : 7.6);
+      return { key, cx, cz, radius, list };
+    });
+  })();
+
   const water = new THREE.Mesh(
-    new THREE.CircleGeometry(160, 48),
+    new THREE.CircleGeometry(340, 64),
     new THREE.MeshBasicMaterial({ color: COLORS.water }),
   );
   water.rotation.x = -Math.PI / 2;
@@ -89,21 +98,28 @@ export function createCity3D({
   const cellGeometry = new THREE.BoxGeometry(1, 2, 1);
   cellGeometry.translate(0, -1, 0);
   const terrainCells = [];
-  for (let x = -36; x <= 36; x += 1) {
-    for (let z = -36; z <= 36; z += 1) {
-      if (!insideIsland(x, z)) continue;
-      const coast = !(insideIsland(x + 1, z) && insideIsland(x - 1, z) && insideIsland(x, z + 1) && insideIsland(x, z - 1));
-      const sand = coast || roundedMetric(x, z) > ISLAND_R - 1.3 + (HASH_SEED(x * 3, z * 7) - 0.5);
-      let cellColor = COLORS.sand;
-      if (!sand) {
-        if (isPlazaCell(x, z)) cellColor = COLORS.plaza;
-        else if (isRoadCell(x, z)) cellColor = COLORS.road;
-        else cellColor = (x + z) % 2 ? COLORS.grassA : COLORS.grassB;
-        if (!isRoadCell(x, z) && !isPlazaCell(x, z) && HASH_SEED(x * 5, z * 11) > 0.93) cellColor = COLORS.grassC;
+  ISLAND_GROUPS.forEach((island) => {
+    const reach = Math.ceil(island.radius + 3);
+    const cellDist = (x, z) => Math.hypot(x - island.cx, z - island.cz);
+    const inside = (x, z) =>
+      cellDist(x, z) < island.radius + (HASH_SEED(island.cx * 3 + x, island.cz * 7 + z) - 0.5) * 1.9;
+    for (let x = Math.floor(island.cx) - reach; x <= Math.ceil(island.cx) + reach; x += 1) {
+      for (let z = Math.floor(island.cz) - reach; z <= Math.ceil(island.cz) + reach; z += 1) {
+        if (!inside(x, z)) continue;
+        const coast = !(inside(x + 1, z) && inside(x - 1, z) && inside(x, z + 1) && inside(x, z - 1));
+        const dist = cellDist(x, z);
+        const sand = coast || dist > island.radius - 1.3 + (HASH_SEED(x * 3, z * 7) - 0.5);
+        const plaza = dist < (island.key === '__monad' ? 3.4 : 2.1);
+        let cellColor = COLORS.sand;
+        if (!sand) {
+          if (plaza) cellColor = COLORS.plaza;
+          else cellColor = (x + z) % 2 ? COLORS.grassA : COLORS.grassB;
+          if (!plaza && HASH_SEED(x * 5, z * 11) > 0.93) cellColor = COLORS.grassC;
+        }
+        terrainCells.push({ x, z, cellColor, island, plaza, sand, dist });
       }
-      terrainCells.push({ x, z, cellColor });
     }
-  }
+  });
   const terrain = new THREE.InstancedMesh(
     cellGeometry,
     new THREE.MeshLambertMaterial(),
@@ -289,15 +305,22 @@ export function createCity3D({
     return { relationship, material, group };
   });
 
-  // ---------- district labels ----------
-  [
-    { x: -14, z: 17.2, label: 'DeFi', color: '#9ad7c6' },
-    { x: 18.3, z: 11, label: 'AI', color: '#91baff' },
-    { x: 4.5, z: -6, label: 'Infrastructure', color: '#aa8ae8' },
-    { x: 13.5, z: 24, label: 'Gaming', color: '#dbac80' },
-    { x: 4.5, z: -15.5, label: 'Identity', color: '#d89cc9' },
-  ].forEach((zone) => {
-    const width = 64 + zone.label.length * 30;
+  // ---------- district ground labels (one per island, on its outward shore) ----------
+  const DISTRICT_LABEL_COLORS = {
+    DeFi: '#9ad7c6',
+    AI: '#91baff',
+    Infrastructure: '#aa8ae8',
+    Gaming: '#dbac80',
+    Identity: '#d89cc9',
+  };
+  ISLAND_GROUPS.forEach((island) => {
+    if (island.key === '__monad') return;
+    const label = island.key;
+    const color = DISTRICT_LABEL_COLORS[label] ?? '#aa8ae8';
+    const outwardLength = Math.hypot(island.cx, island.cz);
+    const outX = outwardLength > 0.001 ? island.cx / outwardLength : 0;
+    const outZ = outwardLength > 0.001 ? island.cz / outwardLength : 1;
+    const width = 64 + label.length * 30;
     const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = 64;
@@ -305,27 +328,32 @@ export function createCity3D({
     ctx.font = '700 30px ui-monospace, Menlo, monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = zone.color;
-    ctx.fillText(zone.label.toUpperCase().split('').join('\u200a'), width / 2, 34);
+    ctx.fillStyle = color;
+    ctx.fillText(label.toUpperCase().split('').join('\u200a'), width / 2, 34);
+    const planeWidth = Math.min(16, island.radius * 1.55);
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry(4 * (width / 64), 4),
+      new THREE.PlaneGeometry(planeWidth, planeWidth * (64 / width)),
       // District labels are wayfinding, not geometry: exempt them from depth testing so
       // tall buildings never occlude them (scale plan: district ground labels stay always-on).
       new THREE.MeshBasicMaterial({
         map: new THREE.CanvasTexture(canvas),
         transparent: true,
-        opacity: 0.55,
+        opacity: 0.74,
         depthWrite: false,
         depthTest: false,
       }),
     );
     mesh.rotation.x = -Math.PI / 2;
-    mesh.position.set(zone.x, 0.09, zone.z);
+    mesh.position.set(
+      island.cx + outX * island.radius * 0.78,
+      0.09,
+      island.cz + outZ * island.radius * 0.78,
+    );
     mesh.renderOrder = 10;
     scene.add(mesh);
   });
 
-  // ---------- filler fabric (seeded, never beside a project) ----------
+  // ---------- filler fabric (seeded, never beside a project; scaled per island) ----------
   const fillerMaterials = [];
   const fillerMesh = (w, h, d, x, y, z, hex) => {
     const material = new THREE.MeshLambertMaterial({ color: hex, transparent: true });
@@ -336,32 +364,39 @@ export function createCity3D({
     mesh.receiveShadow = true;
     scene.add(mesh);
   };
-  let houses = 0;
-  let trees = 0;
-  for (let x = -34; x <= 34 && (houses < 38 || trees < 28); x += 1) {
-    for (let z = -34; z <= 34 && (houses < 38 || trees < 28); z += 1) {
-      if (!insideIsland(x, z) || isRoadCell(x, z) || isPlazaCell(x, z)) continue;
-      if (roundedMetric(x, z) > ISLAND_R - 2.6) continue;
-      if (projects.some((project) => Math.abs(project.x * SCALE - x) < 5 && Math.abs(project.y * SCALE - z) < 4.4)) continue;
-      const roll = HASH_SEED(x * 7.13, z * 3.71);
-      if (roll > 0.962 && houses < 38) {
+  ISLAND_GROUPS.forEach((island) => {
+    const grassCells = terrainCells.filter(
+      (cell) => cell.island === island && !cell.plaza && !cell.sand,
+    );
+    const houseCap = Math.min(9, Math.round(grassCells.length / 42));
+    const treeCap = Math.min(7, Math.round(grassCells.length / 55));
+    let houses = 0;
+    let trees = 0;
+    grassCells.forEach((cell) => {
+      const nearBuilding = island.list.some(
+        (project) =>
+          Math.abs(project.x * SCALE - cell.x) < 5 && Math.abs(project.y * SCALE - cell.z) < 4.4,
+      );
+      if (nearBuilding || cell.dist > island.radius - 2.4) return;
+      const roll = HASH_SEED(cell.x * 7.13, cell.z * 3.71);
+      if (roll > 0.962 && houses < houseCap) {
         houses += 1;
-        if (HASH_SEED(x, z * 5) > 0.72) {
-          const height = 2.6 + HASH_SEED(x * 3, z) * 2.2;
-          fillerMesh(1.5, height, 1.5, x, 0, z, COLORS.tower);
-          fillerMesh(1.55, 0.35, 1.55, x, height, z, COLORS.towerRoof);
+        if (HASH_SEED(cell.x, cell.z * 5) > 0.72) {
+          const height = 2.6 + HASH_SEED(cell.x * 3, cell.z) * 2.2;
+          fillerMesh(1.5, height, 1.5, cell.x, 0, cell.z, COLORS.tower);
+          fillerMesh(1.55, 0.35, 1.55, cell.x, height, cell.z, COLORS.towerRoof);
         } else {
-          fillerMesh(1.7, 1.1, 1.7, x, 0, z, COLORS.house);
-          fillerMesh(1.75, 0.35, 1.75, x, 1.1, z, COLORS.houseRoof);
+          fillerMesh(1.7, 1.1, 1.7, cell.x, 0, cell.z, COLORS.house);
+          fillerMesh(1.75, 0.35, 1.75, cell.x, 1.1, cell.z, COLORS.houseRoof);
         }
-      } else if (roll > 0.93 && roll <= 0.962 && trees < 28) {
+      } else if (roll > 0.93 && roll <= 0.962 && trees < treeCap) {
         trees += 1;
-        fillerMesh(0.45, 0.9, 0.45, x, 0, z, COLORS.trunk);
-        fillerMesh(1.7, 1.2, 1.7, x - 0.08, 0.9, z - 0.08, COLORS.leafA);
-        fillerMesh(1.25, 0.8, 1.25, x + 0.06, 2.1, z + 0.06, COLORS.leafB);
+        fillerMesh(0.45, 0.9, 0.45, cell.x, 0, cell.z, COLORS.trunk);
+        fillerMesh(1.7, 1.2, 1.7, cell.x - 0.08, 0.9, cell.z - 0.08, COLORS.leafA);
+        fillerMesh(1.25, 0.8, 1.25, cell.x + 0.06, 2.1, cell.z + 0.06, COLORS.leafB);
       }
-    }
-  }
+    });
+  });
 
   // ---------- boats + stars ----------
   [[-48, 52], [72, -30], [-20, -78]].forEach(([x, z]) => {
@@ -408,7 +443,7 @@ export function createCity3D({
   const anchor = new THREE.Vector3();
 
   // ---------- controls ----------
-  const DEFAULT_VIEW = { azimuth: Math.PI / 4, elevation: 0.62, radius: 96 };
+  const DEFAULT_VIEW = { azimuth: Math.PI / 4, elevation: 0.62, radius: 176 };
   const control = {
     azimuth: DEFAULT_VIEW.azimuth, elevation: DEFAULT_VIEW.elevation, radius: DEFAULT_VIEW.radius,
     azimuthGoal: DEFAULT_VIEW.azimuth, elevationGoal: DEFAULT_VIEW.elevation, radiusGoal: DEFAULT_VIEW.radius,
@@ -437,8 +472,8 @@ export function createCity3D({
     forward.normalize();
     const right = new THREE.Vector3().crossVectors(forward, new THREE.Vector3(0, 1, 0)).negate();
     control.targetGoal.addScaledVector(right, dx * scale).addScaledVector(forward, -dy * scale);
-    control.targetGoal.x = Math.min(26, Math.max(-26, control.targetGoal.x));
-    control.targetGoal.z = Math.min(26, Math.max(-26, control.targetGoal.z));
+    control.targetGoal.x = Math.min(60, Math.max(-60, control.targetGoal.x));
+    control.targetGoal.z = Math.min(60, Math.max(-60, control.targetGoal.z));
   }
 
   const raycaster = new THREE.Raycaster();
@@ -592,7 +627,7 @@ export function createCity3D({
       const [first, second] = [...pointers.values()];
       const distance = Math.hypot(first.x - second.x, first.y - second.y);
       if (pinchDistance) {
-        control.radiusGoal = Math.min(160, Math.max(45, control.radiusGoal * (pinchDistance / distance)));
+        control.radiusGoal = Math.min(215, Math.max(38, control.radiusGoal * (pinchDistance / distance)));
       }
       pinchDistance = distance;
     }
@@ -613,7 +648,7 @@ export function createCity3D({
   });
   renderer.domElement.addEventListener('wheel', (event) => {
     event.preventDefault();
-    control.radiusGoal = Math.min(160, Math.max(45, control.radiusGoal * Math.exp(event.deltaY * 0.0011)));
+    control.radiusGoal = Math.min(215, Math.max(38, control.radiusGoal * Math.exp(event.deltaY * 0.0011)));
   }, { passive: false });
   container.addEventListener('pointerdown', () => { introSkipped = true; }, { once: true, capture: true });
 
@@ -690,11 +725,11 @@ export function createCity3D({
     const view = projectViews.get(id);
     if (!view) return;
     control.targetGoal.set(view.group.position.x, 1.4, view.group.position.z);
-    control.radiusGoal = neighborhood ? 50 : 62;
+    control.radiusGoal = neighborhood ? 58 : 92;
   }
 
   function zoomBy(factor) {
-    control.radiusGoal = Math.min(160, Math.max(45, control.radiusGoal * factor));
+    control.radiusGoal = Math.min(215, Math.max(38, control.radiusGoal * factor));
   }
 
   function reset() {
