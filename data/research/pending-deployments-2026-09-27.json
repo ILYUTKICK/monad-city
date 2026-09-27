@@ -1,0 +1,4577 @@
+{
+  "kind": "monad-city-research-deployment-resolution",
+  "schemaVersion": "1",
+  "generatedAtUtc": "2026-09-27T15:40:48Z",
+  "network": {
+    "name": "Monad mainnet",
+    "chainId": 143
+  },
+  "question": "Which App-portal-only pending groups have a resolvable Monad mainnet deployment (scale plan §3 identity key)?",
+  "method": "Name→candidate matching ONLY against seed registries (pinned monad-crypto/protocols commit 36fddcc; current api.llama.fi/protocols capture). Candidate addresses verified on Monad via Etherscan V2 multichain (owner key, read from outside the repo; eth_getCode then getsourcecode). The explorer API has no name search — nothing is matched from explorer text alone. Exact normalized-name matches only; no fuzzy merges.",
+  "verdicts": {
+    "resolved-explorer-verified-name": "candidate address holds a live contract on Monad AND its verified ContractName is compatible with the project name (strongest; still only an observation).",
+    "resolved-explorer-contract": "candidate address holds a live contract on Monad; verified name absent or not name-compatible (registry mapping is the name basis).",
+    "resolved-registry-listing": "current DefiLlama capture lists the protocol on the Monad chain tag (established §3 basis); no address verified.",
+    "registry-address-no-code": "a candidate address exists in the seeds but holds no contract code on Monad — stale registry entry or non-Monad deployment; NOT proof of absence of a deployment.",
+    "no-candidate": "no seed registry matched the name; deployment unresolved. NOT a negative verdict about the project."
+  },
+  "keyHandling": "API key read from ~/.config/monad-city/etherscan-key (or ETHERSCAN_API_KEY). Never logged, never stored in this artifact, never committed; explorer URLs above are keyless.",
+  "summary": {
+    "no-candidate": 50,
+    "resolved-explorer-contract": 44,
+    "resolved-explorer-verified-name": 11
+  },
+  "projects": [
+    {
+      "proposedId": "metamask-money-account",
+      "canonicalName": "MetaMask Money Account",
+      "portalSlugs": [
+        "metamask-money-account"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "lumiterra",
+      "canonicalName": "Lumiterra",
+      "portalSlugs": [
+        "lumiterra"
+      ],
+      "registry": {
+        "key": "lumiterra",
+        "name": "LumiterraGame",
+        "live": true,
+        "addresses": [
+          [
+            "LumiterraGameInbox",
+            "0x4bd7aB4f4251f6A20E8c64D24F3A2f89F47D80B9"
+          ],
+          [
+            "LumiterraGameItemNFT",
+            "0x8f28E18039c37cdB4389E6dcb8703966fb9480A8"
+          ],
+          [
+            "LumiterraGameMarketplace",
+            "0xEf8BB725e1056317dBafD9B356E63c160e63dCdd"
+          ],
+          [
+            "LumiterraGameLumonad",
+            "0xDa4b24B5e1547D04AB9E4910a747F2d7F893d5Ab"
+          ],
+          [
+            "LumiterraGamePuzzle",
+            "0xCE57DF2Ac03874c8F0B3B229D97F91e05267F25C"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x4bd7aB4f4251f6A20E8c64D24F3A2f89F47D80B9",
+          "label": "registry:lumiterra:LumiterraGameInbox",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0xd0b764cf498457c81a3a1d57a77847fdb056ad4c"
+        },
+        {
+          "address": "0x8f28E18039c37cdB4389E6dcb8703966fb9480A8",
+          "label": "registry:lumiterra:LumiterraGameItemNFT",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0xf0d9e60e95ee8ffbeed9bae519d9a40be815a30d"
+        },
+        {
+          "address": "0xEf8BB725e1056317dBafD9B356E63c160e63dCdd",
+          "label": "registry:lumiterra:LumiterraGameMarketplace",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0xd54ac9b24f7b6864300e0789722dd55fc6abe2e2"
+        },
+        {
+          "address": "0xDa4b24B5e1547D04AB9E4910a747F2d7F893d5Ab",
+          "label": "registry:lumiterra:LumiterraGameLumonad",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0x1b8802d3b5fe753072051e5229e1b0f49419fe4a"
+        },
+        {
+          "address": "0xCE57DF2Ac03874c8F0B3B229D97F91e05267F25C",
+          "label": "registry:lumiterra:LumiterraGamePuzzle",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0x5a603ffddbcde8b06ca285c5824da195245ccdad"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "bro-fun",
+      "canonicalName": "Bro.fun",
+      "portalSlugs": [
+        "bro-fun"
+      ],
+      "registry": {
+        "key": "bro_fun",
+        "name": "Bro Fun",
+        "live": true,
+        "addresses": [
+          [
+            "Brofun",
+            "0xDF7A89Fc62e5120C4617f143C7AcDDAB0D1Ca7A2"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xDF7A89Fc62e5120C4617f143C7AcDDAB0D1Ca7A2",
+          "label": "registry:bro_fun:Brofun",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x5e3c429f1ea90f06bae5c6de46eef94fd2cdfbc4"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "townsquare",
+      "canonicalName": "TownSquare",
+      "portalSlugs": [
+        "townsquare"
+      ],
+      "registry": {
+        "key": "townsquare",
+        "name": "TownSquare",
+        "live": true,
+        "addresses": [
+          [
+            "HubMessageDispatcher",
+            "0xed84c02a0787d56d0b53efe64dd60a1ae20e4e31"
+          ],
+          [
+            "SpokeMessageDispatcher",
+            "0xb4a545a183bd072548ddfe9ddadc2c6f962ac14f"
+          ],
+          [
+            "SpokeController",
+            "0x8f8a0ed366439576b7db220678ed1259743239e3"
+          ],
+          [
+            "AccountController",
+            "0xc2df24203ab3a4f3857d649757a99e18de059a16"
+          ],
+          [
+            "PriceFeedManager",
+            "0x428cfa65310c70bc9e65bddb26c65fe4ca490376"
+          ],
+          [
+            "LoanController",
+            "0xc4c20efbefa4bde14091a3040d112cf981d8b2db"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xed84c02a0787d56d0b53efe64dd60a1ae20e4e31",
+          "label": "registry:townsquare:HubMessageDispatcher",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xb4a545a183bd072548ddfe9ddadc2c6f962ac14f",
+          "label": "registry:townsquare:SpokeMessageDispatcher",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x8f8a0ed366439576b7db220678ed1259743239e3",
+          "label": "registry:townsquare:SpokeController",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xc2df24203ab3a4f3857d649757a99e18de059a16",
+          "label": "registry:townsquare:AccountController",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x428cfa65310c70bc9e65bddb26c65fe4ca490376",
+          "label": "registry:townsquare:PriceFeedManager",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xc4c20efbefa4bde14091a3040d112cf981d8b2db",
+          "label": "registry:townsquare:LoanController",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "matcha",
+      "canonicalName": "Matcha",
+      "portalSlugs": [
+        "matcha"
+      ],
+      "registry": {
+        "key": "matcha",
+        "name": "Matcha",
+        "live": true,
+        "addresses": [
+          [
+            "AllowanceHolder",
+            "0x0000000000001fF3684f28c67538d4D072C22734"
+          ],
+          [
+            "0xSettlerDeployer",
+            "0x00000000000004533Fe15556B1E086BB1A72cEae"
+          ],
+          [
+            "MonadSettler",
+            "0x478cF28Fd1Ba92a6afd04F44b05833F6dF7f1486"
+          ],
+          [
+            "MonadSettlerMetaTxn",
+            "0xFB36B62145A4B272bc804e5E1b41ddbf4BFF4CF4"
+          ],
+          [
+            "MonadSettlerIntent",
+            "0xb2376d1183829f444e0ffE9EF1FFaf1b483B84F3"
+          ],
+          [
+            "MonadBridgeSettler",
+            "0xb40e9939bb598C38665A5C99c68020EEB8Cf49FB"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "matcha",
+        "name": "Matcha",
+        "category": "Trading App",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x0000000000001fF3684f28c67538d4D072C22734",
+          "label": "registry:matcha:AllowanceHolder",
+          "hasCode": true,
+          "contractName": "AllowanceHolder",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x00000000000004533Fe15556B1E086BB1A72cEae",
+          "label": "registry:matcha:0xSettlerDeployer",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0xe648d68f60b8676d269e5035290fb9cb18a1ad0e"
+        },
+        {
+          "address": "0x478cF28Fd1Ba92a6afd04F44b05833F6dF7f1486",
+          "label": "registry:matcha:MonadSettler",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xFB36B62145A4B272bc804e5E1b41ddbf4BFF4CF4",
+          "label": "registry:matcha:MonadSettlerMetaTxn",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xb2376d1183829f444e0ffE9EF1FFaf1b483B84F3",
+          "label": "registry:matcha:MonadSettlerIntent",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xb40e9939bb598C38665A5C99c68020EEB8Cf49FB",
+          "label": "registry:matcha:MonadBridgeSettler",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "lfj",
+      "canonicalName": "LFJ",
+      "portalSlugs": [
+        "lfj"
+      ],
+      "registry": {
+        "key": "lfj",
+        "name": "LFJ",
+        "live": true,
+        "addresses": [
+          [
+            "LBFactory",
+            "0xb43120c4745967fa9b93E79C149E66B0f2D6Fe0c"
+          ],
+          [
+            "LBRouter",
+            "0x18556DA13313f3532c54711497A8FedAC273220E"
+          ],
+          [
+            "LBQuoter",
+            "0x9A550a522BBaDFB69019b0432800Ed17855A51C3"
+          ],
+          [
+            "LBHooksManager",
+            "0x3A8E1Be95467690F7C592B596e42d11b3710c633"
+          ],
+          [
+            "LBHooksLens",
+            "0x6124086B90AB910038E607aa1BDD67b284C31c98"
+          ],
+          [
+            "LiquidityHelperContract",
+            "0xA5c68C9E55Dde3505e60c4B5eAe411e2977dfB35"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xb43120c4745967fa9b93E79C149E66B0f2D6Fe0c",
+          "label": "registry:lfj:LBFactory",
+          "hasCode": true,
+          "contractName": "LBFactory",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x18556DA13313f3532c54711497A8FedAC273220E",
+          "label": "registry:lfj:LBRouter",
+          "hasCode": true,
+          "contractName": "LBRouter",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x9A550a522BBaDFB69019b0432800Ed17855A51C3",
+          "label": "registry:lfj:LBQuoter",
+          "hasCode": true,
+          "contractName": "LBQuoter",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x3A8E1Be95467690F7C592B596e42d11b3710c633",
+          "label": "registry:lfj:LBHooksManager",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy2Step",
+          "isProxy": true,
+          "implementation": "0xc2a397a1229c052da54e712408b97b984a388fe3"
+        },
+        {
+          "address": "0x6124086B90AB910038E607aa1BDD67b284C31c98",
+          "label": "registry:lfj:LBHooksLens",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xA5c68C9E55Dde3505e60c4B5eAe411e2977dfB35",
+          "label": "registry:lfj:LiquidityHelperContract",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "opensea",
+      "canonicalName": "OpenSea",
+      "portalSlugs": [
+        "opensea"
+      ],
+      "registry": {
+        "key": "opensea",
+        "name": "OpenSea",
+        "live": true,
+        "addresses": [
+          [
+            "SeaDrop",
+            "0x00005EA00Ac477B1030CE78506496e8C2dE24bf5"
+          ],
+          [
+            "Marketplace",
+            "0x0000000000000068F116a894984e2DB1123eB395"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "opensea-v2",
+        "name": "OpenSea V2",
+        "category": "NFT Marketplace",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x00005EA00Ac477B1030CE78506496e8C2dE24bf5",
+          "label": "registry:opensea:SeaDrop",
+          "hasCode": true,
+          "contractName": "SeaDrop",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x0000000000000068F116a894984e2DB1123eB395",
+          "label": "registry:opensea:Marketplace",
+          "hasCode": true,
+          "contractName": "Seaport",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "accountable",
+      "canonicalName": "YieldApp by Accountable",
+      "portalSlugs": [
+        "accountable"
+      ],
+      "registry": {
+        "key": "accountable",
+        "name": "Accountable",
+        "live": true,
+        "addresses": [
+          [
+            "FeeManager",
+            "0x4DE9B4d7b70d1680cD8E3A2C60717cBbe6014991"
+          ],
+          [
+            "AsyncVaultFactory",
+            "0xeE004AEF79cb14BF31BFbFB14346E01fB7e5a2e8"
+          ],
+          [
+            "RewardsFactory",
+            "0x1106a70223e98E2b1807bf3e12698aFe2C5693e6"
+          ],
+          [
+            "GlobalRegistry",
+            "0xf786154e56e5c88Ce984800dEa71B48EA4FFAbfE"
+          ],
+          [
+            "AccountableFixedTerm",
+            "0xD0A53e724EA9CB041e30f0243E3c84bdea238Dfa"
+          ],
+          [
+            "AccountableOpenTerm",
+            "0x59B0b84371BB3261FAD538C512eFFFc414CC1725"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "accountable",
+        "name": "Accountable",
+        "category": "Uncollateralized Lending",
+        "monadListed": true,
+        "chains": [
+          "Arbitrum",
+          "Monad",
+          "Ethereum",
+          "Robinhood Chain",
+          "Citrea",
+          "Base"
+        ],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x4DE9B4d7b70d1680cD8E3A2C60717cBbe6014991",
+          "label": "registry:accountable:FeeManager",
+          "hasCode": true,
+          "contractName": "FeeManager",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xeE004AEF79cb14BF31BFbFB14346E01fB7e5a2e8",
+          "label": "registry:accountable:AsyncVaultFactory",
+          "hasCode": true,
+          "contractName": "AsyncVaultFactory",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x1106a70223e98E2b1807bf3e12698aFe2C5693e6",
+          "label": "registry:accountable:RewardsFactory",
+          "hasCode": true,
+          "contractName": "RewardsFactory",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xf786154e56e5c88Ce984800dEa71B48EA4FFAbfE",
+          "label": "registry:accountable:GlobalRegistry",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0x5e8bf7084cbdfadc313f21777a87efbad93f650e"
+        },
+        {
+          "address": "0xD0A53e724EA9CB041e30f0243E3c84bdea238Dfa",
+          "label": "registry:accountable:AccountableFixedTerm",
+          "hasCode": true,
+          "contractName": "AccountableFixedTerm",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x59B0b84371BB3261FAD538C512eFFFc414CC1725",
+          "label": "registry:accountable:AccountableOpenTerm",
+          "hasCode": true,
+          "contractName": "AccountableOpenTerm",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "mellow",
+      "canonicalName": "Mellow",
+      "portalSlugs": [
+        "mellow"
+      ],
+      "registry": {
+        "key": "mellow",
+        "name": "Mellow Protocol",
+        "live": true,
+        "addresses": [
+          [
+            "Factory_Implementation",
+            "0x0000000834bD05fe8A94b5e0bFeC2A58A4C9171E"
+          ],
+          [
+            "Factory_Factory",
+            "0x000000049057E402f46800CDC08199b1358a7691"
+          ],
+          [
+            "Consensus_Factory",
+            "0x2e84d9E713610d7eAFcDF7f998ce1Bdb835F5668"
+          ],
+          [
+            "Consensus_Implementation",
+            "0x000000005AB29dAA855DfA661d8D9D25cD88c103"
+          ],
+          [
+            "DepositQueue_Factory",
+            "0xa67330bb89668bA66502a6D6670dACf5F334eb53"
+          ],
+          [
+            "DepositQueue_Implementation",
+            "0x00000004F672aA091EbF44545cb8aE75143d8F4c"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "mellow",
+        "name": "Mellow",
+        "category": "SoFi",
+        "monadListed": false,
+        "chains": [
+          "Base"
+        ],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x0000000834bD05fe8A94b5e0bFeC2A58A4C9171E",
+          "label": "registry:mellow:Factory_Implementation",
+          "hasCode": true,
+          "contractName": "Factory",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x000000049057E402f46800CDC08199b1358a7691",
+          "label": "registry:mellow:Factory_Factory",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x0000000834bd05fe8a94b5e0bfec2a58a4c9171e"
+        },
+        {
+          "address": "0x2e84d9E713610d7eAFcDF7f998ce1Bdb835F5668",
+          "label": "registry:mellow:Consensus_Factory",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x0000000834bd05fe8a94b5e0bfec2a58a4c9171e"
+        },
+        {
+          "address": "0x000000005AB29dAA855DfA661d8D9D25cD88c103",
+          "label": "registry:mellow:Consensus_Implementation",
+          "hasCode": true,
+          "contractName": "Consensus",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xa67330bb89668bA66502a6D6670dACf5F334eb53",
+          "label": "registry:mellow:DepositQueue_Factory",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x0000000834bd05fe8a94b5e0bfec2a58a4c9171e"
+        },
+        {
+          "address": "0x00000004F672aA091EbF44545cb8aE75143d8F4c",
+          "label": "registry:mellow:DepositQueue_Implementation",
+          "hasCode": true,
+          "contractName": "DepositQueue",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "morpho",
+      "canonicalName": "Morpho",
+      "portalSlugs": [
+        "morpho"
+      ],
+      "registry": {
+        "key": "morpho",
+        "name": "Morpho",
+        "live": true,
+        "addresses": [
+          [
+            "Deployer1Deployer",
+            "0xA16B49505e39C373A8f9e1b1540514BA64B3942a"
+          ],
+          [
+            "Morpho",
+            "0xD5D960E8C380B724a48AC59E2DfF1b2CB4a1eAee"
+          ],
+          [
+            "AdaptiveCurveIrm",
+            "0x09475a3D6eA8c314c592b1a3799bDE044E2F400F"
+          ],
+          [
+            "Safe",
+            "0xe27f43624FDb5325b853c4711BCF0fEBA754e558"
+          ],
+          [
+            "PublicAllocator",
+            "0xfd70575B732F9482F4197FE1075492e114E97302"
+          ],
+          [
+            "Deployer1",
+            "0x6C3A89e814A9D150cD763f443dceE5EBC5bF60b6"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xA16B49505e39C373A8f9e1b1540514BA64B3942a",
+          "label": "registry:morpho:Deployer1Deployer",
+          "hasCode": true,
+          "contractName": "Deployer1Deployer",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xD5D960E8C380B724a48AC59E2DfF1b2CB4a1eAee",
+          "label": "registry:morpho:Morpho",
+          "hasCode": true,
+          "contractName": "Morpho",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x09475a3D6eA8c314c592b1a3799bDE044E2F400F",
+          "label": "registry:morpho:AdaptiveCurveIrm",
+          "hasCode": true,
+          "contractName": "AdaptiveCurveIrm",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xe27f43624FDb5325b853c4711BCF0fEBA754e558",
+          "label": "registry:morpho:Safe",
+          "hasCode": true,
+          "contractName": "SafeProxy",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xfd70575B732F9482F4197FE1075492e114E97302",
+          "label": "registry:morpho:PublicAllocator",
+          "hasCode": true,
+          "contractName": "PublicAllocator",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x6C3A89e814A9D150cD763f443dceE5EBC5bF60b6",
+          "label": "registry:morpho:Deployer1",
+          "hasCode": true,
+          "contractName": "Deployer1",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "fastlane",
+      "canonicalName": "FastLane",
+      "portalSlugs": [
+        "fastlane"
+      ],
+      "registry": {
+        "key": "fastlane",
+        "name": "Fastlane",
+        "live": true,
+        "addresses": [
+          [
+            "ShMonad",
+            "0x1B68626dCa36c7fE922fD2d55E4f631d962dE19c"
+          ],
+          [
+            "Atlas",
+            "0x2DA28fedc4643c787CB5c5e84fa6AaDb596875E8"
+          ],
+          [
+            "FastLaneAuctionHandler",
+            "0xD32EdF6642D917DbBE7B8BF8e5d6F5df6a9FFF58"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "fastlane",
+        "name": "Fastlane",
+        "category": "MEV",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x1B68626dCa36c7fE922fD2d55E4f631d962dE19c",
+          "label": "registry:fastlane:ShMonad",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x856a4019228c265dee336df705277607c4a18e1b"
+        },
+        {
+          "address": "0x2DA28fedc4643c787CB5c5e84fa6AaDb596875E8",
+          "label": "registry:fastlane:Atlas",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xD32EdF6642D917DbBE7B8BF8e5d6F5df6a9FFF58",
+          "label": "registry:fastlane:FastLaneAuctionHandler",
+          "hasCode": true,
+          "contractName": "FastLaneAuctionHandler",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "agora",
+      "canonicalName": "Agora",
+      "portalSlugs": [
+        "agora"
+      ],
+      "registry": {
+        "key": "agora",
+        "name": "Agora",
+        "live": true,
+        "addresses": [
+          [
+            "AUSD",
+            "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a"
+          ],
+          [
+            "AUSDBridge",
+            "0x9CaB7Ede13dc56652E44D2404E969C212f22689b"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "agora",
+        "name": "Agora",
+        "category": "Lending",
+        "monadListed": false,
+        "chains": [
+          "Metis"
+        ],
+        "dominantAddress": "metis:0x0Ed0Ca6872073E02cd3aE005BaF04bA43BE947fA",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a",
+          "label": "registry:agora:AUSD",
+          "hasCode": true,
+          "contractName": "AgoraDollarErc1967Proxy",
+          "isProxy": true,
+          "implementation": "0xc1e3c7d486d6a92fbe920232e439eec2ceb112da"
+        },
+        {
+          "address": "0x9CaB7Ede13dc56652E44D2404E969C212f22689b",
+          "label": "registry:agora:AUSDBridge",
+          "hasCode": true,
+          "contractName": "AgoraTransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0xc77ec0e26243f70117ff0930d1a717bd6d3f8bb6"
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "farcaster",
+      "canonicalName": "Farcaster",
+      "portalSlugs": [
+        "farcaster"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "fomo",
+      "canonicalName": "fomo",
+      "portalSlugs": [
+        "fomo"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "bonad",
+      "canonicalName": "BONAD",
+      "portalSlugs": [
+        "bonad"
+      ],
+      "registry": {
+        "key": "bonad",
+        "name": "bonad.fun",
+        "live": true,
+        "addresses": [
+          [
+            "Airlock",
+            "0x660eAaEdEBc968f8f3694354FA8EC0b4c5Ba8D12"
+          ],
+          [
+            "Bundler",
+            "0xC99b485499f78995C6F1640dbB1413c57f8BA684"
+          ],
+          [
+            "GovernanceFactory",
+            "0xFAafdE6a5b658684cC5eb0C5c2c755B00A246F45"
+          ],
+          [
+            "NoOpGovernanceFactory",
+            "0xb4deE32EB70A5E55f3D2d861F49Fb3D79f7a14d9"
+          ],
+          [
+            "NoOpMigrator",
+            "0x5F3bA43D44375286296Cb85F1EA2EBfa25dde731"
+          ],
+          [
+            "UniswapV2Migrator",
+            "0x136191B46478cAB023cbC01a36160C4Aad81677a"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x660eAaEdEBc968f8f3694354FA8EC0b4c5Ba8D12",
+          "label": "registry:bonad:Airlock",
+          "hasCode": true,
+          "contractName": "Airlock",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xC99b485499f78995C6F1640dbB1413c57f8BA684",
+          "label": "registry:bonad:Bundler",
+          "hasCode": true,
+          "contractName": "Bundler",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xFAafdE6a5b658684cC5eb0C5c2c755B00A246F45",
+          "label": "registry:bonad:GovernanceFactory",
+          "hasCode": true,
+          "contractName": "GovernanceFactory",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xb4deE32EB70A5E55f3D2d861F49Fb3D79f7a14d9",
+          "label": "registry:bonad:NoOpGovernanceFactory",
+          "hasCode": true,
+          "contractName": "NoOpGovernanceFactory",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x5F3bA43D44375286296Cb85F1EA2EBfa25dde731",
+          "label": "registry:bonad:NoOpMigrator",
+          "hasCode": true,
+          "contractName": "NoOpMigrator",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x136191B46478cAB023cbC01a36160C4Aad81677a",
+          "label": "registry:bonad:UniswapV2Migrator",
+          "hasCode": true,
+          "contractName": "UniswapV2Migrator",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "kyberswap",
+      "canonicalName": "KyberSwap",
+      "portalSlugs": [
+        "kyberswap"
+      ],
+      "registry": {
+        "key": "kyberswap",
+        "name": "KyberSwap",
+        "live": true,
+        "addresses": [
+          [
+            "MetaAggregationRouterV2",
+            "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5"
+          ],
+          [
+            "DSLOProtocol",
+            "0xcab2FA2eeab7065B45CBcF6E3936dDE2506b4f6C"
+          ],
+          [
+            "KSZapRouterPosition",
+            "0x89C91686948C3Bc9A5bDF7A2A773ea71530a233e"
+          ],
+          [
+            "UniswapV4KEMHook",
+            "0x4445520306c9C70952bDFEc28F3989f53d9f80C4"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x6131B5fae19EA4f9D964eAc0408E4408b66337b5",
+          "label": "registry:kyberswap:MetaAggregationRouterV2",
+          "hasCode": true,
+          "contractName": "MetaAggregationRouterV2",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xcab2FA2eeab7065B45CBcF6E3936dDE2506b4f6C",
+          "label": "registry:kyberswap:DSLOProtocol",
+          "hasCode": true,
+          "contractName": "DSLOProtocol",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x89C91686948C3Bc9A5bDF7A2A773ea71530a233e",
+          "label": "registry:kyberswap:KSZapRouterPosition",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x4445520306c9C70952bDFEc28F3989f53d9f80C4",
+          "label": "registry:kyberswap:UniswapV4KEMHook",
+          "hasCode": true,
+          "contractName": "UniswapV4KEMHook",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "lido",
+      "canonicalName": "Lido",
+      "portalSlugs": [
+        "lido"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "lido",
+        "name": "Lido",
+        "category": "Liquid Staking",
+        "monadListed": false,
+        "chains": [
+          "Ethereum",
+          "Solana",
+          "Terra",
+          "Moonriver",
+          "Moonbeam"
+        ],
+        "dominantAddress": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "pingme",
+      "canonicalName": "PingMe",
+      "portalSlugs": [
+        "pingme"
+      ],
+      "registry": {
+        "key": "pingme",
+        "name": "PingMe",
+        "live": true,
+        "addresses": [
+          [
+            "CryptoDrop",
+            "0x3de0E31A0a9d885bF98ea1512188e06F70D507B2"
+          ],
+          [
+            "Forwarder",
+            "0x2a217B43b138e36979f59999776585ed6Bb27542"
+          ],
+          [
+            "RecoveryVault",
+            "0x32F62bDC2BE3E1B1C0265143831155253cd5A248"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x3de0E31A0a9d885bF98ea1512188e06F70D507B2",
+          "label": "registry:pingme:CryptoDrop",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x2a217B43b138e36979f59999776585ed6Bb27542",
+          "label": "registry:pingme:Forwarder",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x32F62bDC2BE3E1B1C0265143831155253cd5A248",
+          "label": "registry:pingme:RecoveryVault",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "lootgo",
+      "canonicalName": "LootGO",
+      "portalSlugs": [
+        "lootgo"
+      ],
+      "registry": {
+        "key": "lootgo",
+        "name": "LootGO",
+        "live": true,
+        "addresses": [
+          [
+            "LootDrop",
+            "0x3E1fC8371bf6dCEFfd829ae2134005a4AE890b71"
+          ],
+          [
+            "Compass",
+            "0xA3522ea57c0Bc48e602E2fE9F3929309D9618D96"
+          ],
+          [
+            "Looties Logs",
+            "0xD2C7FD8e7Ab1527a2cb5A7177d1A29393F416A6d"
+          ],
+          [
+            "Holiday Cheer",
+            "0x342aBe620EE4B02AEff85dED68105E2F6A0F06ab"
+          ],
+          [
+            "Countdown Celebration",
+            "0x7415085DA3A7c3D9B41Bc339A91132d08f964c6c"
+          ],
+          [
+            "New Years Resolutions",
+            "0x37A8EC703D1D4CBccb90cF9141E9Ce6611d87bF2"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x3E1fC8371bf6dCEFfd829ae2134005a4AE890b71",
+          "label": "registry:lootgo:LootDrop",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xA3522ea57c0Bc48e602E2fE9F3929309D9618D96",
+          "label": "registry:lootgo:Compass",
+          "hasCode": true,
+          "contractName": "Compass",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xD2C7FD8e7Ab1527a2cb5A7177d1A29393F416A6d",
+          "label": "registry:lootgo:Looties Logs",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x342aBe620EE4B02AEff85dED68105E2F6A0F06ab",
+          "label": "registry:lootgo:Holiday Cheer",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x7415085DA3A7c3D9B41Bc339A91132d08f964c6c",
+          "label": "registry:lootgo:Countdown Celebration",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x37A8EC703D1D4CBccb90cF9141E9Ce6611d87bF2",
+          "label": "registry:lootgo:New Years Resolutions",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "monorail",
+      "canonicalName": "Monorail",
+      "portalSlugs": [
+        "monorail"
+      ],
+      "registry": {
+        "key": "monorail",
+        "name": "Monorail",
+        "live": true,
+        "addresses": [
+          [
+            "AggregationRouter",
+            "0xa68a7f0601effdc65c64d9c47ca1b18d96b4352c"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "monorail",
+        "name": "Monorail",
+        "category": "DEX Aggregator",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0xa68a7f0601effdc65c64d9c47ca1b18d96b4352c",
+          "label": "registry:monorail:AggregationRouter",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0x63bee8f5e9860805a2a5f2c020af3785082d0676"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "aarna",
+      "canonicalName": "aarna",
+      "portalSlugs": [
+        "aarna"
+      ],
+      "registry": {
+        "key": "aarna",
+        "name": "aarna protocol",
+        "live": true,
+        "addresses": [
+          [
+            "BaseVault",
+            "0x4C09558A0d000240726679fC3805c3918922d6C6"
+          ],
+          [
+            "GearBoxAdapter",
+            "0xaE68912a8B1b74cb65dF892f2c8F42074F9640Ba"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x4C09558A0d000240726679fC3805c3918922d6C6",
+          "label": "registry:aarna:BaseVault",
+          "hasCode": true,
+          "contractName": "BaseVault",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xaE68912a8B1b74cb65dF892f2c8F42074F9640Ba",
+          "label": "registry:aarna:GearBoxAdapter",
+          "hasCode": true,
+          "contractName": "GearBoxAdapter",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "aco-labs",
+      "canonicalName": "ACO Labs",
+      "portalSlugs": [
+        "aco-labs"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "across",
+      "canonicalName": "Across",
+      "portalSlugs": [
+        "across"
+      ],
+      "registry": {
+        "key": "across",
+        "name": "Across",
+        "live": true,
+        "addresses": [
+          [
+            "Helios",
+            "0x09aea4b2242abc8bb4bb78d537a67a245a7bec64"
+          ],
+          [
+            "MulticallHandler",
+            "0xeC41F75c686e376Ab2a4F18bde263ab5822c4511"
+          ],
+          [
+            "SpokePool",
+            "0xd2ecb3afe598b746F8123CaE365a598DA831A449"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "across",
+        "name": "Across",
+        "category": "Cross Chain Bridge",
+        "monadListed": false,
+        "chains": [
+          "Ethereum"
+        ],
+        "dominantAddress": "0x44108f0223A3C3028F5Fe7AEC7f9bb2E66beF82F",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x09aea4b2242abc8bb4bb78d537a67a245a7bec64",
+          "label": "registry:across:Helios",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xeC41F75c686e376Ab2a4F18bde263ab5822c4511",
+          "label": "registry:across:MulticallHandler",
+          "hasCode": true,
+          "contractName": "MulticallHandler",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xd2ecb3afe598b746F8123CaE365a598DA831A449",
+          "label": "registry:across:SpokePool",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0x3266a6de0f3533b042ffdb1a8183168422be7349"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "apebond",
+      "canonicalName": "ApeBond",
+      "portalSlugs": [
+        "apebond"
+      ],
+      "registry": {
+        "key": "apebond",
+        "name": "ApeBond",
+        "live": true,
+        "addresses": [
+          [
+            "ApeBondFactory",
+            "0xd731d8103132275b21A27eA8C8428Ac6B97C5D35"
+          ],
+          [
+            "BondNft",
+            "0xc765C358622cB346f236F8Bfffe53036e421bb4e"
+          ],
+          [
+            "ApeBond",
+            "0x1b7858f745211dBa1387fE30124eBCa2D706D7Dd"
+          ],
+          [
+            "BondTreasury",
+            "0x1f226C1008f5De89614Bb15d09745128cf2a4D62"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "apebond-staking",
+        "name": "ApeBond Staking",
+        "category": "Farm",
+        "monadListed": false,
+        "chains": [
+          "Binance",
+          "Ethereum",
+          "Polygon"
+        ],
+        "dominantAddress": "bsc:0x34294afabcbaffc616ac6614f6d2e17260b78bed",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0xd731d8103132275b21A27eA8C8428Ac6B97C5D35",
+          "label": "registry:apebond:ApeBondFactory",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0x8ca97ec6a0c5ebcaa2cd6840e6a18dcf9f944437"
+        },
+        {
+          "address": "0xc765C358622cB346f236F8Bfffe53036e421bb4e",
+          "label": "registry:apebond:BondNft",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0xcc88b233bbce04c064c627ad5627da6e24a8a067"
+        },
+        {
+          "address": "0x1b7858f745211dBa1387fE30124eBCa2D706D7Dd",
+          "label": "registry:apebond:ApeBond",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x1f226C1008f5De89614Bb15d09745128cf2a4D62",
+          "label": "registry:apebond:BondTreasury",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "axal",
+      "canonicalName": "Axal",
+      "portalSlugs": [
+        "axal"
+      ],
+      "registry": {
+        "key": "axal",
+        "name": "Axal",
+        "live": true,
+        "addresses": [],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      ]
+    },
+    {
+      "proposedId": "bidali",
+      "canonicalName": "Bidali",
+      "portalSlugs": [
+        "bidali"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "birdeye",
+      "canonicalName": "Birdeye",
+      "portalSlugs": [
+        "birdeye"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "blinq",
+      "canonicalName": "Blinq",
+      "portalSlugs": [
+        "blinq"
+      ],
+      "registry": {
+        "key": "blinq",
+        "name": "Blinq",
+        "live": true,
+        "addresses": [
+          [
+            "Diamond",
+            "0x928dC8aFe312df45576B15B08C086c5427fd8207"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x928dC8aFe312df45576B15B08C086c5427fd8207",
+          "label": "registry:blinq:Diamond",
+          "hasCode": true,
+          "contractName": "ApolloX",
+          "isProxy": true,
+          "implementation": "0xca458ef5f17f20215ea434e7784bc301c805d063"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "bungee",
+      "canonicalName": "Bungee",
+      "portalSlugs": [
+        "bungee"
+      ],
+      "registry": {
+        "key": "bungee",
+        "name": "Bungee.Exchange",
+        "live": true,
+        "addresses": [
+          [
+            "SwapExecutor",
+            "0xd0389e84178f809903cbFE7D1EfAE3EFa9c1769c"
+          ],
+          [
+            "SwitchboardRouter",
+            "0x3859AD748D03C358aAbB66d084bC5849B624E611"
+          ],
+          [
+            "SwitchboardPlug",
+            "0xF20B3CB7508c519296556C1Caa9dB6F210e0232a"
+          ],
+          [
+            "SingleOutputRequestImpl",
+            "0x27D966329a325f214b4854a4F0E62550BFebdca3"
+          ],
+          [
+            "SwapRequestImpl",
+            "0x01D8a85aDb82408E14bC242ed43fBaD0Ca2F94CB"
+          ],
+          [
+            "BungeeGateway",
+            "0x1A2F1085A94De6fBcc334AAE1DDf527C567b75E7"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "bungee-dex",
+        "name": "Bungee DEX",
+        "category": "DEX Aggregator",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0xd0389e84178f809903cbFE7D1EfAE3EFa9c1769c",
+          "label": "registry:bungee:SwapExecutor",
+          "hasCode": true,
+          "contractName": "SwapExecutor",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x3859AD748D03C358aAbB66d084bC5849B624E611",
+          "label": "registry:bungee:SwitchboardRouter",
+          "hasCode": true,
+          "contractName": "SwitchboardRouter",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xF20B3CB7508c519296556C1Caa9dB6F210e0232a",
+          "label": "registry:bungee:SwitchboardPlug",
+          "hasCode": true,
+          "contractName": "SwitchboardPlug",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x27D966329a325f214b4854a4F0E62550BFebdca3",
+          "label": "registry:bungee:SingleOutputRequestImpl",
+          "hasCode": true,
+          "contractName": "SingleOutputRequestImpl",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x01D8a85aDb82408E14bC242ed43fBaD0Ca2F94CB",
+          "label": "registry:bungee:SwapRequestImpl",
+          "hasCode": true,
+          "contractName": "SwapRequestImpl",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x1A2F1085A94De6fBcc334AAE1DDf527C567b75E7",
+          "label": "registry:bungee:BungeeGateway",
+          "hasCode": true,
+          "contractName": "BungeeGateway",
+          "isProxy": true,
+          "implementation": "0x27d966329a325f214b4854a4f0e62550bfebdca3"
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "call-of-odins-chosen",
+      "canonicalName": "Call of Odin's Chosen",
+      "portalSlugs": [
+        "call-of-odins-chosen"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "cashmere",
+      "canonicalName": "Cashmere",
+      "portalSlugs": [
+        "cashmere"
+      ],
+      "registry": {
+        "key": "cashmere",
+        "name": "Cashmere",
+        "live": true,
+        "addresses": [
+          [
+            "CashmereCCTP",
+            "0xD156fFB54871F4562744d6Be5d6321B5BffCa3B6"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "cashmere",
+        "name": "Cashmere",
+        "category": "Bridge",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0xD156fFB54871F4562744d6Be5d6321B5BffCa3B6",
+          "label": "registry:cashmere:CashmereCCTP",
+          "hasCode": true,
+          "contractName": "CashmereCCTP",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "cctp-exchange",
+      "canonicalName": "CCTP Exchange",
+      "portalSlugs": [
+        "cctp-exchange"
+      ],
+      "registry": {
+        "key": "cctp_exchange",
+        "name": "CCTP Exchange",
+        "live": true,
+        "addresses": [
+          [
+            "RathCctpRouter",
+            "0x9eBE71D432cf73F7BACA46E3a59080609375B844"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x9eBE71D432cf73F7BACA46E3a59080609375B844",
+          "label": "registry:cctp_exchange:RathCctpRouter",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "chainpro",
+      "canonicalName": "Chainpro",
+      "portalSlugs": [
+        "chainpro"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "clanker-world",
+      "canonicalName": "Clanker World",
+      "portalSlugs": [
+        "clanker-world"
+      ],
+      "registry": {
+        "key": "clanker_world",
+        "name": "Clanker",
+        "live": true,
+        "addresses": [
+          [
+            "Clanker",
+            "0xF9a0C289Eab6B571c6247094a853810987E5B26D"
+          ],
+          [
+            "ClankerLpLockerFeeConversion",
+            "0xDe51a86D3b6EC9ac4756115D3744335Aa2c30144"
+          ],
+          [
+            "ClankerVault",
+            "0xe7D402A5BEd94E5c49Ac0639E80f784D06E2D397"
+          ],
+          [
+            "ClankerAirdropV2",
+            "0x654E7221fa51d4359ded21D524E3AfF18e93A507"
+          ],
+          [
+            "ClankerUniV4EthDevBuy",
+            "0x8790d79283eB941c719b616CfD0Ef116D13C7683"
+          ],
+          [
+            "ClankerMevDescendingFees",
+            "0x3231D1ddfdC4Ad585cF1939FfEcd9c88b338Dbf2"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xF9a0C289Eab6B571c6247094a853810987E5B26D",
+          "label": "registry:clanker_world:Clanker",
+          "hasCode": true,
+          "contractName": "Clanker",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xDe51a86D3b6EC9ac4756115D3744335Aa2c30144",
+          "label": "registry:clanker_world:ClankerLpLockerFeeConversion",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xe7D402A5BEd94E5c49Ac0639E80f784D06E2D397",
+          "label": "registry:clanker_world:ClankerVault",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x654E7221fa51d4359ded21D524E3AfF18e93A507",
+          "label": "registry:clanker_world:ClankerAirdropV2",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x8790d79283eB941c719b616CfD0Ef116D13C7683",
+          "label": "registry:clanker_world:ClankerUniV4EthDevBuy",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x3231D1ddfdC4Ad585cF1939FfEcd9c88b338Dbf2",
+          "label": "registry:clanker_world:ClankerMevDescendingFees",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "cp0x-staking",
+      "canonicalName": "cp0x Staking",
+      "portalSlugs": [
+        "cp0x-staking"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "debridge",
+      "canonicalName": "deBridge",
+      "portalSlugs": [
+        "debridge"
+      ],
+      "registry": {
+        "key": "debridge",
+        "name": "DeBridge",
+        "live": true,
+        "addresses": [
+          [
+            "DeBridgeRouter",
+            "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251"
+          ],
+          [
+            "DebridgeGate",
+            "0x43dE2d77BF8027e25dBD179B491e8d64f38398aA"
+          ],
+          [
+            "DlnDest",
+            "0xE7351Fd770A37282b91D153Ee690B63579D6dd7f"
+          ],
+          [
+            "DlnSource",
+            "0xeF4fB24aD0916217251F553c0596F8Edc630EB66"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "debridge",
+        "name": "deBridge",
+        "category": "Bridge",
+        "monadListed": false,
+        "chains": [
+          "Ethereum",
+          "Binance",
+          "Arbitrum",
+          "Polygon",
+          "Heco",
+          "Sei"
+        ],
+        "dominantAddress": "solana:DBRiDgJAMsM95moTzJs7M9LnkGErpbv9v6CUR1DXnUu5",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x663DC15D3C1aC63ff12E45Ab68FeA3F0a883C251",
+          "label": "registry:debridge:DeBridgeRouter",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x2abc4976e3298d757b1a568ceea3c5ef67c31d4c"
+        },
+        {
+          "address": "0x43dE2d77BF8027e25dBD179B491e8d64f38398aA",
+          "label": "registry:debridge:DebridgeGate",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0xb1a20d1c885fd775df97396397d6f8f07abdd20d"
+        },
+        {
+          "address": "0xE7351Fd770A37282b91D153Ee690B63579D6dd7f",
+          "label": "registry:debridge:DlnDest",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x2e0577950632c4afa2007749452afc9fb786997c"
+        },
+        {
+          "address": "0xeF4fB24aD0916217251F553c0596F8Edc630EB66",
+          "label": "registry:debridge:DlnSource",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0xeb9352424e7b1849543e2efec135654f076d8808"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "definitive",
+      "canonicalName": "Definitive",
+      "portalSlugs": [
+        "definitive"
+      ],
+      "registry": {
+        "key": "definitive",
+        "name": "Definitive Finance",
+        "live": true,
+        "addresses": [
+          [
+            "VaultFactory",
+            "0xdeF00000cc0a125ba7962e8113d3B69786851736"
+          ],
+          [
+            "VaultImplementation",
+            "0x0000000d1126e7651931461F31Be87712CD9E05C"
+          ],
+          [
+            "VaultBeacon",
+            "0x000000005aE5f42270cDf0E41960840e7FB1b2dc"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "definitive",
+        "name": "Definitive",
+        "category": "DEX Aggregator",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": "base:0xED6E000dEF95780fb89734c07EE2ce9F6dcAf110",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0xdeF00000cc0a125ba7962e8113d3B69786851736",
+          "label": "registry:definitive:VaultFactory",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0xd2ec57a447652edf3a395fbbcf78a2be658e6935"
+        },
+        {
+          "address": "0x0000000d1126e7651931461F31Be87712CD9E05C",
+          "label": "registry:definitive:VaultImplementation",
+          "hasCode": true,
+          "contractName": "TradingVaultImplementation",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x000000005aE5f42270cDf0E41960840e7FB1b2dc",
+          "label": "registry:definitive:VaultBeacon",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0x000000003e6b7c98504bea19cd1a5a064522499b"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "dfusion-ai",
+      "canonicalName": "dFusion AI",
+      "portalSlugs": [
+        "dfusion-ai"
+      ],
+      "registry": {
+        "key": "dfusion_ai",
+        "name": "dFusion AI",
+        "live": true,
+        "addresses": [
+          [
+            "dFusionAI",
+            "0x9ed42ceba267c3f7728cc1f559cd7b545d7cd7d4"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x9ed42ceba267c3f7728cc1f559cd7b545d7cd7d4",
+          "label": "registry:dfusion_ai:dFusionAI",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "dirol",
+      "canonicalName": "Dirol",
+      "portalSlugs": [
+        "dirol"
+      ],
+      "registry": {
+        "key": "dirol",
+        "name": "Dirol",
+        "live": true,
+        "addresses": [
+          [
+            "CoreAggregator",
+            "0x77E73c3fCd3FEDba383025CDe4a5b97733A34c2E"
+          ],
+          [
+            "LimitOrderModule",
+            "0xA82098c33c75A4A1e20e06f352732910C75C690D"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "dirol",
+        "name": "Dirol",
+        "category": "DEX Aggregator",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x77E73c3fCd3FEDba383025CDe4a5b97733A34c2E",
+          "label": "registry:dirol:CoreAggregator",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xA82098c33c75A4A1e20e06f352732910C75C690D",
+          "label": "registry:dirol:LimitOrderModule",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "fereai",
+      "canonicalName": "FereAI",
+      "portalSlugs": [
+        "fereai"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "flap",
+      "canonicalName": "Flap",
+      "portalSlugs": [
+        "flap"
+      ],
+      "registry": {
+        "key": "flap",
+        "name": "Flap",
+        "live": true,
+        "addresses": [
+          [
+            "Portal",
+            "0x30e8ee7b5881bf2E158A0514f2150aabe2c68b23"
+          ],
+          [
+            "TokenV2Implementation",
+            "0xB88189aA1162850D75A1c1e16F837b7979994184"
+          ],
+          [
+            "TaxTokenImplementation",
+            "0x1C8847736521f5cD725dFB8f33c7c610826e7C42"
+          ],
+          [
+            "TaxTokenSplitterImplementation",
+            "0x57Fed6832F12150a77D5952b49190d9447aCB5ee"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x30e8ee7b5881bf2E158A0514f2150aabe2c68b23",
+          "label": "registry:flap:Portal",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0x9a44f0b60e8a9d90d1e2e026c615a07287579f54"
+        },
+        {
+          "address": "0xB88189aA1162850D75A1c1e16F837b7979994184",
+          "label": "registry:flap:TokenV2Implementation",
+          "hasCode": true,
+          "contractName": "TokenV2",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x1C8847736521f5cD725dFB8f33c7c610826e7C42",
+          "label": "registry:flap:TaxTokenImplementation",
+          "hasCode": true,
+          "contractName": "FlapTaxToken",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x57Fed6832F12150a77D5952b49190d9447aCB5ee",
+          "label": "registry:flap:TaxTokenSplitterImplementation",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "folks-finance",
+      "canonicalName": "Folks Finance",
+      "portalSlugs": [
+        "folks-finance"
+      ],
+      "registry": {
+        "key": "folks_finance",
+        "name": "Folks Finance",
+        "live": true,
+        "addresses": [
+          [
+            "spokeCommon",
+            "0xc7bc4A43384f84B8FC937Ab58173Edab23a4c3cD"
+          ],
+          [
+            "bridgeRouterSpoke",
+            "0xF854AC65A40f1EabFD32E6D4C7d0E1c4B1753Cc5"
+          ],
+          [
+            "wormholeDataAdapter",
+            "0x37d761883a01e9F0B0d7fe59EEC8c21D94393CDD"
+          ],
+          [
+            "ccipDataAdapter",
+            "0xeB48a1eE43B91959A1686b70B7Cd482c65DE69c9"
+          ],
+          [
+            "ccipTokenAdapter",
+            "0x5C60f12838b8E3EEB525F299cD7C454c989dd04e"
+          ],
+          [
+            "monSpokeAddress",
+            "0x531490B7674ef239C9FEC39d2Cf3Cc10645d14d4"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xc7bc4A43384f84B8FC937Ab58173Edab23a4c3cD",
+          "label": "registry:folks_finance:spokeCommon",
+          "hasCode": true,
+          "contractName": "SpokeCommon",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xF854AC65A40f1EabFD32E6D4C7d0E1c4B1753Cc5",
+          "label": "registry:folks_finance:bridgeRouterSpoke",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x37d761883a01e9F0B0d7fe59EEC8c21D94393CDD",
+          "label": "registry:folks_finance:wormholeDataAdapter",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xeB48a1eE43B91959A1686b70B7Cd482c65DE69c9",
+          "label": "registry:folks_finance:ccipDataAdapter",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x5C60f12838b8E3EEB525F299cD7C454c989dd04e",
+          "label": "registry:folks_finance:ccipTokenAdapter",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x531490B7674ef239C9FEC39d2Cf3Cc10645d14d4",
+          "label": "registry:folks_finance:monSpokeAddress",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "forest-staking",
+      "canonicalName": "Forest Staking",
+      "portalSlugs": [
+        "forest-staking"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "forest-v2",
+        "name": "Forest V2",
+        "category": "Dexs",
+        "monadListed": false,
+        "chains": [
+          "Binance"
+        ],
+        "dominantAddress": "0x8d33f0ae6d111212d9d64b0821c7cf09e6270c27",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "gearbox-protocol",
+      "canonicalName": "Gearbox Protocol",
+      "portalSlugs": [
+        "gearbox-protocol"
+      ],
+      "registry": {
+        "key": "gearbox_protocol",
+        "name": "Gearbox",
+        "live": true,
+        "addresses": [
+          [
+            "Address_Provider",
+            "0xF7f0a609BfAb9a0A98786951ef10e5FE26cC1E38"
+          ],
+          [
+            "Bytecode_Repository",
+            "0x1cE2B1BE96a082b1b1539F80d5D8f82Ec06a0f9A"
+          ],
+          [
+            "Cross_Chain_Multisig",
+            "0xcCCCCcCc42B7DA9fdEc1761698Fb55fdD41CDF55"
+          ],
+          [
+            "Instance_Manager",
+            "0xBcD875f0D62B9AA22481c81975F9AE1753Fc559A"
+          ],
+          [
+            "Bot_List",
+            "0x0Bc03983Da93021a374C964A22b73865220Ce962"
+          ],
+          [
+            "Price_Feed_Store",
+            "0x74A868AC479EE145029bB80827BB77F7B7c441cB"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xF7f0a609BfAb9a0A98786951ef10e5FE26cC1E38",
+          "label": "registry:gearbox_protocol:Address_Provider",
+          "hasCode": true,
+          "contractName": "AddressProvider",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x1cE2B1BE96a082b1b1539F80d5D8f82Ec06a0f9A",
+          "label": "registry:gearbox_protocol:Bytecode_Repository",
+          "hasCode": true,
+          "contractName": "BytecodeRepository",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xcCCCCcCc42B7DA9fdEc1761698Fb55fdD41CDF55",
+          "label": "registry:gearbox_protocol:Cross_Chain_Multisig",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xBcD875f0D62B9AA22481c81975F9AE1753Fc559A",
+          "label": "registry:gearbox_protocol:Instance_Manager",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x0Bc03983Da93021a374C964A22b73865220Ce962",
+          "label": "registry:gearbox_protocol:Bot_List",
+          "hasCode": true,
+          "contractName": "BotListV3",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x74A868AC479EE145029bB80827BB77F7B7c441cB",
+          "label": "registry:gearbox_protocol:Price_Feed_Store",
+          "hasCode": true,
+          "contractName": "PriceFeedStore",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "geckoterminal",
+      "canonicalName": "GeckoTerminal",
+      "portalSlugs": [
+        "geckoterminal"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "geckoterminal",
+        "name": "GeckoTerminal",
+        "category": "Interface",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "gmgn",
+      "canonicalName": "GMGN",
+      "portalSlugs": [
+        "gmgn"
+      ],
+      "registry": {
+        "key": "gmgn",
+        "name": "Gmgn",
+        "live": true,
+        "addresses": [
+          [
+            "Router",
+            "0xc9ca80b5ea956aFA98627963D1880033545d108E"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "gmgn",
+        "name": "GMGN",
+        "category": "Trading App",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0xc9ca80b5ea956aFA98627963D1880033545d108E",
+          "label": "registry:gmgn:Router",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x03630b96e2c03de6cb60fc9641beae7249a3c87e"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "grimmys",
+      "canonicalName": "Grimmy's",
+      "portalSlugs": [
+        "grimmys"
+      ],
+      "registry": {
+        "key": "grimmys",
+        "name": "Grimmy's",
+        "live": true,
+        "addresses": [
+          [
+            "Grimmy",
+            "0xDcA99DcC29e19022012c5D755f1b12C61D127857"
+          ],
+          [
+            "Stimmy",
+            "0x26018Cb486254c9697ed654D023C5d737FDD31e4"
+          ],
+          [
+            "Flippy",
+            "0x3717F45e87744E48D954684f34f57902da1134da"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xDcA99DcC29e19022012c5D755f1b12C61D127857",
+          "label": "registry:grimmys:Grimmy",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x26018Cb486254c9697ed654D023C5d737FDD31e4",
+          "label": "registry:grimmys:Stimmy",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0xd76976141e0f254f601c726a5d0a131635b87160"
+        },
+        {
+          "address": "0x3717F45e87744E48D954684f34f57902da1134da",
+          "label": "registry:grimmys:Flippy",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": true,
+          "implementation": "0xa4c6c26cfce86078a4f2ccc94e0f707e2e88d9d0"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "hyperlane-nexus",
+      "canonicalName": "Hyperlane Nexus",
+      "portalSlugs": [
+        "hyperlane-nexus"
+      ],
+      "registry": {
+        "key": "hyperlane_nexus",
+        "name": "Hyperlane",
+        "live": true,
+        "addresses": [],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      ]
+    },
+    {
+      "proposedId": "hyperstitions",
+      "canonicalName": "Hyperstitions",
+      "portalSlugs": [
+        "hyperstitions"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "hyperstitions",
+        "name": "HYPERSTITIONS",
+        "category": "Prediction Market",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": "monad:0x97401d48a80b15bc7291599e24b590eedcd7ce37",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "infinex",
+      "canonicalName": "Infinex",
+      "portalSlugs": [
+        "infinex"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "infinit",
+      "canonicalName": "INFINIT",
+      "portalSlugs": [
+        "infinit"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "infinit",
+        "name": "INFINIT",
+        "category": "AI Agents",
+        "monadListed": false,
+        "chains": [
+          "Binance",
+          "Arbitrum"
+        ],
+        "dominantAddress": "0x61fac5f038515572d6f42d4bcb6b581642753d50",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "interport-finance",
+      "canonicalName": "Interport Finance",
+      "portalSlugs": [
+        "interport-finance"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "interport-finance",
+        "name": "Interport Finance",
+        "category": "Cross Chain Bridge",
+        "monadListed": false,
+        "chains": [
+          "Scroll",
+          "zkLink",
+          "Ethereum",
+          "Linea",
+          "Manta",
+          "Blast",
+          "Optimism",
+          "Base",
+          "Binance",
+          "Arbitrum",
+          "Avalanche",
+          "zkSync Era"
+        ],
+        "dominantAddress": "0x2b1D36f5B61AdDAf7DA7ebbd11B35FD8cfb0DE31",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "itrocket-staking",
+      "canonicalName": "ITRocket Staking",
+      "portalSlugs": [
+        "itrocket-staking"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "jumper-exchange",
+      "canonicalName": "Jumper.Exchange",
+      "portalSlugs": [
+        "jumper-exchange"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "kinetk",
+      "canonicalName": "KINETK",
+      "portalSlugs": [
+        "kinetk"
+      ],
+      "registry": {
+        "key": "kinetk",
+        "name": "KINETK",
+        "live": true,
+        "addresses": [
+          [
+            "KinetkIPCertificate",
+            "0xD057B63f5E69CF1B929b356b579Cba08D7688048"
+          ],
+          [
+            "KINETK IP Protection Network",
+            "0x2ab50b521ca45452602877dede5d0d244a0e5c41"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xD057B63f5E69CF1B929b356b579Cba08D7688048",
+          "label": "registry:kinetk:KinetkIPCertificate",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": "0x53877cd4111b4c041abea77cc501ed68c22630bd"
+        },
+        {
+          "address": "0x2ab50b521ca45452602877dede5d0d244a0e5c41",
+          "label": "registry:kinetk:KINETK IP Protection Network",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "kinic",
+      "canonicalName": "Kinic",
+      "portalSlugs": [
+        "kinic"
+      ],
+      "registry": {
+        "key": "kinic",
+        "name": "Kinic AI Memory Agent",
+        "live": true,
+        "addresses": [
+          [
+            "KinicMemoryLog",
+            "0xEB5B78Fa81cFEA1a46D46B3a42814F5A68038548"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xEB5B78Fa81cFEA1a46D46B3a42814F5A68038548",
+          "label": "registry:kinic:KinicMemoryLog",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "matcha-meta",
+      "canonicalName": "Matcha Meta",
+      "portalSlugs": [
+        "matcha-meta"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "mayan",
+      "canonicalName": "Mayan",
+      "portalSlugs": [
+        "mayan"
+      ],
+      "registry": {
+        "key": "mayan",
+        "name": "Mayan",
+        "live": true,
+        "addresses": [
+          [
+            "MayanForwarder",
+            "0x337685fdaB40D39bd02028545a4FfA7D287cC3E2"
+          ],
+          [
+            "MayanFastMctp",
+            "0xC1062b7C5Dc8E4b1Df9F200fe360cDc0eD6e7741"
+          ],
+          [
+            "MayanFastMctpFeeManager",
+            "0x598400bA0d8BA9C3b57ad424A68183f1D17c7e56"
+          ],
+          [
+            "MayanForwarderShimContractAddress",
+            "0x87a26566dbb3bf206634c1792a96ff4989e3f56e"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x337685fdaB40D39bd02028545a4FfA7D287cC3E2",
+          "label": "registry:mayan:MayanForwarder",
+          "hasCode": true,
+          "contractName": "MayanForwarder2",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xC1062b7C5Dc8E4b1Df9F200fe360cDc0eD6e7741",
+          "label": "registry:mayan:MayanFastMctp",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x598400bA0d8BA9C3b57ad424A68183f1D17c7e56",
+          "label": "registry:mayan:MayanFastMctpFeeManager",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x87a26566dbb3bf206634c1792a96ff4989e3f56e",
+          "label": "registry:mayan:MayanForwarderShimContractAddress",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "memetok",
+      "canonicalName": "MemeTok",
+      "portalSlugs": [
+        "memetok"
+      ],
+      "registry": {
+        "key": "memetok",
+        "name": "MemeTok",
+        "live": true,
+        "addresses": [
+          [
+            "MemeTokRouter",
+            "0xFf8C5cA7a30054dE0D4F4Da1452ee6FDa32e185E"
+          ],
+          [
+            "MemeTokFactory",
+            "0x4a979d79F1Bdc85fa71e5F85017d6A7a86220FB5"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xFf8C5cA7a30054dE0D4F4Da1452ee6FDa32e185E",
+          "label": "registry:memetok:MemeTokRouter",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x4a979d79F1Bdc85fa71e5F85017d6A7a86220FB5",
+          "label": "registry:memetok:MemeTokFactory",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "mevx",
+      "canonicalName": "MevX",
+      "portalSlugs": [
+        "mevx"
+      ],
+      "registry": {
+        "key": "mevx",
+        "name": "Mevx",
+        "live": true,
+        "addresses": [
+          [
+            "MevxSwapRouterUV2",
+            "0x92ef088BC025EBaf7C9521dFa82130d33934EB30"
+          ],
+          [
+            "MevxSwapRouterUV3",
+            "0xd1f47ef81354663F3786b62B5B95C1015dA48CA4"
+          ],
+          [
+            "MevxSwapRouterPV2",
+            "0xC67134cc40765fc28e2d54f58Cd93d382D9137d8"
+          ],
+          [
+            "MevxSwapRouterPV3",
+            "0xa26326Af694D03A12250df01733B173c05153A76"
+          ],
+          [
+            "MevxSwapRouterMT3",
+            "0xf867f2bfd6C1926770E6451A72B2899231678A56"
+          ],
+          [
+            "MevxSwapRouterFL01",
+            "0xb471bec8Cf0D70f5eb5a892c7BBa04ca80E6c291"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "mevx",
+        "name": "MEVX",
+        "category": "Telegram Bot",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x92ef088BC025EBaf7C9521dFa82130d33934EB30",
+          "label": "registry:mevx:MevxSwapRouterUV2",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x50a9e586bb3d829220bf54eb3231736abff94f6b"
+        },
+        {
+          "address": "0xd1f47ef81354663F3786b62B5B95C1015dA48CA4",
+          "label": "registry:mevx:MevxSwapRouterUV3",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x3ca6f1561a962f5ee351ece71affb04db450295e"
+        },
+        {
+          "address": "0xC67134cc40765fc28e2d54f58Cd93d382D9137d8",
+          "label": "registry:mevx:MevxSwapRouterPV2",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0xb4a1ac4dc8d103ac6bb5cffa489d72ccac93698d"
+        },
+        {
+          "address": "0xa26326Af694D03A12250df01733B173c05153A76",
+          "label": "registry:mevx:MevxSwapRouterPV3",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x4606cd410bd103ad0e352cd60a7197ca0c71a812"
+        },
+        {
+          "address": "0xf867f2bfd6C1926770E6451A72B2899231678A56",
+          "label": "registry:mevx:MevxSwapRouterMT3",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0xd8560e4d6c972b0a3184b7952b7a745e2c90f2d0"
+        },
+        {
+          "address": "0xb471bec8Cf0D70f5eb5a892c7BBa04ca80E6c291",
+          "label": "registry:mevx:MevxSwapRouterFL01",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x908fdea66c922025ba659d78293204ec39370df7"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "midas",
+      "canonicalName": "Midas",
+      "portalSlugs": [
+        "midas"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "mona-trading-bot",
+      "canonicalName": "Mona Trading Bot",
+      "portalSlugs": [
+        "mona-trading-bot"
+      ],
+      "registry": {
+        "key": "mona_trading_bot",
+        "name": "Mona Trading Bot",
+        "live": true,
+        "addresses": [
+          [
+            "MonaV2Router01",
+            "0x27A6c2E8aE9E7f96040394a1F8fE2A202cE0E599"
+          ],
+          [
+            "MonaV3Router01",
+            "0x7e75D7EB235703D8AcbD71382bF2F344fB23aB5b"
+          ],
+          [
+            "MonaV2Router02",
+            "0x95dEf69A01962f0Cb24e2C5DAA1Fa5126Beea95D"
+          ],
+          [
+            "MonaV3Router02",
+            "0x50aDc49F643F06888A8950dD172Ae48221e49a38"
+          ],
+          [
+            "MonaV3Router03",
+            "0x09ec7D8D3065097D5859539ED4590Dd76c0C77e0"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x27A6c2E8aE9E7f96040394a1F8fE2A202cE0E599",
+          "label": "registry:mona_trading_bot:MonaV2Router01",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x4c6161cdb81b4a0967980301bfe3bc6173fb1300"
+        },
+        {
+          "address": "0x7e75D7EB235703D8AcbD71382bF2F344fB23aB5b",
+          "label": "registry:mona_trading_bot:MonaV3Router01",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x9adfc3a86a3f4b5e7820fb6943f430fd63488561"
+        },
+        {
+          "address": "0x95dEf69A01962f0Cb24e2C5DAA1Fa5126Beea95D",
+          "label": "registry:mona_trading_bot:MonaV2Router02",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x42bfd36e3b19f660d3d673dad755135b5931e778"
+        },
+        {
+          "address": "0x50aDc49F643F06888A8950dD172Ae48221e49a38",
+          "label": "registry:mona_trading_bot:MonaV3Router02",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x4606cd410bd103ad0e352cd60a7197ca0c71a812"
+        },
+        {
+          "address": "0x09ec7D8D3065097D5859539ED4590Dd76c0C77e0",
+          "label": "registry:mona_trading_bot:MonaV3Router03",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0xd8560e4d6c972b0a3184b7952b7a745e2c90f2d0"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "muku",
+      "canonicalName": "MUKU",
+      "portalSlugs": [
+        "muku"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "multipli",
+      "canonicalName": "Multipli",
+      "portalSlugs": [
+        "multipli"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "nadradar",
+      "canonicalName": "Nadradar",
+      "portalSlugs": [
+        "nadradar"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "noah-ai",
+      "canonicalName": "Noah AI ",
+      "portalSlugs": [
+        "noah-ai"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "nubila-network",
+      "canonicalName": "Nubila Network",
+      "portalSlugs": [
+        "nubila-network"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "omnia",
+      "canonicalName": "Omnia",
+      "portalSlugs": [
+        "omnia"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "openocean",
+      "canonicalName": "OpenOcean",
+      "portalSlugs": [
+        "openocean"
+      ],
+      "registry": {
+        "key": "openocean",
+        "name": "OpenOcean",
+        "live": true,
+        "addresses": [
+          [
+            "OpenOceanExchangeProxy",
+            "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x6352a56caadC4F1E25CD6c75970Fa768A3304e64",
+          "label": "registry:openocean:OpenOceanExchangeProxy",
+          "hasCode": true,
+          "contractName": "OpenOceanExchangeProxy",
+          "isProxy": true,
+          "implementation": "0x10d443594cbe2ecc2574df8710ffc6a9a2f46c74"
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "playkami",
+      "canonicalName": "PlayKami",
+      "portalSlugs": [
+        "playkami"
+      ],
+      "registry": {
+        "key": "playkami",
+        "name": "PlayKami",
+        "live": true,
+        "addresses": [
+          [
+            "DropCard",
+            "0xC2D57443f061b4490B1e588F3009D6357e6AD062"
+          ],
+          [
+            "ReferrerRegistry",
+            "0xdfae9de709cE3513d8E84C704c2EEd8D7cFBb3f0"
+          ],
+          [
+            "DropMarketplace",
+            "0xC1c59b10F896715A1a34085C96Ef9309484A086B"
+          ],
+          [
+            "DropVendingMachine",
+            "0x7ef90Ba0D6C3A46c813d8ABE02ae5116B72309fe"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xC2D57443f061b4490B1e588F3009D6357e6AD062",
+          "label": "registry:playkami:DropCard",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0x10a48664580fc7fb0ee6d64d1575a79b7f1cb8d4"
+        },
+        {
+          "address": "0xdfae9de709cE3513d8E84C704c2EEd8D7cFBb3f0",
+          "label": "registry:playkami:ReferrerRegistry",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0x15c01e57e5846be7309a934810642d9f64f99fec"
+        },
+        {
+          "address": "0xC1c59b10F896715A1a34085C96Ef9309484A086B",
+          "label": "registry:playkami:DropMarketplace",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0xde27d9c2259a9c8f61915ca56a9a5e7520230c2b"
+        },
+        {
+          "address": "0x7ef90Ba0D6C3A46c813d8ABE02ae5116B72309fe",
+          "label": "registry:playkami:DropVendingMachine",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0xd8cf4f4ec3ad90a4bae63f4640a86372ed0c5629"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "prismax",
+      "canonicalName": "PrismaX",
+      "portalSlugs": [
+        "prismax"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "puffer",
+      "canonicalName": "Puffer",
+      "portalSlugs": [
+        "puffer"
+      ],
+      "registry": {
+        "key": "puffer",
+        "name": "Puffer",
+        "live": true,
+        "addresses": [
+          [
+            "pufETH",
+            "0x37D6382B6889cCeF8d6871A8b60E667115eDDBcF"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x37D6382B6889cCeF8d6871A8b60E667115eDDBcF",
+          "label": "registry:puffer:pufETH",
+          "hasCode": true,
+          "contractName": "pufETH",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "relay",
+      "canonicalName": "Relay",
+      "portalSlugs": [
+        "relay"
+      ],
+      "registry": {
+        "key": "relay",
+        "name": "Relay",
+        "live": true,
+        "addresses": [
+          [
+            "relayDepository",
+            "0x4cd00e387622c35bddb9b4c962c136462338bc31"
+          ],
+          [
+            "relayReceiver",
+            "0xf17902d51fdff7bf50aacc78d6bb399baf88b479"
+          ],
+          [
+            "v2.1RelayApprovalProxy",
+            "0x58cc3e0aa6cd7bf795832a225179ec2d848ce3e7"
+          ],
+          [
+            "v2.1RelayRouter",
+            "0x3ec130b627944cad9b2750300ecb0a695da522b6"
+          ],
+          [
+            "v3RelayApprovalProxy",
+            "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be"
+          ],
+          [
+            "v3RelayRouter",
+            "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+          "label": "registry:relay:relayDepository",
+          "hasCode": true,
+          "contractName": "RelayDepository",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xf17902d51fdff7bf50aacc78d6bb399baf88b479",
+          "label": "registry:relay:relayReceiver",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x58cc3e0aa6cd7bf795832a225179ec2d848ce3e7",
+          "label": "registry:relay:v2.1RelayApprovalProxy",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x3ec130b627944cad9b2750300ecb0a695da522b6",
+          "label": "registry:relay:v2.1RelayRouter",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+          "label": "registry:relay:v3RelayApprovalProxy",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+          "label": "registry:relay:v3RelayRouter",
+          "hasCode": true,
+          "contractName": "RelayRouterV3",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "rhea-finance",
+      "canonicalName": "RHEA Finance",
+      "portalSlugs": [
+        "rhea-finance"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "rhea-dex",
+        "name": "Rhea Dex",
+        "category": "Dexs",
+        "monadListed": false,
+        "chains": [
+          "Near"
+        ],
+        "dominantAddress": "near:token.rhealab.near",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "rug-rumble",
+      "canonicalName": "Rug Rumble",
+      "portalSlugs": [
+        "rug-rumble"
+      ],
+      "registry": {
+        "key": "rug_rumble",
+        "name": "Rug Rumble",
+        "live": true,
+        "addresses": [
+          [
+            "RugRumble",
+            "0xA33FCf1F510fF1365a7667e3328d042B7d559B8a"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xA33FCf1F510fF1365a7667e3328d042B7d559B8a",
+          "label": "registry:rug_rumble:RugRumble",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0xb7ebb5c9bde7e6cfc5369e43925d2b59a489c38d"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "silk-nodes",
+      "canonicalName": "Silk Nodes",
+      "portalSlugs": [
+        "silk-nodes"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "solv-protocol",
+      "canonicalName": "Solv Protocol",
+      "portalSlugs": [
+        "solv-protocol"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "stakemonad",
+      "canonicalName": "StakeMON.ad",
+      "portalSlugs": [
+        "stakemonad"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "stakestone",
+      "canonicalName": "StakeStone",
+      "portalSlugs": [
+        "stakestone"
+      ],
+      "registry": {
+        "key": "stakestone",
+        "name": "StakeStone",
+        "live": true,
+        "addresses": [
+          [
+            "STONEUSD",
+            "0x095957CEB9f317ac1328f0aB3123622401766D71"
+          ],
+          [
+            "LayerZeroAdapter",
+            "0xEc901DA9c68E90798BbBb74c11406A32A70652C3"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x095957CEB9f317ac1328f0aB3123622401766D71",
+          "label": "registry:stakestone:STONEUSD",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xEc901DA9c68E90798BbBb74c11406A32A70652C3",
+          "label": "registry:stakestone:LayerZeroAdapter",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "staking-with-energy",
+      "canonicalName": "Staking with Synergy",
+      "portalSlugs": [
+        "staking-with-energy"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "stargate-finance",
+      "canonicalName": "Stargate Finance",
+      "portalSlugs": [
+        "stargate-finance"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "stargate",
+        "name": "StarGate",
+        "category": "Farm",
+        "monadListed": false,
+        "chains": [
+          "VeChain"
+        ],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "sushiswap",
+      "canonicalName": "Sushiswap",
+      "portalSlugs": [
+        "sushiswap"
+      ],
+      "registry": {
+        "key": "sushiswap",
+        "name": "SushiSwap",
+        "live": true,
+        "addresses": [
+          [
+            "RedSnwapper",
+            "0xac4c6e212a361c968f1725b4d055b47e63f80b75"
+          ],
+          [
+            "UIFeeCollector",
+            "0xde7259893af7cdbc9fd806c6ba61d22d581d5667"
+          ],
+          [
+            "SurplusFeeCollector",
+            "0x5c2e112783a6854653b4bc7dc22248d3e592559c"
+          ],
+          [
+            "ProtocolFeeCollector",
+            "0xdbeca8fb948c42634256609bce5a3768c9b3e9eb"
+          ],
+          [
+            "OperationsMultisig",
+            "0xc4c2fc252f51b3fad6120963acf0d560526abb00"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "sushiswap",
+        "name": "SushiSwap",
+        "category": "Dexs",
+        "monadListed": false,
+        "chains": [
+          "Ethereum",
+          "Polygon",
+          "Arbitrum",
+          "Base",
+          "Boba",
+          "xDai",
+          "Binance",
+          "Celo",
+          "Arbitrum Nova",
+          "Avalanche",
+          "Fantom",
+          "Fuse"
+        ],
+        "dominantAddress": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0xac4c6e212a361c968f1725b4d055b47e63f80b75",
+          "label": "registry:sushiswap:RedSnwapper",
+          "hasCode": true,
+          "contractName": "RedSnwapper",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xde7259893af7cdbc9fd806c6ba61d22d581d5667",
+          "label": "registry:sushiswap:UIFeeCollector",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x5c2e112783a6854653b4bc7dc22248d3e592559c",
+          "label": "registry:sushiswap:SurplusFeeCollector",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xdbeca8fb948c42634256609bce5a3768c9b3e9eb",
+          "label": "registry:sushiswap:ProtocolFeeCollector",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xc4c2fc252f51b3fad6120963acf0d560526abb00",
+          "label": "registry:sushiswap:OperationsMultisig",
+          "hasCode": true,
+          "contractName": "SafeProxy",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "tadle",
+      "canonicalName": "Tadle",
+      "portalSlugs": [
+        "tadle"
+      ],
+      "registry": {
+        "key": "tadle",
+        "name": "Tadle",
+        "live": true,
+        "addresses": [
+          [
+            "TadleSandBoxFactory",
+            "0x89d6AeE63Bd92A9a021d3c4943a66C8e4C8D31f9"
+          ],
+          [
+            "TadleConnectors",
+            "0xA8DD40CE8d5fCA018160D21d5142fB4F938F5453"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x89d6AeE63Bd92A9a021d3c4943a66C8e4C8D31f9",
+          "label": "registry:tadle:TadleSandBoxFactory",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xA8DD40CE8d5fCA018160D21d5142fB4F938F5453",
+          "label": "registry:tadle:TadleConnectors",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "the-arena",
+      "canonicalName": "The Arena",
+      "portalSlugs": [
+        "the-arena"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "token-mill",
+      "canonicalName": "Token Mill",
+      "portalSlugs": [
+        "token-mill"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "token-mill",
+        "name": "Token Mill",
+        "category": "Launchpad",
+        "monadListed": false,
+        "chains": [
+          "Avalanche",
+          "Solana"
+        ],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "universalx",
+      "canonicalName": "UniversalX",
+      "portalSlugs": [
+        "universalx"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "universalx",
+        "name": "UniversalX",
+        "category": "Trading App",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "ur",
+      "canonicalName": "UR",
+      "portalSlugs": [
+        "ur"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "valor-quest",
+      "canonicalName": "Valor Quest ",
+      "portalSlugs": [
+        "valor-quest"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "wormhole-portal",
+      "canonicalName": "Wormhole Portal",
+      "portalSlugs": [
+        "wormhole-portal"
+      ],
+      "registry": {
+        "key": "wormhole_portal",
+        "name": "Wormhole",
+        "live": true,
+        "addresses": [
+          [
+            "Core",
+            "0x194B123c5E96B9b2E49763619985790Dc241CAC0"
+          ],
+          [
+            "TokenBridge",
+            "0x0B2719cdA2F10595369e6673ceA3Ee2EDFa13BA7"
+          ],
+          [
+            "MultiTokenNTT",
+            "0x36878C6FCa7e0E8a88F90dc410CfBBcA5B695C95"
+          ],
+          [
+            "GmpManager",
+            "0x92957b3D0CaB3eA7110fEd1ccc4eF564981a59Fc"
+          ],
+          [
+            "GenericWormholeTransceiver",
+            "0x1a0f31492Ca69DF6A82906Ce88613AeCD9245C44"
+          ],
+          [
+            "Token",
+            "0x7e0AF7c98CBf443B345d718C3787f3f86AdbC51D"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x194B123c5E96B9b2E49763619985790Dc241CAC0",
+          "label": "registry:wormhole_portal:Core",
+          "hasCode": true,
+          "contractName": "Wormhole",
+          "isProxy": true,
+          "implementation": "0xe740464fe5a1708c383739a32a6ad32ff707fccb"
+        },
+        {
+          "address": "0x0B2719cdA2F10595369e6673ceA3Ee2EDFa13BA7",
+          "label": "registry:wormhole_portal:TokenBridge",
+          "hasCode": true,
+          "contractName": "TokenBridge",
+          "isProxy": true,
+          "implementation": "0xabf89de706b583424328b54dd05a8fc986750da8"
+        },
+        {
+          "address": "0x36878C6FCa7e0E8a88F90dc410CfBBcA5B695C95",
+          "label": "registry:wormhole_portal:MultiTokenNTT",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0xe9eddb05ccb50c3d7935e82709623d2209350221"
+        },
+        {
+          "address": "0x92957b3D0CaB3eA7110fEd1ccc4eF564981a59Fc",
+          "label": "registry:wormhole_portal:GmpManager",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0x8edba1559aa0d976452db4293142a01be1ae77a4"
+        },
+        {
+          "address": "0x1a0f31492Ca69DF6A82906Ce88613AeCD9245C44",
+          "label": "registry:wormhole_portal:GenericWormholeTransceiver",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0xc31a4ab6fbd82b138449edc48a629fa69983a905"
+        },
+        {
+          "address": "0x7e0AF7c98CBf443B345d718C3787f3f86AdbC51D",
+          "label": "registry:wormhole_portal:Token",
+          "hasCode": true,
+          "contractName": "Token",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-verified-name",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "trendle",
+      "canonicalName": "Trendle",
+      "portalSlugs": [
+        "trendle"
+      ],
+      "registry": {
+        "key": "trendle",
+        "name": "Trendle",
+        "live": true,
+        "addresses": [
+          [
+            "Trading",
+            "0xAE0830d7588aB44e5D4443168a8D666B54F385FE"
+          ],
+          [
+            "Pool",
+            "0xe0b5D2538038329Cd1Ab9D92273af7DB5EF29231"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xAE0830d7588aB44e5D4443168a8D666B54F385FE",
+          "label": "registry:trendle:Trading",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0x2e42de9111b036c39d01f599c997df940d4d576c"
+        },
+        {
+          "address": "0xe0b5D2538038329Cd1Ab9D92273af7DB5EF29231",
+          "label": "registry:trendle:Pool",
+          "hasCode": true,
+          "contractName": "TransparentUpgradeableProxy",
+          "isProxy": true,
+          "implementation": "0xfcc3d8ef0fe23c11afdb08e8a0b46672b5feb392"
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "plabs",
+      "canonicalName": "PLabs",
+      "portalSlugs": [
+        "plabs"
+      ],
+      "registry": {
+        "key": "plabs",
+        "name": "PLabs",
+        "live": true,
+        "addresses": [
+          [
+            "PERC20",
+            "0x38D743De0cb43744d5388F3A74f9dE5BE320D3F6"
+          ],
+          [
+            "Groth16_verifier",
+            "0x11B938A2C8b171bA61Ef2d4923951c528421696c"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x38D743De0cb43744d5388F3A74f9dE5BE320D3F6",
+          "label": "registry:plabs:PERC20",
+          "hasCode": true,
+          "contractName": "PERC20",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x11B938A2C8b171bA61Ef2d4923951c528421696c",
+          "label": "registry:plabs:Groth16_verifier",
+          "hasCode": true,
+          "contractName": "ActionGroth16Verifier",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "crsh-market",
+      "canonicalName": "CRSH Market",
+      "portalSlugs": [
+        "crsh-market"
+      ],
+      "registry": {
+        "key": "crsh",
+        "name": "CRSH Market",
+        "live": true,
+        "addresses": [
+          [
+            "Escrow",
+            "0x0a2fbf2dbe08880d8d0d7f2f34b4cc3761f729b1"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": {
+        "slug": "crshmarket",
+        "name": "CRSHMARKET",
+        "category": "Prediction Market",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [
+        {
+          "address": "0x0a2fbf2dbe08880d8d0d7f2f34b4cc3761f729b1",
+          "label": "registry:crsh:Escrow",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.llama.fi/protocols",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "ethena",
+      "canonicalName": "Ethena",
+      "portalSlugs": [
+        "ethena"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "saturn",
+      "canonicalName": "Saturn",
+      "portalSlugs": [
+        "saturn"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "saturn-swap",
+        "name": "Saturn Swap",
+        "category": "Dexs",
+        "monadListed": false,
+        "chains": [
+          "Cardano"
+        ],
+        "dominantAddress": "cardano:0xecbe846aa1a535579d67f9480fa6173b64d7e239df0460eba36e3ad0",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "xstable",
+      "canonicalName": "XStable",
+      "portalSlugs": [
+        "xstable"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "strata",
+      "canonicalName": "Strata",
+      "portalSlugs": [
+        "strata"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "coinfello",
+      "canonicalName": "CoinFello",
+      "portalSlugs": [
+        "coinfello"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "usdc-bridge",
+      "canonicalName": "USDC Bridge",
+      "portalSlugs": [
+        "usdc-bridge"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "collective-memory",
+      "canonicalName": "Collective Memory",
+      "portalSlugs": [
+        "collective-memory"
+      ],
+      "registry": {
+        "key": "collective_memory",
+        "name": "Collective Memory",
+        "live": true,
+        "addresses": [
+          [
+            "Paymaster",
+            "0xd6c8e83ee7468Dc5b8ce8C911d69906FBB8CE7c6"
+          ],
+          [
+            "Router",
+            "0xF0a6164266d16DC5B7D26bb2e1Ea6AAed50a115B"
+          ],
+          [
+            "AttentionToken",
+            "0x564Bc0fFF5431311B47C682E67F75ff3EeC7f5Cc"
+          ],
+          [
+            "VaultBeacon",
+            "0x46459A0A40CD4Ab01e1C42D504db24aBD69F578a"
+          ],
+          [
+            "VaultImplementation",
+            "0x79E38dDFBe56EE1A93F4fABB3141BDeDe90f0805"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xd6c8e83ee7468Dc5b8ce8C911d69906FBB8CE7c6",
+          "label": "registry:collective_memory:Paymaster",
+          "hasCode": true,
+          "contractName": "VaultPaymaster",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xF0a6164266d16DC5B7D26bb2e1Ea6AAed50a115B",
+          "label": "registry:collective_memory:Router",
+          "hasCode": true,
+          "contractName": "ERC1967Proxy",
+          "isProxy": true,
+          "implementation": "0xbd5f3cd14b9b1339d31d1fa1d992ed2e412a4d35"
+        },
+        {
+          "address": "0x564Bc0fFF5431311B47C682E67F75ff3EeC7f5Cc",
+          "label": "registry:collective_memory:AttentionToken",
+          "hasCode": true,
+          "contractName": "ATTNOFT",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x46459A0A40CD4Ab01e1C42D504db24aBD69F578a",
+          "label": "registry:collective_memory:VaultBeacon",
+          "hasCode": true,
+          "contractName": "UpgradeableBeacon",
+          "isProxy": true,
+          "implementation": "0x79e38ddfbe56ee1a93f4fabb3141bdede90f0805"
+        },
+        {
+          "address": "0x79E38dDFBe56EE1A93F4fABB3141BDeDe90f0805",
+          "label": "registry:collective_memory:VaultImplementation",
+          "hasCode": true,
+          "contractName": "MinimalVaultUpgradeable",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "oripa",
+      "canonicalName": "Oripa",
+      "portalSlugs": [
+        "oripa"
+      ],
+      "registry": {
+        "key": "oripa",
+        "name": "oripa.cards",
+        "live": false,
+        "addresses": [
+          [
+            "BoxRouter",
+            "0xcc1e3d7360715CBa6d3a5f29443f35489658931F"
+          ],
+          [
+            "PrizeNFT",
+            "0xcc10FE7750eF7763630d40bbD127d56b8EBdc36f"
+          ],
+          [
+            "PrizeNFTImplementation",
+            "0xcc1c79577c5bacC03f87A9AA479467Bb4205a85C"
+          ],
+          [
+            "Marketplace",
+            "0xcc182A416deB738a708b57f32Dc39bf9F631332B"
+          ],
+          [
+            "Treasury",
+            "0xcc193De00E9d33D84f7606829b809361d97b9bc4"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0xcc1e3d7360715CBa6d3a5f29443f35489658931F",
+          "label": "registry:oripa:BoxRouter",
+          "hasCode": true,
+          "contractName": "BoxRouter",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xcc10FE7750eF7763630d40bbD127d56b8EBdc36f",
+          "label": "registry:oripa:PrizeNFT",
+          "hasCode": true,
+          "contractName": "PrizeNFTProxy",
+          "isProxy": true,
+          "implementation": "0xcc1c79577c5bacc03f87a9aa479467bb4205a85c"
+        },
+        {
+          "address": "0xcc1c79577c5bacC03f87A9AA479467Bb4205a85C",
+          "label": "registry:oripa:PrizeNFTImplementation",
+          "hasCode": true,
+          "contractName": "PrizeNFT",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xcc182A416deB738a708b57f32Dc39bf9F631332B",
+          "label": "registry:oripa:Marketplace",
+          "hasCode": true,
+          "contractName": "Marketplace",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0xcc193De00E9d33D84f7606829b809361d97b9bc4",
+          "label": "registry:oripa:Treasury",
+          "hasCode": true,
+          "contractName": "Treasury",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "1inch",
+      "canonicalName": "1inch",
+      "portalSlugs": [
+        "1inch"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "1inch-swap",
+        "name": "1inch Swap",
+        "category": "DEX Aggregator",
+        "monadListed": false,
+        "chains": [
+          "Ethereum",
+          "Binance"
+        ],
+        "dominantAddress": "0x111111111117dc0aa78b770fa6a738034120c302",
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    },
+    {
+      "proposedId": "anomapay",
+      "canonicalName": "AnomaPay",
+      "portalSlugs": [
+        "anomapay"
+      ],
+      "registry": {
+        "key": "anoma",
+        "name": "AnomaPay",
+        "live": true,
+        "addresses": [
+          [
+            "ProtocolAdapter",
+            "0x2D2Fa19aFdbb20DC73737ca5f075cfAE00Cd90C2"
+          ],
+          [
+            "ERC20Forwarder",
+            "0x23dc44E1a1c3d5432EeC8A1c027e22ccDC0A8F54"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x2D2Fa19aFdbb20DC73737ca5f075cfAE00Cd90C2",
+          "label": "registry:anoma:ProtocolAdapter",
+          "hasCode": true,
+          "contractName": "ProtocolAdapter",
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x23dc44E1a1c3d5432EeC8A1c027e22ccDC0A8F54",
+          "label": "registry:anoma:ERC20Forwarder",
+          "hasCode": true,
+          "contractName": "ERC20Forwarder",
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "glider",
+      "canonicalName": "Glider",
+      "portalSlugs": [
+        "glider"
+      ],
+      "registry": null,
+      "defillama": null,
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": []
+    },
+    {
+      "proposedId": "o1-exchange",
+      "canonicalName": "o1 exchange",
+      "portalSlugs": [
+        "o1-exchange"
+      ],
+      "registry": {
+        "key": "o1_exchange",
+        "name": "o1.exchange",
+        "live": true,
+        "addresses": [
+          [
+            "LaunchFactory",
+            "0x99C09A90feED8D5e57A19A8C1F103AE29BA5b5b7"
+          ],
+          [
+            "LaunchHook",
+            "0x8AeA397f75d046fEAF43D2897548f3A18FD92acC"
+          ],
+          [
+            "FeeEscrow",
+            "0x27BC99240f2c3895Cb91663932D97A29DdD99A93"
+          ],
+          [
+            "FeeCollector",
+            "0x4bfd6d43cb67e26ec8418a995142ce2c19db7b13"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "defillama": null,
+      "explorer": [
+        {
+          "address": "0x99C09A90feED8D5e57A19A8C1F103AE29BA5b5b7",
+          "label": "registry:o1_exchange:LaunchFactory",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x8AeA397f75d046fEAF43D2897548f3A18FD92acC",
+          "label": "registry:o1_exchange:LaunchHook",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x27BC99240f2c3895Cb91663932D97A29DdD99A93",
+          "label": "registry:o1_exchange:FeeEscrow",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        },
+        {
+          "address": "0x4bfd6d43cb67e26ec8418a995142ce2c19db7b13",
+          "label": "registry:o1_exchange:FeeCollector",
+          "hasCode": true,
+          "contractName": null,
+          "isProxy": false,
+          "implementation": null
+        }
+      ],
+      "verdict": "resolved-explorer-contract",
+      "sourceUrls": [
+        "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "https://api.etherscan.io/v2/api?chainid=143 (eth_getCode / getsourcecode; key omitted)"
+      ]
+    },
+    {
+      "proposedId": "crystal",
+      "canonicalName": "Crystal",
+      "portalSlugs": [
+        "crystal"
+      ],
+      "registry": null,
+      "defillama": {
+        "slug": "crystal-exchange",
+        "name": "Crystal Exchange",
+        "category": "Dexs",
+        "monadListed": false,
+        "chains": [],
+        "dominantAddress": null,
+        "sourceUrl": "https://api.llama.fi/protocols"
+      },
+      "explorer": [],
+      "verdict": "no-candidate",
+      "sourceUrls": [
+        "https://api.llama.fi/protocols"
+      ]
+    }
+  ],
+  "note": "Research artifact for the intake pipeline. A \"resolved\" verdict means a deployment record exists with the stated basis — it is not verification, endorsement, safety, activity, or legitimacy. Evidence records drafted from this artifact still require the full review gate before any snapshot."
+}

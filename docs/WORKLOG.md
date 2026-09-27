@@ -1291,6 +1291,56 @@ Next:
 
 
 
+### 2026-09-27 — Lead agent / trust+data — Phase 5.3: pending-deployment resolution EXECUTED (owner key)
+
+The owner chose the explorer source (the pending §5.3 owner call): a free Etherscan API key,
+stored OUTSIDE the repo at `~/.config/monad-city/etherscan-key` (owner-created). This unblocks
+the previously STOPPED deployment-resolution sub-task.
+
+Changed:
+- `scripts/research/resolve-pending-deployments.js` + `data/research/pending-deployments-2026-09-27.json`:
+  resolves the 105 App-portal-only pending groups per the §3 identity key.
+  - Name→candidate matching ONLY against seed registries (the explorer API has no name search —
+    verified): the PINNED monad-crypto/protocols registry (commit 36fddcc, the same pinned
+    snapshot the approved protocol-registry-snapshot records cite; 180 entries, 175 with Monad
+    address maps) and the current full DefiLlama capture (in-memory). Exact normalized-name
+    matches only, no fuzzy merges.
+  - Candidate addresses verified on Monad via Etherscan V2 multichain (`eth_getCode`, then
+    `getsourcecode` for verified ContractName/proxy metadata), throttled to this key's 3 req/s.
+  - Key handling: read from the file outside the repo or `ETHERSCAN_API_KEY`; never logged,
+    never in the artifact, never committed; stored explorer URLs are keyless (verified by
+    grep).
+- Verdicts (105 groups): 11 `resolved-explorer-verified-name` (live contract + verified
+  ContractName compatible with the project name, e.g. Morpho), 44 `resolved-explorer-contract`
+  (live code at the registry address; name basis is the registry mapping, e.g. Lumiterra's
+  proxy set), 50 `no-candidate` (no seed registry matched — NOT a negative verdict). Zero
+  `registry-address-no-code`: every checked registry address holds live code, a strong accuracy
+  signal for the pinned registry.
+
+Verified:
+- Key sanity against chainid 143 (`eth_blockNumber` → ~108.5M block) before any resolution run.
+- First run had a real parsing bug: `module=proxy` answers in the JSON-RPC envelope (no
+  `status` field), so live bytecode landed in the error field and every verdict degraded to
+  `registry-address-no-code`. Fixed (payload-shape check + a hex guard so rate-limit prose
+  cannot be mistaken for bytecode); artifact regenerated twice (final run is the checked-in
+  one; intermediate runs were local-only, never committed).
+- No API-key leakage into the artifact (grep for the key tail and `apikey=`).
+- `npm run build` green (no runtime code touched).
+
+Limitations:
+- 50 groups remain `no-candidate`: neither seed registry carries them; they need manual docs
+  research (portal featured links → project docs) — a separate pass, not explorer work.
+- A "resolved" verdict is a deployment record with a stated basis — not verification,
+  endorsement, activity, or safety. Evidence records for the 55 resolved projects still need
+  drafting + human review per the runbook before any snapshot.
+
+Next:
+- Batch 3 now HAS reviewable material: 55 resolved deployments → draft evidence records
+  (registry-snapshot + explorer-observation bases) → owner batch confirmation → snapshot
+  phase-3.5-v5 → promote → compose-archipelago-city wiring. Owner call required in-session.
+
+
+
 ### 2026-09-27 — Lead agent / trust+data — Phase 5.3: explorer research (STOP recorded) + refresh pass 1
 
 Two §5.3 sub-tasks: (1) deployment resolution for the 105 App-portal-only pending groups —
