@@ -40,6 +40,52 @@ export const CURATED_PROJECT_IDS = Object.freeze([
   'pyth',
 ]);
 
+// Phase 5.1 Batch 1 entity expansion (data/research/batch-1-selection-2026-09-27.json):
+// the 30 new projects approved into the phase-3.5-v3 snapshot. Every id is a drafted intake
+// proposal id; none of these projects is verified, endorsed, or ranked by its presence here.
+export const BATCH1_PROJECT_IDS = Object.freeze([
+  'aave-v3',
+  'pancakeswap',
+  'uniswap',
+  'curve',
+  'pendle',
+  'upshift',
+  'euler',
+  'lagoon',
+  'curvance',
+  'renzo',
+  'beefy',
+  'yuzu-money',
+  'balancer',
+  'spectra',
+  'mento',
+  'symbiosis',
+  'neverland',
+  'ample',
+  'perpl',
+  'woofi',
+  'leverup',
+  'kintsu',
+  'levr-bet',
+  'sumer-money',
+  'monday-trade',
+  'capricorn',
+  'nad-fun',
+  'drake',
+  'kizzy',
+  'nabla-finance',
+]);
+
+// The full set of project ids the evidence contract accepts as subjects or endpoints.
+export const KNOWN_PROJECT_IDS = Object.freeze([...CURATED_PROJECT_IDS, ...BATCH1_PROJECT_IDS]);
+
+// Version-pinned approved-projection sizes: an import that silently drops or duplicates
+// records cannot pass the runtime contract, exactly as the v2 22-record freeze did.
+export const EXPECTED_SNAPSHOT_COUNTS = Object.freeze({
+  'phase-3.5-v2': Object.freeze({ records: 22, relationships: 6 }),
+  'phase-3.5-v3': Object.freeze({ records: 52, relationships: 6 }),
+});
+
 export const EVIDENCE_STATUSES = Object.freeze([
   'Observed',
   'Claimed',
@@ -1114,7 +1160,7 @@ function assert(condition, message) {
 
 export function validateCandidateEvidenceRecord(
   record,
-  knownProjectIds = CURATED_PROJECT_IDS,
+  knownProjectIds = KNOWN_PROJECT_IDS,
 ) {
   const knownProjects = new Set(knownProjectIds);
   const missing = requiredEvidenceFields.filter(
@@ -1152,7 +1198,7 @@ export function validateCandidateEvidenceRecord(
 }
 
 export function validateEvidenceContract() {
-  const knownProjectIds = new Set(CURATED_PROJECT_IDS);
+  const knownProjectIds = new Set(KNOWN_PROJECT_IDS);
   const evidenceIds = new Set();
   const relationshipIds = new Set();
   const representedProjectIds = new Set();
@@ -1286,13 +1332,20 @@ export function validateEvidenceContract() {
     evidenceIds.add(record.id);
   });
 
+  // Every curated project must stay represented, and every represented project must be a
+  // known entity. Exact per-version size is pinned by the record/relationship counts below.
   assert(
     CURATED_PROJECT_IDS.every((id) => representedProjectIds.has(id)) &&
-      representedProjectIds.size === CURATED_PROJECT_IDS.length,
-    'Evidence records must represent exactly the six curated projects',
+      [...representedProjectIds].every((id) => knownProjectIds.has(id)),
+    'Evidence records must represent known projects and keep every curated project represented',
   );
   validateRevisionLineage(evidenceRecords, candidateEvidenceRecords);
-  assert(evidenceRecords.length === 22, 'The approved evidence snapshot must contain exactly 22 records');
+  const expectedCounts = EXPECTED_SNAPSHOT_COUNTS[evidenceSnapshot.version];
+  assert(expectedCounts, `No expected record counts are pinned for snapshot ${evidenceSnapshot.version}`);
+  assert(
+    evidenceRecords.length === expectedCounts.records,
+    `The approved evidence snapshot must contain exactly ${expectedCounts.records} records for ${evidenceSnapshot.version}`,
+  );
   assert(
     evidenceRecords.every((record) => record.reviewStatus === 'approved'),
     'The runtime evidence export may contain approved records only',
@@ -1334,8 +1387,8 @@ export function validateEvidenceContract() {
     relationshipIds.add(relationship.id);
   });
   assert(
-    relationshipProposals.length === 6,
-    'The approved sourced relationship slice must contain exactly six records',
+    relationshipProposals.length === expectedCounts.relationships,
+    `The approved sourced relationship slice must contain exactly ${expectedCounts.relationships} records for ${evidenceSnapshot.version}`,
   );
 
   const forbiddenKuruCurrent = '0x465d06d4521ae9ce724e0c182daad5d8a2ff7040';

@@ -25,6 +25,7 @@ import {
   EVIDENCE_STATUSES,
   EVIDENCE_SUPPORT_MODES,
   EVIDENCE_TYPES,
+  KNOWN_PROJECT_IDS,
   validateCandidateEvidenceRecord,
 } from '../src/evidence.js';
 
@@ -547,8 +548,8 @@ function validateIntakeRecord(record) {
   if (record.reviewStatus !== 'proposed' || record.reviewedAt !== null) {
     fail('intake drafts must stay proposed and unreviewed');
   }
-  if (record.relatedProjectIds.some((id) => !CURATED_PROJECT_IDS.includes(id))) {
-    fail('relatedProjectIds outside the curated set');
+  if (record.relatedProjectIds.some((id) => !KNOWN_PROJECT_IDS.includes(id))) {
+    fail('relatedProjectIds outside the known entity set');
   }
   return true;
 }

@@ -12,7 +12,6 @@ import {
   validateRevisionLineage,
 } from '../src/evidence-contract.js';
 import {
-  CURATED_PROJECT_IDS,
   EVIDENCE_DATA_MODE,
   EVIDENCE_SUPPORT_MODES,
   EVIDENCE_STATUSES,
@@ -20,6 +19,7 @@ import {
   EVIDENCE_SNAPSHOT_CREATED_AT,
   EVIDENCE_SNAPSHOT_REVIEWED_AT,
   EVIDENCE_SNAPSHOT_VERSION,
+  KNOWN_PROJECT_IDS,
   RELATIONSHIP_TYPES,
   REVIEW_STATUSES,
   evidenceRecords,
@@ -530,7 +530,7 @@ function validateEvidenceWorkspaceRecord(record) {
   const label = `Evidence ${record.id}`;
   assert(Array.isArray(record.relatedProjectIds), `${label} relatedProjectIds must be an array`);
   record.relatedProjectIds.forEach((id) =>
-    assert(CURATED_PROJECT_IDS.includes(id), `${label} has unknown related project ${id}`),
+    assert(KNOWN_PROJECT_IDS.includes(id), `${label} has unknown related project ${id}`),
   );
   assert(EVIDENCE_TYPES.includes(record.evidenceType), `${label} has invalid evidenceType`);
   assert(EVIDENCE_STATUSES.includes(record.status), `${label} has invalid claim status`);
@@ -607,8 +607,8 @@ function validateRelationshipCandidate(relationship) {
     (field) => !Object.prototype.hasOwnProperty.call(relationship ?? {}, field),
   );
   assert(!missing.length, `${label} missing: ${missing.join(', ')}`);
-  assert(CURATED_PROJECT_IDS.includes(relationship.from), `${label} has unknown from endpoint`);
-  assert(CURATED_PROJECT_IDS.includes(relationship.to), `${label} has unknown to endpoint`);
+  assert(KNOWN_PROJECT_IDS.includes(relationship.from), `${label} has unknown from endpoint`);
+  assert(KNOWN_PROJECT_IDS.includes(relationship.to), `${label} has unknown to endpoint`);
   assert(relationship.from !== relationship.to, `${label} cannot be self-referential`);
   assert(RELATIONSHIP_TYPES.includes(relationship.type), `${label} has invalid type`);
   assert(EVIDENCE_STATUSES.includes(relationship.status), `${label} has invalid claim status`);

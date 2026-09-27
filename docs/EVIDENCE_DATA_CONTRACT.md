@@ -206,6 +206,29 @@ revision lineage; the prior record may then receive an explicit stale decision. 
 evidence-ID or scope changes likewise require a relationship successor. This preserves the
 existing no-silent-overwrite rule.
 
+## Phase 5.1 entity expansion
+
+Phase 5.1 (Batch 1) deliberately expands the entity set beyond the six curated slice. The
+controlled vocabulary lives in `src/evidence.js`:
+
+- `CURATED_PROJECT_IDS` remains exactly the six source-curated entities of the phase-3.5 refresh;
+- `BATCH1_PROJECT_IDS` lists the 30 intake proposal ids approved into the `phase-3.5-v3`
+  snapshot (selection: `data/research/batch-1-selection-2026-09-27.json`);
+- `KNOWN_PROJECT_IDS` is the union and is the only set the workflow and runtime validators
+  accept for `projectId`, `relatedProjectIds`, and relationship endpoints.
+
+Two invariants replace the v2 "exactly six" equality without weakening it: every curated
+project must stay represented in the approved projection, and every represented project must
+be a known entity. Exact projection size stays pinned per snapshot version in
+`EXPECTED_SNAPSHOT_COUNTS` (v2: 22 records / 6 relationships; v3: 52 / 6). Adding entities
+beyond this list still requires a new versioned snapshot and a contract change.
+
+Every `phase-3.5-v3` subject carries its phase-3.7 decision inline under `reviewMetadata`
+(future inline contract above); the v2 compatibility companion continues to govern only the
+immutable v2 pair. Batch-1 records are directory-listing observations only: entering the
+snapshot never makes a project verified, endorsed, ranked, safe, or active, and TVL-based
+batch composition is not a city signal.
+
 ## Exact evidence record
 
 The approved JSON snapshot is the promotion authority for exact runtime source records. The generated module must be canonically identical to it. Every record contains:
