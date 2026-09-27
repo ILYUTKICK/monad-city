@@ -14,7 +14,7 @@
 import fs from 'node:fs';
 
 const MAIN = 'src/main.js';
-const RING_RADIUS = 520; // project units between the world origin and each island center
+const RING_RADIUS = 560; // project units between the world origin and each island center
 const DISTRICT_ANGLES = {
   DeFi: (45 * Math.PI) / 180,
   Infrastructure: (117 * Math.PI) / 180,
@@ -22,7 +22,7 @@ const DISTRICT_ANGLES = {
   AI: (261 * Math.PI) / 180,
   Identity: (333 * Math.PI) / 180,
 };
-const SPIRAL_GAP = { default: 68, DeFi: 54 }; // min center-to-center distance, project units
+const SPIRAL_GAP = { default: 74, DeFi: 76 }; // min center-to-center distance, project units
 const MIN_CROSS_ISLAND = 150; // buildings of different islands never come closer than this
 
 function spiralCells(count, gap) {

@@ -443,7 +443,7 @@ export function createCity3D({
   const anchor = new THREE.Vector3();
 
   // ---------- controls ----------
-  const DEFAULT_VIEW = { azimuth: Math.PI / 4, elevation: 0.62, radius: 176 };
+  const DEFAULT_VIEW = { azimuth: Math.PI / 4, elevation: 0.62, radius: 225 };
   const control = {
     azimuth: DEFAULT_VIEW.azimuth, elevation: DEFAULT_VIEW.elevation, radius: DEFAULT_VIEW.radius,
     azimuthGoal: DEFAULT_VIEW.azimuth, elevationGoal: DEFAULT_VIEW.elevation, radiusGoal: DEFAULT_VIEW.radius,
@@ -786,9 +786,35 @@ export function createCity3D({
 
     renderer.render(scene, camera);
 
+    // Label LOD (scale plan §6): at archipelago range only the selected / navigator-matched /
+    // hovered buildings plus two "landmark" buildings per district keep name pills; the full
+    // label layer returns as the camera closes in. District ground labels stay always-on.
+    const landmarkLabels = (() => {
+      const landmarks = new Set(['monad']);
+      const perDistrict = new Map();
+      projects.forEach((project) => {
+        if (project.id === 'monad') return;
+        if (!perDistrict.has(project.district)) perDistrict.set(project.district, []);
+        perDistrict.get(project.district).push(project.id);
+      });
+      perDistrict.forEach((list) => list.slice(0, 2).forEach((id) => landmarks.add(id)));
+      return landmarks;
+    })();
+    const labelsAtFullDetail = control.radius < 95;
+
     projectViews.forEach((view, id) => {
       const element = labelElements.get(id);
-      const showLabel = isVisible(view.project) && !state.graph && (view.targetOpacity > 0.5 || id === state.selected);
+      const prominent =
+        id === state.selected ||
+        state.highlightProjects.has(id) ||
+        hoveredId === id ||
+        landmarkLabels.has(id);
+      const showLabel =
+        isVisible(view.project) &&
+        !state.graph &&
+        (labelsAtFullDetail
+          ? view.targetOpacity > 0.5 || id === state.selected
+          : prominent);
       anchor.set(view.group.position.x, view.topY + 1.2, view.group.position.z).project(camera);
       const onScreen = anchor.z < 1;
       element.style.opacity = showLabel && onScreen ? (id === state.selected ? '1' : '0.85') : '0';
