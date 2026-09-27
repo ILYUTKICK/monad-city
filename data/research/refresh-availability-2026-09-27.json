@@ -1,0 +1,1829 @@
+{
+  "kind": "monad-city-research-refresh-availability",
+  "schemaVersion": "1",
+  "generatedAtUtc": "2026-09-27T14:43:36Z",
+  "snapshotVersion": "phase-3.5-v4",
+  "snapshotReviewedAt": "2026-09-27T13:08:02Z",
+  "method": "Plain HTTPS GET per unique approved source URL (dependency-free Node fetch). Registry sources additionally cross-checked against the current Monad chain set; App Portal records name-searched in the current server-rendered payload. Findings only — no review status changed here.",
+  "summary": {
+    "records": 142,
+    "uniqueSources": 18,
+    "sourceClassifications": {
+      "html-ok": 15,
+      "bot-challenge": 2,
+      "json-ok": 1
+    },
+    "recordFindings": {
+      "source-live": 15,
+      "source-issue": 2,
+      "artifact-url-live": 4,
+      "name-present-in-html": 36,
+      "still-listed": 85
+    }
+  },
+  "sourceFindings": [
+    {
+      "url": "https://docs.monad.xyz/introduction/monad-for-developers",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 380069
+    },
+    {
+      "url": "https://www.monad.xyz/announcements/get-started-on-monad-mainnet",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 584931
+    },
+    {
+      "url": "https://docs.monad.xyz/developer-essentials/network-information",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 382249
+    },
+    {
+      "url": "https://docs.kuru.io/",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "classification": "bot-challenge",
+      "detail": "<!DOCTYPE html> <!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 7]> <html class=\"no-js ie7 oldie\" lang",
+      "bytes": 4903
+    },
+    {
+      "url": "https://docs.kuru.io/contracts/Contract-addresses",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "classification": "bot-challenge",
+      "detail": "<!DOCTYPE html> <!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 7]> <html class=\"no-js ie7 oldie\" lang",
+      "bytes": 4903
+    },
+    {
+      "url": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+      "recordCount": 5,
+      "referenceType": "pinned-snapshot",
+      "httpStatus": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 233620
+    },
+    {
+      "url": "https://monadscan.com/tx/0x38f2408c6c7e6f4494abb85381fa3ef26b501d65abf54012ce0694322b582b03",
+      "recordCount": 1,
+      "referenceType": "stable-artifact-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 339688
+    },
+    {
+      "url": "https://capricorn-docs.gitbook.io/capricorn-docs/introduction-to-capricorn-tech",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 288369
+    },
+    {
+      "url": "https://monadscan.com/tx/0x60fc294b5e48ea8997dc1b4ddfc37ab3b82a6b9913e1b6dd40a7ed33fac0c7db",
+      "recordCount": 1,
+      "referenceType": "stable-artifact-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 205887
+    },
+    {
+      "url": "https://docs.hydrogenlabs.xyz/magma/liquid-staking-gmon",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 342271
+    },
+    {
+      "url": "https://monadscan.com/tx/0x90a377ccdfe51e77ee22d7843ace210f18c23ffd7e0ff95c138b7afc3e5b0ba4",
+      "recordCount": 1,
+      "referenceType": "stable-artifact-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 232765
+    },
+    {
+      "url": "https://docs.switchboard.xyz/docs-by-chain/evm/monad",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 670241
+    },
+    {
+      "url": "https://www.monad.xyz/infra",
+      "recordCount": 2,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 1522722
+    },
+    {
+      "url": "https://docs.pyth.network/price-feeds/core/push-feeds/evm",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 276080
+    },
+    {
+      "url": "https://monadscan.com/tx/0x03c93be66f8e6acd0d5c08066b9d9e0663e0e17d48a5a30db2094277c8b54d5a",
+      "recordCount": 1,
+      "referenceType": "stable-artifact-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 694413
+    },
+    {
+      "url": "https://docs.hydrogenlabs.xyz/magma/developers/gmon-oracle-feeds",
+      "recordCount": 1,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 358352
+    },
+    {
+      "url": "https://app.monad.xyz/",
+      "recordCount": 36,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "html-ok",
+      "detail": null,
+      "bytes": 538369,
+      "serverRenderedHint": "next-flight-payload-present"
+    },
+    {
+      "url": "https://api.llama.fi/protocols",
+      "recordCount": 85,
+      "referenceType": "mutable-url",
+      "httpStatus": 200,
+      "contentType": "application/json",
+      "classification": "json-ok",
+      "detail": null,
+      "bytes": 8962628,
+      "monadListingsNow": 140
+    }
+  ],
+  "recordFindings": [
+    {
+      "id": "E-MONAD-CAP-001",
+      "projectId": "monad",
+      "sourceUrl": "https://docs.monad.xyz/introduction/monad-for-developers",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-MONAD-MAINNET-001",
+      "projectId": "monad",
+      "sourceUrl": "https://www.monad.xyz/announcements/get-started-on-monad-mainnet",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-MONAD-NET-001",
+      "projectId": "monad",
+      "sourceUrl": "https://docs.monad.xyz/developer-essentials/network-information",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-KURU-CAP-001",
+      "projectId": "kuru",
+      "sourceUrl": "https://docs.kuru.io/",
+      "sourceClassification": "bot-challenge",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-issue: bot-challenge"
+    },
+    {
+      "id": "E-KURU-CONTRACTS-001",
+      "projectId": "kuru",
+      "sourceUrl": "https://docs.kuru.io/contracts/Contract-addresses",
+      "sourceClassification": "bot-challenge",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-issue: bot-challenge"
+    },
+    {
+      "id": "E-KURU-REGISTRY-001",
+      "projectId": "kuru",
+      "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-KURU-CHAIN-001",
+      "projectId": "kuru",
+      "sourceUrl": "https://monadscan.com/tx/0x38f2408c6c7e6f4494abb85381fa3ef26b501d65abf54012ce0694322b582b03",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "artifact-url-live: stable artifact page reachable"
+    },
+    {
+      "id": "E-APRIORI-CAP-001",
+      "projectId": "aPriori",
+      "sourceUrl": "https://capricorn-docs.gitbook.io/capricorn-docs/introduction-to-capricorn-tech",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-APRIORI-REGISTRY-001",
+      "projectId": "aPriori",
+      "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-APRIORI-CHAIN-001",
+      "projectId": "aPriori",
+      "sourceUrl": "https://monadscan.com/tx/0x60fc294b5e48ea8997dc1b4ddfc37ab3b82a6b9913e1b6dd40a7ed33fac0c7db",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "artifact-url-live: stable artifact page reachable"
+    },
+    {
+      "id": "E-MAGMA-CAP-001",
+      "projectId": "magma",
+      "sourceUrl": "https://docs.hydrogenlabs.xyz/magma/liquid-staking-gmon",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-MAGMA-REGISTRY-001",
+      "projectId": "magma",
+      "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-MAGMA-CHAIN-001",
+      "projectId": "magma",
+      "sourceUrl": "https://monadscan.com/tx/0x90a377ccdfe51e77ee22d7843ace210f18c23ffd7e0ff95c138b7afc3e5b0ba4",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "artifact-url-live: stable artifact page reachable"
+    },
+    {
+      "id": "E-SWITCHBOARD-CAP-001",
+      "projectId": "switchboard",
+      "sourceUrl": "https://docs.switchboard.xyz/docs-by-chain/evm/monad",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-SWITCHBOARD-MEM-001",
+      "projectId": "switchboard",
+      "sourceUrl": "https://www.monad.xyz/infra",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-SWITCHBOARD-REGISTRY-001",
+      "projectId": "switchboard",
+      "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-PYTH-PUSH-001",
+      "projectId": "pyth",
+      "sourceUrl": "https://docs.pyth.network/price-feeds/core/push-feeds/evm",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-PYTH-MEM-001",
+      "projectId": "pyth",
+      "sourceUrl": "https://www.monad.xyz/infra",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-PYTH-REGISTRY-001",
+      "projectId": "pyth",
+      "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-PYTH-CHAIN-001",
+      "projectId": "pyth",
+      "sourceUrl": "https://monadscan.com/tx/0x03c93be66f8e6acd0d5c08066b9d9e0663e0e17d48a5a30db2094277c8b54d5a",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "artifact-url-live: stable artifact page reachable"
+    },
+    {
+      "id": "E-MAGMA-SWITCHBOARD-001",
+      "projectId": "magma",
+      "sourceUrl": "https://docs.hydrogenlabs.xyz/magma/developers/gmon-oracle-feeds",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "source-live"
+    },
+    {
+      "id": "E-KURU-MEM-002",
+      "projectId": "kuru",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-AAVE-V3-MEM-001",
+      "projectId": "aave-v3",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-PANCAKESWAP-MEM-001",
+      "projectId": "pancakeswap",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-UNISWAP-MEM-001",
+      "projectId": "uniswap",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-CURVE-MEM-001",
+      "projectId": "curve",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-PENDLE-MEM-001",
+      "projectId": "pendle",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-UPSHIFT-MEM-001",
+      "projectId": "upshift",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-EULER-MEM-001",
+      "projectId": "euler",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-LAGOON-MEM-001",
+      "projectId": "lagoon",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-CURVANCE-MEM-001",
+      "projectId": "curvance",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-RENZO-MEM-001",
+      "projectId": "renzo",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-BEEFY-MEM-001",
+      "projectId": "beefy",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-YUZU-MONEY-MEM-001",
+      "projectId": "yuzu-money",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-BALANCER-MEM-001",
+      "projectId": "balancer",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-SPECTRA-MEM-001",
+      "projectId": "spectra",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-MENTO-MEM-001",
+      "projectId": "mento",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-SYMBIOSIS-MEM-001",
+      "projectId": "symbiosis",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-NEVERLAND-MEM-001",
+      "projectId": "neverland",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-AMPLE-MEM-001",
+      "projectId": "ample",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-PERPL-MEM-001",
+      "projectId": "perpl",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-WOOFI-MEM-001",
+      "projectId": "woofi",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-LEVERUP-MEM-001",
+      "projectId": "leverup",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-KINTSU-MEM-001",
+      "projectId": "kintsu",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-LEVR-BET-MEM-001",
+      "projectId": "levr-bet",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-SUMER-MONEY-MEM-001",
+      "projectId": "sumer-money",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-MONDAY-TRADE-MEM-001",
+      "projectId": "monday-trade",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-CAPRICORN-MEM-001",
+      "projectId": "capricorn",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-NAD-FUN-MEM-001",
+      "projectId": "nad-fun",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-DRAKE-MEM-001",
+      "projectId": "drake",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-KIZZY-MEM-001",
+      "projectId": "kizzy",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-NABLA-FINANCE-MEM-001",
+      "projectId": "nabla-finance",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-BEAN-EXCHANGE-MEM-001",
+      "projectId": "bean-exchange",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-CLOBER-MEM-001",
+      "projectId": "clober",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-COVENANT-MEM-001",
+      "projectId": "covenant",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-NARBET-MEM-001",
+      "projectId": "narbet",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-NARWHAL-FINANCE-MEM-001",
+      "projectId": "narwhal-finance",
+      "sourceUrl": "https://app.monad.xyz/",
+      "sourceClassification": "html-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "name-present-in-html: project name appears in the current portal payload"
+    },
+    {
+      "id": "E-ACCOUNTABLE-REG-001",
+      "projectId": "accountable",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "accountable",
+        "category": "Uncollateralized Lending"
+      }
+    },
+    {
+      "id": "E-AETHONSWAP-REG-001",
+      "projectId": "aethonswap",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "aethonswap",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-AGUA-REG-001",
+      "projectId": "agua",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "agua",
+        "category": "Onchain Capital Allocator"
+      }
+    },
+    {
+      "id": "E-ALPHAGROWTH-REG-001",
+      "projectId": "alphagrowth",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "alphagrowth",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-ATLANTIS-DEX-REG-001",
+      "projectId": "atlantis-dex",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "atlantis-dex",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-AUGUST-DIGITAL-REG-001",
+      "projectId": "august-digital",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "august-digital",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-AUTOFINANCE-REG-001",
+      "projectId": "autofinance",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "autofinance",
+        "category": "Yield"
+      }
+    },
+    {
+      "id": "E-BROWNFI-V2-REG-001",
+      "projectId": "brownfi-v2",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "brownfi-v2",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-CLEARSTAR-REG-001",
+      "projectId": "clearstar",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "clearstar",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-DETRADE-REG-001",
+      "projectId": "detrade",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "detrade",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-ENJOYOORS-REG-001",
+      "projectId": "enjoyoors",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "enjoyoors",
+        "category": "CDP"
+      }
+    },
+    {
+      "id": "E-EUCLID-PROTOCOL-REG-001",
+      "projectId": "euclid-protocol",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "euclid-protocol",
+        "category": "Cross Chain Bridge"
+      }
+    },
+    {
+      "id": "E-EULER-DAO-REG-001",
+      "projectId": "euler-dao",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "euler-dao",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-FOLKS-FINANCE-XCHAIN-REG-001",
+      "projectId": "folks-finance-xchain",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "folks-finance-xchain",
+        "category": "Lending"
+      }
+    },
+    {
+      "id": "E-FUSION-BY-IPOR-REG-001",
+      "projectId": "fusion-by-ipor",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "fusion-by-ipor",
+        "category": "Yield Aggregator"
+      }
+    },
+    {
+      "id": "E-GAMMA-RESEARCH-REG-001",
+      "projectId": "gamma-research",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "gamma-research",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-GEARBOX-REG-001",
+      "projectId": "gearbox",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "gearbox",
+        "category": "Lending"
+      }
+    },
+    {
+      "id": "E-GHOST-PROTOCOL-REG-001",
+      "projectId": "ghost-protocol",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "ghost-protocol",
+        "category": "Privacy"
+      }
+    },
+    {
+      "id": "E-GLUEHOOK-REG-001",
+      "projectId": "gluehook",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "gluehook",
+        "category": "Liquidity Automation"
+      }
+    },
+    {
+      "id": "E-HANJI-PROTOCOL-REG-001",
+      "projectId": "hanji-protocol",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "hanji-protocol",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-HUMA-REG-001",
+      "projectId": "huma",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "huma",
+        "category": "RWA"
+      }
+    },
+    {
+      "id": "E-HYPERITHM-REG-001",
+      "projectId": "hyperithm",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "hyperithm",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-IZISWAP-REG-001",
+      "projectId": "iziswap",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "iziswap",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-JOE-DEX-REG-001",
+      "projectId": "joe-dex",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "joe-dex",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-K3-CAPITAL-REG-001",
+      "projectId": "k3-capital",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "k3-capital",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-K613-REG-001",
+      "projectId": "k613",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "k613",
+        "category": "Lending"
+      }
+    },
+    {
+      "id": "E-LAYERZERO-V2-REG-001",
+      "projectId": "layerzero-v2",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "layerzero-v2",
+        "category": "Bridge"
+      }
+    },
+    {
+      "id": "E-LEMONAD-REG-001",
+      "projectId": "lemonad",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "lemonad",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-LFJ-POE-REG-001",
+      "projectId": "lfj-poe",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "lfj-poe",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-LUNARBASE-REG-001",
+      "projectId": "lunarbase",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "lunarbase",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-MADNESS-FINANCE-REG-001",
+      "projectId": "madness-finance",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "madness-finance",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-MELLOW-CORE-REG-001",
+      "projectId": "mellow-core",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "mellow-core",
+        "category": "Onchain Capital Allocator"
+      }
+    },
+    {
+      "id": "E-MELLOW-RESTAKING-REG-001",
+      "projectId": "mellow-restaking",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "mellow-restaking",
+        "category": "Liquid Restaking"
+      }
+    },
+    {
+      "id": "E-METRIC-V2-REG-001",
+      "projectId": "metric-v2",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "metric-v2",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-MONAD-GRID-REG-001",
+      "projectId": "monad-grid",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "monad-grid",
+        "category": "Launchpad"
+      }
+    },
+    {
+      "id": "E-MOONMACE-REG-001",
+      "projectId": "moonmace",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "moonmace",
+        "category": "Liquid Staking"
+      }
+    },
+    {
+      "id": "E-MORPHO-BLUE-REG-001",
+      "projectId": "morpho-blue",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "morpho-blue",
+        "category": "Lending"
+      }
+    },
+    {
+      "id": "E-MU-DIGITAL-REG-001",
+      "projectId": "mu-digital",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "mu-digital",
+        "category": "RWA"
+      }
+    },
+    {
+      "id": "E-MURK-FINANCE-REG-001",
+      "projectId": "murk-finance",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "murk-finance",
+        "category": "Privacy"
+      }
+    },
+    {
+      "id": "E-NATIVE-LEND-CURATOR-REG-001",
+      "projectId": "native-lend-curator",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "native-lend-curator",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-NEAR-INTENTS-REG-001",
+      "projectId": "near-intents",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "near-intents",
+        "category": "Bridge"
+      }
+    },
+    {
+      "id": "E-NEUTRAL-TRADE-REG-001",
+      "projectId": "neutral-trade",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "neutral-trade",
+        "category": "Onchain Capital Allocator"
+      }
+    },
+    {
+      "id": "E-NOXA-DEX-V2-REG-001",
+      "projectId": "noxa-dex-v2",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "noxa-dex-v2",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-NOXA-FUN-REG-001",
+      "projectId": "noxa-fun",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "noxa-fun",
+        "category": "Launchpad"
+      }
+    },
+    {
+      "id": "E-OBSDN-REG-001",
+      "projectId": "obsdn",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "obsdn",
+        "category": "Derivatives"
+      }
+    },
+    {
+      "id": "E-OCTOSWAP-CL-REG-001",
+      "projectId": "octoswap-cl",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "octoswap-cl",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-OUROBOROS-CAPITAL-REG-001",
+      "projectId": "ouroboros-capital",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "ouroboros-capital",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-PANGOLIN-V3-REG-001",
+      "projectId": "pangolin-v3",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "pangolin-v3",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-PARITY-DEX-REG-001",
+      "projectId": "parity-dex",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "parity-dex",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-PERIDOT-REG-001",
+      "projectId": "peridot",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "peridot",
+        "category": "Lending"
+      }
+    },
+    {
+      "id": "E-PINGU-EXCHANGE-REG-001",
+      "projectId": "pingu-exchange",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "pingu-exchange",
+        "category": "Derivatives"
+      }
+    },
+    {
+      "id": "E-PINOT-V3-REG-001",
+      "projectId": "pinot-v3",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "pinot-v3",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-PRINTR-REG-001",
+      "projectId": "printr",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "printr",
+        "category": "Launchpad"
+      }
+    },
+    {
+      "id": "E-PURPSEXCHANGE-REG-001",
+      "projectId": "purpsexchange",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "purpsexchange",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-QUANTUS-LEND-REG-001",
+      "projectId": "quantus-lend",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "quantus-lend",
+        "category": "Lending"
+      }
+    },
+    {
+      "id": "E-RESERVOIR-PROTOCOL-REG-001",
+      "projectId": "reservoir-protocol",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "reservoir-protocol",
+        "category": "CDP"
+      }
+    },
+    {
+      "id": "E-ROCKAWAYX-REG-001",
+      "projectId": "rockawayx",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "rockawayx",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-SABLIER-LOCKUP-REG-001",
+      "projectId": "sablier-lockup",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "sablier-lockup",
+        "category": "Payments"
+      }
+    },
+    {
+      "id": "E-SAFFRON-VAULTS-REG-001",
+      "projectId": "saffron-vaults",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "saffron-vaults",
+        "category": "Yield"
+      }
+    },
+    {
+      "id": "E-SHERPA-REG-001",
+      "projectId": "sherpa",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "sherpa",
+        "category": "Onchain Capital Allocator"
+      }
+    },
+    {
+      "id": "E-SHMONAD-REG-001",
+      "projectId": "shmonad",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "shmonad",
+        "category": "Liquid Staking"
+      }
+    },
+    {
+      "id": "E-SKATE-AMM-REG-001",
+      "projectId": "skate-amm",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "skate-amm",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-SOMESWAP-AMM-REG-001",
+      "projectId": "someswap-amm",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "someswap-cl",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-SPRINGX-REG-001",
+      "projectId": "springx",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "springx",
+        "category": "Yield"
+      }
+    },
+    {
+      "id": "E-STEAKHOUSE-FINANCIAL-REG-001",
+      "projectId": "steakhouse-financial",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "steakhouse-financial",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-STONEUSD-REG-001",
+      "projectId": "stoneusd",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "stoneusd",
+        "category": "CeDeFi"
+      }
+    },
+    {
+      "id": "E-SWAAP-MAKER-V2-REG-001",
+      "projectId": "swaap-maker-v2",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "swaap-maker-v2",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-SWEEP-N-FLIP-REG-001",
+      "projectId": "sweep-n-flip",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "sweep-n-flip",
+        "category": "NFT Marketplace"
+      }
+    },
+    {
+      "id": "E-SWYRL-CL-REG-001",
+      "projectId": "swyrl-cl",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "swyrl-cl",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-THEO-NETWORK-THBILL-REG-001",
+      "projectId": "theo-network-thbill",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "theo-network-thbill",
+        "category": "RWA"
+      }
+    },
+    {
+      "id": "E-THESAUROS-REG-001",
+      "projectId": "thesauros",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "thesauros",
+        "category": "Yield"
+      }
+    },
+    {
+      "id": "E-TOWNSQUARE-LENDING-REG-001",
+      "projectId": "townsquare-lending",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "townsquare-lending",
+        "category": "Lending"
+      }
+    },
+    {
+      "id": "E-TOWNSQUARE-LOOP-VAULTS-REG-001",
+      "projectId": "townsquare-loop-vaults",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "townsquare-loop-vaults",
+        "category": "Leveraged Farming"
+      }
+    },
+    {
+      "id": "E-TRAVESSIA-CREDIT-REG-001",
+      "projectId": "travessia-credit",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "travessia-credit",
+        "category": "RWA"
+      }
+    },
+    {
+      "id": "E-TULIPA-CAPITAL-REG-001",
+      "projectId": "tulipa-capital",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "tulipa-capital",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-ULTRAYIELD-CURATOR-REG-001",
+      "projectId": "ultrayield-curator",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "ultrayield-curator",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-UNIFIED-LABS-REG-001",
+      "projectId": "unified-labs",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "unified-labs",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-UNIT-REG-001",
+      "projectId": "unit",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "unit",
+        "category": "Bridge"
+      }
+    },
+    {
+      "id": "E-VALOS-REG-001",
+      "projectId": "valos",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "valos",
+        "category": "RWA"
+      }
+    },
+    {
+      "id": "E-VEDA-REG-001",
+      "projectId": "veda",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "veda",
+        "category": "Onchain Capital Allocator"
+      }
+    },
+    {
+      "id": "E-VFAT-IO-REG-001",
+      "projectId": "vfat-io",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "vfat.io",
+        "category": "Yield Aggregator"
+      }
+    },
+    {
+      "id": "E-VII-FINANCE-REG-001",
+      "projectId": "vii-finance",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "vii-finance",
+        "category": "Leveraged Farming"
+      }
+    },
+    {
+      "id": "E-WOMBAT-EXCHANGE-REG-001",
+      "projectId": "wombat-exchange",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "wombat-exchange",
+        "category": "Dexs"
+      }
+    },
+    {
+      "id": "E-Y10K-CAPITAL-REG-001",
+      "projectId": "y10k-capital",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "y10k-capital",
+        "category": "Risk Curators"
+      }
+    },
+    {
+      "id": "E-ZKSWAP-V2-REG-001",
+      "projectId": "zkswap-v2",
+      "sourceUrl": "https://api.llama.fi/protocols",
+      "sourceClassification": "json-ok",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T13:06:37Z",
+      "finding": "still-listed: protocol currently listed on Monad with the claimed category",
+      "subjectNow": {
+        "slug": "zkswap-v2",
+        "category": "Dexs"
+      }
+    }
+  ],
+  "note": "Availability findings for the refresh runbook. A bot challenge on a stable-artifact or mutable URL is a reachability finding, not proof that a source is unavailable. Decisions happen only through the evidence workflow CLI with explicit human review."
+}

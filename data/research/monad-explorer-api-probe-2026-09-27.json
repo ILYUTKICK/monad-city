@@ -1,0 +1,112 @@
+{
+  "kind": "monad-city-research-probe",
+  "schemaVersion": "1",
+  "generatedAtUtc": "2026-09-27T14:39:51Z",
+  "question": "Is there a reliable PUBLIC Monad mainnet explorer API usable at build time (dependency-free Node fetch, no browser, no secrets)?",
+  "network": {
+    "name": "Monad mainnet",
+    "chainId": 143
+  },
+  "method": "Plain HTTPS GET per candidate REST endpoint with a JSON accept header and a research user-agent; response classified (json-api-ok / requires-api-key / bot-challenge / deprecated-endpoint / not-found / error). No scraping, no challenge solving, no retries.",
+  "verdict": {
+    "keylessPublicApiUsable": false,
+    "usableIds": [],
+    "keyedOnlyIds": [
+      "etherscan-v2-multichain-keyless"
+    ],
+    "conclusion": "No keyless public explorer API is reachable from a build-time script. The reliable route (Etherscan V2 multichain, chainid 143) requires an API key — an owner explorer-source decision. No deployment facts may be drafted until that decision or a keyless source appears."
+  },
+  "probes": [
+    {
+      "id": "monadexplorer-blockscout-v2",
+      "explorer": "MonadExplorer",
+      "probeUrl": "https://monadexplorer.com/api/v2/stats",
+      "httpStatus": 403,
+      "contentType": "text/html; charset=UTF-8",
+      "classification": "bot-challenge",
+      "detail": "Cloudflare browser challenge; not reachable from a build-time script.",
+      "probedAtUtc": "2026-09-27T14:39:46Z"
+    },
+    {
+      "id": "socialscan-monad-v2",
+      "explorer": "SocialScan (Monad)",
+      "probeUrl": "https://monad.socialscan.io/api/v2/stats",
+      "httpStatus": 429,
+      "contentType": "application/json",
+      "classification": "bot-challenge",
+      "detail": "This request requires a challenge to be completed.",
+      "probedAtUtc": "2026-09-27T14:39:46Z"
+    },
+    {
+      "id": "hoodscan-monad-v2",
+      "explorer": "HoodScan (Monad)",
+      "probeUrl": "https://monad.hoodscan.io/api/v2/stats",
+      "httpStatus": 429,
+      "contentType": "application/json",
+      "classification": "bot-challenge",
+      "detail": "This request requires a challenge to be completed.",
+      "probedAtUtc": "2026-09-27T14:39:47Z"
+    },
+    {
+      "id": "monadvision-v2",
+      "explorer": "MonadVision",
+      "probeUrl": "https://monadvision.com/api/v2/stats",
+      "httpStatus": 404,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "not-found",
+      "detail": "<!DOCTYPE html><html data-dpl-id=\"dpl_AybqZp9puxqGy9Fj5drAsibNhQRq\" lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"v",
+      "probedAtUtc": "2026-09-27T14:39:47Z"
+    },
+    {
+      "id": "blockscout-hosted-monad",
+      "explorer": "Blockscout hosted instance",
+      "probeUrl": "https://monad.blockscout.com/api/v2/stats",
+      "httpStatus": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "classification": "not-found",
+      "detail": "default backend - 404",
+      "probedAtUtc": "2026-09-27T14:39:48Z"
+    },
+    {
+      "id": "monadscan-v1",
+      "explorer": "MonadScan (V1)",
+      "probeUrl": "https://api.monadscan.com/api?module=proxy&action=eth_blockNumber",
+      "httpStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "classification": "deprecated-endpoint",
+      "detail": "{\"status\":\"0\",\"message\":\"NOTOK\",\"result\":\"You are using a deprecated V1 endpoint, switch to Etherscan API V2 using https://docs.etherscan.io/v2-migration\"}",
+      "probedAtUtc": "2026-09-27T14:39:49Z"
+    },
+    {
+      "id": "monadscan-site-v2-path",
+      "explorer": "MonadScan (site /api/v2)",
+      "probeUrl": "https://monadscan.com/api/v2/stats",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "classification": "non-json",
+      "detail": "non-JSON text/html; charset=utf-8 body (len 65171)",
+      "probedAtUtc": "2026-09-27T14:39:49Z"
+    },
+    {
+      "id": "etherscan-v2-multichain-keyless",
+      "explorer": "Etherscan V2 multichain (keyless attempt)",
+      "probeUrl": "https://api.etherscan.io/v2/api?chainid=143&module=proxy&action=eth_blockNumber",
+      "httpStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "classification": "requires-api-key",
+      "detail": "{\"status\":\"0\",\"message\":\"NOTOK\",\"result\":\"Missing/Invalid API Key\"}",
+      "probedAtUtc": "2026-09-27T14:39:50Z"
+    },
+    {
+      "id": "routescan-143",
+      "explorer": "Routescan",
+      "probeUrl": "https://api.routescan.io/v2/network/mainnet/evm/143/etherscan/api?module=proxy&action=eth_blockNumber",
+      "httpStatus": 200,
+      "contentType": "application/json; charset=utf-8",
+      "classification": "json-api-error",
+      "detail": "{\"status\":\"0\",\"message\":\"chain not supported\",\"result\":null}",
+      "probedAtUtc": "2026-09-27T14:39:51Z"
+    }
+  ],
+  "note": "Research probe only. It resolves no deployments and asserts no project facts; it never enters the runtime and is never fetched by the browser. Re-runs on a new UTC date create a new dated artifact."
+}

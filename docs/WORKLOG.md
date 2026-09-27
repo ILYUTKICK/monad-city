@@ -1291,6 +1291,59 @@ Next:
 
 
 
+### 2026-09-27 — Lead agent / trust+data — Phase 5.3: explorer research (STOP recorded) + refresh pass 1
+
+Two §5.3 sub-tasks: (1) deployment resolution for the 105 App-portal-only pending groups —
+research-first per the kickoff; (2) refresh runbook, first execution.
+
+Changed:
+- `scripts/research/probe-explorer-apis.js` + `data/research/monad-explorer-api-probe-2026-09-27.json`:
+  probes every candidate Monad mainnet explorer REST endpoint from a build-time script and
+  records the classified results. Verdict: **no keyless public explorer API is usable today** —
+  monadexplorer.com and monadvision.com are Cloudflare-challenged (403), monad.socialscan.io and
+  monad.hoodscan.io return 429 JS challenges, monad.blockscout.com does not exist, Routescan
+  does not support chain 143, api.monadscan.com V1 is deprecated, and the one reliable route —
+  Etherscan V2 multichain (`api.etherscan.io/v2/api?chainid=143`) — requires an API key
+  ("Missing/Invalid API Key" verified keyless). MonadScan HTML search is an ASP.NET viewstate
+  POST form, not a public API. Per the kickoff condition, the deployment-resolution sub-task
+  STOPS here: no `resolve-pending-deployments.js`, no `pending-deployments-<date>.json` — no
+  deployment facts were invented. OWNER CALL pending: register a free Etherscan API key
+  (explorer-source choice) → the resolver can be implemented against V2 multichain next session.
+- `scripts/research/refresh-source-availability.js` + `data/research/refresh-availability-2026-09-27.json`:
+  refresh pass 1 over the approved phase-3.5-v4 projection (142 records / 18 unique sources).
+  Findings only — no review status changed by the script.
+- `docs/REFRESH_RUNBOOK.md`: the repeatable refresh procedure (mechanical pass → human decision
+  sequence via the evidence CLI → WORKLOG recording), with the decision boundary (a bot
+  challenge or freshness finding never auto-transitions a status) and the execution log.
+
+Verified:
+- Probe results are reproducible (plain GETs; the artifact stores per-endpoint status,
+  content-type, classification, and detail).
+- Refresh pass 1 findings: 85/85 DefiLlama registry records still listed on Monad with the
+  claimed category (zero drift), 36/36 App Portal names present in the current portal payload,
+  4/4 explorer transaction artifacts reachable, 13/15 remaining sources live. The only issue:
+  `docs.kuru.io` (E-KURU-CAP-001, E-KURU-CONTRACTS-001) bot-challenges scripted fetches — a
+  reachability finding, not source unavailability; both records are capture-instant bounded,
+  90-day cadence, not due until 2026-12-21.
+- Governance state: nothing due at pass time (batch-1/2 records mature from 2026-10-22; the
+  v4 inline `reviewMetadata` is enforced at the batch-3 promotion gate — the v2 read-only
+  `evidence:governance` report does not apply to inline-policy snapshots).
+- **Decision: zero review transitions warranted in pass 1** — no source died, no scope drifted,
+  nothing was due; a mass re-approval would reset cadence clocks without an inspection basis.
+- `npm run build` green (no runtime code touched).
+
+Limitations:
+- The refresh availability script cannot see through bot challenges; a human browser check is
+  the follow-up for `docs.kuru.io` before its December due date (or at the batch-3 gate).
+- The 105 pending deployments remain pending — resolution is blocked on the owner's
+  explorer-source decision (keyed Etherscan V2) or a future keyless public API.
+
+Next:
+- Owner: confirm batch 3 in-session (Task 2.3 is gated) and decide the Etherscan V2 key
+  question for the pending-deployment resolver.
+
+
+
 ### 2026-09-27 — Lead agent / frontend — Phase 5.3: floating 3D district buttons replace ground labels
 
 Owner ask: «Надо сделать белые 3д кнопки над всеми 5 дистриктами. У нас сейчас они на полу
