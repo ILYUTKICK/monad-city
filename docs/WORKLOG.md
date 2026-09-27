@@ -985,14 +985,89 @@ Limitations:
 - Seed artifacts and drafts are dated 2026-09-26 (UTC capture date).
 
 Next:
-- HUMAN REVIEW WINDOW (required): Batch 1 selection from the 35 full drafts + 85 manifest-only
-  drafts; per-project source inspection and phase-3.7 review decisions; then `evidence:prepare`
+- HUMAN REVIEW WINDOW for the Phase 5.0 dry-run proposals (see Phase 5.0 handoff above) —
+  Batch 1 selection, source inspection, phase-3.7 decisions; then `evidence:prepare`
   into a lineage-complete workspace, snapshot v3, promotion, city layout, and data-driven
   Navigator copy (scale plan §5.1). Do not self-approve these proposals.
 - Deferred seed extension: retain DefiLlama `oraclesBreakdown` to source future
   relationship candidates (needs the curated-six endpoint contract expanded first).
 - v2.2 visual backlog (separate tasks/commits): relationship hover tooltip on beams; 390px
   view-toggle clip; district ground-label occlusion.
+
+### 2026-09-27 — Lead agent — Phase 5.1 Batch 1: 30 projects live (snapshot phase-3.5-v3)
+
+Owner authorization: after reviewing the Phase 5.0 dry-run artifacts, the owner approved
+implementation ("Я все проверил — переходим к реализации"). That owner decision is the human
+review window for this batch; per-record decisions below record it through the official
+evidence workflow with controlled metadata. Nothing beyond the reviewed drafts was approved.
+
+Changed (commits `e93cc86`, `1254263`, `0c6ffc7`, `cf99c5a`):
+- Batch composition: `scripts/research/select-batch-1.js` ranks the 35 full intake drafts by
+  DefiLlama TVL (batch-composition signal only — never rendered) and selects 30
+  (`data/research/batch-1-selection-2026-09-27.json`); 5 deferred to Batch 2. The defillama
+  fetch retains `tvl` since the 2026-09-27 artifact.
+- Entity contract expansion (trust/data change per EVIDENCE_DATA_CONTRACT.md §Phase 5.1):
+  `KNOWN_PROJECT_IDS` = curated six + `BATCH1_PROJECT_IDS` (30); workflow/validators accept
+  the union; per-version projection sizes pinned in `EXPECTED_SNAPSHOT_COUNTS` (v2 22/6,
+  v3 52/6); contract `evidenceFingerprint` now treats `reviewMetadata` as review-only (the
+  inline contract's own rule).
+- Review workspace (`scripts/build-batch-1-workspace.js`): rebuilds the full retained
+  candidate history (24 evidence + 8 relationships, including the three superseded
+  predecessors recorded `stale`/`superseded` at the 2026-09-22 refresh instant), imports the
+  legacy decisions inline under the opaque transition token `reviewer:r-c929f58a13e3588e`
+  (schema-mapping only, not an actor), appends the 30 drafted records as `proposed`, and
+  emits the decision plan (`data/research/batch-1-review-plan-2026-09-27.json`). All 30
+  approvals were recorded per record through `npm run evidence:review` with the owner token
+  `reviewer:r-2722378757f140a8`, method `manual-artifact-and-payload-inspection`, reason
+  `supported-with-limitations`, at `2026-09-27T11:29:35Z`.
+- Snapshot `phase-3.5-v3`: 52 approved evidence records / 6 relationships, created and
+  reviewed `2026-09-27T11:34:47Z`, canonical SHA-256
+  `4e515a65186b2525693a3df612778a82dcde241a136d70264a0b776ecb283b39`, promoted to
+  `src/evidence-snapshots/phase-3.5-v3.generated.js`. The v2 pair and its governance
+  companion remain untouched as the rollback boundary. `evidence:verify-promotion` now
+  validates the v3 pair (package.json paths updated).
+- Governance display is inline: the runtime synthesizes the decision view and cadence rows
+  from each subject's `reviewMetadata` (58 governed subjects, 0 due at the release as-of);
+  fixture self-checks became data-driven.
+- City wiring: 30 deterministic batch-1 entries in `src/main.js` (uniform height 50 — every
+  batch-1 project carries exactly one record; neutral descriptions; district palette; spiral
+  placement inside the island, ≥44 units apart, via `scripts/research/compose-batch-1-city.js`).
+  The fictional Demo building "Pixel Forge" reidentified from the legacy internal id
+  `kintsu` to `pixel-forge` (two demo edges re-endpointed) so the real Kintsu could enter.
+  Graph-view viewBox widened for the 40-node layout.
+- Navigator copy is data-driven: sourced-subset answers now state live coverage
+  ("36 of 40 shown projects carry exact records") computed from the snapshot and project
+  list (scale plan §7); AI_NAVIGATOR.md and the evidence contract updated to match.
+
+Verified:
+- `npm run build` green on every commit (verify-promotion gate; v3 SHA confirmed).
+- `evidence:load` + `evidence:promote` explicit confirmations passed; runtime contract
+  validates 52 records / 36 represented projects / 58 governed subjects at load.
+- In-browser QA (1440×900 and 390×844): 40 buildings render with synced keyboard list and
+  district counts (DeFi 32, AI 1, Infrastructure 4, Gaming 2, Identity 1); selecting a
+  batch-1 building opens a Source-backed passport with the exact portal-listing claim,
+  governance action, and site; Navigator "lending" returns 5 batch-1 projects with the
+  36-of-40 coverage note and evidence references; Graph view renders 40 nodes; narrow layout
+  has no horizontal overflow; zero console errors.
+
+Limitations:
+- Batch 1 is directory-listing evidence only (one portal record per project): it proves
+  listing membership at the capture instant, not deployments, activity, safety, or
+  legitimacy. Explorer/contract verification remains Batch 2 source work.
+- DeFi district is dense (32 buildings); label LOD and data-driven district layout land in
+  Phase 5.2.
+- No new relationships: batch-1 records support no typed edges; the relationship graph is
+  unchanged (17 active edges).
+- The transition token maps historical decisions without actor attribution, mirroring the
+  v2 companion semantics; tokens are opaque and confer no authority.
+
+Next:
+- Phase 5.2 (owner go-ahead): Batch 2 toward 100+ — explorer/contract verification for
+  batch-1 deployments, portal-only pending queue resolution, label LOD, data-driven
+  district layout, performance budget measurement.
+- Refresh cadence: batch-1 records are 30-day-cadence directory listings; the governance
+  report computes due dates from the inline metadata.
+
 
 ### 2026-09-27 — Lead agent / frontend — v2.2 stretch: beam tooltip + narrow-layout fixes
 
