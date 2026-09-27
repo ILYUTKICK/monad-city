@@ -4,7 +4,7 @@
 
 The Navigator is a grounded interface to the Monad project graph. It helps a user find, understand, compare, and navigate projects; it is not a generic conversational assistant.
 
-The Navigator uses deterministic structured retrieval over the curated local `projects` and `relationships` arrays. Phase 3 optionally joins the 23 exact-claim records in `src/evidence.js`. It still has no external API, model call, embeddings, network access, backend, or paid service. Records outside the six-entity sourced subset remain illustrative Demo data.
+The Navigator uses deterministic structured retrieval over the curated local `projects` and `relationships` arrays and joins the exact-claim records promoted in the active evidence snapshot (52 records across 36 projects as of phase-3.5-v3). It still has no external API, model call, embeddings, network access, backend, or paid service. Profiles without source-backed records remain illustrative Demo data.
 
 `src/retrieval.js` is intentionally independent from UI state. Its pure entry point is:
 
@@ -184,7 +184,7 @@ The result contains a template ID, concise text, and a next step. The Frontend s
 
 Phase 3 selects disclosure language from the returned records, not from a global “live” switch:
 
-- source-backed only: describe the result as the limited six-entity sourced subset and remind the user that each source supports only its bounded scope;
+- source-backed only: describe the result as the limited source-backed subset with the live coverage counts derived from the snapshot (not hardcoded), and remind the user that each source supports only its bounded scope;
 - Demo only: describe every returned profile/edge as illustrative;
 - mixed: explicitly say the result mixes source-backed and Demo records;
 - evidence lookup: expose inspectable sources, statuses, support modes, quality flags, and limitations without calling the project or relationship verified;

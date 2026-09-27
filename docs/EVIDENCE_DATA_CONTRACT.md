@@ -424,7 +424,7 @@ For `partial`, the flat compatibility `source` preview is selected from an avail
 
 Answer behavior is record-aware:
 
-- sourced-only results say they cover a limited six-entity subset;
+- sourced-only results say they cover a limited source-backed subset, with coverage counts derived from the active snapshot rather than a hardcoded entity count;
 - Demo-only results remain explicitly illustrative;
 - mixed results disclose both modes;
 - evidence queries expose sources without implying verification;

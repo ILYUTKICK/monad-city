@@ -272,9 +272,9 @@ export const demoRelationships = Object.freeze([
     evidenceState: 'third-party-attested',
   }),
   relationship({
-    id: 'switchboard-kintsu',
+    id: 'switchboard-pixel-forge',
     from: 'switchboard',
-    to: 'kintsu',
+    to: 'pixel-forge',
     type: 'onchain_interaction',
     evidenceState: 'onchain-observed',
   }),
@@ -293,9 +293,9 @@ export const demoRelationships = Object.freeze([
     evidenceState: 'AI-inferred',
   }),
   relationship({
-    id: 'nadfun-kintsu',
+    id: 'nadfun-pixel-forge',
     from: 'nadfun',
-    to: 'kintsu',
+    to: 'pixel-forge',
     type: 'owner_claimed',
     evidenceState: 'owner-claimed',
   }),

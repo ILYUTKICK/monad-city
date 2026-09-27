@@ -811,15 +811,19 @@ function answerTemplate({
   resultModes = [],
   requestedEvidenceFilters = [],
   matchedEvidenceRecordCount = 0,
+  coverage = null,
 }) {
   const names = selectedProjects.map((project) => project.name);
   const searched = queryClasses.length ? queryClasses.join(', ') : 'project graph';
   const hasSourced = resultModes.includes('sourced-limited');
   const hasDemo = resultModes.includes('demo');
+  const sourcedSubsetNote = coverage && coverage.totalProjects > 0
+    ? ` These results come from the limited source-backed subset (${coverage.sourceBackedProjects} of ${coverage.totalProjects} shown projects carry exact records); each source supports only its displayed bounded scope.`
+    : ' These results come from the limited source-backed subset; each source supports only its displayed bounded scope.';
   const evidenceNote = hasSourced && hasDemo
     ? ' Results mix a limited source-backed subset with explicitly illustrative Demo records; inspect each evidence scope before drawing a factual conclusion.'
     : hasSourced
-      ? ' These results come from the limited six-entity sourced subset; each source supports only its displayed bounded scope.'
+      ? sourcedSubsetNote
       : hasDemo || mode === 'demo'
         ? ' All matching profiles and edges are illustrative Demo data, not factual ecosystem claims.'
         : '';
@@ -952,6 +956,17 @@ export function retrieveNavigator(input) {
       .map((id) => exactEvidenceById.get(id))
       .filter(Boolean);
   const mode = datasetMode(projects, relationships, suppliedEvidenceRecords);
+  // Coverage stats are derived from the live inputs, never hardcoded: the sourced subset
+  // grows every batch and the copy must follow (scale plan §7).
+  const sourceBackedProjectIds = new Set(
+    suppliedEvidenceRecords
+      .filter((record) => record?.reviewStatus === 'approved')
+      .map((record) => record.projectId),
+  );
+  const coverage = {
+    sourceBackedProjects: projects.filter((project) => sourceBackedProjectIds.has(project.id)).length,
+    totalProjects: projects.length,
+  };
 
   if (!queryText) {
     const intent = NAVIGATOR_INTENTS.DISCOVER;
@@ -962,7 +977,7 @@ export function retrieveNavigator(input) {
       intent,
       queryClasses: [],
       outcome,
-      answer: answerTemplate({ outcome, intent, query: rawQuery, selectedProjects: [], relationships: [], evidenceRequirement: null, queryClasses: [], mode, resultModes: [] }),
+      answer: answerTemplate({ outcome, intent, query: rawQuery, selectedProjects: [], relationships: [], evidenceRequirement: null, queryClasses: [], mode, resultModes: [], coverage }),
       selectedProjectIds: [],
       primaryProjectId: null,
       matches: [],
@@ -1067,6 +1082,7 @@ export function retrieveNavigator(input) {
         queryClasses,
         mode,
         resultModes: unique(evidenceReferences.map((reference) => reference.dataMode).filter(Boolean)),
+        coverage,
       }),
       selectedProjectIds: selectedProjects.map((project) => project.id),
       primaryProjectId: selectedProjects[0]?.id || null,
@@ -1483,6 +1499,7 @@ export function retrieveNavigator(input) {
     mode,
     resultModes,
     requestedEvidenceFilters,
+    coverage,
     matchedEvidenceRecordCount: returnedExactEvidenceIds.length,
   });
 
