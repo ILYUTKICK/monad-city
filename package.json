@@ -21,7 +21,7 @@
     "evidence:load": "node scripts/evidence-workflow.js load",
     "evidence:diff": "node scripts/evidence-workflow.js diff",
     "evidence:promote": "node scripts/evidence-workflow.js promote",
-    "evidence:verify-promotion": "node scripts/evidence-workflow.js verify-promotion --snapshot data/evidence-snapshots/phase-3.5-v5.json --module src/evidence-snapshots/phase-3.5-v5.generated.js",
+    "evidence:verify-promotion": "node scripts/evidence-workflow.js verify-promotion --snapshot data/evidence-snapshots/phase-3.5-v6.json --module src/evidence-snapshots/phase-3.5-v6.generated.js",
     "evidence:governance": "node scripts/evidence-workflow.js governance-check",
     "research:fetch-defillama": "node scripts/research/fetch-defillama-monad.js",
     "research:fetch-app-portal": "node scripts/research/fetch-app-portal.js",

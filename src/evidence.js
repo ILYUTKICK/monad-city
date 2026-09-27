@@ -14,15 +14,15 @@ import {
 import {
   APPROVED_EVIDENCE_SNAPSHOT,
   APPROVED_EVIDENCE_SNAPSHOT_SHA256,
-} from './evidence-snapshots/phase-3.5-v5.generated.js';
+} from './evidence-snapshots/phase-3.5-v6.generated.js';
 
 export const EVIDENCE_DATA_MODE = 'sourced-limited';
 
 export { REVIEW_STATUSES };
 
-export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v5';
-export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-27T16:45:00Z';
-export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-27T16:45:00Z';
+export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v6';
+export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-27T18:20:00Z';
+export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-27T18:20:00Z';
 export const REVIEW_GOVERNANCE_AS_OF = EVIDENCE_SNAPSHOT_REVIEWED_AT;
 export { REVIEW_GOVERNANCE_POLICY_VERSION };
 
@@ -112,12 +112,16 @@ export const BATCH3_PROJECT_IDS = Object.freeze([
   'wormhole-portal', 'trendle', 'plabs', 'crsh-market',
   'collective-memory', 'oripa', 'anomapay', 'o1-exchange',]);
 
-// The full set of project ids the evidence contract accepts as subjects or endpoints.
+// Two brand-level ids introduced by the 2026-09-27 identity merges (owner decision «слей
+// все 7»): Mellow and TownSquare become the manifests; their product manifests remain as
+// aliases and their product records are superseded (see identity-merge-review-plan).
 export const KNOWN_PROJECT_IDS = Object.freeze([
   ...CURATED_PROJECT_IDS,
   ...BATCH1_PROJECT_IDS,
   ...BATCH2_PROJECT_IDS,
   ...BATCH3_PROJECT_IDS,
+  'mellow',
+  'townsquare',
 ]);
 
 // Version-pinned approved-projection sizes: an import that silently drops or duplicates
@@ -127,6 +131,7 @@ export const EXPECTED_SNAPSHOT_COUNTS = Object.freeze({
   'phase-3.5-v3': Object.freeze({ records: 52, relationships: 6 }),
   'phase-3.5-v4': Object.freeze({ records: 142, relationships: 6 }),
   'phase-3.5-v5': Object.freeze({ records: 190, relationships: 6 }),
+  'phase-3.5-v6': Object.freeze({ records: 193, relationships: 6 }),
 });
 
 export const EVIDENCE_STATUSES = Object.freeze([

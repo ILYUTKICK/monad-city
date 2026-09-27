@@ -1353,6 +1353,56 @@ Next:
 
 
 
+### 2026-09-27 — Lead agent / trust+data — Identity merges executed («слей все 7», snapshot phase-3.5-v6, 176 buildings)
+
+Owner decision in session: «слей все 7» — all seven brand-level groups merge into the city
+manifests they family-match.
+
+Changed:
+- `scripts/build-identity-merges.js` + `data/research/identity-merge-review-plan-2026-09-27.json`:
+  evidence side of the merges — five SUCCESSOR records upgrading the existing manifests'
+  directory-listing records with the pinned-registry deployment mapping (morpho-blue,
+  folks-finance-xchain, lfj-poe, accountable, gearbox; projectIds unchanged) and two NEW
+  brand records (E-MELLOW-REGISTRY-001, E-TOWNSQUARE-REGISTRY-001). Claims stay bounded to
+  the registry snapshot; explorer facts live in provenance. Predecessor records of the five
+  renames remain APPROVED (independent true facts from a second source — DefiLlama listing);
+  only the four dissolved product records were superseded.
+- Review loop 11/11 through `npm run evidence:review` (owner token from the merge plan):
+  7 approvals + 4 explicit stale decisions (superseded, manual-governance-withdrawal) for
+  mellow-core, mellow-restaking, townsquare-lending, townsquare-loop-vaults.
+- Snapshot **phase-3.5-v6: 193 evidence records / 6 relationships**, SHA-256
+  `9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b`, promoted
+  (`--previous` = the full-history approved workspace); v5 remains the rollback boundary.
+  Import switched; verify-promotion paths switched; EXPECTED_SNAPSHOT_COUNTS pinned v6 {193, 6}
+  and KNOWN_PROJECT_IDS + `mellow`, `townsquare` (174 → 176) BEFORE approvals.
+- City manifests (`src/main.js`): five renames with aliases (Morpho Blue→Morpho, Folks Finance
+  xChain→Folks Finance, LFJ POE→LFJ; accountable/gearbox keep names, gain aliases), two
+  collapses (Mellow Core + Mellow Restaking → `mellow` "Mellow"; TownSquare Lending + Loop
+  Vaults → `townsquare` "TownSquare"), brand-level registry descriptions. Composer learned a
+  merged-away skip set (from the merge plan) so batch-2 re-insertion cannot resurrect the four
+  dissolved ids.
+- City: **176 buildings** (DeFi 140, Infrastructure 20+monad entry, Gaming 11, AI 3,
+  Identity 1, Monad islet).
+
+Verified:
+- `npm run build` green per step (v6 SHA confirmed, 193/6, deeply frozen).
+- In-browser: Navigator "morpho"/"mellow" each find exactly one merged profile; Morpho's
+  passport shows BOTH sources (DefiLlama listing + pinned-registry mapping with 35 addresses);
+  coverage «172 of 176 shown projects carry exact records»; FPS 61; 390×844 without overflow;
+  zero console errors.
+
+Limitations:
+- The aliases field is data-only today (no UI rendering) — a small UI pass can surface
+  "also known as" in passports later.
+- Passports for merged projects show two records (old listing + new registry mapping) —
+  intentional: two independent sources, both bounded.
+
+Next:
+- Refresh pass 2 when records mature (from 2026-10-22) — the last §5.3 exit item.
+- Batch-4 remains blocked on manual research (owner-supplied URLs/docs per group).
+
+
+
 ### 2026-09-27 — Lead agent / trust+data — Batch-4 seed research (honest zero) + identity memo for the 7 flags
 
 Owner in-session go: «Давай» — batch-4 research pass + the identity memo for the excluded

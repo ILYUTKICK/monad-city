@@ -53,6 +53,13 @@ function readOptionalSelection() {
   return value.kind === 'monad-city-batch-2-selection' ? value : null;
 }
 
+function readMergedAwayIds() {
+  const file = latestSeed('identity-merge-review-plan');
+  if (!file) return new Set();
+  const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+  return value.kind === 'monad-city-identity-merge-review-plan' ? new Set(value.removedManifestIds ?? []) : new Set();
+}
+
 function readOptionalBatch3Selection() {
   const file = latestSeed('batch-3-selection');
   if (!file) return null;
@@ -96,9 +103,10 @@ function main() {
   const draft = selection && draftFile ? JSON.parse(fs.readFileSync(draftFile, 'utf8')) : null;
   const proposalById = draft ? new Map(draft.proposals.map((proposal) => [proposal.proposalId, proposal])) : null;
   const newBlocks = [];
+  const mergedAway = readMergedAwayIds();
   if (selection && proposalById) {
     selection.selected.forEach((item) => {
-      if (existingIds.includes(item.proposalId)) return;
+      if (existingIds.includes(item.proposalId) || mergedAway.has(item.proposalId)) return;
       const proposal = proposalById.get(item.proposalId);
       if (!proposal) throw new Error(`Selected proposal ${item.proposalId} missing from draft`);
       const manifest = proposal.manifest;

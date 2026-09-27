@@ -1,0 +1,239 @@
+{
+  "kind": "monad-city-identity-merge-review-plan",
+  "schemaVersion": "1",
+  "generatedAtUtc": "2026-09-27T16:50:15Z",
+  "inputs": {
+    "assembledWorkspace": "../../../../../../tmp/merges-ws-v1.json"
+  },
+  "tokens": {
+    "transition": {
+      "reviewerRef": "reviewer:r-c6166a431cfae460",
+      "meaning": "Opaque schema-transition token for the carried v2-era stale predecessors; identifies no reviewer."
+    },
+    "owner": {
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "meaning": "Opaque token for the 2026-09-27 owner identity-merge decisions (7 approvals + 4 supersessions). It identifies the review action only."
+    }
+  },
+  "manifestChanges": [
+    {
+      "manifestId": "morpho-blue",
+      "newName": "Morpho",
+      "aliases": [
+        "Morpho Blue"
+      ],
+      "replaces": null
+    },
+    {
+      "manifestId": "folks-finance-xchain",
+      "newName": "Folks Finance",
+      "aliases": [
+        "Folks Finance xChain"
+      ],
+      "replaces": null
+    },
+    {
+      "manifestId": "lfj-poe",
+      "newName": "LFJ",
+      "aliases": [
+        "LFJ POE"
+      ],
+      "replaces": null
+    },
+    {
+      "manifestId": "accountable",
+      "newName": "Accountable",
+      "aliases": [
+        "YieldApp by Accountable"
+      ],
+      "replaces": null,
+      "nameUnchanged": true
+    },
+    {
+      "manifestId": "gearbox",
+      "newName": "Gearbox",
+      "aliases": [
+        "Gearbox Protocol"
+      ],
+      "replaces": null,
+      "nameUnchanged": true
+    },
+    {
+      "manifestId": "mellow",
+      "newName": "Mellow",
+      "aliases": [
+        "Mellow Core",
+        "Mellow Restaking"
+      ],
+      "replaces": [
+        "mellow-core",
+        "mellow-restaking"
+      ],
+      "nameUnchanged": false
+    },
+    {
+      "manifestId": "townsquare",
+      "newName": "TownSquare",
+      "aliases": [
+        "TownSquare Lending",
+        "TownSquare Loop Vaults"
+      ],
+      "replaces": [
+        "townsquare-lending",
+        "townsquare-loop-vaults"
+      ],
+      "nameUnchanged": false
+    }
+  ],
+  "removedManifestIds": [
+    "mellow-core",
+    "mellow-restaking",
+    "townsquare-lending",
+    "townsquare-loop-vaults"
+  ],
+  "plannedDecisions": [
+    {
+      "kind": "evidence",
+      "subjectId": "E-MORPHO-BLUE-REG-2",
+      "projectId": "morpho-blue",
+      "decision": "approved",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-artifact-and-payload-inspection",
+      "decisionReason": "supported-with-limitations",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Owner merge approval («слей все 7», 2026-09-27, recorded in docs/WORKLOG.md) applied per record through npm run evidence:review."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-FOLKS-FINANCE-XCHAIN-REG-2",
+      "projectId": "folks-finance-xchain",
+      "decision": "approved",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-artifact-and-payload-inspection",
+      "decisionReason": "supported-with-limitations",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Owner merge approval («слей все 7», 2026-09-27, recorded in docs/WORKLOG.md) applied per record through npm run evidence:review."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-LFJ-POE-REG-2",
+      "projectId": "lfj-poe",
+      "decision": "approved",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-artifact-and-payload-inspection",
+      "decisionReason": "supported-with-limitations",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Owner merge approval («слей все 7», 2026-09-27, recorded in docs/WORKLOG.md) applied per record through npm run evidence:review."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-ACCOUNTABLE-REG-2",
+      "projectId": "accountable",
+      "decision": "approved",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-artifact-and-payload-inspection",
+      "decisionReason": "supported-with-limitations",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Owner merge approval («слей все 7», 2026-09-27, recorded in docs/WORKLOG.md) applied per record through npm run evidence:review."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-GEARBOX-REG-2",
+      "projectId": "gearbox",
+      "decision": "approved",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-artifact-and-payload-inspection",
+      "decisionReason": "supported-with-limitations",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Owner merge approval («слей все 7», 2026-09-27, recorded in docs/WORKLOG.md) applied per record through npm run evidence:review."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-MELLOW-REGISTRY-001",
+      "projectId": "mellow",
+      "decision": "approved",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-artifact-and-payload-inspection",
+      "decisionReason": "supported-with-limitations",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Owner merge approval («слей все 7», 2026-09-27, recorded in docs/WORKLOG.md) applied per record through npm run evidence:review."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-TOWNSQUARE-REGISTRY-001",
+      "projectId": "townsquare",
+      "decision": "approved",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-artifact-and-payload-inspection",
+      "decisionReason": "supported-with-limitations",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Owner merge approval («слей все 7», 2026-09-27, recorded in docs/WORKLOG.md) applied per record through npm run evidence:review."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-MELLOW-CORE-REG-001",
+      "projectId": "mellow-core",
+      "decision": "stale",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-governance-withdrawal",
+      "decisionReason": "superseded",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Manifest merged into mellow per the owner's 2026-09-27 identity decision; the record's bounded claim remains true in history."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-MELLOW-RESTAKING-REG-001",
+      "projectId": "mellow-restaking",
+      "decision": "stale",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-governance-withdrawal",
+      "decisionReason": "superseded",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Manifest merged into mellow per the owner's 2026-09-27 identity decision; the record's bounded claim remains true in history."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-TOWNSQUARE-LENDING-REG-001",
+      "projectId": "townsquare-lending",
+      "decision": "stale",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-governance-withdrawal",
+      "decisionReason": "superseded",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Manifest merged into townsquare per the owner's 2026-09-27 identity decision; the record's bounded claim remains true in history."
+    },
+    {
+      "kind": "evidence",
+      "subjectId": "E-TOWNSQUARE-LOOP-VAULTS-REG-001",
+      "projectId": "townsquare-loop-vaults",
+      "decision": "stale",
+      "reviewedAt": "2026-09-27T16:50:15Z",
+      "reviewerRef": "reviewer:r-3a3036101088ba4d",
+      "reviewerRole": "evidence-reviewer",
+      "reviewMethod": "manual-governance-withdrawal",
+      "decisionReason": "superseded",
+      "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+      "note": "Manifest merged into townsquare per the owner's 2026-09-27 identity decision; the record's bounded claim remains true in history."
+    }
+  ]
+}
