@@ -305,65 +305,82 @@ export function createCity3D({
     return { relationship, material, group };
   });
 
-  // ---------- district ground labels (one per island, on its outward shore) ----------
-  const DISTRICT_LABEL_COLORS = {
+  // ---------- floating district buttons (one billboard sprite per island) ----------
+  // Owner ask: «Надо сделать белые 3д кнопки над всеми 5 дистриктами» — the ground labels are
+  // replaced by floating billboard buttons above each island. Content mirrors the district
+  // panel (glyph, name, count); counts are data-driven from `projects` via the island groups.
+  const DISTRICT_BUTTON_COLORS = {
     DeFi: '#9ad7c6',
     AI: '#91baff',
     Infrastructure: '#aa8ae8',
     Gaming: '#dbac80',
     Identity: '#d89cc9',
   };
-  const districtLabelMeshes = [];
+  const DISTRICT_BUTTON_GLYPHS = {
+    DeFi: '◫',
+    AI: '✧',
+    Infrastructure: '▥',
+    Gaming: '⚄',
+    Identity: '◎',
+  };
+  const districtButtons = [];
   ISLAND_GROUPS.forEach((island) => {
     if (island.key === '__monad') return;
     const label = island.key;
-    const color = DISTRICT_LABEL_COLORS[label] ?? '#aa8ae8';
-    const outwardLength = Math.hypot(island.cx, island.cz);
-    const outX = outwardLength > 0.001 ? island.cx / outwardLength : 0;
-    const outZ = outwardLength > 0.001 ? island.cz / outwardLength : 1;
-    const width = 64 + label.length * 30;
+    const color = DISTRICT_BUTTON_COLORS[label] ?? '#aa8ae8';
+    const glyph = DISTRICT_BUTTON_GLYPHS[label] ?? '◈';
+    const text = `${label.toUpperCase()} · ${island.list.length}`;
+
+    // One canvas per district, drawn once. Deterministic system monospace — web fonts may not
+    // be loaded when the canvas draws.
     const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = 64;
     const ctx = canvas.getContext('2d');
-    ctx.font = '700 30px ui-monospace, Menlo, monospace';
-    ctx.textAlign = 'center';
+    const font = '700 44px ui-monospace, Menlo, monospace';
+    ctx.font = font;
+    const glyphWidth = ctx.measureText(`${glyph} `).width;
+    const textWidth = ctx.measureText(text).width;
+    const padding = 30;
+    canvas.width = Math.ceil(glyphWidth + textWidth + padding * 2);
+    canvas.height = 92;
+    ctx.font = font;
+    ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
+    ctx.beginPath();
+    ctx.roundRect(1.5, 1.5, canvas.width - 3, canvas.height - 3, 22);
+    ctx.fillStyle = 'rgba(10,10,16,0.88)';
+    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = color;
+    ctx.stroke();
     ctx.fillStyle = color;
-    ctx.fillText(label.toUpperCase().split('').join('\u200a'), width / 2, 34);
-    const planeWidth = Math.min(16, island.radius * 1.55);
-    const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry(planeWidth, planeWidth * (64 / width)),
-      // District labels are wayfinding, not geometry: exempt them from depth testing so
-      // tall buildings never occlude them (scale plan: district ground labels stay always-on).
-      new THREE.MeshBasicMaterial({
+    ctx.fillText(glyph, padding, canvas.height / 2 + 2);
+    ctx.fillStyle = '#f3edff';
+    ctx.fillText(text, padding + glyphWidth, canvas.height / 2 + 2);
+
+    const sprite = new THREE.Sprite(
+      new THREE.SpriteMaterial({
         map: new THREE.CanvasTexture(canvas),
         transparent: true,
-        opacity: 0.74,
-        depthWrite: false,
         depthTest: false,
+        depthWrite: false,
+        fog: false,
       }),
     );
-    mesh.rotation.x = -Math.PI / 2;
-    mesh.position.set(
-      island.cx + outX * island.radius * 0.78,
-      0.09,
-      island.cz + outZ * island.radius * 0.78,
+    // Always-on wayfinding, not geometry: exempt from depth testing and drawn above the
+    // buildings (renderOrder) so tall towers never occlude the buttons. Altitude follows the
+    // island's own skyline — maxTopY + 10 clears every rooftop name pill (a ~20px pill tops
+    // out near topY + 6 at the default camera) — and world height 6 keeps the 44px canvas
+    // type readable at the default camera (radius 300).
+    sprite.renderOrder = 20;
+    const maxTopY = Math.max(
+      ...island.list.map((project) => (project.id === 'monad' ? 6.9 : 0.35 + project.h * SCALE + 1)),
     );
-    mesh.renderOrder = 10;
-    mesh.userData.district = island.key;
-    scene.add(mesh);
-    // The visible strip is only ~2.5 world units deep — far too thin to click. An invisible
-    // generous hit plane carries the actual pick target (raycast ignores opacity).
-    const hitMesh = new THREE.Mesh(
-      new THREE.PlaneGeometry(planeWidth * 1.25, 9),
-      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }),
-    );
-    hitMesh.rotation.x = -Math.PI / 2;
-    hitMesh.position.copy(mesh.position);
-    hitMesh.userData.district = island.key;
-    scene.add(hitMesh);
-    districtLabelMeshes.push(hitMesh);
+    sprite.position.set(island.cx, maxTopY + 10, island.cz);
+    const worldH = 6.0;
+    sprite.scale.set(worldH * (canvas.width / canvas.height), worldH, 1);
+    sprite.userData.district = island.key;
+    scene.add(sprite);
+    districtButtons.push(sprite);
   });
 
   // ---------- filler fabric (seeded, never beside a project; scaled per island) ----------
@@ -507,7 +524,7 @@ export function createCity3D({
     for (const hit of hits) {
       let object = hit.object;
       while (object && !object.userData.projectId) object = object.parent;
-      if (object) return object.userData.projectId;
+      if (object) return { id: object.userData.projectId, distance: hit.distance };
     }
     return null;
   }
@@ -537,15 +554,17 @@ export function createCity3D({
     return hits.length ? hits[0].object.userData.relationshipId : null;
   }
 
-  function raycastDistrictLabel(event) {
+  function raycastDistrictButton(event) {
     const rect = renderer.domElement.getBoundingClientRect();
     const pointer = new THREE.Vector2(
       ((event.clientX - rect.left) / rect.width) * 2 - 1,
       -((event.clientY - rect.top) / rect.height) * 2 + 1,
     );
     raycaster.setFromCamera(pointer, camera);
-    const hits = raycaster.intersectObjects(districtLabelMeshes, false);
-    return hits.length ? hits[0].object.userData.district : null;
+    const hits = raycaster.intersectObjects(districtButtons, false);
+    return hits.length
+      ? { district: hits[0].object.userData.district, distance: hits[0].distance }
+      : null;
   }
 
   function beamBaseOpacity(view) {
@@ -623,16 +642,21 @@ export function createCity3D({
   renderer.domElement.addEventListener('pointermove', (event) => {
     if (!pointers.has(event.pointerId)) {
       const hit = raycastProject(event);
-      // Buildings keep hover priority; beams and district labels only hover where no
-      // building is behind the cursor.
-      const beamHit = hit ? null : raycastBeam(event);
-      const labelHit = hit || beamHit ? null : raycastDistrictLabel(event);
-      if (hit !== hoveredId) {
-        hoveredId = hit;
-        labelElements.forEach((element, id) => element.classList.toggle('hover', id === hit));
+      // Buttons float above the skyline, so a ray through a button often continues into a
+      // building behind it. The frontmost target wins: a building in front of a button still
+      // keeps the click; a building behind it leaves the button clickable.
+      const buttonHit = raycastDistrictButton(event);
+      const buttonFront = buttonHit && (!hit || buttonHit.distance < hit.distance);
+      const projectId = buttonFront ? null : hit?.id ?? null;
+      // Buildings keep hover priority; beams only hover where no building or button is in
+      // front of the cursor.
+      const beamHit = projectId || buttonFront ? null : raycastBeam(event);
+      if (projectId !== hoveredId) {
+        hoveredId = projectId;
+        labelElements.forEach((element, id) => element.classList.toggle('hover', id === projectId));
       }
       setBeamHover(beamHit, event);
-      renderer.domElement.style.cursor = hit || beamHit || labelHit ? 'pointer' : 'grab';
+      renderer.domElement.style.cursor = projectId || buttonHit || beamHit ? 'pointer' : 'grab';
       return;
     }
     setBeamHover(null);
@@ -662,12 +686,14 @@ export function createCity3D({
   function endPointer(event) {
     if (pointers.size === 1 && movedDistance < 6) {
       const hit = raycastProject(event);
-      if (hit) {
-        onSelect(hit);
-      } else {
-        // Clicking a district ground label flies the camera to that island (no selection change).
-        const district = raycastDistrictLabel(event);
-        if (district) focusIsland(district);
+      // Same frontmost-target rule as hover: the button wins only when no building is in
+      // front of it. Clicking it flies the camera to that island (no selection change).
+      const buttonHit = raycastDistrictButton(event);
+      const buttonFront = buttonHit && (!hit || buttonHit.distance < hit.distance);
+      if (buttonFront) {
+        focusIsland(buttonHit.district);
+      } else if (hit) {
+        onSelect(hit.id);
       }
     }
     pointers.delete(event.pointerId);
@@ -829,7 +855,7 @@ export function createCity3D({
 
     // Label LOD (scale plan §6): at archipelago range only the selected / navigator-matched /
     // hovered buildings plus two "landmark" buildings per district keep name pills; the full
-    // label layer returns as the camera closes in. District ground labels stay always-on.
+    // label layer returns as the camera closes in. Floating district buttons stay always-on.
     const landmarkLabels = (() => {
       const landmarks = new Set(['monad']);
       const perDistrict = new Map();

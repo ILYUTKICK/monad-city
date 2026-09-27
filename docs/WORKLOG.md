@@ -1291,6 +1291,70 @@ Next:
 
 
 
+### 2026-09-27 — Lead agent / frontend — Phase 5.3: floating 3D district buttons replace ground labels
+
+Owner ask: «Надо сделать белые 3д кнопки над всеми 5 дистриктами. У нас сейчас они на полу
+написаны». The flat shore labels (mesh + hit plane) are deleted; each district island now has
+one floating billboard button.
+
+Changed:
+- `src/city3d.js`: the "district ground labels" block is replaced by one `THREE.Sprite` per
+  district (5, `__monad` skipped), at the island centroid. Button texture: one canvas per
+  district drawn once — `${glyph} ${NAME} · ${count}` mirroring the district panel (DeFi ◫,
+  AI ✧, Infrastructure ▥, Gaming ⚄, Identity ◎; counts data-driven from `island.list.length`),
+  dark plate `rgba(10,10,16,0.88)` with a 3px district-color border, white `#f3edff` text,
+  glyph in the district color, deterministic `700 44px ui-monospace` (web fonts may not be
+  loaded at canvas-draw time), `ctx.roundRect`, padding 30, height 92, radius 22.
+  `SpriteMaterial({ map, transparent, depthTest: false, depthWrite: false, fog: false })`,
+  `renderOrder = 20` — always-on wayfinding above buildings.
+- Two deliberate deviations from the kickoff numbers, both found by in-browser verification:
+  1. `worldH` 6.0 instead of ≈3.0. At the default camera (radius 300, fov 40) a 3-unit-tall
+     sprite renders ≈12px — unreadable, failing the "readable at the default camera" bar.
+     6.0 gives ≈25px buttons; at island focus (radius ≈128) they read as district headers.
+  2. Altitude is data-driven: `maxTopY + 10` of the island's own buildings instead of a fixed
+     9.2. Fixed 9.2 sits below the Infrastructure skyline (max topY 16.35) and inside the
+     landmark name-pill band (a ~20px pill tops out near `topY + 6` at radius 300); skyline-
+     relative placement clears every rooftop pill (AI/Identity single-building islands stack
+     cleanly: button above, pill below).
+- Pick semantics: raycasts now return hit distances and the FRONTMOST target wins. Strict
+  building priority made sky buttons unclickable over dense islands — repro: clicking the
+  DEFI button center selected "Beefy", a building behind the sprite (the ray continues past
+  the floating button into the cluster). With nearest-hit, a building in front of a button
+  still selects (click priority preserved where it matters) and a building behind it leaves
+  the button clickable. Hover cursor follows the same rule.
+- `districtLabelMeshes` → `districtButtons`; `raycastDistrictLabel` → `raycastDistrictButton`;
+  old flat meshes and hit planes deleted (no duplication).
+
+Files changed:
+- `src/city3d.js`, `docs/WORKLOG.md`
+
+Verified:
+- `npm run build` green (SHA-256 gate unchanged — visual-only change, snapshot untouched).
+- In-browser 1440×900: all five buttons readable at the default camera (radius 300); DEFI
+  button click flies to the 114-building island without changing the selection ("Monad
+  selected" preserved); building click still opens the Passport (Beefy/Kuru); hover cursor
+  pointer over buttons, `grab` over water; district panel filters and Graph/City toggle
+  unaffected; Navigator "oracle" query still grounded with data-driven coverage counts.
+- 390×844: buttons readable, no horizontal overflow; buttons of off-frame islands clip with
+  their islands (correct tracking). Zero console errors after exercising Navigator, district
+  buttons, filters, Graph/City, and building selection with an error hook.
+
+Limitations:
+- Buttons may sit partially behind the Navigator panel when an island is under it at the
+  default camera (Infrastructure) — pan/fly resolves; the panel is HTML above the canvas.
+- A selected tall building's name pill can overlap a button from behind (HTML paints over
+  canvas) — transient, both stay readable.
+- Sprites are viewport-facing billboards: no perspective tilt; consistent with the
+  wayfinding-not-geometry rule.
+
+Next:
+- Phase 5.3 batch work: pending-deployment resolution research, refresh runbook first pass,
+  batch 3 (owner confirmation required), relationship candidates only with a citable basis.
+
+
+```
+
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
