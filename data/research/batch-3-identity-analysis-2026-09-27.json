@@ -1,0 +1,432 @@
+{
+  "kind": "monad-city-research-batch-3-identity-analysis",
+  "schemaVersion": "1",
+  "generatedAtUtc": "2026-09-27T16:34:06Z",
+  "question": "For each of the seven excluded brand-level groups: is it the same entity as an existing city manifest (merge as alias) or a distinct project (separate manifest)?",
+  "method": "Local analysis of the pinned-registry resolution facts, explorer verification results, and the wired city manifests. No network calls. Decisions belong to the owner; merging changes manifests and requires successor evidence records.",
+  "cases": [
+    {
+      "proposedId": "townsquare",
+      "canonicalName": "TownSquare",
+      "registryKey": "townsquare",
+      "registryFacts": {
+        "key": "townsquare",
+        "name": "TownSquare",
+        "live": true,
+        "addresses": [
+          [
+            "HubMessageDispatcher",
+            "0xed84c02a0787d56d0b53efe64dd60a1ae20e4e31"
+          ],
+          [
+            "SpokeMessageDispatcher",
+            "0xb4a545a183bd072548ddfe9ddadc2c6f962ac14f"
+          ],
+          [
+            "SpokeController",
+            "0x8f8a0ed366439576b7db220678ed1259743239e3"
+          ],
+          [
+            "AccountController",
+            "0xc2df24203ab3a4f3857d649757a99e18de059a16"
+          ],
+          [
+            "PriceFeedManager",
+            "0x428cfa65310c70bc9e65bddb26c65fe4ca490376"
+          ],
+          [
+            "LoanController",
+            "0xc4c20efbefa4bde14091a3040d112cf981d8b2db"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "exclusionReasons": [
+        "family match with existing city entity 'townsquarelending' (candidate 'townsquare')",
+        "family match with existing city entity 'townsquareloopvaults' (candidate 'townsquare')"
+      ],
+      "explorerFacts": {
+        "addressesChecked": 6,
+        "liveContracts": 6,
+        "verifiedContractNames": []
+      },
+      "existingCityManifests": [
+        {
+          "id": "townsquare-lending",
+          "name": "TownSquare Lending"
+        },
+        {
+          "id": "townsquare-loop-vaults",
+          "name": "TownSquare Loop Vaults"
+        }
+      ],
+      "recommendation": null,
+      "decision": null,
+      "decisionOwner": "owner"
+    },
+    {
+      "proposedId": "lfj",
+      "canonicalName": "LFJ",
+      "registryKey": "lfj",
+      "registryFacts": {
+        "key": "lfj",
+        "name": "LFJ",
+        "live": true,
+        "addresses": [
+          [
+            "LBFactory",
+            "0xb43120c4745967fa9b93E79C149E66B0f2D6Fe0c"
+          ],
+          [
+            "LBRouter",
+            "0x18556DA13313f3532c54711497A8FedAC273220E"
+          ],
+          [
+            "LBQuoter",
+            "0x9A550a522BBaDFB69019b0432800Ed17855A51C3"
+          ],
+          [
+            "LBHooksManager",
+            "0x3A8E1Be95467690F7C592B596e42d11b3710c633"
+          ],
+          [
+            "LBHooksLens",
+            "0x6124086B90AB910038E607aa1BDD67b284C31c98"
+          ],
+          [
+            "LiquidityHelperContract",
+            "0xA5c68C9E55Dde3505e60c4B5eAe411e2977dfB35"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "exclusionReasons": [
+        "family match with existing city entity 'lfjpoe' (candidate 'lfj')"
+      ],
+      "explorerFacts": {
+        "addressesChecked": 6,
+        "liveContracts": 6,
+        "verifiedContractNames": [
+          "LBFactory",
+          "LBRouter",
+          "LBQuoter",
+          "TransparentUpgradeableProxy2Step"
+        ]
+      },
+      "existingCityManifests": [
+        {
+          "id": "lfj-poe",
+          "name": "LFJ POE"
+        }
+      ],
+      "recommendation": null,
+      "decision": null,
+      "decisionOwner": "owner"
+    },
+    {
+      "proposedId": "accountable",
+      "canonicalName": "YieldApp by Accountable",
+      "registryKey": "accountable",
+      "registryFacts": {
+        "key": "accountable",
+        "name": "Accountable",
+        "live": true,
+        "addresses": [
+          [
+            "FeeManager",
+            "0x4DE9B4d7b70d1680cD8E3A2C60717cBbe6014991"
+          ],
+          [
+            "AsyncVaultFactory",
+            "0xeE004AEF79cb14BF31BFbFB14346E01fB7e5a2e8"
+          ],
+          [
+            "RewardsFactory",
+            "0x1106a70223e98E2b1807bf3e12698aFe2C5693e6"
+          ],
+          [
+            "GlobalRegistry",
+            "0xf786154e56e5c88Ce984800dEa71B48EA4FFAbfE"
+          ],
+          [
+            "AccountableFixedTerm",
+            "0xD0A53e724EA9CB041e30f0243E3c84bdea238Dfa"
+          ],
+          [
+            "AccountableOpenTerm",
+            "0x59B0b84371BB3261FAD538C512eFFFc414CC1725"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "exclusionReasons": [
+        "project id accountable is already known",
+        "registry key accountable is an existing project id",
+        "family match with existing city entity 'accountable' (candidate 'accountable')"
+      ],
+      "explorerFacts": {
+        "addressesChecked": 6,
+        "liveContracts": 6,
+        "verifiedContractNames": [
+          "FeeManager",
+          "AsyncVaultFactory",
+          "RewardsFactory",
+          "ERC1967Proxy",
+          "AccountableFixedTerm",
+          "AccountableOpenTerm"
+        ]
+      },
+      "existingCityManifests": [
+        {
+          "id": "accountable",
+          "name": "Accountable"
+        }
+      ],
+      "recommendation": null,
+      "decision": null,
+      "decisionOwner": "owner"
+    },
+    {
+      "proposedId": "mellow",
+      "canonicalName": "Mellow",
+      "registryKey": "mellow",
+      "registryFacts": {
+        "key": "mellow",
+        "name": "Mellow Protocol",
+        "live": true,
+        "addresses": [
+          [
+            "Factory_Implementation",
+            "0x0000000834bD05fe8A94b5e0bFeC2A58A4C9171E"
+          ],
+          [
+            "Factory_Factory",
+            "0x000000049057E402f46800CDC08199b1358a7691"
+          ],
+          [
+            "Consensus_Factory",
+            "0x2e84d9E713610d7eAFcDF7f998ce1Bdb835F5668"
+          ],
+          [
+            "Consensus_Implementation",
+            "0x000000005AB29dAA855DfA661d8D9D25cD88c103"
+          ],
+          [
+            "DepositQueue_Factory",
+            "0xa67330bb89668bA66502a6D6670dACf5F334eb53"
+          ],
+          [
+            "DepositQueue_Implementation",
+            "0x00000004F672aA091EbF44545cb8aE75143d8F4c"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "exclusionReasons": [
+        "family match with existing city entity 'mellowcore' (candidate 'mellow')",
+        "family match with existing city entity 'mellowrestaking' (candidate 'mellow')"
+      ],
+      "explorerFacts": {
+        "addressesChecked": 6,
+        "liveContracts": 6,
+        "verifiedContractNames": [
+          "Factory",
+          "TransparentUpgradeableProxy",
+          "Consensus",
+          "DepositQueue"
+        ]
+      },
+      "existingCityManifests": [
+        {
+          "id": "mellow-core",
+          "name": "Mellow Core"
+        },
+        {
+          "id": "mellow-restaking",
+          "name": "Mellow Restaking"
+        }
+      ],
+      "recommendation": null,
+      "decision": null,
+      "decisionOwner": "owner"
+    },
+    {
+      "proposedId": "morpho",
+      "canonicalName": "Morpho",
+      "registryKey": "morpho",
+      "registryFacts": {
+        "key": "morpho",
+        "name": "Morpho",
+        "live": true,
+        "addresses": [
+          [
+            "Deployer1Deployer",
+            "0xA16B49505e39C373A8f9e1b1540514BA64B3942a"
+          ],
+          [
+            "Morpho",
+            "0xD5D960E8C380B724a48AC59E2DfF1b2CB4a1eAee"
+          ],
+          [
+            "AdaptiveCurveIrm",
+            "0x09475a3D6eA8c314c592b1a3799bDE044E2F400F"
+          ],
+          [
+            "Safe",
+            "0xe27f43624FDb5325b853c4711BCF0fEBA754e558"
+          ],
+          [
+            "PublicAllocator",
+            "0xfd70575B732F9482F4197FE1075492e114E97302"
+          ],
+          [
+            "Deployer1",
+            "0x6C3A89e814A9D150cD763f443dceE5EBC5bF60b6"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "exclusionReasons": [
+        "family match with existing city entity 'morphoblue' (candidate 'morpho')"
+      ],
+      "explorerFacts": {
+        "addressesChecked": 6,
+        "liveContracts": 6,
+        "verifiedContractNames": [
+          "Deployer1Deployer",
+          "Morpho",
+          "AdaptiveCurveIrm",
+          "SafeProxy",
+          "PublicAllocator",
+          "Deployer1"
+        ]
+      },
+      "existingCityManifests": [
+        {
+          "id": "morpho-blue",
+          "name": "Morpho Blue"
+        }
+      ],
+      "recommendation": null,
+      "decision": null,
+      "decisionOwner": "owner"
+    },
+    {
+      "proposedId": "folks-finance",
+      "canonicalName": "Folks Finance",
+      "registryKey": "folks_finance",
+      "registryFacts": {
+        "key": "folks_finance",
+        "name": "Folks Finance",
+        "live": true,
+        "addresses": [
+          [
+            "spokeCommon",
+            "0xc7bc4A43384f84B8FC937Ab58173Edab23a4c3cD"
+          ],
+          [
+            "bridgeRouterSpoke",
+            "0xF854AC65A40f1EabFD32E6D4C7d0E1c4B1753Cc5"
+          ],
+          [
+            "wormholeDataAdapter",
+            "0x37d761883a01e9F0B0d7fe59EEC8c21D94393CDD"
+          ],
+          [
+            "ccipDataAdapter",
+            "0xeB48a1eE43B91959A1686b70B7Cd482c65DE69c9"
+          ],
+          [
+            "ccipTokenAdapter",
+            "0x5C60f12838b8E3EEB525F299cD7C454c989dd04e"
+          ],
+          [
+            "monSpokeAddress",
+            "0x531490B7674ef239C9FEC39d2Cf3Cc10645d14d4"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "exclusionReasons": [
+        "family match with existing city entity 'folksfinancexchain' (candidate 'folksfinance')"
+      ],
+      "explorerFacts": {
+        "addressesChecked": 6,
+        "liveContracts": 6,
+        "verifiedContractNames": [
+          "SpokeCommon"
+        ]
+      },
+      "existingCityManifests": [
+        {
+          "id": "folks-finance-xchain",
+          "name": "Folks Finance xChain"
+        }
+      ],
+      "recommendation": null,
+      "decision": null,
+      "decisionOwner": "owner"
+    },
+    {
+      "proposedId": "gearbox-protocol",
+      "canonicalName": "Gearbox Protocol",
+      "registryKey": "gearbox_protocol",
+      "registryFacts": {
+        "key": "gearbox_protocol",
+        "name": "Gearbox",
+        "live": true,
+        "addresses": [
+          [
+            "Address_Provider",
+            "0xF7f0a609BfAb9a0A98786951ef10e5FE26cC1E38"
+          ],
+          [
+            "Bytecode_Repository",
+            "0x1cE2B1BE96a082b1b1539F80d5D8f82Ec06a0f9A"
+          ],
+          [
+            "Cross_Chain_Multisig",
+            "0xcCCCCcCc42B7DA9fdEc1761698Fb55fdD41CDF55"
+          ],
+          [
+            "Instance_Manager",
+            "0xBcD875f0D62B9AA22481c81975F9AE1753Fc559A"
+          ],
+          [
+            "Bot_List",
+            "0x0Bc03983Da93021a374C964A22b73865220Ce962"
+          ],
+          [
+            "Price_Feed_Store",
+            "0x74A868AC479EE145029bB80827BB77F7B7c441cB"
+          ]
+        ],
+        "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+      },
+      "exclusionReasons": [
+        "family match with existing city entity 'gearbox' (candidate 'gearbox')",
+        "family match with existing city entity 'gearbox' (candidate 'gearboxprotocol')"
+      ],
+      "explorerFacts": {
+        "addressesChecked": 6,
+        "liveContracts": 6,
+        "verifiedContractNames": [
+          "AddressProvider",
+          "BytecodeRepository",
+          "BotListV3",
+          "PriceFeedStore"
+        ]
+      },
+      "existingCityManifests": [
+        {
+          "id": "gearbox",
+          "name": "Gearbox"
+        }
+      ],
+      "recommendation": null,
+      "decision": null,
+      "decisionOwner": "owner"
+    }
+  ],
+  "note": "Analysis artifact only. Nothing is merged, renamed, or excluded here; the batch-3 exclusions stand until the owner decides per case."
+}

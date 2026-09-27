@@ -1353,6 +1353,57 @@ Next:
 
 
 
+### 2026-09-27 — Lead agent / trust+data — Batch-4 seed research (honest zero) + identity memo for the 7 flags
+
+Owner in-session go: «Давай» — batch-4 research pass + the identity memo for the excluded
+brand-level groups.
+
+Changed:
+- `scripts/research/batch4-seed-research.js` + `data/research/batch-4-seed-research-2026-09-27.json`:
+  bounded seed research for the 50 `no-candidate` pending groups. Sources: portal blurbs
+  (checked-in capture — zero contract addresses across all 50) and the portal's own appLinks
+  (only 3 groups are featured: fomo, Token Mill, 1inch). Verdicts: **47 no-seed-url** (no
+  seed-grounded page exists — manual research per the runbook is the only path), fomo
+  `no-deployment-claim` (page reachable, no Monad claims, no addresses), Token Mill
+  `page-unreachable` (lfj.gg/mill unreachable to scripts — needs a manual browser check),
+  1inch `addresses-found-not-verified-on-monad` (5 addresses on the page are third-party
+  token contracts from OTHER chains — WBTC/USDT et al.; none holds code on Monad; the page
+  makes no Monad claim). **Zero new deployment evidence** — the automated avenues are now
+  exhaustively closed with artifacts; batch 4 cannot proceed as a scripted pass.
+- Script bug found and fixed during the pass: the first draft treated any `getsourcecode`
+  result row as `hasCode` (EOAs included) and would have over-claimed "deployment-claim-found"
+  for 1inch's cross-chain token addresses. Fixed to the resolver's two-step check
+  (`eth_getCode` hex-guard first, then `getsourcecode` for names) and the verdict matrix now
+  requires an explicit page Monad claim + verified addresses for `deployment-claim-found`.
+  The buggy first artifact was deleted pre-commit; only the corrected run is checked in.
+- `scripts/research/batch3-identity-analysis.js` + `data/research/batch-3-identity-analysis-2026-09-27.json`:
+  evidence memo for the seven batch-3 identity flags — per case: registry facts, explorer
+  verification (live contracts + verified names), the family-matched city manifests.
+  Findings: Morpho (verified `Morpho`, `AdaptiveCurveIrm`, `PublicAllocator` — Morpho Blue's
+  own contracts), LFJ (`LBFactory/LBRouter/LBQuoter` — Liquidity Book), YieldApp by
+  Accountable (`AccountableFixedTerm/OpenTerm`, `AsyncVaultFactory` — literally Accountable's
+  vault system), Gearbox (`AddressProvider`, `BytecodeRepository`, `BotListV3`), Mellow
+  (`Consensus`, `DepositQueue`), Folks Finance (`SpokeCommon`), TownSquare (proxies, name
+  family only). All seven are brand-level entries of protocols the city already carries;
+  `decision` stays null — merging changes manifests and requires successor records, so it is
+  the owner's call per case.
+
+Verified:
+- Both scripts syntax-checked; artifacts exclusive-creation, dated, never fetched by the
+  browser. `npm run build` green (no runtime code touched).
+
+Limitations:
+- The 50 remaining groups cannot be resolved by scripted build-time research with the
+  available seeds; they need manual research notes (owner or a dedicated manual pass).
+- The identity memo recommends nothing binding; recommendations were given in-session.
+
+Next:
+- Owner: 7 identity decisions (merge-as-alias vs keep-separate) — after which successor
+  records can upgrade the existing manifests' evidence (registry mapping + explorer facts).
+- Refresh pass 2 when records mature (from 2026-10-22) — required for the §5.3 exit.
+
+
+
 ### 2026-09-27 — Lead agent / trust+data — Phase 5.3: pending-deployment resolution EXECUTED (owner key)
 
 The owner chose the explorer source (the pending §5.3 owner call): a free Etherscan API key,
