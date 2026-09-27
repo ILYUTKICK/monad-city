@@ -1019,7 +1019,7 @@ Changed (commits `e93cc86`, `1254263`, `0c6ffc7`, `cf99c5a`):
   emits the decision plan (`data/research/batch-1-review-plan-2026-09-27.json`). All 30
   approvals were recorded per record through `npm run evidence:review` with the owner token
   `reviewer:r-2722378757f140a8`, method `manual-artifact-and-payload-inspection`, reason
-  `supported-with-limitations`, at `2026-09-27T11:29:35Z`.
+  `supported-with-limitations`, at `2026-09-27T11:34:28Z`.
 - Snapshot `phase-3.5-v3`: 52 approved evidence records / 6 relationships, created and
   reviewed `2026-09-27T11:34:47Z`, canonical SHA-256
   `4e515a65186b2525693a3df612778a82dcde241a136d70264a0b776ecb283b39`, promoted to
