@@ -1353,6 +1353,25 @@ Next:
 
 
 
+### 2026-09-27 — Owner decision — batch-4 closed: no onchain verification, no city entry
+
+Owner decision (in session, verbatim): «на счет batch-4 если ничего через код не бьется, то
+не надо добавлять, возможно это просто фейковые проекты».
+
+Meaning for the pipeline: the 50 remaining `no-candidate` pending groups stay OUT of the city.
+Batch-4 manual research is CLOSED as an avenue — a group may only enter through onchain-
+verified deployment evidence (live contract code verified via the explorer API on chainid 143)
+brought through the normal evidence gates. Note on framing: the city records the ABSENCE of
+verifiable deployment evidence — it does not assert that these groups are fakes; whether they
+are fake or simply not deployed stays unknown and unlabeled.
+
+Unchanged: the six curated, batch-1/2/3 populations; the identity merges; the refresh cadence.
+
+Next:
+- Refresh pass 2 when records mature (from 2026-10-22) — the last formal §5.3 exit item.
+
+
+
 ### 2026-09-27 — Lead agent / trust+data — Identity merges executed («слей все 7», snapshot phase-3.5-v6, 176 buildings)
 
 Owner decision in session: «слей все 7» — all seven brand-level groups merge into the city

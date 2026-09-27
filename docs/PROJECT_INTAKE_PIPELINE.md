@@ -36,6 +36,11 @@ fetched by the browser.
 3. **Draft manifest** (schema per `docs/EVIDENCE_DATA_CONTRACT.md`): name, district,
    application type, description, site, aliases, deployment address(es). Descriptions must be
    neutral and verifiable — no marketing adjectives, no "official/trusted/safe".
+   > Owner decision 2026-09-27: pending groups with no seed-verifiable Monad deployment stay
+   > out of the city — manual research for them is closed. They may only enter through
+   > onchain-verified deployment evidence (live contract code on chainid 143) via the normal
+   > evidence gates. The city records the absence of verifiable evidence; it never labels a
+   > group "fake".
 4. **Claim candidates.** For each checkable fact, draft an evidence record: exact claim, source
    (title, URL, publisher), retrieval timestamp, scope, limitations. LLM-assisted summarization
    of docs is allowed; the drafted record is labeled as a candidate until human review.
