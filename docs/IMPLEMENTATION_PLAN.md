@@ -141,8 +141,17 @@ Owner: Trust/Data + Source Research + Frontend agents (lead coordinates)
 
 Full architecture, phases, and exit criteria: `docs/ECOSYSTEM_SCALE_PLAN.md`.
 Operational runbook: `docs/PROJECT_INTAKE_PIPELINE.md`.
-Status: planned; not started. Phase 5.4 (runtime indexer) stays closed without an explicit
-stack decision.
+Status: in progress. Executed 2026-09-27:
+- Phase 5.0 DONE (intake tooling + seed artifacts + dry run, commits cc4ad08…30f7889);
+- Phase 5.1 DONE — Batch 1: snapshot `phase-3.5-v3` (52 records, 36 projects), commits
+  e93cc86…9b5ac3f;
+- Phase 5.2 DONE — label LOD + archipelago district layout + Batch 2: snapshot
+  `phase-3.5-v4` (142 records, 126 evidence-backed projects, 130 buildings), 60 fps
+  measured (commits 207f4c3, 1c76154);
+- Next: Phase 5.3 (full sweep toward the directory) — pending-queue deployment resolution
+  (explorer work), relationship candidates from registry proofs (draft pack prepared),
+  refresh runbook. Phase 5.4 (runtime indexer) stays closed without an explicit stack
+  decision.
 
 ## Parallel workstreams
 

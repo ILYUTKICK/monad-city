@@ -879,19 +879,16 @@ function main() {
   const cityOracleNames = ['Pyth', 'Switchboard'];
   const oracleObservations = [];
   defillama.protocols.forEach((protocol) => {
-    const breakdown = protocol.oraclesBreakdown;
-    if (!Array.isArray(breakdown)) return;
-    breakdown.forEach((oracle) => {
-      if (!cityOracleNames.some((name) => String(oracle.name).toLowerCase().includes(name.toLowerCase()))) return;
-      const monadChains = (oracle.chains ?? []).filter((chain) => chain.chain === 'Monad');
-      if (monadChains.length === 0) return;
+    // The seed retains only Monad-chain oracle entries (compact  field).
+    (protocol.oracles ?? []).forEach((oracle) => {
+      if (!oracle.name || !cityOracleNames.some((name) => oracle.name.toLowerCase().includes(name.toLowerCase()))) return;
       oracleObservations.push({
         protocol: protocol.name,
         defillamaSlug: protocol.slug,
         oracle: oracle.name,
         oracleType: oracle.type ?? null,
         proof: oracle.proof ?? [],
-        note: 'Registry observation only. A relationship candidate would need the trust/data contract expanded beyond the curated six endpoints first.',
+        note: 'Registry observation only. A relationship candidate additionally needs its own evidence record and a review decision.',
       });
     });
   });

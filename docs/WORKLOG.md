@@ -1186,8 +1186,33 @@ Next:
 - Batch 3 / full sweep (§5.3): pending-queue deployment resolution, relationship candidates,
   refresh runbook execution.
 
+### 2026-09-27 — Lead agent — Phase 5.2 exit confirmed + §5.3 groundwork
 
+Changed:
+- `docs/IMPLEMENTATION_PLAN.md` — Phase 5 status: 5.0/5.1/5.2 marked executed with commit
+  pointers; Phase 5.3 (full sweep) named next; Phase 5.4 stays closed.
+- §5.2 exit items re-verified in-browser at 130 buildings: Navigator name search finds
+  batch-2 projects ("Accountable"), district filter scopes to "Infrastructure · 10 in view",
+  keyboard selection + Source-backed passport work, zero console errors.
+- Oracle seed extension (§5.3 prep): `scripts/research/fetch-defillama-monad.js` retains a
+  compact `oracles` field (Monad-chain oracle entries only, with proof URLs);
+  `data/research/defillama-monad-2026-09-27-b.json` captured (same-day artifact, `-b` suffix
+  per data/research/README.md). `scripts/ecosystem-intake.js` oracle-observation block now
+  reads the compact field.
 
+Verified:
+- Build green; intake smoke run with the `-b` seed passes; oracle observations section works.
+
+Limitations:
+- The oracle basis is EMPTY today: DefiLlama's Monad entries declare oracles for exactly 1
+  protocol and name neither Pyth nor Switchboard. No relationship candidates were drafted —
+  the draft envelope's `candidateRelationships` stays honestly empty. Future refreshes may
+  populate it; nothing is forced from thin air.
+
+Next:
+- Phase 5.3 needs an owner decision: explorer tooling for the 105 App-portal-only pending
+  projects (deployment resolution), and the refresh cadence start (batch-1/2 records are
+  30-day-cadence; the runtime governance report tracks due dates).
 
 ### 2026-09-27 — Lead agent / frontend — v2.2 stretch: beam tooltip + narrow-layout fixes
 

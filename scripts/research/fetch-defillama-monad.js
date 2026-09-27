@@ -87,6 +87,19 @@ async function main() {
       chains: protocol.chains,
       twitter: typeof protocol.twitter === 'string' ? protocol.twitter : null,
       tvl: typeof protocol.tvl === 'number' && Number.isFinite(protocol.tvl) ? protocol.tvl : null,
+      // Phase 5.3 prep: compact oracle observations (Monad-chain entries only) — the citable
+      // basis for future protocol↔oracle relationship candidates. Registry observations only;
+      // proof URLs stay attributed to their origin.
+      oracles: Array.isArray(protocol.oraclesBreakdown)
+        ? protocol.oraclesBreakdown
+            .filter((oracle) =>
+              Array.isArray(oracle?.chains) && oracle.chains.some((chain) => chain?.chain === REQUIRED_CHAIN_TAG))
+            .map((oracle) => ({
+              name: typeof oracle.name === 'string' ? oracle.name : null,
+              type: typeof oracle.type === 'string' ? oracle.type : null,
+              proof: Array.isArray(oracle.proof) ? oracle.proof.filter((url) => typeof url === 'string') : [],
+            }))
+        : [],
     }))
     .sort((left, right) => left.name.localeCompare(right.name));
 
