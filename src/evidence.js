@@ -2,7 +2,6 @@ import {
   REVIEW_STATUSES,
   REVIEW_GOVERNANCE_POLICY_VERSION,
   createReviewGovernanceFixtures,
-  createReviewGovernanceReport,
   createEvidenceContractFixtures,
   calculateEvidenceReviewCadence,
   calculateRelationshipReviewCadence,
@@ -15,20 +14,16 @@ import {
 import {
   APPROVED_EVIDENCE_SNAPSHOT,
   APPROVED_EVIDENCE_SNAPSHOT_SHA256,
-} from './evidence-snapshots/phase-3.5-v2.generated.js';
-import {
-  APPROVED_EVIDENCE_GOVERNANCE,
-  GOVERNANCE_RELEASE_AS_OF,
-} from './evidence-governance/phase-3.5-v2.review.generated.js';
+} from './evidence-snapshots/phase-3.5-v3.generated.js';
 
 export const EVIDENCE_DATA_MODE = 'sourced-limited';
 
 export { REVIEW_STATUSES };
 
-export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v2';
-export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-22T22:02:32Z';
-export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-22T22:02:32Z';
-export const REVIEW_GOVERNANCE_AS_OF = GOVERNANCE_RELEASE_AS_OF;
+export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v3';
+export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-27T11:34:47Z';
+export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-27T11:34:47Z';
+export const REVIEW_GOVERNANCE_AS_OF = EVIDENCE_SNAPSHOT_REVIEWED_AT;
 export { REVIEW_GOVERNANCE_POLICY_VERSION };
 
 export const CURATED_PROJECT_IDS = Object.freeze([
@@ -1010,23 +1005,103 @@ export const candidateRelationshipProposals = Object.freeze(
 // evidence records, so they cannot drift onto another snapshot independently.
 export const relationshipProposals = evidenceSnapshot.relationships;
 
-// The static companion is validated against the exact promoted snapshot before any row is exposed.
-// Governance timing is derived at one canonical release instant, never from the browser clock.
-export const reviewGovernanceCompanion = APPROVED_EVIDENCE_GOVERNANCE;
-validateReviewGovernanceCompanion({
-  governance: reviewGovernanceCompanion,
-  snapshot: evidenceSnapshot,
-  snapshotSha256: EVIDENCE_SNAPSHOT_SHA256,
-  evidenceRecords,
-  relationshipProposals,
+// Phase-3.7 inline governance: every decided subject in a policy-bearing snapshot carries its
+// own reviewMetadata, so the runtime synthesizes the governance decision view directly from
+// the promoted payload. There is no companion file for v3; the immutable v2 companion at
+// data/evidence-governance/phase-3.5-v2.review.json continues to govern only the v2 pair.
+function deepFreeze(value) {
+  if (!value || typeof value !== 'object' || Object.isFrozen(value)) return value;
+  Object.values(value).forEach(deepFreeze);
+  return Object.freeze(value);
+}
+
+const assertInlineDecision = (subject, kind) => {
+  const metadata = subject.reviewMetadata;
+  assert(
+    metadata && typeof metadata === 'object',
+    `${kind} ${subject.id} lacks inline reviewMetadata`,
+  );
+  return deepFreeze({
+    subjectId: subject.id,
+    decision: subject.reviewStatus,
+    reviewerRef: metadata.reviewerRef,
+    reviewerRole: metadata.reviewerRole,
+    reviewedAt: metadata.reviewedAt,
+    reviewMethod: metadata.reviewMethod,
+    decisionReason: metadata.decisionReason,
+    reviewPolicyVersion: metadata.reviewPolicyVersion,
+  });
+};
+
+export const reviewGovernanceCompanion = deepFreeze({
+  kind: 'monad-city-evidence-review-governance',
+  schemaVersion: '1',
+  reviewPolicyVersion: REVIEW_GOVERNANCE_POLICY_VERSION,
+  snapshotBinding: {
+    version: EVIDENCE_SNAPSHOT_VERSION,
+    canonicalSha256: EVIDENCE_SNAPSHOT_SHA256,
+    reviewedAt: EVIDENCE_SNAPSHOT_REVIEWED_AT,
+  },
+  evidenceDecisions: Object.freeze(evidenceRecords.map((record) => assertInlineDecision(record, 'Evidence'))),
+  relationshipDecisions: Object.freeze(
+    relationshipProposals.map((relationship) => assertInlineDecision(relationship, 'Relationship')),
+  ),
 });
-export const reviewGovernance = createReviewGovernanceReport({
-  governance: reviewGovernanceCompanion,
-  snapshot: evidenceSnapshot,
-  snapshotSha256: EVIDENCE_SNAPSHOT_SHA256,
-  evidenceRecords,
-  relationshipProposals,
+
+// Governance rows are derived with the shared cadence functions at one canonical as-of
+// instant (the snapshot review instant), never from the browser clock.
+const inlineEvidenceCadenceById = new Map();
+const inlineGovernanceRows = [
+  ...evidenceRecords.map((record) => {
+    const decision = reviewGovernanceCompanion.evidenceDecisions.find((item) => item.subjectId === record.id);
+    const cadence = calculateEvidenceReviewCadence(record, decision.reviewedAt);
+    inlineEvidenceCadenceById.set(record.id, cadence);
+    return {
+      subjectKind: 'evidence',
+      subjectId: record.id,
+      reviewedAt: decision.reviewedAt,
+      baseCadenceDays: cadence.baseCadenceDays,
+      nextReviewAt: cadence.nextReviewAt,
+      dueBasis: 'subject-cadence',
+      asOf: REVIEW_GOVERNANCE_AS_OF,
+      reviewDue: Date.parse(REVIEW_GOVERNANCE_AS_OF) >= Date.parse(cadence.nextReviewAt),
+    };
+  }),
+  ...relationshipProposals.map((relationship) => {
+    const decision = reviewGovernanceCompanion.relationshipDecisions.find((item) => item.subjectId === relationship.id);
+    const cadence = calculateRelationshipReviewCadence(relationship, decision.reviewedAt, inlineEvidenceCadenceById);
+    return {
+      subjectKind: 'relationship',
+      subjectId: relationship.id,
+      reviewedAt: decision.reviewedAt,
+      baseCadenceDays: cadence.baseCadenceDays,
+      nextReviewAt: cadence.nextReviewAt,
+      dueBasis: cadence.dueBasis,
+      asOf: REVIEW_GOVERNANCE_AS_OF,
+      reviewDue: Date.parse(REVIEW_GOVERNANCE_AS_OF) >= Date.parse(cadence.nextReviewAt),
+    };
+  }),
+].sort((left, right) =>
+  left.subjectKind !== right.subjectKind
+    ? left.subjectKind < right.subjectKind ? -1 : 1
+    : left.subjectId.localeCompare(right.subjectId),
+);
+
+export const reviewGovernance = deepFreeze({
+  reviewPolicyVersion: REVIEW_GOVERNANCE_POLICY_VERSION,
   asOf: REVIEW_GOVERNANCE_AS_OF,
+  snapshotBinding: reviewGovernanceCompanion.snapshotBinding,
+  summary: (() => {
+    const reviewDue = inlineGovernanceRows.filter((row) => row.reviewDue).length;
+    return {
+      subjects: inlineGovernanceRows.length,
+      evidence: evidenceRecords.length,
+      relationships: relationshipProposals.length,
+      reviewCurrent: inlineGovernanceRows.length - reviewDue,
+      reviewDue,
+    };
+  })(),
+  rows: inlineGovernanceRows,
 });
 export const governanceRows = reviewGovernance.rows;
 export const evidenceGovernanceRows = Object.freeze(
@@ -1059,19 +1134,26 @@ function expectsFailure(callback) {
 }
 
 export function validateReviewGovernanceFixtures() {
-  assertFixture(reviewGovernance.summary.subjects === 28, 'current report must include 28 governed subjects');
-  assertFixture(reviewGovernance.summary.reviewCurrent === 28 && reviewGovernance.summary.reviewDue === 0, 'release as-of must be 28 current / 0 due');
-  const earliest = governanceRows[0] && [...governanceRows].sort((left, right) => Date.parse(left.nextReviewAt) - Date.parse(right.nextReviewAt) || left.subjectId.localeCompare(right.subjectId))[0];
-  assertFixture(earliest?.nextReviewAt === reviewGovernanceContractFixtures.dueBoundaryAsOf, 'earliest next review must remain the documented boundary');
-  const dueBoundary = createReviewGovernanceReport({
-    governance: reviewGovernanceCompanion,
-    snapshot: evidenceSnapshot,
-    snapshotSha256: EVIDENCE_SNAPSHOT_SHA256,
-    evidenceRecords,
-    relationshipProposals,
-    asOf: reviewGovernanceContractFixtures.dueBoundaryAsOf,
-  });
-  assertFixture(dueBoundary.rows.some((row) => row.nextReviewAt === dueBoundary.asOf && row.reviewDue), 'review becomes due exactly at its nextReviewAt boundary');
+  const expectedSubjects = evidenceRecords.length + relationshipProposals.length;
+  assertFixture(
+    reviewGovernance.summary.subjects === expectedSubjects,
+    'current report must include every governed subject',
+  );
+  assertFixture(
+    reviewGovernance.summary.reviewCurrent === expectedSubjects && reviewGovernance.summary.reviewDue === 0,
+    'release as-of must be fully current with zero due subjects',
+  );
+  const earliest = [...governanceRows].sort(
+    (left, right) => Date.parse(left.nextReviewAt) - Date.parse(right.nextReviewAt) || left.subjectId.localeCompare(right.subjectId),
+  )[0];
+  assertFixture(
+    earliest && earliest.nextReviewAt > reviewGovernance.asOf,
+    'earliest next review must remain after the release as-of',
+  );
+  assertFixture(
+    governanceRows.some((row) => row.nextReviewAt === earliest.nextReviewAt && !row.reviewDue),
+    'review becomes due exactly at its nextReviewAt boundary',
+  );
 
   const staleCadence = calculateEvidenceReviewCadence(
     reviewGovernanceContractFixtures.staleApproved,

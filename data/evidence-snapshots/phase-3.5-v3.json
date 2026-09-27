@@ -1,0 +1,3532 @@
+{
+  "schemaVersion": 1,
+  "version": "phase-3.5-v3",
+  "createdAt": "2026-09-27T11:34:47Z",
+  "reviewedAt": "2026-09-27T11:34:47Z",
+  "dataMode": "sourced-limited",
+  "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+  "records": [
+    {
+      "id": "E-MONAD-CAP-001",
+      "projectId": "monad",
+      "relatedProjectIds": [],
+      "claim": "Monad documentation describes Monad as an Ethereum-compatible Layer-1 and documents parallel execution.",
+      "evidenceType": "project-documentation",
+      "status": "Claimed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "Monad for Developers",
+        "url": "https://docs.monad.xyz/introduction/monad-for-developers",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Protocol identity and documented execution capability.",
+      "provenanceNotes": "Manually retrieved from the official Monad documentation domain.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Manually retrieved from the official Monad documentation domain."
+      },
+      "limitations": [
+        "Self-published technical description.",
+        "Does not independently benchmark throughput, decentralization, reliability, or safety."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "publisher-statement-only",
+      "supportedProposition": "Protocol identity and documented execution capability.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-MONAD-MAINNET-001",
+      "projectId": "monad",
+      "relatedProjectIds": [],
+      "claim": "Monad Foundation announced that Monad public mainnet launched on 2025-11-24.",
+      "evidenceType": "official-launch-record",
+      "status": "Observed",
+      "source": {
+        "kind": "announcement-html",
+        "title": "Get Started on Monad Mainnet",
+        "url": "https://www.monad.xyz/announcements/get-started-on-monad-mainnet",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2025-11-24T00:00:00Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Official launch announcement at day precision.",
+      "provenanceNotes": "The normalized midnight timestamp represents the published day, not a claimed launch time.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "The normalized midnight timestamp represents the published day, not a claimed launch time."
+      },
+      "limitations": [
+        "An official announcement is not independent chain-history validation.",
+        "Does not support uninterrupted uptime or current network health."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Official launch announcement at day precision.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-MONAD-NET-001",
+      "projectId": "monad",
+      "relatedProjectIds": [],
+      "claim": "Monad official documentation identifies mainnet as chain ID 143.",
+      "evidenceType": "network-configuration",
+      "status": "Observed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "Network Information",
+        "url": "https://docs.monad.xyz/developer-essentials/network-information",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Monad mainnet network identity only.",
+      "provenanceNotes": "Official network-information page retrieved directly.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Official network-information page retrieved directly."
+      },
+      "limitations": [
+        "Dynamic rendering can omit values in text-only clients.",
+        "Does not validate any project contract in the linked ecosystem registry."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Monad mainnet network identity only.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-KURU-CAP-001",
+      "projectId": "kuru",
+      "relatedProjectIds": [],
+      "claim": "Kuru documentation describes Kuru as a fully onchain order-book DEX and smart aggregator built on Monad.",
+      "evidenceType": "project-documentation",
+      "status": "Claimed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "Kuru Documentation",
+        "url": "https://docs.kuru.io/",
+        "publisher": "Kuru Labs",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Project identity, category, documented capabilities, and Monad deployment claim.",
+      "provenanceNotes": "Project-controlled documentation aligned with the existing `kuru` entity ID.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Project-controlled documentation aligned with the existing `kuru` entity ID."
+      },
+      "limitations": [
+        "Self-published project description.",
+        "Does not prove execution quality, safety, liquidity, volume, or current activity."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "publisher-statement-only",
+      "supportedProposition": "Project identity, category, documented capabilities, and Monad deployment claim.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-KURU-CONTRACTS-001",
+      "projectId": "kuru",
+      "relatedProjectIds": [],
+      "claim": "Kuru documentation publishes Monad-mainnet addresses for Flow Entrypoint, Flow Router, MarginAccount, and the market-factory Router.",
+      "evidenceType": "project-address-publication",
+      "status": "Claimed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "Kuru Contract Addresses",
+        "url": "https://docs.kuru.io/contracts/Contract-addresses",
+        "publisher": "Kuru Labs",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Four project-published Monad-mainnet address-role mappings.",
+      "provenanceNotes": "Project page separates mainnet and testnet addresses.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Project page separates mainnet and testnet addresses."
+      },
+      "limitations": [
+        "Address publication does not prove control, code identity, upgrade state, or safety.",
+        "The Flow Router role conflicts with the pinned registry naming."
+      ],
+      "quality": {
+        "conflict": true,
+        "incomplete": true,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": {
+        "contracts": [
+          {
+            "role": "Flow Entrypoint",
+            "address": "0xb3e6778480b2E488385E8205eA05E20060B813cb",
+            "runtimeDisposition": "candidate"
+          },
+          {
+            "role": "Flow Router (project wording)",
+            "address": "0x0d3a1BE29E9dEd63c7a5678b31e847D68F71FFa2",
+            "runtimeDisposition": "candidate-with-role-conflict"
+          },
+          {
+            "role": "MarginAccount",
+            "address": "0x2A68ba1833cDf93fa9Da1EEbd7F46242aD8E90c5",
+            "runtimeDisposition": "candidate"
+          },
+          {
+            "role": "Market-factory Router",
+            "address": "0xd651346d7c789536ebf06dc72aE3C8502cd695CC",
+            "runtimeDisposition": "candidate"
+          }
+        ]
+      },
+      "conflicts": [
+        {
+          "kind": "contract-role-name",
+          "address": "0x0d3a1BE29E9dEd63c7a5678b31e847D68F71FFa2",
+          "thisSourceRole": "Flow Router",
+          "conflictingEvidenceId": "E-KURU-REGISTRY-001",
+          "conflictingSourceRole": "KuruFlowRouterV2"
+        }
+      ],
+      "supportMode": "publisher-statement-only",
+      "supportedProposition": "Four project-published Monad-mainnet address-role mappings.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-KURU-REGISTRY-001",
+      "projectId": "kuru",
+      "relatedProjectIds": [],
+      "claim": "The pinned Monad registry lists Kuru as live in DEX / DEX Aggregator, labels 0x0d3a…FFa2 KuruFlowRouterV2, and separately labels 0x465D…7040 KuruFlowRouter.",
+      "evidenceType": "protocol-registry-snapshot",
+      "status": "Observed",
+      "source": {
+        "kind": "registry-json",
+        "title": "Monad mainnet protocol registry at 36fddcc0021fffe81c7b73a8672347538ec2c9eb",
+        "url": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "publisher": "Monad protocol registry repository",
+        "available": true,
+        "referenceType": "pinned-snapshot",
+        "presentationMutable": false
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-09-07T21:59:59Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Pinned registry entry `kuru` and its exact snapshot metadata.",
+      "provenanceNotes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json"
+      },
+      "limitations": [
+        "Protocol representatives submit entries; automated checks validate format, not correctness or safety.",
+        "The router naming is conflicting and incomplete.",
+        "0x465D…7040 is held and must not be ingested as a current contract."
+      ],
+      "quality": {
+        "conflict": true,
+        "incomplete": true,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "contracts": [
+          {
+            "role": "KuruFlowEntryPoint",
+            "address": "0xb3e6778480b2E488385E8205eA05E20060B813cb",
+            "runtimeDisposition": "candidate"
+          },
+          {
+            "role": "KuruFlowRouterV2",
+            "address": "0x0d3a1BE29E9dEd63c7a5678b31e847D68F71FFa2",
+            "runtimeDisposition": "candidate-with-role-conflict"
+          },
+          {
+            "role": "MarginAccount",
+            "address": "0x2A68ba1833cDf93fa9Da1EEbd7F46242aD8E90c5",
+            "runtimeDisposition": "candidate"
+          },
+          {
+            "role": "Router",
+            "address": "0xd651346d7c789536ebf06dc72aE3C8502cd695CC",
+            "runtimeDisposition": "candidate"
+          }
+        ],
+        "heldContracts": [
+          {
+            "role": "KuruFlowRouter (registry-only)",
+            "address": "0x465D06d4521ae9Ce724E0c182Daad5D8a2Ff7040",
+            "runtimeDisposition": "held-not-current"
+          }
+        ]
+      },
+      "conflicts": [
+        {
+          "kind": "contract-role-name",
+          "heldAddress": "0x465D06d4521ae9Ce724E0c182Daad5D8a2Ff7040",
+          "candidateAddress": "0x0d3a1BE29E9dEd63c7a5678b31e847D68F71FFa2",
+          "resolution": "Preserve both source statements; never treat the held address as current."
+        }
+      ],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Pinned registry entry `kuru` and its exact snapshot metadata.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-KURU-CHAIN-001",
+      "projectId": "kuru",
+      "relatedProjectIds": [],
+      "claim": "MonadScan records a successful Monad-mainnet transaction at 2026-08-13T03:10:24Z to 0xb3e6778480b2E488385E8205eA05E20060B813cb, labeled Kuru: Flow Entry Point.",
+      "evidenceType": "explorer-transaction",
+      "status": "Observed",
+      "source": {
+        "kind": "explorer-transaction-html",
+        "title": "Monad transaction 0x38f2408c…2b582b03",
+        "url": "https://monadscan.com/tx/0x38f2408c6c7e6f4494abb85381fa3ef26b501d65abf54012ce0694322b582b03",
+        "publisher": "MonadScan",
+        "available": true,
+        "referenceType": "stable-artifact-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-08-13T03:10:24Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "One successful transaction, destination, explorer label, and block timestamp.",
+      "provenanceNotes": "Direct transaction page cross-referenced with the project-published address.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Direct transaction page cross-referenced with the project-published address."
+      },
+      "limitations": [
+        "Explorer labels can be curated or submitted.",
+        "One transaction does not establish current activity, volume, safety, or a broad integration."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "transactionHash": "0x38f2408c6c7e6f4494abb85381fa3ef26b501d65abf54012ce0694322b582b03",
+        "destination": "0xb3e6778480b2E488385E8205eA05E20060B813cb",
+        "transactionStatus": "success"
+      },
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "One successful transaction, destination, explorer label, and block timestamp.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-APRIORI-CAP-001",
+      "projectId": "aPriori",
+      "relatedProjectIds": [],
+      "claim": "Capricorn documentation describes aprMON as a reward-bearing liquid-staking token that accrues staking and MEV revenue and remains deployable across DeFi.",
+      "evidenceType": "project-documentation",
+      "status": "Claimed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "Introduction to Capricorn Tech",
+        "url": "https://capricorn-docs.gitbook.io/capricorn-docs/introduction-to-capricorn-tech",
+        "publisher": "Capricorn Tech",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-07-29T14:13:30.713Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Current publisher wording about the aprMON product pillar.",
+      "provenanceNotes": "apr.io redirected to capricorn.tech at retrieval. The prototype retains legacy project ID `aPriori` and scopes this record to Capricorn/aprMON.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "apr.io redirected to capricorn.tech at retrieval. The prototype retains legacy project ID `aPriori` and scopes this record to Capricorn/aprMON."
+      },
+      "limitations": [
+        "The redirect supports an identity transition only; it does not prove every historical aPriori claim or authorize a silent rename.",
+        "Self-published documentation does not establish contract address, return, safety, or current activity."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": true,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "publisher-statement-only",
+      "supportedProposition": "Current publisher wording about the aprMON product pillar.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-APRIORI-REGISTRY-001",
+      "projectId": "aPriori",
+      "relatedProjectIds": [],
+      "claim": "The pinned Monad registry lists the legacy name aPriori in Liquid Staking / MEV / DEX Aggregator and maps aprMON to 0x0c65…0852.",
+      "evidenceType": "protocol-registry-snapshot",
+      "status": "Observed",
+      "source": {
+        "kind": "registry-json",
+        "title": "Monad mainnet protocol registry at 36fddcc0021fffe81c7b73a8672347538ec2c9eb",
+        "url": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "publisher": "Monad protocol registry repository",
+        "available": true,
+        "referenceType": "pinned-snapshot",
+        "presentationMutable": false
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-09-07T21:59:59Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Pinned registry entry `apriori`, its categories, and address mappings.",
+      "provenanceNotes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json"
+      },
+      "limitations": [
+        "Registry live metadata is not a measured activity window.",
+        "The snapshot uses legacy aPriori branding while apr.io now redirects to Capricorn.",
+        "The ValidatorsRegistry mapping lacks second-source support and remains held."
+      ],
+      "quality": {
+        "conflict": true,
+        "incomplete": true,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "contracts": [
+          {
+            "role": "aprMON",
+            "address": "0x0c65A0BC65a5D819235B71F554D210D3F80E0852",
+            "runtimeDisposition": "candidate"
+          }
+        ],
+        "heldContracts": [
+          {
+            "role": "ValidatorsRegistry",
+            "address": "0x77F6e4103e32D6146e29cF9eD1645e170F90BC2b",
+            "runtimeDisposition": "held-registry-only"
+          }
+        ]
+      },
+      "conflicts": [
+        {
+          "kind": "identity-label",
+          "snapshotLabel": "aPriori",
+          "currentPublisherContext": "Capricorn/aprMON",
+          "resolution": "Keep the existing ID; expose the legacy-label limitation."
+        }
+      ],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Pinned registry entry `apriori`, its categories, and address mappings.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-APRIORI-CHAIN-001",
+      "projectId": "aPriori",
+      "relatedProjectIds": [],
+      "claim": "MonadScan records successful transaction 0x60fc…c7db at 2026-09-08T17:51:10Z calling deposit(uint256,address) on 0x0c65…0852, labeled aPriori: aprMON Token.",
+      "evidenceType": "explorer-transaction",
+      "status": "Observed",
+      "source": {
+        "kind": "explorer-transaction-html",
+        "title": "Monad transaction 0x60fc294b…fac0c7db",
+        "url": "https://monadscan.com/tx/0x60fc294b5e48ea8997dc1b4ddfc37ab3b82a6b9913e1b6dd40a7ed33fac0c7db",
+        "publisher": "MonadScan",
+        "available": true,
+        "referenceType": "stable-artifact-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-09-08T17:51:10Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "One transaction, destination, decoded function, explorer label, status, and timestamp.",
+      "provenanceNotes": "Direct transaction page cross-referenced with the pinned registry address.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Direct transaction page cross-referenced with the pinned registry address."
+      },
+      "limitations": [
+        "Explorer labels are not proof of legal identity, current publisher naming, control, or safety.",
+        "The event supports activity at one instant only."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "transactionHash": "0x60fc294b5e48ea8997dc1b4ddfc37ab3b82a6b9913e1b6dd40a7ed33fac0c7db",
+        "destination": "0x0c65A0BC65a5D819235B71F554D210D3F80E0852",
+        "function": "deposit(uint256,address)",
+        "transactionStatus": "success"
+      },
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "One transaction, destination, decoded function, explorer label, status, and timestamp.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-MAGMA-CAP-001",
+      "projectId": "magma",
+      "relatedProjectIds": [],
+      "claim": "Magma documentation describes a Monad liquid-staking protocol that issues gMON and publishes gMON address 0x8498…5081.",
+      "evidenceType": "project-documentation",
+      "status": "Claimed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "Liquid Staking (gMON)",
+        "url": "https://docs.hydrogenlabs.xyz/magma/liquid-staking-gmon",
+        "publisher": "Magma / Hydrogen Labs",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Documented liquid-staking capability and gMON address mapping.",
+      "provenanceNotes": "Project-controlled documentation with an exact address.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Project-controlled documentation with an exact address."
+      },
+      "limitations": [
+        "Self-published; reward, collateralization, governance, and safety claims are excluded.",
+        "Page wording mixes present behavior and launch plans."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": {
+        "contracts": [
+          {
+            "role": "gMON token / deposit contract",
+            "address": "0x8498312A6B3CbD158bf0c93AbdCF29E6e4F55081",
+            "runtimeDisposition": "candidate"
+          }
+        ]
+      },
+      "conflicts": [],
+      "supportMode": "publisher-statement-only",
+      "supportedProposition": "Documented liquid-staking capability and gMON address mapping.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-MAGMA-REGISTRY-001",
+      "projectId": "magma",
+      "relatedProjectIds": [],
+      "claim": "The pinned Monad registry lists Magma in Liquid Staking / Staking / MEV and maps gMON and Delegator addresses.",
+      "evidenceType": "protocol-registry-snapshot",
+      "status": "Observed",
+      "source": {
+        "kind": "registry-json",
+        "title": "Monad mainnet protocol registry at 36fddcc0021fffe81c7b73a8672347538ec2c9eb",
+        "url": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "publisher": "Monad protocol registry repository",
+        "available": true,
+        "referenceType": "pinned-snapshot",
+        "presentationMutable": false
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-09-07T21:59:59Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Pinned registry entry `magma`, categories, and two address mappings.",
+      "provenanceNotes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json"
+      },
+      "limitations": [
+        "Registry live metadata is not measured activity.",
+        "The Delegator mapping lacks independent project-documentation or code-identity verification."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": true,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "contracts": [
+          {
+            "role": "gMON",
+            "address": "0x8498312A6B3CbD158bf0c93AbdCF29E6e4F55081",
+            "runtimeDisposition": "candidate"
+          }
+        ],
+        "heldContracts": [
+          {
+            "role": "Delegator",
+            "address": "0xb1d57de83d80a2abac91714744dfe97e71b73dc0",
+            "runtimeDisposition": "candidate-lower-confidence"
+          }
+        ]
+      },
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Pinned registry entry `magma`, categories, and two address mappings.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-MAGMA-CHAIN-001",
+      "projectId": "magma",
+      "relatedProjectIds": [],
+      "claim": "MonadScan records successful transaction 0x90a3…0ba4 at 2026-03-30T15:12:26Z calling depositMON(address,uint256) on 0x8498…5081, staking 1,000 MON and minting 958.416822874522046371 gMON.",
+      "evidenceType": "explorer-transaction",
+      "status": "Observed",
+      "source": {
+        "kind": "explorer-transaction-html",
+        "title": "Monad transaction 0x90a377cc…3e5b0ba4",
+        "url": "https://monadscan.com/tx/0x90a377ccdfe51e77ee22d7843ace210f18c23ffd7e0ff95c138b7afc3e5b0ba4",
+        "publisher": "MonadScan",
+        "available": true,
+        "referenceType": "stable-artifact-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-03-30T15:12:26Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "One transaction, decoded function, exact amounts, destination, status, and block timestamp.",
+      "provenanceNotes": "The exact block timestamp and event values were independently visible on the direct transaction page.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "The exact block timestamp and event values were independently visible on the direct transaction page."
+      },
+      "limitations": [
+        "One historical event does not establish recent activity, APY, solvency, safety, or total value.",
+        "Explorer labels and decoded methods are not a contract audit."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "transactionHash": "0x90a377ccdfe51e77ee22d7843ace210f18c23ffd7e0ff95c138b7afc3e5b0ba4",
+        "destination": "0x8498312A6B3CbD158bf0c93AbdCF29E6e4F55081",
+        "function": "depositMON(address,uint256)",
+        "transactionStatus": "success",
+        "assets": {
+          "amount": "1000",
+          "symbol": "MON"
+        },
+        "shares": {
+          "amount": "958.416822874522046371",
+          "symbol": "gMON"
+        }
+      },
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "One transaction, decoded function, exact amounts, destination, status, and block timestamp.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-SWITCHBOARD-CAP-001",
+      "projectId": "switchboard",
+      "relatedProjectIds": [],
+      "claim": "Switchboard documentation says Switchboard On-Demand supports Monad and lists chain ID 143 contract 0xB7F0…0E67.",
+      "evidenceType": "project-documentation",
+      "status": "Claimed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "Switchboard on Monad",
+        "url": "https://docs.switchboard.xyz/docs-by-chain/evm/monad",
+        "publisher": "Switchboard",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Documented Monad oracle deployment and exact mainnet contract address.",
+      "provenanceNotes": "Project-controlled chain-specific documentation separates mainnet and testnet.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Project-controlled chain-specific documentation separates mainnet and testnet."
+      },
+      "limitations": [
+        "Self-published deployment statement.",
+        "Does not establish feed freshness, usage, contract-code verification, or safety."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": {
+        "contracts": [
+          {
+            "role": "Oracle",
+            "address": "0xB7F03eee7B9F56347e32cC71DaD65B303D5a0E67",
+            "runtimeDisposition": "candidate"
+          }
+        ]
+      },
+      "conflicts": [],
+      "supportMode": "publisher-statement-only",
+      "supportedProposition": "Documented Monad oracle deployment and exact mainnet contract address.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-SWITCHBOARD-MEM-001",
+      "projectId": "switchboard",
+      "relatedProjectIds": [],
+      "claim": "Monad infrastructure directory lists Switchboard in the Oracle category.",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad Infrastructure Directory",
+        "url": "https://www.monad.xyz/infra",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Infrastructure directory membership and category at retrieval.",
+      "provenanceNotes": "Official Monad Foundation directory.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Official Monad Foundation directory."
+      },
+      "limitations": [
+        "Directory inclusion is not endorsement, contract validation, deployment proof, or proof of current operation."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Infrastructure directory membership and category at retrieval.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-SWITCHBOARD-REGISTRY-001",
+      "projectId": "switchboard",
+      "relatedProjectIds": [],
+      "claim": "The pinned Monad registry lists Switchboard in Infra::Oracle and maps Oracle to 0xB7F0…0E67.",
+      "evidenceType": "protocol-registry-snapshot",
+      "status": "Observed",
+      "source": {
+        "kind": "registry-json",
+        "title": "Monad mainnet protocol registry at 36fddcc0021fffe81c7b73a8672347538ec2c9eb",
+        "url": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "publisher": "Monad protocol registry repository",
+        "available": true,
+        "referenceType": "pinned-snapshot",
+        "presentationMutable": false
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-09-07T21:59:59Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Pinned registry entry `switchboard` and exact Oracle mapping.",
+      "provenanceNotes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json"
+      },
+      "limitations": [
+        "Agreement with project docs increases mapping confidence but is not an attestation.",
+        "Does not validate contract code or current feed activity."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "contracts": [
+          {
+            "role": "Oracle",
+            "address": "0xB7F03eee7B9F56347e32cC71DaD65B303D5a0E67",
+            "runtimeDisposition": "candidate"
+          }
+        ]
+      },
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Pinned registry entry `switchboard` and exact Oracle mapping.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-PYTH-PUSH-001",
+      "projectId": "pyth",
+      "relatedProjectIds": [],
+      "claim": "Pyth documentation lists sponsored Pyth push feeds on Monad mainnet.",
+      "evidenceType": "project-documentation",
+      "status": "Claimed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "Pyth Push Feeds — EVM",
+        "url": "https://docs.pyth.network/price-feeds/core/push-feeds/evm",
+        "publisher": "Pyth Network",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Documented availability of a Monad-mainnet push-feed set.",
+      "provenanceNotes": "Project-controlled documentation with a dedicated Monad section.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Project-controlled documentation with a dedicated Monad section."
+      },
+      "limitations": [
+        "Feed membership and update parameters can change.",
+        "Does not establish freshness or correctness of a particular feed at query time."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "publisher-statement-only",
+      "supportedProposition": "Documented availability of a Monad-mainnet push-feed set.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-PYTH-MEM-001",
+      "projectId": "pyth",
+      "relatedProjectIds": [],
+      "claim": "Monad infrastructure directory lists Pyth Network in the Oracle category.",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad Infrastructure Directory",
+        "url": "https://www.monad.xyz/infra",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Infrastructure directory membership and category at retrieval.",
+      "provenanceNotes": "Official Monad Foundation directory.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Official Monad Foundation directory."
+      },
+      "limitations": [
+        "Directory inclusion is not endorsement, contract validation, or proof of current feed operation."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Infrastructure directory membership and category at retrieval.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-PYTH-REGISTRY-001",
+      "projectId": "pyth",
+      "relatedProjectIds": [],
+      "claim": "The pinned Monad registry lists Pyth in Infra::Oracle and maps PriceFeed to the earlier 0x2880…7B43 address.",
+      "evidenceType": "protocol-registry-snapshot",
+      "status": "Observed",
+      "source": {
+        "kind": "registry-json",
+        "title": "Monad mainnet protocol registry at 36fddcc0021fffe81c7b73a8672347538ec2c9eb",
+        "url": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "publisher": "Monad protocol registry repository",
+        "available": true,
+        "referenceType": "pinned-snapshot",
+        "presentationMutable": false
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-09-07T21:59:59Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Pinned registry entry `pyth`, including PriceFeed and Entropy mappings.",
+      "provenanceNotes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Immutable commit snapshot. Moving re-retrieval pointer only: https://raw.githubusercontent.com/monad-crypto/protocols/main/protocols-mainnet.json"
+      },
+      "limitations": [
+        "The snapshot is stale and incomplete for new Pyth Core integrations after the documented 2026-08-26 upgrade.",
+        "Entropy was not independently verified in this pass and remains held."
+      ],
+      "quality": {
+        "conflict": true,
+        "incomplete": true,
+        "stale": true,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "contracts": [
+          {
+            "role": "PriceFeed",
+            "address": "0x2880aB155794e7179c9eE2e38200202908C17B43",
+            "runtimeDisposition": "historical-registry-snapshot"
+          }
+        ],
+        "heldContracts": [
+          {
+            "role": "Entropy",
+            "address": "0xD458261E832415CFd3BAE5E416FdF3230ce6F134",
+            "runtimeDisposition": "held-registry-only"
+          }
+        ]
+      },
+      "conflicts": [
+        {
+          "kind": "source-staleness",
+          "registryAddress": "0x2880aB155794e7179c9eE2e38200202908C17B43",
+          "projectRecommendedAddress": "0xB754BA51E3861Ac0Cb67f73CD046dE790A36508d",
+          "resolution": "Use the registry record historically, never as current integration guidance."
+        }
+      ],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Pinned registry entry `pyth`, including PriceFeed and Entropy mappings.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-PYTH-CHAIN-001",
+      "projectId": "pyth",
+      "relatedProjectIds": [],
+      "claim": "MonadScan records successful transaction 0x03c9…4d5a at 2026-07-16T16:55:15Z calling updatePriceFeedsIfNecessary on the earlier 0x2880…7B43 Pyth Price Feed contract.",
+      "evidenceType": "explorer-transaction",
+      "status": "Observed",
+      "source": {
+        "kind": "explorer-transaction-html",
+        "title": "Monad transaction 0x03c93be6…8b54d5a",
+        "url": "https://monadscan.com/tx/0x03c93be66f8e6acd0d5c08066b9d9e0663e0e17d48a5a30db2094277c8b54d5a",
+        "publisher": "MonadScan",
+        "available": true,
+        "referenceType": "stable-artifact-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": "2026-07-16T16:55:15Z",
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "One pre-upgrade transaction, destination, decoded function, status, and block timestamp.",
+      "provenanceNotes": "Direct transaction page predates Pyth documented 2026-08-26 upgrade.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Direct transaction page predates Pyth documented 2026-08-26 upgrade."
+      },
+      "limitations": [
+        "Historical evidence only; it does not establish activity after the upgrade.",
+        "Does not support the current preferred-address status."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": true,
+        "unavailable": false,
+        "timeBoundEligible": true
+      },
+      "identifiers": {
+        "transactionHash": "0x03c93be66f8e6acd0d5c08066b9d9e0663e0e17d48a5a30db2094277c8b54d5a",
+        "destination": "0x2880aB155794e7179c9eE2e38200202908C17B43",
+        "function": "updatePriceFeedsIfNecessary(bytes[],bytes32[],uint64[])",
+        "transactionStatus": "success"
+      },
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "One pre-upgrade transaction, destination, decoded function, status, and block timestamp.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-MAGMA-SWITCHBOARD-001",
+      "projectId": "magma",
+      "relatedProjectIds": [
+        "switchboard"
+      ],
+      "claim": "Magma documentation names Switchboard as a gMON oracle provider and publishes separate exchange-rate and market-rate feed IDs.",
+      "evidenceType": "project-declared-relationship",
+      "status": "Claimed",
+      "source": {
+        "kind": "documentation-html",
+        "title": "gMON Oracle Feeds",
+        "url": "https://docs.hydrogenlabs.xyz/magma/developers/gmon-oracle-feeds",
+        "publisher": "Magma / Hydrogen Labs",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-09T07:43:40Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "One-sided declared Magma-to-Switchboard integration with two exact feed IDs.",
+      "provenanceNotes": "Project-controlled integration documentation names Switchboard.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Project-controlled integration documentation names Switchboard."
+      },
+      "limitations": [
+        "No reciprocal Switchboard page or fresh feed observation was verified.",
+        "Does not establish that either feed is current, live, safe, or correctly priced."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": {
+        "feedIds": [
+          {
+            "role": "gMON/MON exchange-rate feed",
+            "id": "0x34019772d4f9cb583fd07ecd056b0d8419650bc17bb64daefc16c3fd561c87e1"
+          },
+          {
+            "role": "gMON/MON market-rate feed",
+            "id": "0x1a71b644b9eb846c9bf2557e75968d685d468547ad99e9ddbcf246f3e0b1a0a8"
+          }
+        ]
+      },
+      "conflicts": [],
+      "supportMode": "publisher-statement-only",
+      "supportedProposition": "One-sided declared Magma-to-Switchboard integration with two exact feed IDs.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "claim": "At the 2026-09-22 refresh, Monad Foundation App Portal listed Kuru in Spot Trading as ‘Trading Hub on Monad.’",
+      "conflicts": [],
+      "dataMode": "sourced-limited",
+      "evidenceType": "official-directory-listing",
+      "id": "E-KURU-MEM-002",
+      "identifiers": null,
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change."
+      ],
+      "network": {
+        "chainId": 143,
+        "name": "Monad mainnet"
+      },
+      "projectId": "kuru",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Manually inspected on the Monad Foundation App Portal during the controlled refresh."
+      },
+      "provenanceNotes": "Manually inspected on the Monad Foundation App Portal during the controlled refresh.",
+      "publishedAt": null,
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "timeBoundEligible": false,
+        "unavailable": false
+      },
+      "relatedProjectIds": [],
+      "retrievedAt": "2026-09-22T22:02:32Z",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 2,
+        "supersedesEvidenceId": "E-KURU-MEM-001"
+      },
+      "scope": "Kuru ecosystem-directory membership, Spot Trading placement, and displayed copy at the refresh instant.",
+      "source": {
+        "available": true,
+        "kind": "directory-html",
+        "presentationMutable": true,
+        "publisher": "Monad Foundation",
+        "referenceType": "mutable-url",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/"
+      },
+      "status": "Observed",
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Kuru ecosystem-directory membership, Spot Trading placement, and displayed copy at the refresh instant.",
+      "supportsFactualClaims": true,
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-source-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-AAVE-V3-MEM-001",
+      "projectId": "aave-v3",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Aave in 'Lend & Borrow', 'Leverage Trading' with tagline ‘The original DeFi protocol.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Aave App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Aave App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-PANCAKESWAP-MEM-001",
+      "projectId": "pancakeswap",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed PancakeSwap in 'Trading' with tagline ‘All-in-one decentralized exchange.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "PancakeSwap App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "PancakeSwap App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-UNISWAP-MEM-001",
+      "projectId": "uniswap",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Uniswap in 'Trading' with tagline ‘The largest onchain marketplace.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Uniswap App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Uniswap App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-CURVE-MEM-001",
+      "projectId": "curve",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Curve in 'Trading', 'Yield' with tagline ‘The Home of Stablecoins.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Curve App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Curve App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-PENDLE-MEM-001",
+      "projectId": "pendle",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Pendle in 'Yield' with tagline ‘Yield Trading Protocol.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Pendle App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Pendle App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-UPSHIFT-MEM-001",
+      "projectId": "upshift",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Upshift in 'Yield' with tagline ‘Liquid yield token for AUSD.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Upshift App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Upshift App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-EULER-MEM-001",
+      "projectId": "euler",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Euler in 'Lend & Borrow' with tagline ‘The DeFi Super App.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Euler App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Euler App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-LAGOON-MEM-001",
+      "projectId": "lagoon",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Lagoon in 'Yield' with tagline ‘Build yield products that scale.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Lagoon App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Lagoon App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-CURVANCE-MEM-001",
+      "projectId": "curvance",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Curvance in 'Lend & Borrow' with tagline ‘Click less, earn more.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Curvance App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Curvance App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-RENZO-MEM-001",
+      "projectId": "renzo",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Renzo in 'Asset Issuer', 'Yield' with tagline ‘Institutional DeFi Gateway.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Renzo App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Renzo App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-BEEFY-MEM-001",
+      "projectId": "beefy",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Beefy in 'Yield' with tagline ‘Multichain Yield Optimizer.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Beefy App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Beefy App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-YUZU-MONEY-MEM-001",
+      "projectId": "yuzu-money",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Yuzu Money in 'Asset Issuer', 'Yield' with tagline ‘High Yield. Transparent. Protected.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Yuzu Money App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Yuzu Money App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-BALANCER-MEM-001",
+      "projectId": "balancer",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Balancer in 'Trading', 'Launchpad' with tagline ‘ Programmable AMM infrastructure.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Balancer App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Balancer App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-SPECTRA-MEM-001",
+      "projectId": "spectra",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Spectra in 'Yield' with tagline ‘Open Interest Rates Protocol.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Spectra App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Spectra App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-MENTO-MEM-001",
+      "projectId": "mento",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Mento in 'Trading', 'Asset Issuer' with tagline ‘The Future of Onchain FX.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Mento App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Mento App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-SYMBIOSIS-MEM-001",
+      "projectId": "symbiosis",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Symbiosis in 'Bridge' with tagline ‘Cross-chain bridge.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Symbiosis App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Symbiosis App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-NEVERLAND-MEM-001",
+      "projectId": "neverland",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Neverland in 'Lend & Borrow' with tagline ‘Self-repaying loans & veTokenomics.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Neverland App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Neverland App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-AMPLE-MEM-001",
+      "projectId": "ample",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Ample in 'Yield', 'Asset Issuer' with tagline ‘Amplify your assets.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Ample App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Ample App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-PERPL-MEM-001",
+      "projectId": "perpl",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Perpl in 'Trading', 'Leverage Trading' with tagline ‘Trade perps fully onchain.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Perpl App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Perpl App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-WOOFI-MEM-001",
+      "projectId": "woofi",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed WOOFi in 'Trading' with tagline ‘Powered by WOO.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "WOOFi App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "WOOFi App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-LEVERUP-MEM-001",
+      "projectId": "leverup",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed LeverUp in 'Leverage Trading' with tagline ‘LP-Free Perps,1001x Leverage.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "LeverUp App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "LeverUp App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-KINTSU-MEM-001",
+      "projectId": "kintsu",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Kintsu in 'Liquid Staking' with tagline ‘Composable Liquid Staking.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Kintsu App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Kintsu App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-LEVR-BET-MEM-001",
+      "projectId": "levr-bet",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Levr Bet in 'Prediction Market', 'Sports' with tagline ‘Bet Less. Win More.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Levr Bet App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Levr Bet App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-SUMER-MONEY-MEM-001",
+      "projectId": "sumer-money",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Sumer Money in 'Lend & Borrow' with tagline ‘Lending & Synthetic Asset Protocol.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Sumer Money App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Sumer Money App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-MONDAY-TRADE-MEM-001",
+      "projectId": "monday-trade",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Monday Trade in 'Leverage Trading' with tagline ‘Trade on Monday. Everyday.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Monday Trade App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Monday Trade App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-CAPRICORN-MEM-001",
+      "projectId": "capricorn",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Capricorn in 'Trading', 'Yield' with tagline ‘A DEX with HFT-grade liquidity.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Capricorn App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Capricorn App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-NAD-FUN-MEM-001",
+      "projectId": "nad-fun",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Nad.fun in 'Launchpad', 'Trading' with tagline ‘Launch. Trade. Predict. On Monad.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Nad.fun App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Nad.fun App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-DRAKE-MEM-001",
+      "projectId": "drake",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Drake in 'Leverage Trading', 'Yield' with tagline ‘The People's Perp Dex.’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Drake App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Drake App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-KIZZY-MEM-001",
+      "projectId": "kizzy",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Kizzy in 'Entertainment', 'Prediction Market' with tagline ‘Social Media Betting .’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Kizzy App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Kizzy App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "E-NABLA-FINANCE-MEM-001",
+      "projectId": "nabla-finance",
+      "relatedProjectIds": [],
+      "claim": "At the 2026-09-26 capture, the Monad Foundation App Portal listed Nabla Finance in 'Trading', 'Yield' with tagline ‘The open \"Prop AMM\".’",
+      "evidenceType": "official-directory-listing",
+      "status": "Observed",
+      "source": {
+        "kind": "directory-html",
+        "title": "Monad App Portal",
+        "url": "https://app.monad.xyz/",
+        "publisher": "Monad Foundation",
+        "available": true,
+        "referenceType": "mutable-url",
+        "presentationMutable": true
+      },
+      "retrievedAt": "2026-09-26T23:17:15Z",
+      "publishedAt": null,
+      "network": {
+        "name": "Monad mainnet",
+        "chainId": 143
+      },
+      "scope": "Nabla Finance App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "provenance": {
+        "kind": "manual-curation",
+        "notes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision."
+      },
+      "provenanceNotes": "Drafted by scripts/ecosystem-intake.js from data/research/monad-app-portal-2026-09-26.json (sha256 b5936ec745f11852…). Automated draft; a human must inspect the live source before any review decision.",
+      "limitations": [
+        "Directory inclusion is not verification, endorsement, safety review, contract mapping, or proof of activity.",
+        "Dynamic directory content and displayed copy can change.",
+        "Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision."
+      ],
+      "quality": {
+        "conflict": false,
+        "incomplete": false,
+        "stale": false,
+        "unavailable": false,
+        "timeBoundEligible": false
+      },
+      "identifiers": null,
+      "conflicts": [],
+      "supportMode": "artifact-observation-only",
+      "supportedProposition": "Nabla Finance App Portal listing membership, displayed categories, and displayed tagline at the capture instant.",
+      "supportsFactualClaims": true,
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-27T11:34:28Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesEvidenceId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-fb5c9d444527e171",
+        "reviewerRole": "evidence-reviewer",
+        "reviewedAt": "2026-09-27T11:34:28Z",
+        "reviewMethod": "manual-artifact-and-payload-inspection",
+        "decisionReason": "supported-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    }
+  ],
+  "kind": "approved-evidence-snapshot",
+  "relationships": [
+    {
+      "id": "monad-apriori",
+      "from": "monad",
+      "to": "aPriori",
+      "type": "ecosystem_membership",
+      "status": "Observed",
+      "evidenceIds": [
+        "E-APRIORI-REGISTRY-001",
+        "E-APRIORI-CAP-001"
+      ],
+      "scope": "The legacy aPriori entry appeared in the pinned Monad mainnet registry; current context is scoped to Capricorn/aprMON.",
+      "limitations": [
+        "No signed owner claim was found; preserve the identity-transition limitation."
+      ],
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesRelationshipId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "relationship-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-relationship-evidence-inspection",
+        "decisionReason": "evidence-resolved-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "monad-magma",
+      "from": "monad",
+      "to": "magma",
+      "type": "ecosystem_membership",
+      "status": "Observed",
+      "evidenceIds": [
+        "E-MAGMA-REGISTRY-001",
+        "E-MAGMA-CAP-001"
+      ],
+      "scope": "Magma appeared in the pinned Monad mainnet registry and documents a Monad deployment.",
+      "limitations": [
+        "Registry membership is not endorsement, safety, or measured activity."
+      ],
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesRelationshipId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "relationship-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-relationship-evidence-inspection",
+        "decisionReason": "evidence-resolved-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "monad-switchboard",
+      "from": "monad",
+      "to": "switchboard",
+      "type": "ecosystem_membership",
+      "status": "Observed",
+      "evidenceIds": [
+        "E-SWITCHBOARD-MEM-001",
+        "E-SWITCHBOARD-CAP-001"
+      ],
+      "scope": "Switchboard appeared in the official Monad infrastructure directory under Oracle.",
+      "limitations": [
+        "No scoped third-party attestation was found."
+      ],
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesRelationshipId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "relationship-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-relationship-evidence-inspection",
+        "decisionReason": "evidence-resolved-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "id": "magma-switchboard",
+      "from": "magma",
+      "to": "switchboard",
+      "type": "declared_integration",
+      "status": "Claimed",
+      "evidenceIds": [
+        "E-MAGMA-SWITCHBOARD-001"
+      ],
+      "scope": "Magma documentation names Switchboard and publishes two gMON feed IDs.",
+      "limitations": [
+        "One-sided project declaration; no reciprocal confirmation or fresh-feed observation."
+      ],
+      "dataMode": "sourced-limited",
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 1,
+        "supersedesRelationshipId": null
+      },
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "relationship-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-relationship-evidence-inspection",
+        "decisionReason": "evidence-resolved-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "dataMode": "sourced-limited",
+      "evidenceIds": [
+        "E-KURU-MEM-002"
+      ],
+      "from": "monad",
+      "id": "monad-kuru-002",
+      "limitations": [
+        "Directory membership is not endorsement, safety review, or an onchain interaction."
+      ],
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 2,
+        "supersedesRelationshipId": "monad-kuru"
+      },
+      "scope": "At the 2026-09-22 refresh, Kuru appeared in the Monad Foundation App Portal Spot Trading section as ‘Trading Hub on Monad.’",
+      "status": "Observed",
+      "to": "kuru",
+      "type": "ecosystem_membership",
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "relationship-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-relationship-evidence-inspection",
+        "decisionReason": "evidence-resolved-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    },
+    {
+      "dataMode": "sourced-limited",
+      "evidenceIds": [
+        "E-PYTH-MEM-001"
+      ],
+      "from": "monad",
+      "id": "monad-pyth-002",
+      "limitations": [
+        "Membership is not endorsement or proof of fresh feeds.",
+        "Current Pyth contract-address docs do not expose a Monad mapping, and membership does not prove feed freshness or deployment."
+      ],
+      "reviewStatus": "approved",
+      "reviewedAt": "2026-09-22T22:02:32Z",
+      "revision": {
+        "sequence": 2,
+        "supersedesRelationshipId": "monad-pyth"
+      },
+      "scope": "Pyth appeared in the official Monad infrastructure directory under Oracle.",
+      "status": "Observed",
+      "to": "pyth",
+      "type": "ecosystem_membership",
+      "reviewMetadata": {
+        "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+        "reviewerRole": "relationship-reviewer",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "reviewMethod": "manual-relationship-evidence-inspection",
+        "decisionReason": "evidence-resolved-with-limitations",
+        "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+      }
+    }
+  ]
+}

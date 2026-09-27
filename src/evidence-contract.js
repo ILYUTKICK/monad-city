@@ -8,7 +8,10 @@ export const REVIEW_STATUSES = Object.freeze([
 
 export const EVIDENCE_SNAPSHOT_SCHEMA_VERSION = 1;
 
-const REVIEW_ONLY_FIELDS = new Set(['reviewStatus', 'reviewedAt']);
+// Review-only fields never participate in immutable fingerprints. reviewMetadata joins the
+// legacy pair under the phase-3.7 inline contract: "review metadata is review-only for
+// immutable fingerprints" (docs/EVIDENCE_DATA_CONTRACT.md).
+const REVIEW_ONLY_FIELDS = new Set(['reviewStatus', 'reviewedAt', 'reviewMetadata']);
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
