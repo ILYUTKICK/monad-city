@@ -1337,6 +1337,13 @@ Limitations:
   the follow-up for `docs.kuru.io` before its December due date (or at the batch-3 gate).
 - The 105 pending deployments remain pending — resolution is blocked on the owner's
   explorer-source decision (keyed Etherscan V2) or a future keyless public API.
+- Batch 3 (§5.3, kickoff task 3) did not run: its precondition — tasks 1–2 producing
+  reviewable material — is not met this session (no new seeds, zero transitions, zero drift),
+  so there is nothing to assemble into a batch-3 workspace. Owner confirmation remains required
+  before any batch anyway.
+- Relationship candidates (§5.3, kickoff task 4): no citable basis appeared in this session's
+  seeds (no new intake captures; registry cross-check found zero drift); the candidate
+  relationship envelope stays honestly empty.
 
 Next:
 - Owner: confirm batch 3 in-session (Task 2.3 is gated) and decide the Etherscan V2 key
