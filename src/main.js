@@ -3065,6 +3065,11 @@ function renderDistricts() {
         renderPassport();
       }
 
+      // District navigation: selecting a district flies the camera to its island;
+      // "All districts" returns to the full-archipelago view.
+      if (filter === 'All districts') city3d.reset();
+      else city3d.focusIsland(filter);
+
       renderDistricts();
       renderCity();
     };

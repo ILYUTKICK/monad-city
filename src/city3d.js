@@ -313,6 +313,7 @@ export function createCity3D({
     Gaming: '#dbac80',
     Identity: '#d89cc9',
   };
+  const districtLabelMeshes = [];
   ISLAND_GROUPS.forEach((island) => {
     if (island.key === '__monad') return;
     const label = island.key;
@@ -350,7 +351,19 @@ export function createCity3D({
       island.cz + outZ * island.radius * 0.78,
     );
     mesh.renderOrder = 10;
+    mesh.userData.district = island.key;
     scene.add(mesh);
+    // The visible strip is only ~2.5 world units deep — far too thin to click. An invisible
+    // generous hit plane carries the actual pick target (raycast ignores opacity).
+    const hitMesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(planeWidth * 1.25, 9),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }),
+    );
+    hitMesh.rotation.x = -Math.PI / 2;
+    hitMesh.position.copy(mesh.position);
+    hitMesh.userData.district = island.key;
+    scene.add(hitMesh);
+    districtLabelMeshes.push(hitMesh);
   });
 
   // ---------- filler fabric (seeded, never beside a project; scaled per island) ----------
@@ -524,6 +537,17 @@ export function createCity3D({
     return hits.length ? hits[0].object.userData.relationshipId : null;
   }
 
+  function raycastDistrictLabel(event) {
+    const rect = renderer.domElement.getBoundingClientRect();
+    const pointer = new THREE.Vector2(
+      ((event.clientX - rect.left) / rect.width) * 2 - 1,
+      -((event.clientY - rect.top) / rect.height) * 2 + 1,
+    );
+    raycaster.setFromCamera(pointer, camera);
+    const hits = raycaster.intersectObjects(districtLabelMeshes, false);
+    return hits.length ? hits[0].object.userData.district : null;
+  }
+
   function beamBaseOpacity(view) {
     const { relationship } = view;
     const active = relationship.from === state.selected || relationship.to === state.selected;
@@ -599,14 +623,16 @@ export function createCity3D({
   renderer.domElement.addEventListener('pointermove', (event) => {
     if (!pointers.has(event.pointerId)) {
       const hit = raycastProject(event);
-      // Buildings keep hover priority; beams only hover where no building is behind the cursor.
+      // Buildings keep hover priority; beams and district labels only hover where no
+      // building is behind the cursor.
       const beamHit = hit ? null : raycastBeam(event);
+      const labelHit = hit || beamHit ? null : raycastDistrictLabel(event);
       if (hit !== hoveredId) {
         hoveredId = hit;
         labelElements.forEach((element, id) => element.classList.toggle('hover', id === hit));
       }
       setBeamHover(beamHit, event);
-      renderer.domElement.style.cursor = hit || beamHit ? 'pointer' : 'grab';
+      renderer.domElement.style.cursor = hit || beamHit || labelHit ? 'pointer' : 'grab';
       return;
     }
     setBeamHover(null);
@@ -636,7 +662,13 @@ export function createCity3D({
   function endPointer(event) {
     if (pointers.size === 1 && movedDistance < 6) {
       const hit = raycastProject(event);
-      if (hit) onSelect(hit);
+      if (hit) {
+        onSelect(hit);
+      } else {
+        // Clicking a district ground label flies the camera to that island (no selection change).
+        const district = raycastDistrictLabel(event);
+        if (district) focusIsland(district);
+      }
     }
     pointers.delete(event.pointerId);
     pinchDistance = 0;
@@ -726,6 +758,15 @@ export function createCity3D({
     if (!view) return;
     control.targetGoal.set(view.group.position.x, 1.4, view.group.position.z);
     control.radiusGoal = neighborhood ? 58 : 92;
+  }
+
+  // District navigation: frame the whole island (radius-sized, clamped) without changing
+  // the project selection — the district filter already handles highlighting.
+  function focusIsland(district) {
+    const island = ISLAND_GROUPS.find((group) => group.key === district);
+    if (!island) return;
+    control.targetGoal.set(island.cx, 1.2, island.cz);
+    control.radiusGoal = Math.min(150, Math.max(44, island.radius * 2.1 + 26));
   }
 
   function zoomBy(factor) {
@@ -823,5 +864,5 @@ export function createCity3D({
   }
   requestAnimationFrame(frame);
 
-  return { sync, focusProject, zoomBy, reset };
+  return { sync, focusProject, focusIsland, zoomBy, reset };
 }

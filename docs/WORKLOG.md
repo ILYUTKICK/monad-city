@@ -1214,6 +1214,38 @@ Next:
   projects (deployment resolution), and the refresh cadence start (batch-1/2 records are
   30-day-cadence; the runtime governance report tracks due dates).
 
+### 2026-09-27 — Lead agent / frontend — district navigation (fly-to-island)
+
+Owner ask: «Условно я хочу DEFI посмотреть и меня должно туда перекинуть» — district-level
+navigation on top of the archipelago.
+
+Changed:
+- `src/city3d.js`: new `focusIsland(district)` — frames a district island without changing
+  the project selection (target = island center, radius = island radius × 2.1 + 26, clamped
+  44–150). Each district ground label got an invisible generous hit plane (the visible strip
+  is ~2.5 world units deep — unclickable); labels are now hoverable (cursor pointer) and
+  clickable: building picking keeps priority, a click on the label itself flies to the
+  island.
+- `src/main.js`: district panel buttons now navigate — selecting a district flies the camera
+  to its island; «All districts» calls `city3d.reset()` back to the full-archipelago view.
+  Other filter resets (selection/Navigator fallbacks) deliberately keep the camera.
+
+Verified:
+- In-browser: DeFi panel button flies to the full 114-building quarter (radius ≈ 128);
+  clicking the IDENTITY shore label flies to that island; building clicks still select
+  (priority confirmed on Moca Network); «All districts» returns to the default view; 390px
+  clean; zero console errors. Gotcha for testers: clicks land on whatever the CURRENT camera
+  shows — re-aim after flights.
+
+Limitations:
+- Ground labels sitting close to buildings lose the click to the building (priority by
+  design); the district panel buttons are the unambiguous path.
+- No district highlight ring on arrival — the filter dimming already communicates scope.
+
+Next:
+- Phase 5.3 owner decision unchanged (explorer tooling for the 105 pending; refresh cadence).
+
+
 ### 2026-09-27 — Lead agent / frontend — v2.2 stretch: beam tooltip + narrow-layout fixes
 
 Changed:
