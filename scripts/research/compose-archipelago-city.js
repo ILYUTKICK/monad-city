@@ -17,7 +17,9 @@ import path from 'node:path';
 
 const MAIN = 'src/main.js';
 const RESEARCH_DIR = path.join('data', 'research');
-const RING_RADIUS = 660; // project units between the world origin and each island center
+const RING_RADIUS = 780; // project units between the world origin and each island center
+// (660 → 780 at Batch 3: the DeFi island grew to 142 buildings; cross-island clearance
+//  is asserted below and the larger ring keeps DeFi/Infrastructure/Gaming separated.)
 const DISTRICT_ANGLES = {
   DeFi: (45 * Math.PI) / 180,
   Infrastructure: (117 * Math.PI) / 180,
@@ -49,6 +51,13 @@ function readOptionalSelection() {
   if (!file) return null;
   const value = JSON.parse(fs.readFileSync(file, 'utf8'));
   return value.kind === 'monad-city-batch-2-selection' ? value : null;
+}
+
+function readOptionalBatch3Selection() {
+  const file = latestSeed('batch-3-selection');
+  if (!file) return null;
+  const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+  return value.kind === 'monad-city-batch-3-selection' ? value : null;
 }
 
 function hostnameOf(url) {
@@ -118,6 +127,41 @@ function main() {
     // The slice ends right before "\n];" — the last existing entry already carries its comma,
     // so the new blocks append directly at the end of the array body.
     slice = `${slice}\n${newBlocks.join('\n')}`;
+  }
+
+  // Batch 3: the selection artifact carries full manifests (pending groups never entered the
+  // intake draft). Insert entries for not-yet-wired items the same way.
+  const batch3 = readOptionalBatch3Selection();
+  if (batch3) {
+    const wiredIds = [...slice.matchAll(/id: '([^']+)'/g)].map((match) => match[1]);
+    const batch3Blocks = [];
+    batch3.selected.forEach((item) => {
+      if (wiredIds.includes(item.manifest.id)) return;
+      const manifest = item.manifest;
+      const category = manifest.applicationType ?? 'Ecosystem project';
+      const abbr = manifest.name.replace(/[^A-Za-zА-Яа-я0-9]/g, '').charAt(0).toUpperCase() || '•';
+      const site = hostnameOf(manifest.site);
+      const description = String(manifest.description).replace(/`/g, '').replace(/'/g, '’');
+      batch3Blocks.push(`  {
+    id: '${manifest.id}',
+    name: '${manifest.name.replace(/'/g, '’')}',
+    abbr: '${abbr}',
+    district: '${manifest.district}',
+    tag: 'Listed under ‘${category.replace(/'/g, '’')}’.',
+    description:
+      '${description}',
+    x: 0,
+    y: 0,
+    h: 50,
+    color: '${DISTRICT_COLORS[manifest.district] ?? '#93d6c6'}',
+    state: 'Observed',
+    type: '${category.replace(/'/g, '’')}',
+    site: ${site ? `'${site}'` : 'null'},
+  },`);
+    });
+    if (batch3Blocks.length > 0) {
+      slice = `${slice}\n${batch3Blocks.join('\n')}`;
+    }
   }
 
   const ids = [...slice.matchAll(/id: '([^']+)'/g)].map((match) => match[1]);

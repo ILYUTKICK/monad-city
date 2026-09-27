@@ -1291,6 +1291,68 @@ Next:
 
 
 
+### 2026-09-27 — Lead agent — Phase 5.3: Batch 3 live (snapshot phase-3.5-v5, 178 buildings)
+
+Owner in-session go: «Давай» — the full batch-3 pipeline ran end to end with the confirmation
+recorded here and per-record approvals through the evidence CLI.
+
+Changed:
+- `scripts/build-batch-3-workspace.js` + `data/research/batch-3-review-plan-2026-09-27.json` +
+  `data/research/batch-3-selection-2026-09-27.json`: workspace assembly from the v4 projection
+  (carried as-is) + the two superseded evidence and two superseded relationship predecessors
+  (stale at the refresh instant, transition token) + 48 pinned-registry evidence candidates
+  (`protocol-registry-snapshot` | `pinned-snapshot`, claims bounded to the registry snapshot,
+  Etherscan V2 liveness/verified-name cross-check disclosed in provenance only). Identity
+  discipline: SEVEN brand-level groups excluded with human-review flags — `morpho`,
+  `folks-finance`, `mellow`, `lfj`, `townsquare`, `accountable` ("YieldApp by Accountable",
+  whose registry entry IS the existing batch-2 `accountable`), `gearbox-protocol` — each
+  family-matches a city manifest already carried from batch 2 (no twin manifests; alias
+  merging is an owner identity decision, recorded in the plan's identityFlags).
+- Districts from the canonical `DISTRICT_BY_CATEGORY` table applied to registry
+  `Prefix::Subcategory` pairs (subcategory first, prefix fallback; Consumer→Infrastructure
+  fallback documented on the manifests): Gaming 7, DeFi 28, Infrastructure 11, AI 2.
+- Review loop: 48/48 `evidence:review` approvals (owner token from the batch-3 plan, method
+  `manual-artifact-and-payload-inspection`, reason `supported-with-limitations`, at
+  `2026-09-27T16:45:00Z`), then validate (lineage vs the assembled workspace), snapshot
+  **phase-3.5-v5: 190 evidence records / 6 relationships**, canonical SHA-256
+  `08985c6dacba1926e87009a9d58aa0b72ee175e829583eacb46a6c77acdc2f20`, promoted to
+  `src/evidence-snapshots/phase-3.5-v5.generated.js` (`--previous` = the full-history
+  approved workspace); v4 pair remains the rollback boundary.
+- `src/evidence.js`: active import switched to v5; `BATCH3_PROJECT_IDS` (48);
+  `KNOWN_PROJECT_IDS` → 174; `EXPECTED_SNAPSHOT_COUNTS['phase-3.5-v5'] = {190, 6}` (pinned
+  BEFORE the import switch). `package.json` verify-promotion paths switched to v5.
+- `scripts/research/compose-archipelago-city.js`: batch-3 selection support (selection
+  carries full manifests; backticks/apostrophes sanitized at insertion) and RING_RADIUS
+  660 → 780 — the DeFi island grew to 142 buildings and the larger ring keeps the composer's
+  cross-island clearance assertion green. City: **178 buildings** (DeFi 142,
+  Infrastructure 21 incl. the Monad chain entry, Gaming 11, AI 3, Identity 1, Monad islet).
+
+Verified:
+- `npm run build` green per step (verify-promotion: v5 SHA confirmed, 190/6, deeply frozen).
+- In-browser 1440×900: 178 buildings; district buttons re-derived (DEFI · 142, GAMING · 11,
+  AI · 3, INFRASTRUCTURE · 20 by island); Navigator "bridge"/"morpho"/"puffer" queries with
+  data-driven coverage «174 of 178 shown projects carry exact records»; Puffer passport shows
+  the exact pinned-registry claim with the v5 governance audit; DeFi panel flight frames the
+  142-building island; zero console errors. FPS 61 sampled over 2s at the DeFi focus.
+- 390×844: city-first layout, no overflow, zero errors.
+
+Limitations:
+- 50 pending groups remain `no-candidate` (no seed registry match) — manual docs research is
+  a separate pass. The 7 identity-flagged brands need an owner alias-merge decision; their
+  stronger explorer evidence (e.g. the registry `accountable` entry with 8 live addresses)
+  could upgrade the existing manifests' records via successor records — deferred.
+- Infrastructure panel count (21) counts the Monad chain entry; the island button shows 20 —
+  pre-existing semantics, unchanged.
+- The default camera frames the larger archipelago slightly tighter (ring 780); the district
+  flight buttons compensate.
+
+Next:
+- §5.3 exit needs the refresh runbook executed twice (pass 1 done). Quarterly cadence
+  continues; batch-4 = the 50 no-candidate groups via manual docs research + the 7 identity
+  merges (owner decision).
+
+
+
 ### 2026-09-27 — Lead agent / trust+data — Phase 5.3: pending-deployment resolution EXECUTED (owner key)
 
 The owner chose the explorer source (the pending §5.3 owner call): a free Etherscan API key,

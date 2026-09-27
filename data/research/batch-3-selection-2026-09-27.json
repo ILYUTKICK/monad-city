@@ -1,0 +1,878 @@
+{
+  "kind": "monad-city-batch-3-selection",
+  "schemaVersion": "1",
+  "generatedAtUtc": "2026-09-27T16:04:32Z",
+  "resolution": "data/research/pending-deployments-2026-09-27.json",
+  "identityFlags": [
+    {
+      "proposedId": "townsquare",
+      "canonicalName": "TownSquare",
+      "registryKey": "townsquare",
+      "reasons": [
+        "family match with existing city entity 'townsquarelending' (candidate 'townsquare')",
+        "family match with existing city entity 'townsquareloopvaults' (candidate 'townsquare')"
+      ],
+      "resolution": "excluded from batch 3; human identity resolution required (alias recording vs separate manifest)."
+    },
+    {
+      "proposedId": "lfj",
+      "canonicalName": "LFJ",
+      "registryKey": "lfj",
+      "reasons": [
+        "family match with existing city entity 'lfjpoe' (candidate 'lfj')"
+      ],
+      "resolution": "excluded from batch 3; human identity resolution required (alias recording vs separate manifest)."
+    },
+    {
+      "proposedId": "accountable",
+      "canonicalName": "YieldApp by Accountable",
+      "registryKey": "accountable",
+      "reasons": [
+        "project id accountable is already known",
+        "registry key accountable is an existing project id",
+        "family match with existing city entity 'accountable' (candidate 'accountable')"
+      ],
+      "resolution": "excluded from batch 3; human identity resolution required (alias recording vs separate manifest)."
+    },
+    {
+      "proposedId": "mellow",
+      "canonicalName": "Mellow",
+      "registryKey": "mellow",
+      "reasons": [
+        "family match with existing city entity 'mellowcore' (candidate 'mellow')",
+        "family match with existing city entity 'mellowrestaking' (candidate 'mellow')"
+      ],
+      "resolution": "excluded from batch 3; human identity resolution required (alias recording vs separate manifest)."
+    },
+    {
+      "proposedId": "morpho",
+      "canonicalName": "Morpho",
+      "registryKey": "morpho",
+      "reasons": [
+        "family match with existing city entity 'morphoblue' (candidate 'morpho')"
+      ],
+      "resolution": "excluded from batch 3; human identity resolution required (alias recording vs separate manifest)."
+    },
+    {
+      "proposedId": "folks-finance",
+      "canonicalName": "Folks Finance",
+      "registryKey": "folks_finance",
+      "reasons": [
+        "family match with existing city entity 'folksfinancexchain' (candidate 'folksfinance')"
+      ],
+      "resolution": "excluded from batch 3; human identity resolution required (alias recording vs separate manifest)."
+    },
+    {
+      "proposedId": "gearbox-protocol",
+      "canonicalName": "Gearbox Protocol",
+      "registryKey": "gearbox_protocol",
+      "reasons": [
+        "family match with existing city entity 'gearbox' (candidate 'gearbox')",
+        "family match with existing city entity 'gearbox' (candidate 'gearboxprotocol')"
+      ],
+      "resolution": "excluded from batch 3; human identity resolution required (alias recording vs separate manifest)."
+    }
+  ],
+  "selected": [
+    {
+      "proposalId": "lumiterra",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "lumiterra",
+        "name": "Lumiterra",
+        "registryName": "LumiterraGame",
+        "aliases": [
+          "LumiterraGame"
+        ],
+        "district": "Gaming",
+        "districtBasis": "Gaming::Games",
+        "applicationType": "Games",
+        "description": "Listed in the pinned Monad protocol registry (entry `lumiterra`, live) under Games with 5 Monad mainnet contract addresses.",
+        "site": "https://lumiterra.net/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "bro-fun",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "bro-fun",
+        "name": "Bro.fun",
+        "registryName": "Bro Fun",
+        "aliases": [
+          "Bro Fun"
+        ],
+        "district": "Gaming",
+        "districtBasis": "Gaming::Games",
+        "applicationType": "Games",
+        "description": "Listed in the pinned Monad protocol registry (entry `bro_fun`, live) under Games, Mobile-First with 1 Monad mainnet contract addresses.",
+        "site": "https://bro.fun",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "matcha",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "matcha",
+        "name": "Matcha",
+        "registryName": "Matcha",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Cross Chain",
+        "applicationType": "Cross Chain",
+        "description": "Listed in the pinned Monad protocol registry (entry `matcha`, live) under Cross Chain, DEX Aggregator with 6 Monad mainnet contract addresses.",
+        "site": "https://matcha.xyz/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "opensea",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "opensea",
+        "name": "OpenSea",
+        "registryName": "OpenSea",
+        "aliases": [],
+        "district": "Gaming",
+        "districtBasis": "NFT::Marketplace",
+        "applicationType": "Marketplace",
+        "description": "Listed in the pinned Monad protocol registry (entry `opensea`, live) under Marketplace with 2 Monad mainnet contract addresses.",
+        "site": "https://opensea.io/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "fastlane",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "fastlane",
+        "name": "FastLane",
+        "registryName": "Fastlane",
+        "aliases": [
+          "Fastlane"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Liquid Staking",
+        "applicationType": "Liquid Staking",
+        "description": "Listed in the pinned Monad protocol registry (entry `fastlane`, live) under Liquid Staking, Staking, MEV with 3 Monad mainnet contract addresses.",
+        "site": "https://www.shmonad.xyz/",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "agora",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "agora",
+        "name": "Agora",
+        "registryName": "Agora",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Stablecoin",
+        "applicationType": "Stablecoin",
+        "description": "Listed in the pinned Monad protocol registry (entry `agora`, live) under Stablecoin, Asset Issuers with 2 Monad mainnet contract addresses.",
+        "site": "https://www.agora.finance",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "bonad",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "bonad",
+        "name": "BONAD",
+        "registryName": "bonad.fun",
+        "aliases": [
+          "bonad.fun"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Launchpads",
+        "applicationType": "Launchpads",
+        "description": "Listed in the pinned Monad protocol registry (entry `bonad`, live) under Launchpads, Memecoin with 7 Monad mainnet contract addresses.",
+        "site": "https://bonad.fun",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "kyberswap",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "kyberswap",
+        "name": "KyberSwap",
+        "registryName": "KyberSwap",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Cross Chain",
+        "applicationType": "Cross Chain",
+        "description": "Listed in the pinned Monad protocol registry (entry `kyberswap`, live) under Cross Chain, DEX Aggregator with 4 Monad mainnet contract addresses.",
+        "site": "https://kyberswap.com/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "pingme",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "pingme",
+        "name": "PingMe",
+        "registryName": "PingMe",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "Payments::Neobanks",
+        "applicationType": "Neobanks",
+        "description": "Listed in the pinned Monad protocol registry (entry `pingme`, live) under Neobanks with 3 Monad mainnet contract addresses.",
+        "site": "https://www.pingme.xyz",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "lootgo",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "lootgo",
+        "name": "LootGO",
+        "registryName": "LootGO",
+        "aliases": [],
+        "district": "Gaming",
+        "districtBasis": "Gaming::Mobile-First",
+        "applicationType": "Mobile-First",
+        "description": "Listed in the pinned Monad protocol registry (entry `lootgo`, live) under Mobile-First, Games, Other with 6 Monad mainnet contract addresses.",
+        "site": "https://lootgo.app",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "monorail",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "monorail",
+        "name": "Monorail",
+        "registryName": "Monorail",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::DEX Aggregator",
+        "applicationType": "DEX Aggregator",
+        "description": "Listed in the pinned Monad protocol registry (entry `monorail`, live) under DEX Aggregator, Trading Interfaces with 1 Monad mainnet contract addresses.",
+        "site": "https://monorail.xyz",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "aarna",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "aarna",
+        "name": "aarna",
+        "registryName": "aarna protocol",
+        "aliases": [
+          "aarna protocol"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Yield Aggregator",
+        "applicationType": "Yield Aggregator",
+        "description": "Listed in the pinned Monad protocol registry (entry `aarna`, live) under Yield Aggregator with 2 Monad mainnet contract addresses.",
+        "site": "https://www.aarna.ai/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "across",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "across",
+        "name": "Across",
+        "registryName": "Across",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "Infra::Interoperability",
+        "applicationType": "Interoperability",
+        "description": "Listed in the pinned Monad protocol registry (entry `across`, live) under Interoperability with 3 Monad mainnet contract addresses.",
+        "site": "https://across.to",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "apebond",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "apebond",
+        "name": "ApeBond",
+        "registryName": "ApeBond",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Other",
+        "applicationType": "Other",
+        "description": "Listed in the pinned Monad protocol registry (entry `apebond`, live) under Other with 4 Monad mainnet contract addresses.",
+        "site": "https://ape.bond",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "blinq",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "blinq",
+        "name": "Blinq",
+        "registryName": "Blinq",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "Consumer::Prediction Market",
+        "applicationType": "Prediction Market",
+        "description": "Listed in the pinned Monad protocol registry (entry `blinq`, live) under Prediction Market, Perpetuals / Derivatives with 1 Monad mainnet contract addresses.",
+        "site": "https://blinq.fi/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "bungee",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "bungee",
+        "name": "Bungee",
+        "registryName": "Bungee.Exchange",
+        "aliases": [
+          "Bungee.Exchange"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Cross Chain",
+        "applicationType": "Cross Chain",
+        "description": "Listed in the pinned Monad protocol registry (entry `bungee`, live) under Cross Chain, Interoperability with 17 Monad mainnet contract addresses.",
+        "site": "https://www.bungee.exchange",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "cashmere",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "cashmere",
+        "name": "Cashmere",
+        "registryName": "Cashmere",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Cross Chain",
+        "applicationType": "Cross Chain",
+        "description": "Listed in the pinned Monad protocol registry (entry `cashmere`, live) under Cross Chain with 1 Monad mainnet contract addresses.",
+        "site": "https://cashmere.exchange",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "cctp-exchange",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "cctp-exchange",
+        "name": "CCTP Exchange",
+        "registryName": "CCTP Exchange",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Cross Chain",
+        "applicationType": "Cross Chain",
+        "description": "Listed in the pinned Monad protocol registry (entry `cctp_exchange`, live) under Cross Chain, Interoperability with 1 Monad mainnet contract addresses.",
+        "site": "https://cctp.exchange",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "clanker-world",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "clanker-world",
+        "name": "Clanker World",
+        "registryName": "Clanker",
+        "aliases": [
+          "Clanker"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Launchpads",
+        "applicationType": "Launchpads",
+        "description": "Listed in the pinned Monad protocol registry (entry `clanker_world`, live) under Launchpads, Other with 8 Monad mainnet contract addresses.",
+        "site": "https://clanker.world/",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "debridge",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "debridge",
+        "name": "deBridge",
+        "registryName": "DeBridge",
+        "aliases": [
+          "DeBridge"
+        ],
+        "district": "Infrastructure",
+        "districtBasis": "Infra::Interoperability",
+        "applicationType": "Interoperability",
+        "description": "Listed in the pinned Monad protocol registry (entry `debridge`, live) under Interoperability with 4 Monad mainnet contract addresses.",
+        "site": "https://debridge.com/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "definitive",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "definitive",
+        "name": "Definitive",
+        "registryName": "Definitive Finance",
+        "aliases": [
+          "Definitive Finance"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Trading Interfaces",
+        "applicationType": "Trading Interfaces",
+        "description": "Listed in the pinned Monad protocol registry (entry `definitive`, live) under Trading Interfaces with 3 Monad mainnet contract addresses.",
+        "site": "https://definitive.fi",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "dfusion-ai",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "dfusion-ai",
+        "name": "dFusion AI",
+        "registryName": "dFusion AI",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "AI::Data",
+        "applicationType": "Data",
+        "description": "Listed in the pinned Monad protocol registry (entry `dfusion_ai`, live) under Data with 1 Monad mainnet contract addresses.",
+        "site": "https://dfusion.ai",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "dirol",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "dirol",
+        "name": "Dirol",
+        "registryName": "Dirol",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::DEX",
+        "applicationType": "DEX",
+        "description": "Listed in the pinned Monad protocol registry (entry `dirol`, live) under DEX, DEX Aggregator, Launchpads, Memecoin, Stableswap, Trading Interfaces with 2 Monad mainnet contract addresses.",
+        "site": "https://dex.dirol.io/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "flap",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "flap",
+        "name": "Flap",
+        "registryName": "Flap",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Launchpads",
+        "applicationType": "Launchpads",
+        "description": "Listed in the pinned Monad protocol registry (entry `flap`, live) under Launchpads with 4 Monad mainnet contract addresses.",
+        "site": "https://flap.sh/monad",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "gmgn",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "gmgn",
+        "name": "GMGN",
+        "registryName": "Gmgn",
+        "aliases": [
+          "Gmgn"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::DEX Aggregator",
+        "applicationType": "DEX Aggregator",
+        "description": "Listed in the pinned Monad protocol registry (entry `gmgn`, live) under DEX Aggregator with 1 Monad mainnet contract addresses.",
+        "site": "https://gmgn.ai/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "grimmys",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "grimmys",
+        "name": "Grimmy’s",
+        "registryName": "Grimmy's",
+        "aliases": [],
+        "district": "Gaming",
+        "districtBasis": "Gaming::Games",
+        "applicationType": "Games",
+        "description": "Listed in the pinned Monad protocol registry (entry `grimmys`, live) under Games, Mobile-First with 3 Monad mainnet contract addresses.",
+        "site": "https://grimmy.fun",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "kinetk",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "kinetk",
+        "name": "KINETK",
+        "registryName": "KINETK",
+        "aliases": [],
+        "district": "AI",
+        "districtBasis": "AI::Consumer AI",
+        "applicationType": "Consumer AI",
+        "description": "Listed in the pinned Monad protocol registry (entry `kinetk`, live) under Consumer AI, Data, RWA, Other with 2 Monad mainnet contract addresses.",
+        "site": "https://www.kinetk.ai/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "kinic",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "kinic",
+        "name": "Kinic",
+        "registryName": "Kinic AI Memory Agent",
+        "aliases": [
+          "Kinic AI Memory Agent"
+        ],
+        "district": "AI",
+        "districtBasis": "AI::Consumer AI",
+        "applicationType": "Consumer AI",
+        "description": "Listed in the pinned Monad protocol registry (entry `kinic`, live) under Consumer AI, Storage with 1 Monad mainnet contract addresses.",
+        "site": "https://kinicmemory.com",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "mayan",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "mayan",
+        "name": "Mayan",
+        "registryName": "Mayan",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Cross Chain",
+        "applicationType": "Cross Chain",
+        "description": "Listed in the pinned Monad protocol registry (entry `mayan`, live) under Cross Chain, DEX, Intents, Memecoin, Stableswap, Trading Interfaces with 4 Monad mainnet contract addresses.",
+        "site": "https://mayan.finance/",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "memetok",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "memetok",
+        "name": "MemeTok",
+        "registryName": "MemeTok",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Trading Interfaces",
+        "applicationType": "Trading Interfaces",
+        "description": "Listed in the pinned Monad protocol registry (entry `memetok`, live) under Trading Interfaces, Social, Launchpads with 2 Monad mainnet contract addresses.",
+        "site": "https://www.memetok.app",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "mevx",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "mevx",
+        "name": "MevX",
+        "registryName": "Mevx",
+        "aliases": [
+          "Mevx"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Trading Interfaces",
+        "applicationType": "Trading Interfaces",
+        "description": "Listed in the pinned Monad protocol registry (entry `mevx`, live) under Trading Interfaces with 14 Monad mainnet contract addresses.",
+        "site": "https://mevx.io/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "mona-trading-bot",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "mona-trading-bot",
+        "name": "Mona Trading Bot",
+        "registryName": "Mona Trading Bot",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Trading Interfaces",
+        "applicationType": "Trading Interfaces",
+        "description": "Listed in the pinned Monad protocol registry (entry `mona_trading_bot`, live) under Trading Interfaces with 5 Monad mainnet contract addresses.",
+        "site": "https://t.me/monatradebot",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "openocean",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "openocean",
+        "name": "OpenOcean",
+        "registryName": "OpenOcean",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::DEX",
+        "applicationType": "DEX",
+        "description": "Listed in the pinned Monad protocol registry (entry `openocean`, live) under DEX, DEX Aggregator, Trading Interfaces, Cross Chain with 1 Monad mainnet contract addresses.",
+        "site": "https://openocean.finance/",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "playkami",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "playkami",
+        "name": "PlayKami",
+        "registryName": "PlayKami",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "Consumer::E-commerce / Ticketing",
+        "applicationType": "E-commerce / Ticketing",
+        "description": "Listed in the pinned Monad protocol registry (entry `playkami`, live) under E-commerce / Ticketing, Other with 4 Monad mainnet contract addresses.",
+        "site": "https://playkami.io/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "puffer",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "puffer",
+        "name": "Puffer",
+        "registryName": "Puffer",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Liquid Staking",
+        "applicationType": "Liquid Staking",
+        "description": "Listed in the pinned Monad protocol registry (entry `puffer`, live) under Liquid Staking, Staking with 1 Monad mainnet contract addresses.",
+        "site": "https://www.puffer.fi/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "relay",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "relay",
+        "name": "Relay",
+        "registryName": "Relay",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Cross Chain",
+        "applicationType": "Cross Chain",
+        "description": "Listed in the pinned Monad protocol registry (entry `relay`, live) under Cross Chain with 7 Monad mainnet contract addresses.",
+        "site": "https://relay.link/bridge",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "rug-rumble",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "rug-rumble",
+        "name": "Rug Rumble",
+        "registryName": "Rug Rumble",
+        "aliases": [],
+        "district": "Gaming",
+        "districtBasis": "Gaming::Mobile-First",
+        "applicationType": "Mobile-First",
+        "description": "Listed in the pinned Monad protocol registry (entry `rug_rumble`, live) under Mobile-First, Games, Other with 1 Monad mainnet contract addresses.",
+        "site": "https://rugrumble.xyz/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "stakestone",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "stakestone",
+        "name": "StakeStone",
+        "registryName": "StakeStone",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Asset Issuers",
+        "applicationType": "Asset Issuers",
+        "description": "Listed in the pinned Monad protocol registry (entry `stakestone`, live) under Asset Issuers, Liquid Staking, Stablecoin, Yield with 2 Monad mainnet contract addresses.",
+        "site": "https://stakestone.io",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "sushiswap",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "sushiswap",
+        "name": "Sushiswap",
+        "registryName": "SushiSwap",
+        "aliases": [
+          "SushiSwap"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::DEX Aggregator",
+        "applicationType": "DEX Aggregator",
+        "description": "Listed in the pinned Monad protocol registry (entry `sushiswap`, live) under DEX Aggregator, DEX with 5 Monad mainnet contract addresses.",
+        "site": "https://www.sushi.com/monad/swap",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "tadle",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "tadle",
+        "name": "Tadle",
+        "registryName": "Tadle",
+        "aliases": [],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Lending",
+        "applicationType": "Lending",
+        "description": "Listed in the pinned Monad protocol registry (entry `tadle`, live) under Lending, CDP, Launchpads, Liquid Staking, DEX Aggregator, Yield Aggregator, Interoperability, Stablecoin, Yield with 2 Monad mainnet contract addresses.",
+        "site": "https://tadle.com/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "wormhole-portal",
+      "verdict": "resolved-explorer-verified-name",
+      "manifest": {
+        "id": "wormhole-portal",
+        "name": "Wormhole Portal",
+        "registryName": "Wormhole",
+        "aliases": [
+          "Wormhole"
+        ],
+        "district": "Infrastructure",
+        "districtBasis": "Infra::Interoperability",
+        "applicationType": "Interoperability",
+        "description": "Listed in the pinned Monad protocol registry (entry `wormhole_portal`, live) under Interoperability with 17 Monad mainnet contract addresses.",
+        "site": "https://wormhole.com/",
+        "deploymentBasis": "resolved-explorer-verified-name"
+      }
+    },
+    {
+      "proposalId": "trendle",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "trendle",
+        "name": "Trendle",
+        "registryName": "Trendle",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "Consumer::Prediction Market",
+        "applicationType": "Prediction Market",
+        "description": "Listed in the pinned Monad protocol registry (entry `trendle`, live) under Prediction Market with 2 Monad mainnet contract addresses.",
+        "site": "https://trendle.fi",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "plabs",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "plabs",
+        "name": "PLabs",
+        "registryName": "PLabs",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "Infra::Privacy / Encryption",
+        "applicationType": "Privacy / Encryption",
+        "description": "Listed in the pinned Monad protocol registry (entry `plabs`, live) under Privacy / Encryption with 2 Monad mainnet contract addresses.",
+        "site": "https://app.plabs.online/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "crsh-market",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "crsh-market",
+        "name": "CRSH Market",
+        "registryName": "CRSH Market",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "Consumer::Prediction Market",
+        "applicationType": "Prediction Market",
+        "description": "Listed in the pinned Monad protocol registry (entry `crsh`, live) under Prediction Market with 1 Monad mainnet contract addresses.",
+        "site": "https://crshmarket.com",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "collective-memory",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "collective-memory",
+        "name": "Collective Memory",
+        "registryName": "Collective Memory",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "Consumer::Social",
+        "applicationType": "Social",
+        "description": "Listed in the pinned Monad protocol registry (entry `collective_memory`, live) under Social with 5 Monad mainnet contract addresses.",
+        "site": "https://www.collectivememory.ai/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "oripa",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "oripa",
+        "name": "Oripa",
+        "registryName": "oripa.cards",
+        "aliases": [
+          "oripa.cards"
+        ],
+        "district": "Gaming",
+        "districtBasis": "Gaming::Games",
+        "applicationType": "Games",
+        "description": "Listed in the pinned Monad protocol registry (entry `oripa`) under Games, Marketplace with 5 Monad mainnet contract addresses.",
+        "site": "https://oripa.cards",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "anomapay",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "anomapay",
+        "name": "AnomaPay",
+        "registryName": "AnomaPay",
+        "aliases": [],
+        "district": "Infrastructure",
+        "districtBasis": "Infra::Privacy / Encryption",
+        "applicationType": "Privacy / Encryption",
+        "description": "Listed in the pinned Monad protocol registry (entry `anoma`, live) under Privacy / Encryption, Orchestration with 2 Monad mainnet contract addresses.",
+        "site": "https://anomapay.app",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    },
+    {
+      "proposalId": "o1-exchange",
+      "verdict": "resolved-explorer-contract",
+      "manifest": {
+        "id": "o1-exchange",
+        "name": "o1 exchange",
+        "registryName": "o1.exchange",
+        "aliases": [
+          "o1.exchange"
+        ],
+        "district": "DeFi",
+        "districtBasis": "DeFi::Launchpads",
+        "applicationType": "Launchpads",
+        "description": "Listed in the pinned Monad protocol registry (entry `o1_exchange`, live) under Launchpads, DEX Aggregator with 4 Monad mainnet contract addresses.",
+        "site": "https://o1.exchange/",
+        "deploymentBasis": "resolved-explorer-contract"
+      }
+    }
+  ]
+}

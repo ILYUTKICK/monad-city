@@ -14,15 +14,15 @@ import {
 import {
   APPROVED_EVIDENCE_SNAPSHOT,
   APPROVED_EVIDENCE_SNAPSHOT_SHA256,
-} from './evidence-snapshots/phase-3.5-v4.generated.js';
+} from './evidence-snapshots/phase-3.5-v5.generated.js';
 
 export const EVIDENCE_DATA_MODE = 'sourced-limited';
 
 export { REVIEW_STATUSES };
 
-export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v4';
-export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-27T13:08:02Z';
-export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-27T13:08:02Z';
+export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v5';
+export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-27T16:45:00Z';
+export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-27T16:45:00Z';
 export const REVIEW_GOVERNANCE_AS_OF = EVIDENCE_SNAPSHOT_REVIEWED_AT;
 export { REVIEW_GOVERNANCE_POLICY_VERSION };
 
@@ -92,8 +92,33 @@ export const BATCH2_PROJECT_IDS = Object.freeze([
   'travessia-credit', 'tulipa-capital', 'ultrayield-curator', 'unified-labs', 'unit', 'valos',
   'veda', 'vfat-io', 'vii-finance', 'wombat-exchange', 'y10k-capital', 'zkswap-v2',]);
 
+// 48 further intake groups approved into the phase-3.5-v5 snapshot — resolved App-portal-only
+// pending groups whose Monad deployment is recorded by the pinned Monad protocol registry
+// (commit 36fddcc) and verified live on-chain via the Etherscan V2 API (chainid 143). Same
+// trust boundary: a registry address mapping is a deployment record, not verification,
+// activity, safety, or endorsement. Seven brand-level groups whose protocols already exist in
+// the city as batch-2 manifests were excluded at assembly (data/research/batch-3-review-plan).
+export const BATCH3_PROJECT_IDS = Object.freeze([
+  'lumiterra', 'bro-fun', 'matcha', 'opensea',
+  'fastlane', 'agora', 'bonad', 'kyberswap',
+  'pingme', 'lootgo', 'monorail', 'aarna',
+  'across', 'apebond', 'blinq', 'bungee',
+  'cashmere', 'cctp-exchange', 'clanker-world', 'debridge',
+  'definitive', 'dfusion-ai', 'dirol', 'flap',
+  'gmgn', 'grimmys', 'kinetk', 'kinic',
+  'mayan', 'memetok', 'mevx', 'mona-trading-bot',
+  'openocean', 'playkami', 'puffer', 'relay',
+  'rug-rumble', 'stakestone', 'sushiswap', 'tadle',
+  'wormhole-portal', 'trendle', 'plabs', 'crsh-market',
+  'collective-memory', 'oripa', 'anomapay', 'o1-exchange',]);
+
 // The full set of project ids the evidence contract accepts as subjects or endpoints.
-export const KNOWN_PROJECT_IDS = Object.freeze([...CURATED_PROJECT_IDS, ...BATCH1_PROJECT_IDS, ...BATCH2_PROJECT_IDS]);
+export const KNOWN_PROJECT_IDS = Object.freeze([
+  ...CURATED_PROJECT_IDS,
+  ...BATCH1_PROJECT_IDS,
+  ...BATCH2_PROJECT_IDS,
+  ...BATCH3_PROJECT_IDS,
+]);
 
 // Version-pinned approved-projection sizes: an import that silently drops or duplicates
 // records cannot pass the runtime contract, exactly as the v2 22-record freeze did.
@@ -101,6 +126,7 @@ export const EXPECTED_SNAPSHOT_COUNTS = Object.freeze({
   'phase-3.5-v2': Object.freeze({ records: 22, relationships: 6 }),
   'phase-3.5-v3': Object.freeze({ records: 52, relationships: 6 }),
   'phase-3.5-v4': Object.freeze({ records: 142, relationships: 6 }),
+  'phase-3.5-v5': Object.freeze({ records: 190, relationships: 6 }),
 });
 
 export const EVIDENCE_STATUSES = Object.freeze([
