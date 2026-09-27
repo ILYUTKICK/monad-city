@@ -229,6 +229,19 @@ immutable v2 pair. Batch-1 records are directory-listing observations only: ente
 snapshot never makes a project verified, endorsed, ranked, safe, or active, and TVL-based
 batch composition is not a city signal.
 
+## Phase 5.2 vocabulary interpretation (registry-sourced listings)
+
+Batch 2 sources its claim candidates from the DefiLlama registry capture for projects that
+pass the §3 bar without an App Portal listing. Within the fixed eight-value `evidenceType`
+vocabulary, these records use `official-directory-listing` with `referenceType: mutable-url`
+and `source.url: https://api.llama.fi/protocols` — interpreted as "listing in the named
+directory's own catalog": the `source.publisher` field carries the actual registry
+(DefiLlama), the claim is bounded to the capture instant, and every such record states in its
+limitations that DefiLlama is a third-party registry whose inclusion is not an official Monad
+endorsement, verification, safety review, or proof of activity. Reviewers who find this
+interpretation too loose may reject such records with `source-does-not-support-scope`
+without invalidating the batch discipline.
+
 ## Exact evidence record
 
 The approved JSON snapshot is the promotion authority for exact runtime source records. The generated module must be canonically identical to it. Every record contains:

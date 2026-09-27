@@ -117,6 +117,22 @@ const DISTRICT_BY_CATEGORY = {
   ai: 'AI',
   robotics: 'AI',
   identity: 'Identity',
+  'uncollateralized lending': 'DeFi',
+  'onchain capital allocator': 'DeFi',
+  'risk curators': 'DeFi',
+  'cross chain bridge': 'Infrastructure',
+  privacy: 'Infrastructure',
+  'liquidity automation': 'DeFi',
+  'liquid restaking': 'DeFi',
+  payments: 'DeFi',
+  cedifi: 'DeFi',
+  cedefi: 'DeFi',
+  'nft marketplace': 'Gaming',
+  'leveraged farming': 'DeFi',
+  cefi: 'DeFi',
+  services: 'Infrastructure',
+  synthetics: 'DeFi',
+  insurance: 'DeFi',
 };
 
 const STRIPPED_TRAILING_TOKENS = new Set([
@@ -461,6 +477,62 @@ function buildDescription(group, canonical) {
   return `${canonical.name} is listed on the Monad App Portal. No DefiLlama listing was found in the seed artifacts.`;
 }
 
+// Phase 5.2: groups that pass the §3 bar via DefiLlama alone (no App Portal listing) get an
+// exact-source claim candidate from the registry capture itself. Vocabulary note (documented in
+// docs/EVIDENCE_DATA_CONTRACT.md §Phase 5.2): `official-directory-listing` is used for
+// "listing in the named directory's own catalog" — the publisher field carries the actual
+// registry (DefiLlama), and limitations state the third-party nature explicitly.
+function draftRegistryCandidate(group, canonical, defillamaInput) {
+  const entry = shortestNamedDefillamaEntry(group);
+  const category = entry?.category ? `'${entry.category}'` : 'no recorded category';
+  const captureDate = defillamaInput.fetchedAtUtc.slice(0, 10);
+  const evidenceId = `E-${canonical.id.toUpperCase().replace(/[^A-Z0-9]+/g, '-')}-REG-001`;
+  const provenanceNotes =
+    `Drafted by scripts/ecosystem-intake.js from ${defillamaInput.file} (sha256 ${defillamaInput.sha256.slice(0, 16)}…). ` +
+    'Automated draft; a human must inspect the live source before any review decision.';
+  return {
+    id: evidenceId,
+    projectId: canonical.id,
+    relatedProjectIds: [],
+    claim:
+      `DefiLlama's protocol registry lists ${canonical.name} in the ${category} category with a ` +
+      `Monad chain entry (API capture ${captureDate}).`,
+    evidenceType: 'official-directory-listing',
+    status: 'Observed',
+    source: {
+      kind: 'registry-json',
+      title: 'DefiLlama protocol registry API',
+      url: 'https://api.llama.fi/protocols',
+      publisher: 'DefiLlama',
+      available: true,
+      referenceType: 'mutable-url',
+      presentationMutable: true,
+    },
+    retrievedAt: defillamaInput.fetchedAtUtc,
+    publishedAt: null,
+    network: { name: 'Monad mainnet', chainId: 143 },
+    scope: `${canonical.name} DefiLlama registry listing membership, category, and Monad chain tag at the capture instant.`,
+    provenance: { kind: 'manual-curation', notes: provenanceNotes },
+    provenanceNotes,
+    limitations: [
+      'DefiLlama is a third-party registry; inclusion is not an official Monad endorsement, verification, safety review, or proof of activity.',
+      'The registry API response is mutable and unpinned; its content can change after the capture instant.',
+      'Drafted automatically from a dated seed artifact; the record stays outside any snapshot until a human inspects the source and records a review decision.',
+    ],
+    quality: { conflict: false, incomplete: false, stale: false, unavailable: false, timeBoundEligible: false },
+    identifiers: null,
+    conflicts: [],
+    supportMode: 'artifact-observation-only',
+    supportedProposition: `${canonical.name} DefiLlama registry listing membership, category, and Monad chain tag at the capture instant.`,
+    supportsFactualClaims: true,
+    dataMode: EVIDENCE_DATA_MODE,
+    reviewStatus: 'proposed',
+    reviewedAt: null,
+    revision: { sequence: 1, supersedesEvidenceId: null },
+    reviewMetadata: null,
+  };
+}
+
 function draftEvidenceCandidate(group, canonical, portalInput) {
   const app = group.portalDirectory[0];
   const categories = (app.categories ?? []).filter(Boolean);
@@ -687,12 +759,16 @@ function main() {
       usedIds.add(canonical.id);
       const { district, fromCategory } = districtFor(group);
       const evidenceCandidates =
-        bar.outcome === 'draft' ? [draftEvidenceCandidate(group, canonical, inputs[1])] : [];
+        bar.outcome === 'draft'
+          ? [draftEvidenceCandidate(group, canonical, inputs[1])]
+          : bar.outcome === 'draft-manifest-only'
+            ? [draftRegistryCandidate(group, canonical, inputs[0])]
+            : [];
       summary.evidenceCandidates += evidenceCandidates.length;
       const reviewNotes = [];
       if (bar.outcome === 'draft-manifest-only') {
         reviewNotes.push(
-          'No evidence candidate drafted: the seeds provide no exact-source claim record for this project yet. Source work (project docs, explorer, or another exact source) is required before a candidate can be proposed.',
+          'Evidence candidate is sourced from the DefiLlama registry capture (third-party registry, mutable API); portal presence and explorer/contract verification remain open work.',
         );
       }
       if (!district) {

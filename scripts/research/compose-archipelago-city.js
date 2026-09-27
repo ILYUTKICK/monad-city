@@ -1,20 +1,23 @@
 #!/usr/bin/env node
 // Phase 5.2 archipelago layout composer (build-time only, deterministic, run once per layout).
 //
-// Rewrites ONLY the x/y coordinates of the project entries in src/main.js so that each district
-// forms its own island and the Monad spire keeps a small central islet:
-//   - Monad stays at (0, 0);
-//   - the five district clusters sit on a ring (radius 520 project units = 52 world units);
-//   - buildings spiral out from each island center; the island terrain itself is derived in
+// Keeps src/main.js `projects` in sync with the archipelago layout:
+//   - inserts city entries for selected intake projects that are not wired yet (Batch 2+),
+//     generated from the reviewed intake draft manifests;
+//   - rewrites the x/y coordinates of every entry so that each district forms its own island
+//     and the Monad spire keeps a small central islet (Monad at (0, 0), district clusters on a
+//     ring, buildings spiraling out per island). The island terrain itself is derived in
 //     city3d.js from the resulting clusters (data-driven, per docs/WORKLOG Phase 5.1→5.2).
 //
 // Coordinates are illustrative layout: ring angles and spiral order encode no ranking.
-// All other project fields are untouched.
+// Other project fields of already-wired entries are untouched.
 
 import fs from 'node:fs';
+import path from 'node:path';
 
 const MAIN = 'src/main.js';
-const RING_RADIUS = 560; // project units between the world origin and each island center
+const RESEARCH_DIR = path.join('data', 'research');
+const RING_RADIUS = 660; // project units between the world origin and each island center
 const DISTRICT_ANGLES = {
   DeFi: (45 * Math.PI) / 180,
   Infrastructure: (117 * Math.PI) / 180,
@@ -24,6 +27,38 @@ const DISTRICT_ANGLES = {
 };
 const SPIRAL_GAP = { default: 74, DeFi: 76 }; // min center-to-center distance, project units
 const MIN_CROSS_ISLAND = 150; // buildings of different islands never come closer than this
+const DISTRICT_COLORS = {
+  DeFi: '#93d6c6',
+  AI: '#91baff',
+  Infrastructure: '#a58aff',
+  Gaming: '#e9b07c',
+  Identity: '#e5a5cd',
+};
+
+function latestSeed(prefix) {
+  const files = fs
+    .readdirSync(RESEARCH_DIR)
+    .filter((file) => file.startsWith(`${prefix}-`) && file.endsWith('.json'))
+    .sort();
+  if (files.length === 0) return null;
+  return path.join(RESEARCH_DIR, files[files.length - 1]);
+}
+
+function readOptionalSelection() {
+  const file = latestSeed('batch-2-selection');
+  if (!file) return null;
+  const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+  return value.kind === 'monad-city-batch-2-selection' ? value : null;
+}
+
+function hostnameOf(url) {
+  if (!url) return null;
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return null;
+  }
+}
 
 function spiralCells(count, gap) {
   const cells = [];
@@ -43,7 +78,47 @@ function main() {
   const start = src.indexOf('const projects = [');
   const end = src.indexOf('\n];', start);
   if (start === -1 || end === -1) throw new Error('projects array not found in src/main.js');
-  const slice = src.slice(start, end);
+  let slice = src.slice(start, end);
+
+  // Insert city entries for selected intake projects that are not wired yet (Batch 2+).
+  const existingIds = [...slice.matchAll(/id: '([^']+)'/g)].map((match) => match[1]);
+  const selection = readOptionalSelection();
+  const draftFile = latestSeed('proposals-draft');
+  const draft = selection && draftFile ? JSON.parse(fs.readFileSync(draftFile, 'utf8')) : null;
+  const proposalById = draft ? new Map(draft.proposals.map((proposal) => [proposal.proposalId, proposal])) : null;
+  const newBlocks = [];
+  if (selection && proposalById) {
+    selection.selected.forEach((item) => {
+      if (existingIds.includes(item.proposalId)) return;
+      const proposal = proposalById.get(item.proposalId);
+      if (!proposal) throw new Error(`Selected proposal ${item.proposalId} missing from draft`);
+      const manifest = proposal.manifest;
+      const category = manifest.applicationType ?? 'ecosystem project';
+      const abbr = manifest.name.replace(/[^A-Za-zА-Яа-я0-9]/g, '').charAt(0).toUpperCase() || '•';
+      const site = hostnameOf(manifest.site);
+      newBlocks.push(`  {
+    id: '${manifest.id}',
+    name: '${manifest.name.replace(/'/g, '’')}',
+    abbr: '${abbr}',
+    district: '${manifest.district}',
+    tag: 'Listed under ‘${category}’.',
+    description:
+      '${manifest.description.replace(/'/g, '’')}',
+    x: 0,
+    y: 0,
+    h: 50,
+    color: '${DISTRICT_COLORS[manifest.district] ?? '#93d6c6'}',
+    state: 'Observed',
+    type: '${category.replace(/'/g, '’')}',
+    site: ${site ? `'${site}'` : 'null'},
+  },`);
+    });
+  }
+  if (newBlocks.length > 0) {
+    // The slice ends right before "\n];" — the last existing entry already carries its comma,
+    // so the new blocks append directly at the end of the array body.
+    slice = `${slice}\n${newBlocks.join('\n')}`;
+  }
 
   const ids = [...slice.matchAll(/id: '([^']+)'/g)].map((match) => match[1]);
   const districts = [...slice.matchAll(/district: '([^']+)'/g)].map((match) => match[1]);
@@ -107,7 +182,10 @@ function main() {
   const islandSummary = [...byIsland.entries()]
     .map(([island, list]) => `${island}:${list.length}`)
     .join(', ');
-  console.log(`Archipelago layout written: ${ids.length} projects (${islandSummary})`);
+  console.log(
+    `Archipelago layout written: ${ids.length} projects (${islandSummary})` +
+      (newBlocks.length ? `, ${newBlocks.length} new entries inserted` : ''),
+  );
 }
 
 main();

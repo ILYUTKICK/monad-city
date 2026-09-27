@@ -14,15 +14,15 @@ import {
 import {
   APPROVED_EVIDENCE_SNAPSHOT,
   APPROVED_EVIDENCE_SNAPSHOT_SHA256,
-} from './evidence-snapshots/phase-3.5-v3.generated.js';
+} from './evidence-snapshots/phase-3.5-v4.generated.js';
 
 export const EVIDENCE_DATA_MODE = 'sourced-limited';
 
 export { REVIEW_STATUSES };
 
-export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v3';
-export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-27T11:34:47Z';
-export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-27T11:34:47Z';
+export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v4';
+export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-27T13:08:02Z';
+export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-27T13:08:02Z';
 export const REVIEW_GOVERNANCE_AS_OF = EVIDENCE_SNAPSHOT_REVIEWED_AT;
 export { REVIEW_GOVERNANCE_POLICY_VERSION };
 
@@ -71,14 +71,36 @@ export const BATCH1_PROJECT_IDS = Object.freeze([
   'nabla-finance',
 ]);
 
+// Phase 5.2 Batch 2 entity expansion (data/research/batch-2-selection-2026-09-27.json):
+// 90 further intake proposals approved into the phase-3.5-v4 snapshot — 85 DefiLlama
+// registry-listing records + 5 App Portal records deferred from Batch 1. Same trust
+// boundary as Batch 1: presence is directory/registry listing, nothing more.
+export const BATCH2_PROJECT_IDS = Object.freeze([
+  'bean-exchange', 'clober', 'covenant', 'narbet', 'narwhal-finance', 'accountable',
+  'aethonswap', 'agua', 'alphagrowth', 'atlantis-dex', 'august-digital', 'autofinance',
+  'brownfi-v2', 'clearstar', 'detrade', 'enjoyoors', 'euclid-protocol', 'euler-dao',
+  'folks-finance-xchain', 'fusion-by-ipor', 'gamma-research', 'gearbox', 'ghost-protocol', 'gluehook',
+  'hanji-protocol', 'huma', 'hyperithm', 'iziswap', 'joe-dex', 'k3-capital',
+  'k613', 'layerzero-v2', 'lemonad', 'lfj-poe', 'lunarbase', 'madness-finance',
+  'mellow-core', 'mellow-restaking', 'metric-v2', 'monad-grid', 'moonmace', 'morpho-blue',
+  'mu-digital', 'murk-finance', 'native-lend-curator', 'near-intents', 'neutral-trade', 'noxa-dex-v2',
+  'noxa-fun', 'obsdn', 'octoswap-cl', 'ouroboros-capital', 'pangolin-v3', 'parity-dex',
+  'peridot', 'pingu-exchange', 'pinot-v3', 'printr', 'purpsexchange', 'quantus-lend',
+  'reservoir-protocol', 'rockawayx', 'sablier-lockup', 'saffron-vaults', 'sherpa', 'shmonad',
+  'skate-amm', 'someswap-amm', 'springx', 'steakhouse-financial', 'stoneusd', 'swaap-maker-v2',
+  'sweep-n-flip', 'swyrl-cl', 'theo-network-thbill', 'thesauros', 'townsquare-lending', 'townsquare-loop-vaults',
+  'travessia-credit', 'tulipa-capital', 'ultrayield-curator', 'unified-labs', 'unit', 'valos',
+  'veda', 'vfat-io', 'vii-finance', 'wombat-exchange', 'y10k-capital', 'zkswap-v2',]);
+
 // The full set of project ids the evidence contract accepts as subjects or endpoints.
-export const KNOWN_PROJECT_IDS = Object.freeze([...CURATED_PROJECT_IDS, ...BATCH1_PROJECT_IDS]);
+export const KNOWN_PROJECT_IDS = Object.freeze([...CURATED_PROJECT_IDS, ...BATCH1_PROJECT_IDS, ...BATCH2_PROJECT_IDS]);
 
 // Version-pinned approved-projection sizes: an import that silently drops or duplicates
 // records cannot pass the runtime contract, exactly as the v2 22-record freeze did.
 export const EXPECTED_SNAPSHOT_COUNTS = Object.freeze({
   'phase-3.5-v2': Object.freeze({ records: 22, relationships: 6 }),
   'phase-3.5-v3': Object.freeze({ records: 52, relationships: 6 }),
+  'phase-3.5-v4': Object.freeze({ records: 142, relationships: 6 }),
 });
 
 export const EVIDENCE_STATUSES = Object.freeze([

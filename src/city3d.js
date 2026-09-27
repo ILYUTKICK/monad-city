@@ -443,7 +443,7 @@ export function createCity3D({
   const anchor = new THREE.Vector3();
 
   // ---------- controls ----------
-  const DEFAULT_VIEW = { azimuth: Math.PI / 4, elevation: 0.62, radius: 225 };
+  const DEFAULT_VIEW = { azimuth: Math.PI / 4, elevation: 0.62, radius: 300 };
   const control = {
     azimuth: DEFAULT_VIEW.azimuth, elevation: DEFAULT_VIEW.elevation, radius: DEFAULT_VIEW.radius,
     azimuthGoal: DEFAULT_VIEW.azimuth, elevationGoal: DEFAULT_VIEW.elevation, radiusGoal: DEFAULT_VIEW.radius,
@@ -753,7 +753,7 @@ export function createCity3D({
       let done = true;
       projectViews.forEach((view, id) => {
         const index = projects.findIndex((project) => project.id === id);
-        const progress = Math.min(1, Math.max(0, (elapsed - 200 - index * 70) / 650));
+        const progress = Math.min(1, Math.max(0, (elapsed - 200 - Math.min(index, 45) * 70) / 650));
         if (progress < 1) done = false;
         view.group.scale.y = Math.max(0.001, 1 - Math.pow(1 - progress, 3));
       });

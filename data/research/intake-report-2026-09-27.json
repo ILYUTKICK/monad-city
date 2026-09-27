@@ -1,0 +1,3952 @@
+{
+  "kind": "monad-city-intake-report",
+  "schemaVersion": "1",
+  "intakeVersion": "phase-5.0",
+  "generatedAtUtc": "2026-09-27T13:05:12Z",
+  "inputs": [
+    {
+      "role": "defillama",
+      "file": "data/research/defillama-monad-2026-09-27.json",
+      "sha256": "e99873c585a4b78c4fac1b398b7ce0067c80647cfe5a2ef3e82fdcb140feaaa5",
+      "fetchedAtUtc": "2026-09-27T10:18:58Z"
+    },
+    {
+      "role": "app-portal",
+      "file": "data/research/monad-app-portal-2026-09-26.json",
+      "sha256": "b5936ec745f118527baaa81312541494abacc24fe8b74fe20270f1116a8263fc",
+      "fetchedAtUtc": "2026-09-26T23:17:15Z"
+    }
+  ],
+  "summary": {
+    "groups": 231,
+    "existingMatches": 3,
+    "drafts": 35,
+    "draftManifestOnly": 85,
+    "pending": 105,
+    "excluded": 3,
+    "evidenceCandidates": 120,
+    "nearMissAliasGroups": 9,
+    "oracleObservations": 0
+  },
+  "identityRules": {
+    "nameMatching": "normalized names (case/punctuation-insensitive, trailing variant tokens stripped)",
+    "domainMatching": "registrable domain of project site URLs",
+    "slugMatching": "App Portal slugs",
+    "addressMatching": "not applied in this run: the DefiLlama listing address is the dominant-chain address, not a Monad explorer record"
+  },
+  "humanReviewFlags": [
+    {
+      "flag": "name-similar-to-demo-entity",
+      "canonicalName": "Kintsu",
+      "proposedId": "kintsu",
+      "detail": "Real Kintsu (liquid staking) is name-similar to the fictional Demo building \"Pixel Forge\", which reuses the legacy internal id \"kintsu\". They are different entities; do not merge."
+    },
+    {
+      "flag": "name-similar-to-demo-entity",
+      "canonicalName": "Nad.fun",
+      "proposedId": "nad-fun",
+      "detail": "Real Nad.fun (launchpad) is name-similar to the illustrative Demo building \"Nad Arcade\" (internal id \"nadfun\"). They are different entities; do not merge."
+    }
+  ],
+  "nearMissAliasGroups": [
+    {
+      "firstToken": "euler",
+      "groups": [
+        "Euler DAO",
+        "Euler | Euler V2"
+      ]
+    },
+    {
+      "firstToken": "folks",
+      "groups": [
+        "Folks Finance xChain",
+        "Folks Finance"
+      ]
+    },
+    {
+      "firstToken": "gearbox",
+      "groups": [
+        "Gearbox",
+        "Gearbox Protocol"
+      ]
+    },
+    {
+      "firstToken": "lfj",
+      "groups": [
+        "LFJ POE",
+        "LFJ"
+      ]
+    },
+    {
+      "firstToken": "mellow",
+      "groups": [
+        "Mellow Core",
+        "Mellow Restaking",
+        "Mellow"
+      ]
+    },
+    {
+      "firstToken": "morpho",
+      "groups": [
+        "Morpho Blue",
+        "Morpho"
+      ]
+    },
+    {
+      "firstToken": "noxa",
+      "groups": [
+        "NOXA DEX V2 | NOXA DEX V3",
+        "NOXA Fun"
+      ]
+    },
+    {
+      "firstToken": "townsquare",
+      "groups": [
+        "TownSquare Lending",
+        "TownSquare Loop Vaults",
+        "TownSquare"
+      ]
+    },
+    {
+      "firstToken": "matcha",
+      "groups": [
+        "Matcha",
+        "Matcha Meta"
+      ]
+    }
+  ],
+  "oracleRelationshipObservations": [],
+  "groups": [
+    {
+      "canonicalName": "Aave",
+      "proposedId": "aave-v3",
+      "names": [
+        "Aave",
+        "Aave V3"
+      ],
+      "domains": [
+        "aave.com"
+      ],
+      "portalSlugs": [
+        "aave-v3"
+      ],
+      "defillamaSlugs": [
+        "aave-v3"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Accountable",
+      "proposedId": "accountable",
+      "names": [
+        "Accountable"
+      ],
+      "domains": [
+        "accountable.capital"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "accountable"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "AethonSwap",
+      "proposedId": "aethonswap",
+      "names": [
+        "AethonSwap"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "aethonswap"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Agua",
+      "proposedId": "agua",
+      "names": [
+        "Agua"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "agua"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "alphagrowth",
+      "proposedId": "alphagrowth",
+      "names": [
+        "alphagrowth"
+      ],
+      "domains": [
+        "euler.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "alphagrowth"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Ample",
+      "proposedId": "ample",
+      "names": [
+        "Ample"
+      ],
+      "domains": [
+        "ample.money"
+      ],
+      "portalSlugs": [
+        "ample"
+      ],
+      "defillamaSlugs": [
+        "ample"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "aPriori",
+      "proposedId": "apriori",
+      "names": [
+        "aPriori"
+      ],
+      "domains": [
+        "apr.io"
+      ],
+      "portalSlugs": [
+        "apriori"
+      ],
+      "defillamaSlugs": [
+        "apriori"
+      ],
+      "outcome": "existing",
+      "reason": "matches an existing city project on name \"aPriori\"",
+      "matchedExistingId": "aPriori"
+    },
+    {
+      "canonicalName": "Atlantis DEX",
+      "proposedId": "atlantis-dex",
+      "names": [
+        "Atlantis DEX"
+      ],
+      "domains": [
+        "atlantisdex.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "atlantis-dex"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "August Digital",
+      "proposedId": "august-digital",
+      "names": [
+        "August Digital"
+      ],
+      "domains": [
+        "augustdigital.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "august-digital"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "AUTOfinance",
+      "proposedId": "autofinance",
+      "names": [
+        "AUTOfinance"
+      ],
+      "domains": [
+        "auto.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "autofinance"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Backpack",
+      "proposedId": "backpack",
+      "names": [
+        "Backpack"
+      ],
+      "domains": [
+        "backpack.exchange"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "backpack"
+      ],
+      "outcome": "excluded",
+      "reason": "cex-listing: centralized-exchange reserve listings are not Monad application deployments",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Balancer",
+      "proposedId": "balancer",
+      "names": [
+        "Balancer",
+        "Balancer V3"
+      ],
+      "domains": [
+        "balancer.fi"
+      ],
+      "portalSlugs": [
+        "balancer"
+      ],
+      "defillamaSlugs": [
+        "balancer-v3"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Bean Exchange",
+      "proposedId": "bean-exchange",
+      "names": [
+        "Bean Exchange"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "bean-exchange"
+      ],
+      "defillamaSlugs": [
+        "bean-exchange"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Beefy",
+      "proposedId": "beefy",
+      "names": [
+        "Beefy"
+      ],
+      "domains": [
+        "beefy.com"
+      ],
+      "portalSlugs": [
+        "beefy"
+      ],
+      "defillamaSlugs": [
+        "beefy"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "BrownFi V2",
+      "proposedId": "brownfi-v2",
+      "names": [
+        "BrownFi V2"
+      ],
+      "domains": [
+        "brownfi.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "brownfi-v2"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Bybit",
+      "proposedId": "bybit",
+      "names": [
+        "Bybit"
+      ],
+      "domains": [
+        "bybit.com"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "bybit"
+      ],
+      "outcome": "excluded",
+      "reason": "cex-listing: centralized-exchange reserve listings are not Monad application deployments",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Capricorn",
+      "proposedId": "capricorn",
+      "names": [
+        "Capricorn"
+      ],
+      "domains": [
+        "capricorn.exchange"
+      ],
+      "portalSlugs": [
+        "capricorn"
+      ],
+      "defillamaSlugs": [
+        "capricorn"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Clearstar",
+      "proposedId": "clearstar",
+      "names": [
+        "Clearstar"
+      ],
+      "domains": [
+        "clearstar.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "clearstar"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Clober",
+      "proposedId": "clober",
+      "names": [
+        "Clober",
+        "Clober Liquidity Vault",
+        "Clober V2"
+      ],
+      "domains": [
+        "clober.io"
+      ],
+      "portalSlugs": [
+        "clober"
+      ],
+      "defillamaSlugs": [
+        "clober-liquidity-vault",
+        "clober-v2"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Covenant",
+      "proposedId": "covenant",
+      "names": [
+        "Covenant"
+      ],
+      "domains": [
+        "covenant.finance"
+      ],
+      "portalSlugs": [
+        "covenant"
+      ],
+      "defillamaSlugs": [
+        "covenant"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Curvance",
+      "proposedId": "curvance",
+      "names": [
+        "Curvance"
+      ],
+      "domains": [
+        "curvance.com"
+      ],
+      "portalSlugs": [
+        "curvance"
+      ],
+      "defillamaSlugs": [
+        "curvance"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Curve",
+      "proposedId": "curve",
+      "names": [
+        "Curve",
+        "Curve DEX"
+      ],
+      "domains": [
+        "curve.finance"
+      ],
+      "portalSlugs": [
+        "curve"
+      ],
+      "defillamaSlugs": [
+        "curve-dex"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "DeTrade",
+      "proposedId": "detrade",
+      "names": [
+        "DeTrade"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "detrade"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Drake",
+      "proposedId": "drake",
+      "names": [
+        "Drake",
+        "Drake Exchange"
+      ],
+      "domains": [
+        "drake.exchange"
+      ],
+      "portalSlugs": [
+        "drake"
+      ],
+      "defillamaSlugs": [
+        "drake-exchange"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Enjoyoors",
+      "proposedId": "enjoyoors",
+      "names": [
+        "Enjoyoors"
+      ],
+      "domains": [
+        "enjoyoors.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "enjoyoors"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Euclid Protocol",
+      "proposedId": "euclid-protocol",
+      "names": [
+        "Euclid Protocol"
+      ],
+      "domains": [
+        "euclidprotocol.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "euclid-protocol"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Euler DAO",
+      "proposedId": "euler-dao",
+      "names": [
+        "Euler DAO"
+      ],
+      "domains": [
+        "euler.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "euler-dao"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Euler",
+      "proposedId": "euler",
+      "names": [
+        "Euler",
+        "Euler V2"
+      ],
+      "domains": [
+        "euler.finance"
+      ],
+      "portalSlugs": [
+        "euler"
+      ],
+      "defillamaSlugs": [
+        "euler-v2"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Folks Finance xChain",
+      "proposedId": "folks-finance-xchain",
+      "names": [
+        "Folks Finance xChain"
+      ],
+      "domains": [
+        "folks.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "folks-finance-xchain"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Fusion by IPOR",
+      "proposedId": "fusion-by-ipor",
+      "names": [
+        "Fusion by IPOR"
+      ],
+      "domains": [
+        "ipor.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "fusion-by-ipor"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Gamma Research",
+      "proposedId": "gamma-research",
+      "names": [
+        "Gamma Research"
+      ],
+      "domains": [
+        "gammaresearch.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "gamma-research"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Gate",
+      "proposedId": "gate",
+      "names": [
+        "Gate"
+      ],
+      "domains": [
+        "gate.com"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "gate"
+      ],
+      "outcome": "excluded",
+      "reason": "cex-listing: centralized-exchange reserve listings are not Monad application deployments",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Gearbox",
+      "proposedId": "gearbox",
+      "names": [
+        "Gearbox"
+      ],
+      "domains": [
+        "gearbox.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "gearbox"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Ghost Protocol",
+      "proposedId": "ghost-protocol",
+      "names": [
+        "Ghost Protocol"
+      ],
+      "domains": [
+        "ghost-protocol.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "ghost-protocol"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "GlueHook",
+      "proposedId": "gluehook",
+      "names": [
+        "GlueHook"
+      ],
+      "domains": [
+        "gluehook.trade"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "gluehook"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Hanji Protocol",
+      "proposedId": "hanji-protocol",
+      "names": [
+        "Hanji Protocol"
+      ],
+      "domains": [
+        "hanji.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "hanji-protocol"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Huma",
+      "proposedId": "huma",
+      "names": [
+        "Huma"
+      ],
+      "domains": [
+        "huma.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "huma"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Hyperithm",
+      "proposedId": "hyperithm",
+      "names": [
+        "Hyperithm"
+      ],
+      "domains": [
+        "hyperithm.com"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "hyperithm"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "iZiSwap",
+      "proposedId": "iziswap",
+      "names": [
+        "iZiSwap"
+      ],
+      "domains": [
+        "izumi.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "iziswap"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Joe DEX",
+      "proposedId": "joe-dex",
+      "names": [
+        "Joe DEX",
+        "Joe V2.2"
+      ],
+      "domains": [
+        "lfj.gg"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "joe-dex",
+        "joe-v2.2"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "K3 Capital",
+      "proposedId": "k3-capital",
+      "names": [
+        "K3 Capital"
+      ],
+      "domains": [
+        "k3.capital"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "k3-capital"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "K613",
+      "proposedId": "k613",
+      "names": [
+        "K613"
+      ],
+      "domains": [
+        "k613.net"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "k613"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Kintsu",
+      "proposedId": "kintsu",
+      "names": [
+        "Kintsu"
+      ],
+      "domains": [
+        "kintsu.xyz"
+      ],
+      "portalSlugs": [
+        "kintsu"
+      ],
+      "defillamaSlugs": [
+        "kintsu"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Kizzy",
+      "proposedId": "kizzy",
+      "names": [
+        "Kizzy"
+      ],
+      "domains": [
+        "kizzy.io"
+      ],
+      "portalSlugs": [
+        "kizzy"
+      ],
+      "defillamaSlugs": [
+        "kizzy"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Kuru",
+      "proposedId": "kuru",
+      "names": [
+        "Kuru",
+        "Kuru CLOB"
+      ],
+      "domains": [
+        "kuru.io"
+      ],
+      "portalSlugs": [
+        "kuru"
+      ],
+      "defillamaSlugs": [
+        "kuru-clob"
+      ],
+      "outcome": "existing",
+      "reason": "matches an existing city project on name \"Kuru CLOB\"",
+      "matchedExistingId": "kuru"
+    },
+    {
+      "canonicalName": "Lagoon",
+      "proposedId": "lagoon",
+      "names": [
+        "Lagoon"
+      ],
+      "domains": [
+        "lagoon.finance"
+      ],
+      "portalSlugs": [
+        "lagoon"
+      ],
+      "defillamaSlugs": [
+        "lagoon"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "LayerZero V2",
+      "proposedId": "layerzero-v2",
+      "names": [
+        "LayerZero V2"
+      ],
+      "domains": [
+        "layerzero.network"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "layerzero-v2"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "LeMONAD",
+      "proposedId": "lemonad",
+      "names": [
+        "LeMONAD"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "lemonad"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "LeverUp",
+      "proposedId": "leverup",
+      "names": [
+        "LeverUp"
+      ],
+      "domains": [
+        "leverup.xyz"
+      ],
+      "portalSlugs": [
+        "leverup"
+      ],
+      "defillamaSlugs": [
+        "leverup"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Levr Bet",
+      "proposedId": "levr-bet",
+      "names": [
+        "Levr Bet"
+      ],
+      "domains": [
+        "levr.bet"
+      ],
+      "portalSlugs": [
+        "levr-bet"
+      ],
+      "defillamaSlugs": [
+        "levr-bet"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "LFJ POE",
+      "proposedId": "lfj-poe",
+      "names": [
+        "LFJ POE"
+      ],
+      "domains": [
+        "lfj.gg"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "lfj-poe"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Lunarbase",
+      "proposedId": "lunarbase",
+      "names": [
+        "Lunarbase"
+      ],
+      "domains": [
+        "lunarbase.gg"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "lunarbase"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Madness Finance",
+      "proposedId": "madness-finance",
+      "names": [
+        "Madness Finance"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "madness-finance"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Magma",
+      "proposedId": "magma",
+      "names": [
+        "Magma",
+        "Magma Staking"
+      ],
+      "domains": [
+        "magmastaking.xyz"
+      ],
+      "portalSlugs": [
+        "magma"
+      ],
+      "defillamaSlugs": [
+        "magma-staking"
+      ],
+      "outcome": "existing",
+      "reason": "matches an existing city project on name \"Magma Staking\"",
+      "matchedExistingId": "magma"
+    },
+    {
+      "canonicalName": "Mellow Core",
+      "proposedId": "mellow-core",
+      "names": [
+        "Mellow Core"
+      ],
+      "domains": [
+        "mellow.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "mellow-core"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Mellow Restaking",
+      "proposedId": "mellow-restaking",
+      "names": [
+        "Mellow Restaking"
+      ],
+      "domains": [
+        "mellow.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "mellow-restaking"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Mento",
+      "proposedId": "mento",
+      "names": [
+        "Mento",
+        "Mento V2",
+        "Mento V3"
+      ],
+      "domains": [
+        "mento.org"
+      ],
+      "portalSlugs": [
+        "mento"
+      ],
+      "defillamaSlugs": [
+        "mento-v2",
+        "mento-v3"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Metric V2",
+      "proposedId": "metric-v2",
+      "names": [
+        "Metric V2"
+      ],
+      "domains": [
+        "metric.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "metric-v2"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Monad Grid",
+      "proposedId": "monad-grid",
+      "names": [
+        "Monad Grid"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "monad-grid"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Monday Trade",
+      "proposedId": "monday-trade",
+      "names": [
+        "Monday Trade",
+        "Monday Trade Perps",
+        "Monday Trade Spot"
+      ],
+      "domains": [
+        "monday.trade"
+      ],
+      "portalSlugs": [
+        "monday-trade"
+      ],
+      "defillamaSlugs": [
+        "monday-trade-perps",
+        "monday-trade-spot"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Moonmace",
+      "proposedId": "moonmace",
+      "names": [
+        "Moonmace"
+      ],
+      "domains": [
+        "moonmace.ai"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "moonmace"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Morpho Blue",
+      "proposedId": "morpho-blue",
+      "names": [
+        "Morpho Blue"
+      ],
+      "domains": [
+        "morpho.org"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "morpho-blue"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Mu Digital",
+      "proposedId": "mu-digital",
+      "names": [
+        "Mu Digital"
+      ],
+      "domains": [
+        "mudigital.net"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "mu-digital"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Murk Finance",
+      "proposedId": "murk-finance",
+      "names": [
+        "Murk Finance"
+      ],
+      "domains": [
+        "murk.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "murk-finance"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Nabla Finance",
+      "proposedId": "nabla-finance",
+      "names": [
+        "Nabla Finance"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "nabla-finance"
+      ],
+      "defillamaSlugs": [
+        "nabla-finance"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Nad.fun",
+      "proposedId": "nad-fun",
+      "names": [
+        "Nad.fun",
+        "Nad.fun V1",
+        "Nad.fun V2"
+      ],
+      "domains": [
+        "nad.fun"
+      ],
+      "portalSlugs": [
+        "nad-fun"
+      ],
+      "defillamaSlugs": [
+        "nad.fun-v1",
+        "nad.fun-v2"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Narbet",
+      "proposedId": "narbet",
+      "names": [
+        "NarBet",
+        "Narbet"
+      ],
+      "domains": [
+        "nar.bet"
+      ],
+      "portalSlugs": [
+        "narbet"
+      ],
+      "defillamaSlugs": [
+        "narbet"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Narwhal Finance",
+      "proposedId": "narwhal-finance",
+      "names": [
+        "Narwhal Finance"
+      ],
+      "domains": [
+        "narwhal.finance"
+      ],
+      "portalSlugs": [
+        "narwhal-finance"
+      ],
+      "defillamaSlugs": [
+        "narwhal-finance"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Native Lend Curator",
+      "proposedId": "native-lend-curator",
+      "names": [
+        "Native Lend Curator"
+      ],
+      "domains": [
+        "native.org"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "native-lend-curator"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "NEAR Intents",
+      "proposedId": "near-intents",
+      "names": [
+        "NEAR Intents"
+      ],
+      "domains": [
+        "near.com"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "near-intents"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Neutral Trade",
+      "proposedId": "neutral-trade",
+      "names": [
+        "Neutral Trade"
+      ],
+      "domains": [
+        "neutral.trade"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "neutral-trade"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Neverland",
+      "proposedId": "neverland",
+      "names": [
+        "Neverland"
+      ],
+      "domains": [
+        "neverland.money"
+      ],
+      "portalSlugs": [
+        "neverland"
+      ],
+      "defillamaSlugs": [
+        "neverland"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "NOXA DEX V2",
+      "proposedId": "noxa-dex-v2",
+      "names": [
+        "NOXA DEX V2",
+        "NOXA DEX V3"
+      ],
+      "domains": [
+        "eth.limo"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "noxa-dex-v2",
+        "noxa-dex-v3"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "NOXA Fun",
+      "proposedId": "noxa-fun",
+      "names": [
+        "NOXA Fun"
+      ],
+      "domains": [
+        "eth.limo"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "noxa-fun"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "OBSDN",
+      "proposedId": "obsdn",
+      "names": [
+        "OBSDN"
+      ],
+      "domains": [
+        "obsdn.trade"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "obsdn"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "OctoSwap CL",
+      "proposedId": "octoswap-cl",
+      "names": [
+        "OctoSwap CL",
+        "OctoSwap Classic"
+      ],
+      "domains": [
+        "octo.exchange"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "octoswap-cl",
+        "octoswap-classic"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Ouroboros Capital",
+      "proposedId": "ouroboros-capital",
+      "names": [
+        "Ouroboros Capital"
+      ],
+      "domains": [
+        "yuzu.money"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "ouroboros-capital"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "PancakeSwap",
+      "proposedId": "pancakeswap",
+      "names": [
+        "PancakeSwap",
+        "PancakeSwap AMM",
+        "PancakeSwap AMM V3"
+      ],
+      "domains": [
+        "pancakeswap.finance"
+      ],
+      "portalSlugs": [
+        "pancakeswap"
+      ],
+      "defillamaSlugs": [
+        "pancakeswap-amm",
+        "pancakeswap-amm-v3"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Pangolin V3",
+      "proposedId": "pangolin-v3",
+      "names": [
+        "Pangolin V3"
+      ],
+      "domains": [
+        "pangolin.exchange"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "pangolin-v3"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Parity DEX",
+      "proposedId": "parity-dex",
+      "names": [
+        "Parity DEX",
+        "Parity DEX CL"
+      ],
+      "domains": [
+        "parity.exchange"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "parity-dex",
+        "parity-dex-cl"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Pendle",
+      "proposedId": "pendle",
+      "names": [
+        "Pendle",
+        "Pendle V2"
+      ],
+      "domains": [
+        "pendle.finance"
+      ],
+      "portalSlugs": [
+        "pendle"
+      ],
+      "defillamaSlugs": [
+        "pendle-v2"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Peridot",
+      "proposedId": "peridot",
+      "names": [
+        "Peridot"
+      ],
+      "domains": [
+        "peridot.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "peridot"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Perpl",
+      "proposedId": "perpl",
+      "names": [
+        "Perpl"
+      ],
+      "domains": [
+        "perpl.xyz"
+      ],
+      "portalSlugs": [
+        "perpl"
+      ],
+      "defillamaSlugs": [
+        "perpl"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Pingu Exchange",
+      "proposedId": "pingu-exchange",
+      "names": [
+        "Pingu Exchange"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "pingu-exchange"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Pinot V3",
+      "proposedId": "pinot-v3",
+      "names": [
+        "Pinot V3"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "pinot-v3"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Printr",
+      "proposedId": "printr",
+      "names": [
+        "Printr"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "printr"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "PurpsExchange",
+      "proposedId": "purpsexchange",
+      "names": [
+        "PurpsExchange"
+      ],
+      "domains": [
+        "purps.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "purpsexchange"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Quantus Lend",
+      "proposedId": "quantus-lend",
+      "names": [
+        "Quantus Lend"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "quantus-lend"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Renzo",
+      "proposedId": "renzo",
+      "names": [
+        "Renzo"
+      ],
+      "domains": [
+        "renzoprotocol.com"
+      ],
+      "portalSlugs": [
+        "renzo"
+      ],
+      "defillamaSlugs": [
+        "renzo"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Reservoir Protocol",
+      "proposedId": "reservoir-protocol",
+      "names": [
+        "Reservoir Protocol"
+      ],
+      "domains": [
+        "reservoir.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "reservoir-protocol"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "RockawayX",
+      "proposedId": "rockawayx",
+      "names": [
+        "RockawayX"
+      ],
+      "domains": [
+        "rockawayx.com"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "rockawayx"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Sablier Lockup",
+      "proposedId": "sablier-lockup",
+      "names": [
+        "Sablier Lockup"
+      ],
+      "domains": [
+        "sablier.com"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "sablier-lockup"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Saffron Vaults",
+      "proposedId": "saffron-vaults",
+      "names": [
+        "Saffron Vaults"
+      ],
+      "domains": [
+        "saffron.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "saffron-vaults"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Sherpa",
+      "proposedId": "sherpa",
+      "names": [
+        "Sherpa"
+      ],
+      "domains": [
+        "sherpa.trade"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "sherpa"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "ShMonad",
+      "proposedId": "shmonad",
+      "names": [
+        "ShMonad"
+      ],
+      "domains": [
+        "shmonad.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "shmonad"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Skate AMM",
+      "proposedId": "skate-amm",
+      "names": [
+        "Skate AMM"
+      ],
+      "domains": [
+        "skatechain.org"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "skate-amm"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "SomeSwap CL",
+      "proposedId": "someswap-amm",
+      "names": [
+        "SomeSwap AMM",
+        "SomeSwap CL"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "someswap-amm",
+        "someswap-cl"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Spectra",
+      "proposedId": "spectra",
+      "names": [
+        "Spectra",
+        "Spectra V2"
+      ],
+      "domains": [
+        "spectra.finance"
+      ],
+      "portalSlugs": [
+        "spectra"
+      ],
+      "defillamaSlugs": [
+        "spectra-v2"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "SpringX",
+      "proposedId": "springx",
+      "names": [
+        "SpringX"
+      ],
+      "domains": [
+        "springx.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "springx"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Steakhouse Financial",
+      "proposedId": "steakhouse-financial",
+      "names": [
+        "Steakhouse Financial"
+      ],
+      "domains": [
+        "steakhouse.financial"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "steakhouse-financial"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "STONEUSD",
+      "proposedId": "stoneusd",
+      "names": [
+        "STONEUSD"
+      ],
+      "domains": [
+        "stakestone.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "stoneusd"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Sumer Money",
+      "proposedId": "sumer-money",
+      "names": [
+        "Sumer Money",
+        "Sumer.money"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "sumer-money"
+      ],
+      "defillamaSlugs": [
+        "sumer.money"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Swaap Maker V2",
+      "proposedId": "swaap-maker-v2",
+      "names": [
+        "Swaap Maker V2"
+      ],
+      "domains": [
+        "swaap.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "swaap-maker-v2"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Sweep n Flip",
+      "proposedId": "sweep-n-flip",
+      "names": [
+        "Sweep n Flip"
+      ],
+      "domains": [
+        "sweepnflip.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "sweep-n-flip"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Swyrl CL",
+      "proposedId": "swyrl-cl",
+      "names": [
+        "Swyrl CL",
+        "Swyrl Legacy"
+      ],
+      "domains": [],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "swyrl-cl",
+        "swyrl-legacy"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Symbiosis",
+      "proposedId": "symbiosis",
+      "names": [
+        "Symbiosis"
+      ],
+      "domains": [
+        "symbiosis.finance"
+      ],
+      "portalSlugs": [
+        "symbiosis"
+      ],
+      "defillamaSlugs": [
+        "symbiosis"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Theo Network thBill",
+      "proposedId": "theo-network-thbill",
+      "names": [
+        "Theo Network thBill"
+      ],
+      "domains": [
+        "theo.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "theo-network-thbill"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Thesauros",
+      "proposedId": "thesauros",
+      "names": [
+        "Thesauros"
+      ],
+      "domains": [
+        "thesauros.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "thesauros"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "TownSquare Lending",
+      "proposedId": "townsquare-lending",
+      "names": [
+        "TownSquare Lending"
+      ],
+      "domains": [
+        "townsq.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "townsquare-lending"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "TownSquare Loop Vaults",
+      "proposedId": "townsquare-loop-vaults",
+      "names": [
+        "TownSquare Loop Vaults"
+      ],
+      "domains": [
+        "townsq.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "townsquare-loop-vaults"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Travessia Credit",
+      "proposedId": "travessia-credit",
+      "names": [
+        "Travessia Credit"
+      ],
+      "domains": [
+        "travessiacredit.com"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "travessia-credit"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Tulipa Capital",
+      "proposedId": "tulipa-capital",
+      "names": [
+        "Tulipa Capital"
+      ],
+      "domains": [
+        "tulipa.capital"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "tulipa-capital"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "UltraYield Curator",
+      "proposedId": "ultrayield-curator",
+      "names": [
+        "UltraYield Curator"
+      ],
+      "domains": [
+        "ultrayield.app"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "ultrayield-curator"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Unified Labs",
+      "proposedId": "unified-labs",
+      "names": [
+        "Unified Labs"
+      ],
+      "domains": [
+        "unifiedlabs.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "unified-labs"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Uniswap",
+      "proposedId": "uniswap",
+      "names": [
+        "Uniswap",
+        "Uniswap V2",
+        "Uniswap V3",
+        "Uniswap V4"
+      ],
+      "domains": [
+        "uniswap.org"
+      ],
+      "portalSlugs": [
+        "uniswap"
+      ],
+      "defillamaSlugs": [
+        "uniswap-v2",
+        "uniswap-v3",
+        "uniswap-v4"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Unit",
+      "proposedId": "unit",
+      "names": [
+        "Unit"
+      ],
+      "domains": [
+        "hyperunit.xyz"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "unit"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Upshift",
+      "proposedId": "upshift",
+      "names": [
+        "Upshift"
+      ],
+      "domains": [
+        "upshift.finance"
+      ],
+      "portalSlugs": [
+        "upshift"
+      ],
+      "defillamaSlugs": [
+        "upshift"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Valos",
+      "proposedId": "valos",
+      "names": [
+        "Valos"
+      ],
+      "domains": [
+        "valos.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "valos"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Veda",
+      "proposedId": "veda",
+      "names": [
+        "Veda"
+      ],
+      "domains": [
+        "veda.tech"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "veda"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "vfat.io",
+      "proposedId": "vfat-io",
+      "names": [
+        "vfat.io"
+      ],
+      "domains": [
+        "vfat.io"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "vfat.io"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "VII Finance",
+      "proposedId": "vii-finance",
+      "names": [
+        "VII Finance"
+      ],
+      "domains": [
+        "vii.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "vii-finance"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Wombat Exchange",
+      "proposedId": "wombat-exchange",
+      "names": [
+        "Wombat Exchange"
+      ],
+      "domains": [
+        "wombat.exchange"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "wombat-exchange"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "WOOFi",
+      "proposedId": "woofi",
+      "names": [
+        "WOOFi",
+        "WOOFi Swap"
+      ],
+      "domains": [
+        "woofi.com"
+      ],
+      "portalSlugs": [
+        "woofi"
+      ],
+      "defillamaSlugs": [
+        "woofi-swap"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Y10K Capital",
+      "proposedId": "y10k-capital",
+      "names": [
+        "Y10K Capital"
+      ],
+      "domains": [
+        "y10k.capital"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "y10k-capital"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Yuzu Money",
+      "proposedId": "yuzu-money",
+      "names": [
+        "Yuzu Money"
+      ],
+      "domains": [
+        "yuzu.money"
+      ],
+      "portalSlugs": [
+        "yuzu-money"
+      ],
+      "defillamaSlugs": [
+        "yuzu-money"
+      ],
+      "outcome": "draft",
+      "reason": "passes the §3 bar: DefiLlama Monad listing + official App Portal listing",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "zkSwap V2",
+      "proposedId": "zkswap-v2",
+      "names": [
+        "zkSwap V2",
+        "zkSwap V3"
+      ],
+      "domains": [
+        "zkswap.finance"
+      ],
+      "portalSlugs": [],
+      "defillamaSlugs": [
+        "zkswap-v2",
+        "zkswap-v3"
+      ],
+      "outcome": "draft-manifest-only",
+      "reason": "passes the §3 bar via DefiLlama, but no exact-source claim candidate can be drafted from the seeds yet",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "MetaMask Money Account",
+      "proposedId": "metamask-money-account",
+      "names": [
+        "MetaMask Money Account"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "metamask-money-account"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Lumiterra",
+      "proposedId": "lumiterra",
+      "names": [
+        "Lumiterra"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "lumiterra"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Bro.fun",
+      "proposedId": "bro-fun",
+      "names": [
+        "Bro.fun"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "bro-fun"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "TownSquare",
+      "proposedId": "townsquare",
+      "names": [
+        "TownSquare"
+      ],
+      "domains": [
+        "townsq.xyz"
+      ],
+      "portalSlugs": [
+        "townsquare"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Matcha",
+      "proposedId": "matcha",
+      "names": [
+        "Matcha"
+      ],
+      "domains": [
+        "matcha.xyz"
+      ],
+      "portalSlugs": [
+        "matcha"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "LFJ",
+      "proposedId": "lfj",
+      "names": [
+        "LFJ"
+      ],
+      "domains": [
+        "lfj.gg"
+      ],
+      "portalSlugs": [
+        "lfj"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "OpenSea",
+      "proposedId": "opensea",
+      "names": [
+        "OpenSea"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "opensea"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "YieldApp by Accountable",
+      "proposedId": "accountable",
+      "names": [
+        "YieldApp by Accountable"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "accountable"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Mellow",
+      "proposedId": "mellow",
+      "names": [
+        "Mellow"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "mellow"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Morpho",
+      "proposedId": "morpho",
+      "names": [
+        "Morpho"
+      ],
+      "domains": [
+        "morpho.org"
+      ],
+      "portalSlugs": [
+        "morpho"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "FastLane",
+      "proposedId": "fastlane",
+      "names": [
+        "FastLane"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "fastlane"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Agora",
+      "proposedId": "agora",
+      "names": [
+        "Agora"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "agora"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Farcaster",
+      "proposedId": "farcaster",
+      "names": [
+        "Farcaster"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "farcaster"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "fomo",
+      "proposedId": "fomo",
+      "names": [
+        "fomo"
+      ],
+      "domains": [
+        "fomo.family"
+      ],
+      "portalSlugs": [
+        "fomo"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "BONAD",
+      "proposedId": "bonad",
+      "names": [
+        "BONAD"
+      ],
+      "domains": [
+        "bonad.fun"
+      ],
+      "portalSlugs": [
+        "bonad"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "KyberSwap",
+      "proposedId": "kyberswap",
+      "names": [
+        "KyberSwap"
+      ],
+      "domains": [
+        "kyberswap.com"
+      ],
+      "portalSlugs": [
+        "kyberswap"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Lido",
+      "proposedId": "lido",
+      "names": [
+        "Lido"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "lido"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "PingMe",
+      "proposedId": "pingme",
+      "names": [
+        "PingMe"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "pingme"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "LootGO",
+      "proposedId": "lootgo",
+      "names": [
+        "LootGO"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "lootgo"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Monorail",
+      "proposedId": "monorail",
+      "names": [
+        "Monorail"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "monorail"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "aarna",
+      "proposedId": "aarna",
+      "names": [
+        "aarna"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "aarna"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "ACO Labs",
+      "proposedId": "aco-labs",
+      "names": [
+        "ACO Labs"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "aco-labs"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Across",
+      "proposedId": "across",
+      "names": [
+        "Across"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "across"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "ApeBond",
+      "proposedId": "apebond",
+      "names": [
+        "ApeBond"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "apebond"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Axal",
+      "proposedId": "axal",
+      "names": [
+        "Axal"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "axal"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Bidali",
+      "proposedId": "bidali",
+      "names": [
+        "Bidali"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "bidali"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Birdeye",
+      "proposedId": "birdeye",
+      "names": [
+        "Birdeye"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "birdeye"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Blinq",
+      "proposedId": "blinq",
+      "names": [
+        "Blinq"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "blinq"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Bungee",
+      "proposedId": "bungee",
+      "names": [
+        "Bungee"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "bungee"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Call of Odin's Chosen",
+      "proposedId": "call-of-odins-chosen",
+      "names": [
+        "Call of Odin's Chosen"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "call-of-odins-chosen"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Cashmere",
+      "proposedId": "cashmere",
+      "names": [
+        "Cashmere"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "cashmere"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "CCTP Exchange",
+      "proposedId": "cctp-exchange",
+      "names": [
+        "CCTP Exchange"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "cctp-exchange"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Chainpro",
+      "proposedId": "chainpro",
+      "names": [
+        "Chainpro"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "chainpro"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Clanker World",
+      "proposedId": "clanker-world",
+      "names": [
+        "Clanker World"
+      ],
+      "domains": [
+        "clanker.world"
+      ],
+      "portalSlugs": [
+        "clanker-world"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "cp0x Staking",
+      "proposedId": "cp0x-staking",
+      "names": [
+        "cp0x Staking"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "cp0x-staking"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "deBridge",
+      "proposedId": "debridge",
+      "names": [
+        "deBridge"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "debridge"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Definitive",
+      "proposedId": "definitive",
+      "names": [
+        "Definitive"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "definitive"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "dFusion AI",
+      "proposedId": "dfusion-ai",
+      "names": [
+        "dFusion AI"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "dfusion-ai"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Dirol",
+      "proposedId": "dirol",
+      "names": [
+        "Dirol"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "dirol"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "FereAI",
+      "proposedId": "fereai",
+      "names": [
+        "FereAI"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "fereai"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Flap",
+      "proposedId": "flap",
+      "names": [
+        "Flap"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "flap"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Folks Finance",
+      "proposedId": "folks-finance",
+      "names": [
+        "Folks Finance"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "folks-finance"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Forest Staking",
+      "proposedId": "forest-staking",
+      "names": [
+        "Forest Staking"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "forest-staking"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Gearbox Protocol",
+      "proposedId": "gearbox-protocol",
+      "names": [
+        "Gearbox Protocol"
+      ],
+      "domains": [
+        "gearbox.finance"
+      ],
+      "portalSlugs": [
+        "gearbox-protocol"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "GeckoTerminal",
+      "proposedId": "geckoterminal",
+      "names": [
+        "GeckoTerminal"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "geckoterminal"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "GMGN",
+      "proposedId": "gmgn",
+      "names": [
+        "GMGN"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "gmgn"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Grimmy's",
+      "proposedId": "grimmys",
+      "names": [
+        "Grimmy's"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "grimmys"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Hyperlane Nexus",
+      "proposedId": "hyperlane-nexus",
+      "names": [
+        "Hyperlane Nexus"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "hyperlane-nexus"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Hyperstitions",
+      "proposedId": "hyperstitions",
+      "names": [
+        "Hyperstitions"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "hyperstitions"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Infinex",
+      "proposedId": "infinex",
+      "names": [
+        "Infinex"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "infinex"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "INFINIT",
+      "proposedId": "infinit",
+      "names": [
+        "INFINIT"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "infinit"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Interport Finance",
+      "proposedId": "interport-finance",
+      "names": [
+        "Interport Finance"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "interport-finance"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "ITRocket Staking",
+      "proposedId": "itrocket-staking",
+      "names": [
+        "ITRocket Staking"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "itrocket-staking"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Jumper.Exchange",
+      "proposedId": "jumper-exchange",
+      "names": [
+        "Jumper.Exchange"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "jumper-exchange"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "KINETK",
+      "proposedId": "kinetk",
+      "names": [
+        "KINETK"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "kinetk"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Kinic",
+      "proposedId": "kinic",
+      "names": [
+        "Kinic"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "kinic"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Matcha Meta",
+      "proposedId": "matcha-meta",
+      "names": [
+        "Matcha Meta"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "matcha-meta"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Mayan",
+      "proposedId": "mayan",
+      "names": [
+        "Mayan"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "mayan"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "MemeTok",
+      "proposedId": "memetok",
+      "names": [
+        "MemeTok"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "memetok"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "MevX",
+      "proposedId": "mevx",
+      "names": [
+        "MevX"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "mevx"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Midas",
+      "proposedId": "midas",
+      "names": [
+        "Midas"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "midas"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Mona Trading Bot",
+      "proposedId": "mona-trading-bot",
+      "names": [
+        "Mona Trading Bot"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "mona-trading-bot"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "MUKU",
+      "proposedId": "muku",
+      "names": [
+        "MUKU"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "muku"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Multipli",
+      "proposedId": "multipli",
+      "names": [
+        "Multipli"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "multipli"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Nadradar",
+      "proposedId": "nadradar",
+      "names": [
+        "Nadradar"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "nadradar"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Noah AI ",
+      "proposedId": "noah-ai",
+      "names": [
+        "Noah AI "
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "noah-ai"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Nubila Network",
+      "proposedId": "nubila-network",
+      "names": [
+        "Nubila Network"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "nubila-network"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Omnia",
+      "proposedId": "omnia",
+      "names": [
+        "Omnia"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "omnia"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "OpenOcean",
+      "proposedId": "openocean",
+      "names": [
+        "OpenOcean"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "openocean"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "PlayKami",
+      "proposedId": "playkami",
+      "names": [
+        "PlayKami"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "playkami"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "PrismaX",
+      "proposedId": "prismax",
+      "names": [
+        "PrismaX"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "prismax"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Puffer",
+      "proposedId": "puffer",
+      "names": [
+        "Puffer"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "puffer"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Relay",
+      "proposedId": "relay",
+      "names": [
+        "Relay"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "relay"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "RHEA Finance",
+      "proposedId": "rhea-finance",
+      "names": [
+        "RHEA Finance"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "rhea-finance"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Rug Rumble",
+      "proposedId": "rug-rumble",
+      "names": [
+        "Rug Rumble"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "rug-rumble"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Silk Nodes",
+      "proposedId": "silk-nodes",
+      "names": [
+        "Silk Nodes"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "silk-nodes"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Solv Protocol",
+      "proposedId": "solv-protocol",
+      "names": [
+        "Solv Protocol"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "solv-protocol"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "StakeMON.ad",
+      "proposedId": "stakemonad",
+      "names": [
+        "StakeMON.ad"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "stakemonad"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "StakeStone",
+      "proposedId": "stakestone",
+      "names": [
+        "StakeStone"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "stakestone"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Staking with Synergy",
+      "proposedId": "staking-with-energy",
+      "names": [
+        "Staking with Synergy"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "staking-with-energy"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Stargate Finance",
+      "proposedId": "stargate-finance",
+      "names": [
+        "Stargate Finance"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "stargate-finance"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Sushiswap",
+      "proposedId": "sushiswap",
+      "names": [
+        "Sushiswap"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "sushiswap"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Tadle",
+      "proposedId": "tadle",
+      "names": [
+        "Tadle"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "tadle"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "The Arena",
+      "proposedId": "the-arena",
+      "names": [
+        "The Arena"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "the-arena"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Token Mill",
+      "proposedId": "token-mill",
+      "names": [
+        "Token Mill"
+      ],
+      "domains": [
+        "lfj.gg"
+      ],
+      "portalSlugs": [
+        "token-mill"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "UniversalX",
+      "proposedId": "universalx",
+      "names": [
+        "UniversalX"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "universalx"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "UR",
+      "proposedId": "ur",
+      "names": [
+        "UR"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "ur"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Valor Quest ",
+      "proposedId": "valor-quest",
+      "names": [
+        "Valor Quest "
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "valor-quest"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Wormhole Portal",
+      "proposedId": "wormhole-portal",
+      "names": [
+        "Wormhole Portal"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "wormhole-portal"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Trendle",
+      "proposedId": "trendle",
+      "names": [
+        "Trendle"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "trendle"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "PLabs",
+      "proposedId": "plabs",
+      "names": [
+        "PLabs"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "plabs"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "CRSH Market",
+      "proposedId": "crsh-market",
+      "names": [
+        "CRSH Market"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "crsh-market"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Ethena",
+      "proposedId": "ethena",
+      "names": [
+        "Ethena"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "ethena"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Saturn",
+      "proposedId": "saturn",
+      "names": [
+        "Saturn"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "saturn"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "XStable",
+      "proposedId": "xstable",
+      "names": [
+        "XStable"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "xstable"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Strata",
+      "proposedId": "strata",
+      "names": [
+        "Strata"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "strata"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "CoinFello",
+      "proposedId": "coinfello",
+      "names": [
+        "CoinFello"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "coinfello"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "USDC Bridge",
+      "proposedId": "usdc-bridge",
+      "names": [
+        "USDC Bridge"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "usdc-bridge"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Collective Memory",
+      "proposedId": "collective-memory",
+      "names": [
+        "Collective Memory"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "collective-memory"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Oripa",
+      "proposedId": "oripa",
+      "names": [
+        "Oripa"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "oripa"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "1inch",
+      "proposedId": "1inch",
+      "names": [
+        "1inch"
+      ],
+      "domains": [
+        "1inch.com"
+      ],
+      "portalSlugs": [
+        "1inch"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "AnomaPay",
+      "proposedId": "anomapay",
+      "names": [
+        "AnomaPay"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "anomapay"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Glider",
+      "proposedId": "glider",
+      "names": [
+        "Glider"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "glider"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "o1 exchange",
+      "proposedId": "o1-exchange",
+      "names": [
+        "o1 exchange"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "o1-exchange"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    },
+    {
+      "canonicalName": "Crystal",
+      "proposedId": "crystal",
+      "names": [
+        "Crystal"
+      ],
+      "domains": [],
+      "portalSlugs": [
+        "crystal"
+      ],
+      "defillamaSlugs": [],
+      "outcome": "pending",
+      "reason": "App Portal listing only: no verifiable Monad deployment record in the seeds (scale plan §3.1)",
+      "matchedExistingId": null
+    }
+  ]
+}

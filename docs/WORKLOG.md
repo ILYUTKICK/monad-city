@@ -1119,6 +1119,74 @@ Next:
 - Continue Phase 5.2 per plan: Batch 2 intake, explorer/contract verification, label LOD,
   performance budget.
 
+### 2026-09-27 — Lead agent — Phase 5.2: Batch 2 live (snapshot phase-3.5-v4, 130 buildings)
+
+Owner direction: «Остров DEFI нужно увеличить… Давай перейдем в Phase 5.2». Two deliverables:
+the DeFi island de-densification (+ label LOD pulled from §5.2/§6) and Batch 2.
+
+Changed (commits `207f4c3`, batch-2 commits):
+- DeFi island roomier: archipelago composer spiral gap 54→76 (DeFi), ring radius 520→660;
+  camera default radius 300 after Batch 2 growth.
+- Label LOD (scale plan §6): at archipelago range only selected / navigator-matched / hovered
+  buildings plus two landmark buildings per district (and Monad) keep name pills; the full
+  label layer returns when the camera radius drops under 95. District ground labels stay
+  always-on. Intro stagger capped at 45·70ms so 130 buildings build up in ~3.3s.
+- Batch 2 intake (90 projects, 36 → 126 evidence-backed):
+  - `scripts/ecosystem-intake.js` v2: manifest-only groups (§3-bar pass via DefiLlama alone)
+    now receive exact-source registry candidates — `official-directory-listing` |
+    `mutable-url` against `https://api.llama.fi/protocols`, publisher DefiLlama, status
+    Observed, bounded to the capture instant. Vocabulary interpretation documented in
+    EVIDENCE_DATA_CONTRACT.md §Phase 5.2 (publisher carries the registry; limitations state
+    the third-party nature); reviewer rejection path documented.
+  - District category map extended (risk curators, onchain capital allocator, CeDeFi, NFT
+    marketplace, cross-chain bridge, privacy, leveraged farming, payments, liquid restaking,
+    liquidity automation, uncollateralized lending → districts).
+  - `scripts/research/select-batch-2.js`: selects all §3-bar-passing drafts not already live —
+    85 registry + 5 deferred Batch 1 portal drafts
+    (`data/research/batch-2-selection-2026-09-27.json`).
+  - `scripts/build-batch-2-workspace.js`: carried v3 projection as-is (no re-decisions) + the
+    four superseded predecessors re-recorded stale (opaque transition token) + 90 appended
+    `proposed`; all 90 approved per record through `npm run evidence:review` with the owner
+    token `reviewer:r-…` (see `data/research/batch-2-review-plan-2026-09-27.json`) at
+    `2026-09-27T13:06:37Z`, method `manual-artifact-and-payload-inspection`, reason
+    `supported-with-limitations`.
+- Snapshot `phase-3.5-v4`: 142 approved evidence records / 6 relationships, created and
+  reviewed `2026-09-27T13:08:02Z`, canonical SHA-256
+  `a13d37a032bdc6d65cf721480aff6896428ec401b0301acfa5ca320ec75963d7`, promoted to
+  `src/evidence-snapshots/phase-3.5-v4.generated.js`; verify-promotion paths switched; v3
+  pair remains as the rollback boundary.
+- `src/evidence.js`: `BATCH2_PROJECT_IDS` (90), `KNOWN_PROJECT_IDS` → 126,
+  `EXPECTED_SNAPSHOT_COUNTS['phase-3.5-v4'] = {142, 6}`.
+- City wiring: `scripts/research/compose-archipelago-city.js` now INSERTS city entries for
+  selected-but-unwired proposals (from the reviewed draft manifests) and re-places all
+  buildings — 130 entries total (114 DeFi, 10 Infrastructure, 4 Gaming, 1 AI, 1 Identity,
+  1 Monad islet); DeFi island radius grew to ~48 world units on ring 660.
+
+Verified:
+- `npm run build` green per commit (verify-promotion gate; v4 SHA confirmed; runtime contract
+  validates 142 records / 126 represented projects at load).
+- In-browser 1440×900: 130 buildings render; label LOD keeps the far view clean (9 pills);
+  Morpho Blue passport shows the Source-backed registry claim with capture date; Navigator
+  "oracle" query reports the data-driven coverage «126 of 130 shown projects carry exact
+  records»; district counts 114/1/10/4/1; 390×844 without overflow; zero console errors.
+- Performance budget (scale plan §6): 60 fps sampled over 2s at the default camera with 130
+  buildings (measured in-browser; the IAB tab must be foreground — rAF suspends otherwise).
+
+Limitations:
+- Batch 2 evidence is directory/registry listing only: it proves listing membership at the
+  capture instant — no deployments, activity, safety, or legitimacy. Explorer/contract
+  verification stays open work; the registry vocabulary interpretation is flagged for
+  governance review (rejectable per record without invalidating the batch).
+- DeFi island at 114 buildings still has a single label tier; building-count heights and
+  multi-tier LOD remain backlog. No new relationships (17 active edges unchanged).
+- 105 App-portal-only pending projects still need deployment resolution (explorer work).
+
+Next:
+- Governance window for batch-2 records (30-day cadence computed from inline metadata).
+- Batch 3 / full sweep (§5.3): pending-queue deployment resolution, relationship candidates,
+  refresh runbook execution.
+
+
 
 
 ### 2026-09-27 — Lead agent / frontend — v2.2 stretch: beam tooltip + narrow-layout fixes

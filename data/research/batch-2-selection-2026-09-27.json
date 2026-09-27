@@ -1,0 +1,647 @@
+{
+  "kind": "monad-city-batch-2-selection",
+  "schemaVersion": "1",
+  "generatedAtUtc": "2026-09-27T13:05:12Z",
+  "inputs": {
+    "draft": "data/research/proposals-draft-2026-09-27.json"
+  },
+  "rule": "All intake drafts passing the §3 bar that were not promoted in Batch 1: manifest-only drafts (DefiLlama registry candidates) plus the five full drafts deferred from Batch 1 (App Portal candidates).",
+  "counts": {
+    "manifestOnly": 85,
+    "deferredBatch1": 5,
+    "selected": 90,
+    "projectedCityTotal": 126
+  },
+  "selected": [
+    {
+      "proposalId": "bean-exchange",
+      "name": "Bean Exchange",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-BEAN-EXCHANGE-MEM-001",
+      "evidenceKind": "app-portal"
+    },
+    {
+      "proposalId": "clober",
+      "name": "Clober",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-CLOBER-MEM-001",
+      "evidenceKind": "app-portal"
+    },
+    {
+      "proposalId": "covenant",
+      "name": "Covenant",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-COVENANT-MEM-001",
+      "evidenceKind": "app-portal"
+    },
+    {
+      "proposalId": "narbet",
+      "name": "Narbet",
+      "district": "Gaming",
+      "evidenceCandidateId": "E-NARBET-MEM-001",
+      "evidenceKind": "app-portal"
+    },
+    {
+      "proposalId": "narwhal-finance",
+      "name": "Narwhal Finance",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NARWHAL-FINANCE-MEM-001",
+      "evidenceKind": "app-portal"
+    },
+    {
+      "proposalId": "accountable",
+      "name": "Accountable",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-ACCOUNTABLE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "aethonswap",
+      "name": "AethonSwap",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-AETHONSWAP-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "agua",
+      "name": "Agua",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-AGUA-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "alphagrowth",
+      "name": "alphagrowth",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-ALPHAGROWTH-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "atlantis-dex",
+      "name": "Atlantis DEX",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-ATLANTIS-DEX-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "august-digital",
+      "name": "August Digital",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-AUGUST-DIGITAL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "autofinance",
+      "name": "AUTOfinance",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-AUTOFINANCE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "brownfi-v2",
+      "name": "BrownFi V2",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-BROWNFI-V2-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "clearstar",
+      "name": "Clearstar",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-CLEARSTAR-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "detrade",
+      "name": "DeTrade",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-DETRADE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "enjoyoors",
+      "name": "Enjoyoors",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-ENJOYOORS-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "euclid-protocol",
+      "name": "Euclid Protocol",
+      "district": "Infrastructure",
+      "evidenceCandidateId": "E-EUCLID-PROTOCOL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "euler-dao",
+      "name": "Euler DAO",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-EULER-DAO-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "folks-finance-xchain",
+      "name": "Folks Finance xChain",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-FOLKS-FINANCE-XCHAIN-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "fusion-by-ipor",
+      "name": "Fusion by IPOR",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-FUSION-BY-IPOR-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "gamma-research",
+      "name": "Gamma Research",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-GAMMA-RESEARCH-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "gearbox",
+      "name": "Gearbox",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-GEARBOX-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "ghost-protocol",
+      "name": "Ghost Protocol",
+      "district": "Infrastructure",
+      "evidenceCandidateId": "E-GHOST-PROTOCOL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "gluehook",
+      "name": "GlueHook",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-GLUEHOOK-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "hanji-protocol",
+      "name": "Hanji Protocol",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-HANJI-PROTOCOL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "huma",
+      "name": "Huma",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-HUMA-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "hyperithm",
+      "name": "Hyperithm",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-HYPERITHM-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "iziswap",
+      "name": "iZiSwap",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-IZISWAP-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "joe-dex",
+      "name": "Joe DEX",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-JOE-DEX-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "k3-capital",
+      "name": "K3 Capital",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-K3-CAPITAL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "k613",
+      "name": "K613",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-K613-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "layerzero-v2",
+      "name": "LayerZero V2",
+      "district": "Infrastructure",
+      "evidenceCandidateId": "E-LAYERZERO-V2-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "lemonad",
+      "name": "LeMONAD",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-LEMONAD-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "lfj-poe",
+      "name": "LFJ POE",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-LFJ-POE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "lunarbase",
+      "name": "Lunarbase",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-LUNARBASE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "madness-finance",
+      "name": "Madness Finance",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MADNESS-FINANCE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "mellow-core",
+      "name": "Mellow Core",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MELLOW-CORE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "mellow-restaking",
+      "name": "Mellow Restaking",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MELLOW-RESTAKING-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "metric-v2",
+      "name": "Metric V2",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-METRIC-V2-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "monad-grid",
+      "name": "Monad Grid",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MONAD-GRID-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "moonmace",
+      "name": "Moonmace",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MOONMACE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "morpho-blue",
+      "name": "Morpho Blue",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MORPHO-BLUE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "mu-digital",
+      "name": "Mu Digital",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-MU-DIGITAL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "murk-finance",
+      "name": "Murk Finance",
+      "district": "Infrastructure",
+      "evidenceCandidateId": "E-MURK-FINANCE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "native-lend-curator",
+      "name": "Native Lend Curator",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NATIVE-LEND-CURATOR-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "near-intents",
+      "name": "NEAR Intents",
+      "district": "Infrastructure",
+      "evidenceCandidateId": "E-NEAR-INTENTS-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "neutral-trade",
+      "name": "Neutral Trade",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NEUTRAL-TRADE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "noxa-dex-v2",
+      "name": "NOXA DEX V2",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NOXA-DEX-V2-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "noxa-fun",
+      "name": "NOXA Fun",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-NOXA-FUN-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "obsdn",
+      "name": "OBSDN",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-OBSDN-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "octoswap-cl",
+      "name": "OctoSwap CL",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-OCTOSWAP-CL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "ouroboros-capital",
+      "name": "Ouroboros Capital",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-OUROBOROS-CAPITAL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "pangolin-v3",
+      "name": "Pangolin V3",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PANGOLIN-V3-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "parity-dex",
+      "name": "Parity DEX",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PARITY-DEX-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "peridot",
+      "name": "Peridot",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PERIDOT-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "pingu-exchange",
+      "name": "Pingu Exchange",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PINGU-EXCHANGE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "pinot-v3",
+      "name": "Pinot V3",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PINOT-V3-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "printr",
+      "name": "Printr",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PRINTR-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "purpsexchange",
+      "name": "PurpsExchange",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-PURPSEXCHANGE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "quantus-lend",
+      "name": "Quantus Lend",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-QUANTUS-LEND-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "reservoir-protocol",
+      "name": "Reservoir Protocol",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-RESERVOIR-PROTOCOL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "rockawayx",
+      "name": "RockawayX",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-ROCKAWAYX-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "sablier-lockup",
+      "name": "Sablier Lockup",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SABLIER-LOCKUP-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "saffron-vaults",
+      "name": "Saffron Vaults",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SAFFRON-VAULTS-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "sherpa",
+      "name": "Sherpa",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SHERPA-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "shmonad",
+      "name": "ShMonad",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SHMONAD-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "skate-amm",
+      "name": "Skate AMM",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SKATE-AMM-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "someswap-amm",
+      "name": "SomeSwap CL",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SOMESWAP-AMM-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "springx",
+      "name": "SpringX",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SPRINGX-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "steakhouse-financial",
+      "name": "Steakhouse Financial",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-STEAKHOUSE-FINANCIAL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "stoneusd",
+      "name": "STONEUSD",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-STONEUSD-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "swaap-maker-v2",
+      "name": "Swaap Maker V2",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SWAAP-MAKER-V2-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "sweep-n-flip",
+      "name": "Sweep n Flip",
+      "district": "Gaming",
+      "evidenceCandidateId": "E-SWEEP-N-FLIP-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "swyrl-cl",
+      "name": "Swyrl CL",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-SWYRL-CL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "theo-network-thbill",
+      "name": "Theo Network thBill",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-THEO-NETWORK-THBILL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "thesauros",
+      "name": "Thesauros",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-THESAUROS-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "townsquare-lending",
+      "name": "TownSquare Lending",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-TOWNSQUARE-LENDING-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "townsquare-loop-vaults",
+      "name": "TownSquare Loop Vaults",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-TOWNSQUARE-LOOP-VAULTS-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "travessia-credit",
+      "name": "Travessia Credit",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-TRAVESSIA-CREDIT-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "tulipa-capital",
+      "name": "Tulipa Capital",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-TULIPA-CAPITAL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "ultrayield-curator",
+      "name": "UltraYield Curator",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-ULTRAYIELD-CURATOR-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "unified-labs",
+      "name": "Unified Labs",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-UNIFIED-LABS-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "unit",
+      "name": "Unit",
+      "district": "Infrastructure",
+      "evidenceCandidateId": "E-UNIT-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "valos",
+      "name": "Valos",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-VALOS-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "veda",
+      "name": "Veda",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-VEDA-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "vfat-io",
+      "name": "vfat.io",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-VFAT-IO-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "vii-finance",
+      "name": "VII Finance",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-VII-FINANCE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "wombat-exchange",
+      "name": "Wombat Exchange",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-WOMBAT-EXCHANGE-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "y10k-capital",
+      "name": "Y10K Capital",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-Y10K-CAPITAL-REG-001",
+      "evidenceKind": "defillama-registry"
+    },
+    {
+      "proposalId": "zkswap-v2",
+      "name": "zkSwap V2",
+      "district": "DeFi",
+      "evidenceCandidateId": "E-ZKSWAP-V2-REG-001",
+      "evidenceKind": "defillama-registry"
+    }
+  ]
+}
