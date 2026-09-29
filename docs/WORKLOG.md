@@ -1478,6 +1478,36 @@ Changed: `src/main.js` (renderDistrictBar tabs + district menu conditional on
 Verified: Identity — evidence deep link lands on Overview, tab and menu item hidden; DeFi —
 Evidence tab intact. `npm run build` green.
 
+### 2026-09-29 — Lead implementation agent — Relationships subgraph layout + tab view restoration (owner report)
+
+Owner report with screenshots: (1) the DeFi Relationships graph looked broken — an almost
+empty plate with nodes clumped at one edge; (2) after switching to another tab/district the
+GRAPH persisted instead of returning to the city.
+
+Root causes:
+- (1) The isometric projection collapses a district's diagonal: the subgraph framing used
+  real archipelago coordinates, so Kuru/aPriori/Magma (along the DeFi diagonal) projected to
+  nearly one point while external nodes spread far away — a giant plate with a cluster at one
+  corner. Additionally the frozen Three.js frame bled through the transparent SVG, and the
+  SVG spanned the full window width, pushing external nodes under the floating panels.
+- (2) `applyDistrictTab` mutated `districtTab` BEFORE the hash change, so `applyRoute` saw
+  the previous tab equal to the new one and never restored the city view.
+
+Fixes:
+- The subgraph now uses a deterministic schematic layout instead of real coordinates:
+  in-district nodes on an inner ring, external endpoints on an outer ring (sorted ids —
+  stable), isometric footprints skipped in this mode. The SVG is absolutely inset to the zone
+  between the floating panels (inline styles — style.css is cached separately from main.js
+  and a stale cache dropped the CSS rule; desktop ≥941px only). Verified: 6 nodes + 7 edges,
+  external endpoints labeled «outside district», everything clear of the panels.
+- `applyDistrictTab` no longer mutates state; applyRoute sees the true previous tab and
+  restores the city view when leaving the Relationships tab. Verified: Relationships →
+  Overview returns the 3D island; cross-district navigation from a Relationships tab lands
+  the new district on Overview in city view.
+- The plaque is dismissed in graph mode (it belongs to the city view).
+
+Files: `src/main.js`. Verified in-browser per flow; `npm run build` green.
+
 ### 2026-09-29 — Lead implementation agent — Corrective pass: P0 Navigator grounding, P1 overflow/mobile/subgraph, P2 pluralization
 
 Owner review found functional and responsive regressions

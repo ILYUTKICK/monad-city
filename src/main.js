@@ -3207,6 +3207,7 @@ function visible(project) {
 }
 
 function renderCity() {
+  if (graph) dismissPlaque();
   document.querySelector('#city-svg').hidden = !graph;
   city3d.sync({
     selected,
@@ -3249,7 +3250,27 @@ function renderSvgCity() {
     );
   }
   const framedProjects = subgraphIds ? projects.filter((project) => subgraphIds.has(project.id)) : projects;
-  const projected = framedProjects.map((project) => iso(project.x, project.y));
+  // Schematic layout for the subgraph: real archipelago coordinates collapse a district
+  // diagonal into one corner under the isometric projection, so the analytical view lays the
+  // subgraph out deterministically instead — in-district nodes on an inner ring, external
+  // endpoints on an outer ring (sorted ids, so the arrangement is stable).
+  const layoutPositions = new Map();
+  if (subgraphIds) {
+    const inside = [...subgraphIds].filter((id) => districtIds.has(id)).sort();
+    const outside = [...subgraphIds].filter((id) => !districtIds.has(id)).sort();
+    inside.forEach((id, index) => {
+      const angle = (index / Math.max(inside.length, 1)) * Math.PI * 2 - Math.PI / 2;
+      layoutPositions.set(id, { x: Math.round(Math.cos(angle) * 140), y: Math.round(Math.sin(angle) * 70) });
+    });
+    outside.forEach((id, index) => {
+      const angle = (index / Math.max(outside.length, 1)) * Math.PI * 2;
+      layoutPositions.set(id, { x: Math.round(Math.cos(angle) * 290), y: Math.round(Math.sin(angle) * 145) });
+    });
+  }
+  const projected = framedProjects.map((project) => {
+    const layout = layoutPositions.get(project.id);
+    return layout ? [layout.x, layout.y] : iso(project.x, project.y);
+  });
   const bounds = {
     minX: Math.min(...projected.map(([x]) => x)),
     maxX: Math.max(...projected.map(([x]) => x)),
@@ -3277,8 +3298,10 @@ function renderSvgCity() {
       const nonFactualEdge = relationship.evidenceState === 'AI-inferred' || relationship.evidenceState === 'illustrative';
       const lineColor = sourcedEdge ? '#8ebbd7' : nonFactualEdge ? '#9d81bd' : '#7d7490';
       const lineDash = nonFactualEdge ? '4 4' : '';
-      const start = iso(project.x, project.y, graph ? 20 : 2);
-      const end = iso(connected.x, connected.y, graph ? 20 : 2);
+      const startLayout = layoutPositions?.get(project.id);
+      const endLayout = layoutPositions?.get(connected.id);
+      const start = startLayout ? [startLayout.x, startLayout.y] : iso(project.x, project.y, graph ? 20 : 2);
+      const end = endLayout ? [endLayout.x, endLayout.y] : iso(connected.x, connected.y, graph ? 20 : 2);
       const active = relationship.from === selected || relationship.to === selected;
       const navigatorMatch = navigatorRelationshipHighlights.has(relationship.id);
       const pairVisible = subgraphIds ? true : visible(project) && visible(connected);
@@ -3296,7 +3319,8 @@ function renderSvgCity() {
   [...framedProjects]
     .sort((a, b) => a.x + a.y - (b.x + b.y))
     .forEach((project) => {
-      const [x, y] = iso(project.x, project.y);
+      const layout = layoutPositions?.get(project.id);
+      const [x, y] = layout ? [layout.x, layout.y] : iso(project.x, project.y);
       const active = project.id === selected;
       const navigatorMatch = navigatorProjectHighlights.has(project.id);
       const external = Boolean(subgraphIds) && project.district !== activeDistrict;
@@ -3306,7 +3330,7 @@ function renderSvgCity() {
 
       out += `<g class="building ${active ? 'active' : ''} ${navigatorMatch ? 'navigator-match' : ''}" data-id="${project.id}" tabindex="${isVisible ? 0 : -1}" role="button" aria-label="${project.name}, ${project.district}, status ${project.state}"${current} opacity="${projectOpacity}">`;
 
-      if (active || navigatorMatch) {
+      if (!layout && (active || navigatorMatch)) {
         out += poly(
           [iso(project.x - 43, project.y - 43), iso(project.x + 43, project.y - 43), iso(project.x + 43, project.y + 43), iso(project.x - 43, project.y + 43)],
           navigatorMatch && !active ? '#9bc6ff0a' : '#b89cff09',
@@ -3315,12 +3339,14 @@ function renderSvgCity() {
         );
       }
 
-      out += poly(
-        [iso(project.x - 34, project.y - 34), iso(project.x + 34, project.y - 34), iso(project.x + 34, project.y + 34), iso(project.x - 34, project.y + 34)],
-        active ? '#a98afa18' : '#44385312',
-        active ? '#c8acff' : '#7161813d',
-        `stroke-width="${active ? 1.5 : 0.8}" vector-effect="non-scaling-stroke"`,
-      );
+      if (!layout) {
+        out += poly(
+          [iso(project.x - 34, project.y - 34), iso(project.x + 34, project.y - 34), iso(project.x + 34, project.y + 34), iso(project.x - 34, project.y + 34)],
+          active ? '#a98afa18' : '#44385312',
+          active ? '#c8acff' : '#7161813d',
+          `stroke-width="${active ? 1.5 : 0.8}" vector-effect="non-scaling-stroke"`,
+        );
+      }
 
       if (graph) {
         if (active) {
@@ -3338,6 +3364,29 @@ function renderSvgCity() {
     });
 
   document.querySelector('#world').innerHTML = out;
+  // Subgraph mode insets the SVG to the zone between the floating panels (inline styles:
+  // style.css is cached separately from main.js and a stale cache would drop the rule).
+  // Desktop only — the narrow layout stacks panels below the city.
+  const svgEl = document.querySelector('#city-svg');
+  const desktopWide = window.matchMedia('(min-width: 941px)').matches;
+  svgEl.classList.toggle('subgraph', Boolean(subgraphIds));
+  if (subgraphIds && desktopWide) {
+    svgEl.style.position = 'absolute';
+    svgEl.style.left = '384px';
+    svgEl.style.right = '320px';
+    svgEl.style.top = '0px';
+    svgEl.style.bottom = '0px';
+    svgEl.style.width = 'auto';
+    svgEl.style.height = 'auto';
+  } else {
+    svgEl.style.position = '';
+    svgEl.style.left = '';
+    svgEl.style.right = '';
+    svgEl.style.top = '';
+    svgEl.style.bottom = '';
+    svgEl.style.width = '';
+    svgEl.style.height = '';
+  }
   if (graph && projects.length) {
     const vbMinX = plateCx - plateHalfW - 40;
     const vbMinY = plateCy - plateHalfH - 70;
@@ -3974,9 +4023,12 @@ function districtTabKeydown(event) {
 }
 
 function applyDistrictTab(tab) {
+  // districtTab is NOT mutated here: the hash is the source of truth, and applyRoute must
+  // see the PREVIOUS tab to restore the city view when leaving the Relationships graph.
   if (scope !== 'district' || !DISTRICT_TABS.some((entry) => entry.id === tab)) return;
-  districtTab = tab;
-  location.hash = routeHash();
+  const target = `#/district/${districtSlug(activeDistrict)}/${tab}`;
+  if (location.hash === target) applyRoute();
+  else location.hash = target;
 }
 
 function routeHash() {
