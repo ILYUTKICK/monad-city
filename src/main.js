@@ -3876,6 +3876,14 @@ function districtProjectIdSet() {
   return new Set(getDistrictProjects(projects, activeDistrict).map((project) => project.id));
 }
 
+// The Evidence tab is shown only when the district carries source-backed records: an empty
+// inspection layer reads as a broken screen, not as honesty (owner decision 2026-09-29).
+function districtHasEvidence() {
+  if (!activeDistrict) return false;
+  const districtIds = districtProjectIdSet();
+  return evidenceRecords.some((record) => districtIds.has(record.projectId) && record.reviewStatus === 'approved');
+}
+
 function projectIsSourceBacked(project) {
   return evidenceForProject(project.id).some((record) => record.reviewStatus === 'approved');
 }
@@ -3923,7 +3931,8 @@ function renderDistrictBar() {
   document.documentElement.style.setProperty('--district-accent', config.accent);
   document.querySelector('#crumb-district').textContent = `${config.glyph} ${activeDistrict}`;
   const tabs = document.querySelector('#district-tabs');
-  tabs.innerHTML = DISTRICT_TABS.map((tab) => `
+  const visibleTabs = DISTRICT_TABS.filter((tab) => tab.id !== 'evidence' || districtHasEvidence());
+  tabs.innerHTML = visibleTabs.map((tab) => `
     <button type="button" role="tab" aria-selected="${districtTab === tab.id}"
       class="district-tab ${districtTab === tab.id ? 'active' : ''}"
       data-tab="${tab.id}" tabindex="${districtTab === tab.id ? 0 : -1}">${tab.label}</button>
@@ -3943,7 +3952,7 @@ function renderDistrictBar() {
         <button type="button" data-tab="overview" class="${districtTab === 'overview' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">▙</span> District overview <b aria-hidden="true">›</b></button>
         <button type="button" data-tab="projects" class="${districtTab === 'projects' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">▦</span> Project index <b aria-hidden="true">›</b></button>
         <button type="button" data-tab="relationships" class="${districtTab === 'relationships' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">⇄</span> Relationships <b aria-hidden="true">›</b></button>
-        <button type="button" data-tab="evidence" class="${districtTab === 'evidence' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">▤</span> Evidence coverage <b aria-hidden="true">›</b></button>
+        ${districtHasEvidence() ? `<button type="button" data-tab="evidence" class="${districtTab === 'evidence' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">▤</span> Evidence coverage <b aria-hidden="true">›</b></button>` : ''}
       </nav>
       <p class="district-id-note">A focused view of ${escapeHtml(activeDistrict)} projects and their connections in Monad.</p>`;
     document.querySelector('#navigator-body').prepend(block);
@@ -4348,9 +4357,15 @@ function applyRoute() {
   }
 
   const districtChanged = scope !== 'district' || activeDistrict !== parsed.district;
-  const previousTab = districtTab;
   scope = 'district';
   activeDistrict = parsed.district;
+  if (parsed.tab === 'evidence' && !districtHasEvidence()) {
+    // The Evidence tab exists only for districts with source-backed records; an evidence
+    // deep link for an evidence-less district falls back to Overview.
+    location.replace('#/district/' + districtSlug(activeDistrict) + '/overview');
+    return;
+  }
+  const previousTab = districtTab;
   districtTab = parsed.tab;
   if (districtChanged) {
     city3d.enterDistrict(activeDistrict, { animate: !reducedMotion });

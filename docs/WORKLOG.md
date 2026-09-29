@@ -1463,6 +1463,21 @@ Next:
 - Owner review of the district experience; polish pass if requested.
 - Refresh pass 2 (from 2026-10-22) remains the last formal §5.3 exit item.
 
+### 2026-09-29 — Owner decision — Evidence tab hidden for districts without source-backed records
+
+Owner: «Я просто хочу скрыть кнопку, потому что она ничего не дает» (on the Identity Evidence
+tab, which shows only a Demo placeholder). Decision: the Evidence tab (top bar + left menu)
+renders ONLY for districts carrying source-backed records — derived from data, not configured
+per district; when records appear through the intake workflow, the tab returns by itself. An
+evidence deep link for an evidence-less district falls back to Overview via location.replace
+(no extra history entry).
+
+Changed: `src/main.js` (renderDistrictBar tabs + district menu conditional on
+`districtHasEvidence()`; applyRoute evidence-route guard).
+
+Verified: Identity — evidence deep link lands on Overview, tab and menu item hidden; DeFi —
+Evidence tab intact. `npm run build` green.
+
 ### 2026-09-29 — Lead implementation agent — Corrective pass: P0 Navigator grounding, P1 overflow/mobile/subgraph, P2 pluralization
 
 Owner review found functional and responsive regressions
