@@ -3263,3 +3263,19 @@ details.navigator-evidence {
   font-size: 22px;
   letter-spacing: 0.14em;
 }
+
+/* ---- P1 corrective: panels must not extend the root scroll width ---- */
+@media (min-width: 941px) {
+  main {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+}
+
+/* ---- P1 corrective: the plaque is deliberately removed on narrow screens; the
+       breadcrumb carries the district name (spec §17 allows removal) ---- */
+@media (max-width: 940px) {
+  .district-plaque {
+    display: none;
+  }
+}

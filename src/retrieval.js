@@ -294,6 +294,7 @@ const QUERY_STOP_WORDS = new Set([
 
 const EVIDENCE_REQUIREMENTS = Object.freeze({
   ACTIVE_ONCHAIN: 'active-onchain',
+  SOURCE_BACKED: 'source-backed',
   AVAILABLE_SOURCE: 'available-source',
   BOUNDED_CURRENT: 'bounded-current',
   TIMESTAMPED: 'timestamped',
@@ -385,6 +386,7 @@ function normalize(value) {
     .replace(/[’']/g, '')
     .replace(/[_/–—-]+/g, ' ')
     .replace(/[^a-zA-Z0-9.]+/g, ' ')
+    .replace(/\.(?!\d)/g, ' ')
     .trim()
     .toLowerCase();
 }
@@ -424,6 +426,9 @@ function evidenceRequirement(queryText) {
   }
   if (/\b(timestamped|timestamp)\b/.test(queryText)) {
     return EVIDENCE_REQUIREMENTS.TIMESTAMPED;
+  }
+  if (/\b(source[ -]?backed|with cited evidence|cited evidence|with evidence)\b/.test(queryText)) {
+    return EVIDENCE_REQUIREMENTS.SOURCE_BACKED;
   }
   if (/\b(evidence|proofs?|sources?|sourced|cite|cited|cites|citations?)\b/.test(queryText)) {
     return EVIDENCE_REQUIREMENTS.AVAILABLE_SOURCE;
@@ -507,6 +512,7 @@ function meetsEvidenceRequirement(evidence, requirement, relationship = null) {
   if (!requirement) return true;
   const availability = evidenceAvailability(evidence);
   if (requirement === EVIDENCE_REQUIREMENTS.AVAILABLE_SOURCE) return availability.hasSource;
+  if (requirement === EVIDENCE_REQUIREMENTS.SOURCE_BACKED) return availability.hasSource;
   if (requirement === EVIDENCE_REQUIREMENTS.TIMESTAMPED) return availability.supportsTimeBoundClaim;
   if (requirement === EVIDENCE_REQUIREMENTS.BOUNDED_CURRENT) {
     return hasBoundedCurrentCriteria(evidence);
@@ -1025,7 +1031,12 @@ export function retrieveNavigator(input) {
   let requestedCategories = categoryValues
     .filter((category) => includesPhrase(queryText, normalize(category)))
     .sort(compareText);
+  const relationshipQueryPreflag = (value) => tokens(value).some((token) => RELATIONSHIP_WORDS.has(token));
   const requestedRelationshipTypes = findRequestedValues(queryText, RELATIONSHIP_TYPE_TERMS);
+  // "Sourced relationships" is a data-mode class, not an evidenceState value: it matches
+  // approved snapshot edges only. Illustrative/declared/AI-inferred edges never qualify.
+  const requestedSourcedRelationships =
+    relationshipQueryPreflag(queryText) && /\b(sourced|source[ -]?backed)\b/.test(queryText);
   const relationshipQuery =
     requestedRelationshipTypes.length > 0 ||
     tokens(queryText).some((token) => RELATIONSHIP_WORDS.has(token));
@@ -1121,10 +1132,14 @@ export function retrieveNavigator(input) {
 
   const requirement = requestedEvidenceFilters.length ? null : evidenceRequirement(queryText);
   const queryTokenList = tokens(queryText);
+  const requirementReservedTokens = requirement === EVIDENCE_REQUIREMENTS.SOURCE_BACKED
+    ? ['source', 'backed', 'sourced']
+    : [];
   const reservedTokens = new Set([
     ...QUERY_STOP_WORDS,
     ...RELATIONSHIP_WORDS,
     ...EVIDENCE_WORDS,
+    ...requirementReservedTokens,
     ...requestedCategories.flatMap(tokens),
     ...referredProjects.flatMap((project) => tokens(`${project.id} ${project.name}`)),
     ...requestedRelationshipTypes.flatMap((type) => tokens(type)),
@@ -1176,6 +1191,19 @@ export function retrieveNavigator(input) {
       }
     });
 
+    // "Projects with source-backed evidence" selects by evidence availability: a project
+    // with at least one eligible record becomes a result in its own right. This is a
+    // coverage statement, never verification or endorsement.
+    if (requirement === EVIDENCE_REQUIREMENTS.SOURCE_BACKED) {
+      exactEvidenceForProject(project.id).some((record) => {
+        if (!meetsEvidenceRequirement(record, requirement)) return false;
+        score += 40;
+        matchedFields.push('evidence-availability');
+        matchedTerms.push(requirement);
+        return true;
+      });
+    }
+
     requestedProjectStates.forEach((state) => {
       if (normalize(state) === text.state) {
         score += 30;
@@ -1221,10 +1249,13 @@ export function retrieveNavigator(input) {
       !requestedRelationshipTypes.length || requestedRelationshipTypes.includes(relationship.type);
     const matchesState =
       !requestedEvidenceStates.length || requestedEvidenceStates.includes(relationship.evidenceState);
+    const matchesSourced =
+      !requestedSourcedRelationships ||
+      (relationship.dataMode === 'sourced-limited' && relationship.reviewStatus === 'approved');
     const matchesRequirement =
       requirement !== EVIDENCE_REQUIREMENTS.ACTIVE_ONCHAIN ||
       (relationship.type === 'onchain_interaction' && relationship.evidenceState === 'onchain-observed');
-    return matchesProject && matchesType && matchesState && matchesRequirement;
+    return matchesProject && matchesType && matchesState && matchesSourced && matchesRequirement;
   });
 
   if (referredProjects.length > 1 && intent === NAVIGATOR_INTENTS.TRACE_RELATIONSHIP) {
@@ -1279,7 +1310,7 @@ export function retrieveNavigator(input) {
     );
   }
   if (capabilityTerms.length) {
-    ranked = ranked.filter((item) => item.matchedFields.some((field) => ['type', 'tag', 'description', 'project'].includes(field)));
+    ranked = ranked.filter((item) => item.matchedFields.some((field) => ['type', 'tag', 'description', 'project', 'relationship', 'evidence-availability'].includes(field)));
   }
   if (referredProjects.length && intent !== NAVIGATOR_INTENTS.TRACE_RELATIONSHIP) {
     ranked = ranked.filter((item) => referredProjects.some((project) => project.id === item.project.id));
@@ -1292,8 +1323,17 @@ export function retrieveNavigator(input) {
     requestedCategories.length > 0 ||
     requestedProjectStates.length > 0 ||
     capabilityTerms.length > 0;
+  const districtScopedRelationships = requestedCategories.length > 0 && relationshipQuery;
   if (hasTopicalConstraint) {
     const topicalProjectIds = new Set(ranked.map((item) => item.project.id));
+    // A district named in a relationship query anchors the subgraph even when no project
+    // matched on other terms: edges with an endpoint in the district qualify, and external
+    // endpoints stay in the answer with an explicit outside-district label.
+    if (!topicalProjectIds.size && requestedCategories.length) {
+      projects
+        .filter((project) => requestedCategories.includes(project.district))
+        .forEach((project) => topicalProjectIds.add(project.id));
+    }
     matchingRelationships = matchingRelationships.filter(
       (relationship) =>
         topicalProjectIds.has(relationship.from) || topicalProjectIds.has(relationship.to),
@@ -1306,6 +1346,23 @@ export function retrieveNavigator(input) {
     matchingRelationships = matchingRelationships.slice(0, safeLimit);
   }
   let selectedProjects = ranked.slice(0, safeLimit).map((item) => item.project);
+
+  if (
+    relationshipQuery &&
+    !selectedProjects.length &&
+    matchingRelationships.length &&
+    requestedCategories.length
+  ) {
+    // District relationship queries return edges plus their endpoint projects even when the
+    // project ranking itself is empty (the district name is the only constraint).
+    selectedProjects = unique(
+      matchingRelationships.slice(0, safeLimit).flatMap((relationship) => [relationship.from, relationship.to]),
+    )
+      .map((id) => projectById.get(id))
+      .filter(Boolean)
+      .sort((left, right) => compareText(normalize(left.name), normalize(right.name)))
+      .slice(0, safeLimit);
+  }
 
   if (intent === NAVIGATOR_INTENTS.TRACE_RELATIONSHIP && matchingRelationships.length) {
     const relationshipProjectIds = unique(
@@ -1330,6 +1387,7 @@ export function retrieveNavigator(input) {
   const shouldReturnRelationships =
     relationshipQuery ||
     requestedEvidenceStates.length > 0 ||
+    requestedSourcedRelationships ||
     requirement === EVIDENCE_REQUIREMENTS.ACTIVE_ONCHAIN;
   let relevantRelationships = shouldReturnRelationships ? matchingRelationships.filter((relationship) => {
     const selectedIds = new Set(selectedProjects.map((project) => project.id));
@@ -1537,13 +1595,21 @@ export function retrieveNavigator(input) {
       unsupportedReasons: [],
       ambiguousStateTerms,
     },
-  }, { districtScope, projects });
+  }, { districtScope, projects, rankedCount: ranked.length, selectedCount: selectedProjects.length });
 }
 
 // District scope (spec D4): ordinary queries prefer in-scope results; out-of-district
 // matches stay visible but are labeled, and the answer explains the scope expansion.
 // No relationship is ever inferred from a shared district.
-function applyDistrictScopeToResult(result, { districtScope, projects }) {
+function applyDistrictScopeToResult(result, { districtScope, projects, rankedCount, selectedCount }) {
+  // Bounded-subset disclosure: when the deterministic limit truncated the matches, the
+  // answer says so instead of implying the list is exhaustive.
+  if (result.outcome === 'results' && rankedCount > selectedCount) {
+    result.answer = {
+      ...result.answer,
+      text: `${result.answer.text} Showing a bounded subset: the first ${selectedCount} of ${rankedCount} matching projects.`,
+    };
+  }
   if (!districtScope) return result;
   const inScope = (projectId) =>
     projects.find((project) => project.id === projectId)?.district === districtScope;
@@ -1573,6 +1639,95 @@ function applyDistrictScopeToResult(result, { districtScope, projects }) {
     };
   }
   return result;
+}
+
+// Deterministic regression coverage for the corrected district queries (P0). Pure: takes
+// the live data arrays, returns pass/fail rows; the UI logs failures at startup.
+export function runDistrictNavigatorChecks({ projects, relationships, evidenceRecords }) {
+  const results = [];
+  const record = (name, pass, detail) => results.push({ name, pass, detail });
+  const districtOf = (id) => projects.find((project) => project.id === id)?.district ?? null;
+
+  const sourceBacked = retrieveNavigator({
+    query: 'Which DeFi projects have source-backed evidence?',
+    projects,
+    relationships,
+    evidenceRecords,
+    districtScope: 'DeFi',
+  });
+  record(
+    'source-backed query returns results',
+    sourceBacked.outcome === 'results' && sourceBacked.selectedProjectIds.length > 0,
+    `outcome ${sourceBacked.outcome}, ${sourceBacked.selectedProjectIds.length} projects`,
+  );
+  record(
+    'source-backed query stays inside the district',
+    sourceBacked.selectedProjectIds.every((id) => districtOf(id) === 'DeFi'),
+    sourceBacked.selectedProjectIds.map((id) => districtOf(id)).join(', ') || 'no projects',
+  );
+  record(
+    'source-backed matches have eligible records',
+    sourceBacked.selectedProjectIds.every((id) =>
+      evidenceRecords.some((record) => record.projectId === id && record.reviewStatus === 'approved'),
+    ),
+    'every selected project carries an approved record',
+  );
+
+  const sourced = retrieveNavigator({
+    query: 'Show sourced relationships in DeFi.',
+    projects,
+    relationships,
+    evidenceRecords,
+    districtScope: 'DeFi',
+  });
+  const sourcedEdges = sourced.relationshipContexts
+    .map((context) => relationships.find((relationship) => relationship.id === context.id))
+    .filter(Boolean);
+  record(
+    'sourced relationships query returns edges',
+    sourced.outcome === 'results' && sourcedEdges.length > 0,
+    `outcome ${sourced.outcome}, ${sourcedEdges.length} edges`,
+  );
+  record(
+    'sourced class matches only approved sourced edges',
+    sourcedEdges.every((relationship) => relationship.dataMode === 'sourced-limited' && relationship.reviewStatus === 'approved'),
+    'dataMode sourced-limited + approved',
+  );
+  record(
+    'sourced edges keep one endpoint inside the district',
+    sourcedEdges.every((relationship) =>
+      districtOf(relationship.from) === 'DeFi' || districtOf(relationship.to) === 'DeFi',
+    ),
+    'every edge touches DeFi',
+  );
+
+  const paraphrase = retrieveNavigator({
+    query: 'Which DeFi projects have cited evidence?',
+    projects,
+    relationships,
+    evidenceRecords,
+    districtScope: 'DeFi',
+  });
+  record(
+    'paraphrase reaches the same requirement',
+    paraphrase.outcome === 'results' && paraphrase.selectedProjectIds.length > 0,
+    `outcome ${paraphrase.outcome}, ${paraphrase.selectedProjectIds.length} projects`,
+  );
+
+  const unsafe = retrieveNavigator({
+    query: 'Is Kuru safe?',
+    projects,
+    relationships,
+    evidenceRecords,
+    districtScope: 'DeFi',
+  });
+  record(
+    'unsupported conclusions stay refused',
+    unsafe.outcome === 'unsupported-request',
+    `outcome ${unsafe.outcome}`,
+  );
+
+  return results;
 }
 
 function check(condition, message) {

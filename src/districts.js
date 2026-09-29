@@ -103,6 +103,11 @@ export const DISTRICT_EXPERIENCES = {
   },
 };
 
+// Dependency-free pluralization for data-derived copy: "1 project" / "3 projects".
+export function plural(count, singular, pluralForm = `${singular}s`) {
+  return `${count} ${count === 1 ? singular : pluralForm}`;
+}
+
 export const DISTRICT_SLUGS = Object.fromEntries(
   Object.entries(DISTRICT_EXPERIENCES).map(([district, config]) => [config.slug, district]),
 );

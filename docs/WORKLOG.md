@@ -1463,6 +1463,79 @@ Next:
 - Owner review of the district experience; polish pass if requested.
 - Refresh pass 2 (from 2026-10-22) remains the last formal §5.3 exit item.
 
+### 2026-09-29 — Lead implementation agent — Corrective pass: P0 Navigator grounding, P1 overflow/mobile/subgraph, P2 pluralization
+
+Owner review found functional and responsive regressions
+(`docs/DISTRICT_EXPERIENCE_FIX_PROMPT.md`). Every defect was reproduced live before fixing;
+all root causes below are verified in code, not inferred.
+
+Root causes and fixes:
+- **P0-A** «Which DeFi projects have source-backed evidence?» returned NO RESULT. Root cause
+  (traced in the matcher): the phrase maps to the requirement `AVAILABLE_SOURCE`, which only
+  added a +1 score boost to an already-empty ranking; the district word matched as a category
+  (+50) but the capability filter required type/tag/description/project fields and discarded
+  category-only matches. Fix: new requirement `SOURCE_BACKED` (recognized before the generic
+  evidence pattern; phrases «source-backed», «with cited evidence», «cited evidence», «with
+  evidence») that SELECTS projects holding an eligible approved record (+40, field
+  `evidence-availability`, accepted by the capability filter); the requirement's tokens are
+  reserved so they cannot degrade into description matching. Verified: 10 in-district
+  source-backed profiles, bounded-subset disclosure, zero out-of-district matches.
+- **P0-B** «Show sourced relationships in DeFi.» returned nothing/out-of-district edges.
+  Root causes: «sourced» was absent from the relationship-state vocabulary, and an empty
+  project ranking emptied the topical set, which then emptied ALL relationships. Fix: a
+  sourced data-mode class (`dataMode === 'sourced-limited' && reviewStatus === 'approved'` —
+  illustrative/declared/AI-inferred never qualify), plus a district anchor: when a query
+  names a district and no project ranked, the district's projects anchor the topical filter,
+  so edges with one endpoint inside the district survive with their external endpoints.
+  Verified: 4 sourced edges (monad-apriori, monad-kuru-002, monad-magma, magma-switchboard),
+  external endpoints labeled.
+- **Normalize defect (discovered during P0)**: sentence dots glued onto query tokens
+  («defi.» ≠ «defi») — ANY query ending with a period lost its last token. Fixed in
+  `normalize` (dots not followed by a digit become spaces; decimals survive).
+- **Bounded-subset disclosure**: when the deterministic limit truncates matches, the answer
+  now states «Showing a bounded subset: the first N of M matching projects» (was implying
+  exhaustiveness).
+- **P1 desktop overflow**: the collapsed Passport was `position: absolute; right: 16px` +
+  `translateX(calc(100% + 20px))` — the transform extended the root scroll area (scrollWidth
+  1534 at innerWidth 1190). Fix: `main { overflow-x: hidden; overflow-x: clip; }` on desktop.
+  Verified collapsed+expanded at 1440×900 and 1280×720: scrollWidth equals innerWidth.
+- **P1 mobile collision**: the plaque overlapped the legend and City/Graph switch at
+  390×844. Fix: the plaque is deliberately removed at ≤940px (spec §17 allows removal; the
+  breadcrumb carries the district name). Verified: no overlap, no overflow, city first.
+- **P1 Relationships readability**: the DeFi Relationships tab rendered the full district
+  population (176 graph buildings). Fix: the tab now renders the relationship SUBGRAPH —
+  only nodes incident to the qualifying edges plus external endpoints (6 buildings for DeFi,
+  external nodes labeled «outside district» in-SVG); Sourced/Declared/AI-inferred filters
+  recompute the subgraph; edge selection highlights endpoints. The Overview city keeps the
+  full district population.
+- **P2 pluralization**: centralized `plural(count, singular, pluralForm)` in districts.js;
+  fixed «1 projects», «contains 1 projects.», «1 illustrative profiles», and the doubled
+  «Illustrative profile profile» (status label now returns the class; rows add the noun).
+- **Regression coverage**: new exported `runDistrictNavigatorChecks` (deterministic, no
+  dependencies) — the two P0 queries, a paraphrase, sourced-class purity, district-boundary
+  invariant, and the unsupported-request refusal. main.js runs it at startup and logs
+  failures; all 8 checks pass on the live data.
+
+Trust/data checks: no record changed Demo→source-backed or edge state to satisfy a query;
+the sourced class matches dataMode+approval, never proximity; publisher claims remain
+Claimed; review-due stays derived; the source-backed phrase is a coverage statement, not
+verification.
+
+Files changed: `src/retrieval.js`, `src/main.js`, `src/city3d.js` (billboard/дims from the
+previous pass), `src/style.css`, `src/districts.js`, `docs/WORKLOG.md`.
+
+Verification: `node --check` on all touched files; `npm run build` green (v6 gate intact);
+browser: the six required Navigator queries with the correct outcome distinction
+(results / insufficient-evidence / unsupported-request / no-result); overflow checks at
+1440×900 and 1280×720 expanded+collapsed; all five district routes × tabs; mobile 390×844
+(city first, no overlap, no overflow); zero console errors.
+
+Known limitations: the bounded-subset sentence counts ranked matches, so the disclosed total
+reflects the deterministic matcher (10 of 10 for exact type matches), not a fuzzy count;
+reduced-motion remains code-review-verified only.
+
+Next: owner review of the corrective pass; refresh pass 2 from 2026-10-22 (last §5.3 item).
+
 ### 2026-09-29 — Lead implementation agent — Per-district visual verification + framing fixes
 
 Owner asked to confirm the concept look for EVERY district. Verified in-browser with

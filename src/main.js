@@ -16,7 +16,7 @@ import {
   reviewGovernance,
   reviewGovernanceCompanion,
 } from './evidence.js';
-import { retrieveNavigator } from './retrieval.js';
+import { retrieveNavigator, runDistrictNavigatorChecks } from './retrieval.js';
 import {
   DISTRICT_EXPERIENCES,
   DISTRICT_TABS,
@@ -30,6 +30,7 @@ import {
   getDistrictProjects,
   getDistrictRelationships,
   getDistrictTypes,
+  plural,
 } from './districts.js';
 import { createCity3D } from './city3d.js';
 
@@ -3231,7 +3232,24 @@ function renderCity() {
 function renderSvgCity() {
   // Data-driven graph framing: fit the plate and viewBox to the projected node bounds so the
   // layout scales with the city (archipelago coordinates span much wider than the original ten).
-  const projected = projects.map((project) => iso(project.x, project.y));
+  // District Relationships tab: render the relationship subgraph (nodes incident to the
+  // qualifying edges plus their external endpoints) instead of the full district population.
+  const inRelationshipsTab = scope === 'district' && districtTab === 'relationships';
+  const districtIds = scope === 'district' ? districtProjectIdSet() : null;
+  let subgraphIds = null;
+  if (inRelationshipsTab && districtIds) {
+    subgraphIds = new Set(
+      getDistrictRelationships(relationships, districtIds)
+        .filter((relationship) =>
+          districtRelFilter === 'all'
+          || (districtRelFilter === 'sourced' && isApprovedSourcedRelationship(relationship))
+          || (districtRelFilter === 'inferred' && (relationship.evidenceState === 'AI-inferred' || relationship.evidenceState === 'illustrative'))
+          || (districtRelFilter === 'declared' && !isApprovedSourcedRelationship(relationship) && relationship.evidenceState !== 'AI-inferred' && relationship.evidenceState !== 'illustrative'))
+        .flatMap((relationship) => [relationship.from, relationship.to]),
+    );
+  }
+  const framedProjects = subgraphIds ? projects.filter((project) => subgraphIds.has(project.id)) : projects;
+  const projected = framedProjects.map((project) => iso(project.x, project.y));
   const bounds = {
     minX: Math.min(...projected.map(([x]) => x)),
     maxX: Math.max(...projected.map(([x]) => x)),
@@ -3249,6 +3267,7 @@ function renderSvgCity() {
 
   if (showLinks) {
     relationships.forEach((relationship) => {
+      if (subgraphIds && (!subgraphIds.has(relationship.from) || !subgraphIds.has(relationship.to))) return;
       const project = projects.find((item) => item.id === relationship.from);
       const connected = projects.find((item) => item.id === relationship.to);
       const evidenceState = RELATIONSHIP_STATES[relationship.evidenceState];
@@ -3262,7 +3281,7 @@ function renderSvgCity() {
       const end = iso(connected.x, connected.y, graph ? 20 : 2);
       const active = relationship.from === selected || relationship.to === selected;
       const navigatorMatch = navigatorRelationshipHighlights.has(relationship.id);
-      const pairVisible = visible(project) && visible(connected);
+      const pairVisible = subgraphIds ? true : visible(project) && visible(connected);
       const relationshipDisclosure = isApprovedSourcedRelationship(relationship)
         ? `Limited sourced relationship; exact evidence IDs: ${(relationship.evidenceIds || []).join(', ')}; ${relationship.claimStatus} claim status.`
         : relationship.dataMode === 'sourced-limited'
@@ -3274,13 +3293,14 @@ function renderSvgCity() {
     });
   }
 
-  [...projects]
+  [...framedProjects]
     .sort((a, b) => a.x + a.y - (b.x + b.y))
     .forEach((project) => {
       const [x, y] = iso(project.x, project.y);
       const active = project.id === selected;
       const navigatorMatch = navigatorProjectHighlights.has(project.id);
-      const isVisible = visible(project);
+      const external = Boolean(subgraphIds) && project.district !== activeDistrict;
+      const isVisible = subgraphIds ? true : visible(project);
       const projectOpacity = isVisible ? (active || navigatorMatch ? 1 : navigatorProjectHighlights.size ? 0.48 : 0.78) : 0.1;
       const current = active ? ' aria-current="true"' : '';
 
@@ -3313,7 +3333,7 @@ function renderSvgCity() {
       const labelWidth = project.name.length * 7 + 24;
       const labelHeight = active ? 26 : 22;
       out += `<rect x="${x - labelWidth / 2}" y="${y + 11}" width="${labelWidth}" height="${labelHeight}" rx="5" fill="${active ? '#382b50' : '#121119e8'}" stroke="${active ? '#d1b9ff' : '#34303e'}" stroke-width="${active ? 1.4 : 0.8}" vector-effect="non-scaling-stroke" />`;
-      out += `<text x="${x}" y="${y + (active ? 28 : 26)}" text-anchor="middle" fill="${active ? '#f5efff' : '#bbb4c5'}" font-size="${active ? 11.5 : 10.5}" font-weight="${active ? 650 : 500}">${project.name}</text>`;
+      out += `<text x="${x}" y="${y + (active ? 28 : 26)}" text-anchor="middle" fill="${active ? '#f5efff' : '#bbb4c5'}" font-size="${active ? 11.5 : 10.5}" font-weight="${active ? 650 : 500}">${project.name}</text>${external ? `<text x="${x}" y="${y + (active ? 41 : 39)}" text-anchor="middle" fill="#8f86a8" font-size="9">outside district</text>` : ''}`;
       out += '</g>';
     });
 
@@ -3861,7 +3881,7 @@ function projectIsSourceBacked(project) {
 }
 
 function districtStatusLabel(project) {
-  return projectIsSourceBacked(project) ? 'Source-backed' : 'Illustrative profile';
+  return projectIsSourceBacked(project) ? 'Source-backed' : 'Illustrative';
 }
 
 function districtModeProjects(list) {
@@ -4133,10 +4153,10 @@ function lensCoverageSection(coverage) {
   return `
     <div class="sec">Coverage</div>
     <div class="lens-facts">
-      <div class="item"><b>${coverage.totalProjects} projects</b><span>in this district view</span></div>
-      <div class="item"><b>${coverage.sourceBackedProjects} with source-backed records</b><span>${coverage.illustrativeProjects} illustrative profiles</span></div>
-      <div class="item"><b>${coverage.relationships} relationships</b><span>${coverage.sourcedRelationships} sourced · ${coverage.illustrativeRelationships} illustrative or AI-inferred</span></div>
-      ${coverage.warningRecords ? `<div class="item"><b>${coverage.warningRecords} records with warnings</b><span>stale, conflicting, incomplete, or unavailable flags stay visible</span></div>` : ''}
+      <div class="item"><b>${plural(coverage.totalProjects, 'project')}</b><span>in this district view</span></div>
+      <div class="item"><b>${coverage.sourceBackedProjects} with source-backed records</b><span>${plural(coverage.illustrativeProjects, 'illustrative profile')}</span></div>
+      <div class="item"><b>${plural(coverage.relationships, 'relationship')}</b><span>${coverage.sourcedRelationships} sourced · ${coverage.illustrativeRelationships} illustrative or AI-inferred</span></div>
+      ${coverage.warningRecords ? `<div class="item"><b>${plural(coverage.warningRecords, 'record')} with warnings</b><span>stale, conflicting, incomplete, or unavailable flags stay visible</span></div>` : ''}
     </div>`;
 }
 
@@ -4157,10 +4177,10 @@ function lensOverviewHtml(config, districtProjectsList, coverage, districtIds) {
       <span class="lens-chevron" aria-hidden="true">›</span>
     </button>`).join('');
   const clusters = districtClusterList(config, districtProjectsList)
-    .map((cluster) => `<div class="cat"><b>${escapeHtml(cluster.label)}</b><span>${cluster.count} projects</span></div>`)
+    .map((cluster) => `<div class="cat"><b>${escapeHtml(cluster.label)}</b><span>${plural(cluster.count, 'project')}</span></div>`)
     .join('');
   const sparseNote = districtProjectsList.length < 5
-    ? `<div class="item"><b>Limited coverage</b><span>This district currently contains ${districtProjectsList.length} projects. Open space is more truthful than filler, and new projects enter only through the evidence workflow.</span></div>`
+    ? `<div class="item"><b>Limited coverage</b><span>This district currently contains ${plural(districtProjectsList.length, 'project')}. Open space is more truthful than filler, and new projects enter only through the evidence workflow.</span></div>`
     : '';
   return `
     ${lensCoverageSection(coverage)}
@@ -4245,7 +4265,7 @@ function renderDistrictLens() {
         <h2 class="lens-title">DISTRICT LENS</h2>
         <button class="panel-collapse" id="passport-collapse" aria-expanded="true" aria-label="Collapse district panel">—</button>
       </div>
-      <p class="lens-coverage-line">${coverage.totalProjects} projects · ${coverage.sourceBackedProjects} with source-backed records · ${coverage.relationships} relationships</p>
+      <p class="lens-coverage-line">${plural(coverage.totalProjects, 'project')} · ${coverage.sourceBackedProjects} with source-backed records · ${plural(coverage.relationships, 'relationship')}</p>
     </div>
     <div class="passport-body" id="district-panel" role="tabpanel" aria-label="${escapeHtml(config.title)} ${districtTab}">${content}</div>
   `;
@@ -4271,7 +4291,9 @@ function renderDistrictLens() {
   document.querySelectorAll('#district-panel .lens-modes button[data-relfilter]').forEach((element) => {
     element.onclick = () => {
       districtRelFilter = element.dataset.relfilter;
+      districtSelectedEdgeId = null;
       renderPassport();
+      renderCity();
     };
   });
   document.querySelectorAll('#district-panel .lens-row').forEach((element) => {
@@ -4286,6 +4308,7 @@ function renderDistrictLens() {
       districtSelectedEdgeId = districtSelectedEdgeId === element.dataset.rel ? null : element.dataset.rel;
       focusNavigatorRelationship(districtSelectedEdgeId ?? element.dataset.rel);
       renderPassport();
+      renderCity();
     };
   });
 }
@@ -4515,3 +4538,12 @@ renderPassport();
 // District routes: the hash is the source of truth for scope/tab (spec §13). Apply the
 // current route once at startup so deep links like #/district/defi/overview work.
 applyRoute();
+
+// Deterministic district Navigator regression coverage (P0): the two corrected queries and
+// their invariants. Failures are logged, never silent.
+{
+  const districtChecks = runDistrictNavigatorChecks({ projects, relationships, evidenceRecords });
+  districtChecks.filter((check) => !check.pass).forEach((check) => {
+    console.error(`[district-navigator-check] ${check.name}: ${check.detail}`);
+  });
+}
