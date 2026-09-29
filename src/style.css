@@ -2817,6 +2817,11 @@ details.navigator-evidence {
 
 .district-bar {
   display: flex;
+}
+
+.district-bar[hidden] {
+  display: none;
+}
   align-items: center;
   justify-content: space-between;
   gap: 18px;
