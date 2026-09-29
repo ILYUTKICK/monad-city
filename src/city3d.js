@@ -179,7 +179,11 @@ export function createCity3D({
     };
 
     const isSpire = project.id === 'monad';
-    const bodyH = project.h * SCALE;
+    // Illustrative skyline variance: a seeded multiplier so the district skylines read as a
+    // city instead of a uniform grid. It encodes no TVL, ranking, endorsement, or activity —
+    // placement and height stay illustrative (scale plan §3.4).
+    const heightSeed = HASH_SEED(project.x * 3.7, project.y * 5.1);
+    const bodyH = project.h * SCALE * (0.65 + heightSeed * 0.9);
 
     if (isSpire) {
       addBox(group, 4.6, 0.5, 3.8, 0, 0, 0, tracked({ color: '#4a4266' }));
@@ -399,8 +403,8 @@ export function createCity3D({
     const grassCells = terrainCells.filter(
       (cell) => cell.island === island && !cell.plaza && !cell.sand,
     );
-    const houseCap = Math.min(9, Math.round(grassCells.length / 42));
-    const treeCap = Math.min(7, Math.round(grassCells.length / 55));
+    const houseCap = Math.min(12, Math.round(grassCells.length / 42));
+    const treeCap = Math.min(16, Math.round(grassCells.length / 38));
     let houses = 0;
     let trees = 0;
     grassCells.forEach((cell) => {

@@ -1463,6 +1463,36 @@ Next:
 - Owner review of the district experience; polish pass if requested.
 - Refresh pass 2 (from 2026-10-22) remains the last formal §5.3 exit item.
 
+### 2026-09-29 — Lead implementation agent — District Experience visual pass to the concept composition
+
+Owner review of the D1–D6 build against `docs/concepts/defi-district-concept.png`:
+«Мне нужно чтобы дистрикты выглядели вот так вот». The functional skeleton was already in
+place; this pass brings the visual composition to the concept.
+
+Changed:
+- District Lens restyled to the concept: `DISTRICT LENS` header with a one-line coverage
+  summary, Featured projects as isometric-cube rows with chevrons, Evidence mode as a joined
+  segmented control, and a data-derived mini node-link diagram of the district's relationships
+  (in-district nodes right, external endpoints left, sourced solid / illustrative dashed,
+  legend, +N-more note). Honest empty state preserved for districts with zero records.
+- Left panel in district scope is now the contextual District Navigator per spec §5.1:
+  district title + subtitle, a local menu (District overview / Project index / Relationships /
+  Evidence coverage — synced with the route tabs), and the per-district note; the existing
+  search, prompts, and world switcher stay below it.
+- Center plaque restyled to the concept (big district name + "Explore the local project
+  graph"), moved below the City/Graph toggle so it never covers it.
+- Island composition: deterministic illustrative height variance (seeded 0.65–1.55×, encodes
+  no TVL/ranking/endorsement) and denser greenery on the islands.
+- Out-of-district district buttons dim to 0.25 while a district route is active; the stale
+  selection ring no longer lingers when District Lens is open.
+
+Verified: `node --check` + `npm run build` green; browser: DeFi overview renders the concept
+composition (identity menu, cubes, segmented control, diagram with 6 nodes, varied skyline);
+zero console errors.
+
+Deviations from the concept (both spec-sanctioned): no second Navigator input in a bottom bar
+(spec §5.4 forbids two inputs — search stays in the left panel); no fullscreen button.
+
 ### 2026-09-27 — Owner request / lead — District Worlds: mockup-first kickoff
 
 Owner request (verbatim): «при нажатии кнопки, например, "DEFI" меня перекидывало на мир

@@ -3101,3 +3101,165 @@ details.navigator-evidence {
     transition: none !important;
   }
 }
+
+/* ---- District lens: concept styling ---- */
+
+.lens-coverage-line {
+  font-size: 11.5px;
+  color: #8f86a8;
+  margin-top: 4px;
+}
+
+.lens-featured {
+  align-items: center;
+  padding: 8px 6px;
+}
+
+.lens-cube {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+}
+
+.lens-featured-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.lens-featured-copy small {
+  font-size: 11px;
+  color: #8f86a8;
+}
+
+.lens-chevron {
+  color: #8f86a8;
+  font-size: 15px;
+}
+
+.lens-modes {
+  flex-wrap: nowrap;
+}
+
+.lens-modes button {
+  border-radius: 0;
+  border-left-width: 0;
+  padding: 5px 12px;
+}
+
+.lens-modes button:first-child {
+  border-radius: 6px 0 0 6px;
+  border-left-width: 1px;
+}
+
+.lens-modes button:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.lens-diagram {
+  margin-top: 8px;
+  border: 1px solid rgba(232, 226, 244, 0.1);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.lens-legend {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #8f86a8;
+}
+
+.lens-legend i {
+  display: inline-block;
+  width: 18px;
+  height: 0;
+  border-top: 2px solid #c9c0e0;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.lens-legend .line-dashed {
+  border-top-style: dashed;
+  border-top-color: #5d5478;
+}
+
+.lens-info-note {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 11.5px;
+  color: #8f86a8;
+  background: rgba(232, 226, 244, 0.05);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-top: 14px;
+}
+
+.district-identity {
+  padding: 10px 0 4px;
+  border-bottom: 1px solid rgba(232, 226, 244, 0.1);
+  margin-bottom: 10px;
+}
+
+.district-id-sub {
+  font-size: 12.5px;
+  color: var(--district-accent, #9ad7c6);
+}
+
+.district-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 10px;
+}
+
+.district-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: #c9c0e0;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.district-menu button:hover,
+.district-menu button:focus-visible {
+  background: rgba(232, 226, 244, 0.07);
+}
+
+.district-menu button.active {
+  background: rgba(232, 226, 244, 0.1);
+  color: #e8e2f4;
+  font-weight: 600;
+}
+
+.district-menu .menu-glyph {
+  color: var(--district-accent, #9ad7c6);
+}
+
+.district-menu b {
+  margin-left: auto;
+  color: #8f86a8;
+  font-weight: 400;
+}
+
+.district-id-note {
+  font-size: 11.5px;
+  color: #8f86a8;
+  margin-top: 10px;
+}
+
+.plaque-title {
+  font-size: 22px;
+  letter-spacing: 0.14em;
+}

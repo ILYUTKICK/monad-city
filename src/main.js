@@ -3891,7 +3891,15 @@ function renderDistrictBar() {
   const config = districtConfig();
   const bar = document.querySelector('#district-bar');
   bar.hidden = scope !== 'district';
-  if (!config) return;
+  // Left panel becomes the contextual District Navigator in district scope (spec §5.1):
+  // district identity, local menu, then the existing search/prompts/world switcher.
+  const headTitle = document.querySelector('.navigator-head h1');
+  const identity = document.querySelector('#district-identity');
+  if (!config) {
+    if (headTitle) headTitle.textContent = 'AI Navigator';
+    identity?.remove();
+    return;
+  }
   document.documentElement.style.setProperty('--district-accent', config.accent);
   document.querySelector('#crumb-district').textContent = `${config.glyph} ${activeDistrict}`;
   const tabs = document.querySelector('#district-tabs');
@@ -3904,6 +3912,26 @@ function renderDistrictBar() {
     element.onclick = () => applyDistrictTab(element.dataset.tab);
     element.onkeydown = districtTabKeydown;
   });
+  if (headTitle) headTitle.textContent = config.title;
+  if (!identity) {
+    const block = document.createElement('div');
+    block.className = 'district-identity';
+    block.id = 'district-identity';
+    block.innerHTML = `
+      <p class="district-id-sub">${escapeHtml(config.subtitle)}</p>
+      <nav class="district-menu" aria-label="District sections">
+        <button type="button" data-tab="overview" class="${districtTab === 'overview' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">▙</span> District overview <b aria-hidden="true">›</b></button>
+        <button type="button" data-tab="projects" class="${districtTab === 'projects' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">▦</span> Project index <b aria-hidden="true">›</b></button>
+        <button type="button" data-tab="relationships" class="${districtTab === 'relationships' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">⇄</span> Relationships <b aria-hidden="true">›</b></button>
+        <button type="button" data-tab="evidence" class="${districtTab === 'evidence' ? 'active' : ''}"><span class="menu-glyph" aria-hidden="true">▤</span> Evidence coverage <b aria-hidden="true">›</b></button>
+      </nav>
+      <p class="district-id-note">A focused view of ${escapeHtml(activeDistrict)} projects and their connections in Monad.</p>`;
+    document.querySelector('#navigator-body').prepend(block);
+  } else {
+    identity.querySelectorAll('.district-menu button').forEach((element) => {
+      element.classList.toggle('active', element.dataset.tab === districtTab);
+    });
+  }
 }
 
 function districtTabKeydown(event) {
@@ -3961,15 +3989,78 @@ function renderPlaque() {
   plaque.id = 'district-plaque';
   plaque.innerHTML = `
     <div class="plaque-glyph" style="color:${config.accent}">${config.glyph}</div>
-    <div class="plaque-title">${escapeHtml(config.title)}</div>
-    <div class="plaque-sub">${escapeHtml(config.subtitle)}</div>
-    <div class="plaque-tag">${escapeHtml(config.tagline)}</div>`;
+    <div class="plaque-title">${escapeHtml(activeDistrict.toUpperCase())}</div>
+    <div class="plaque-tag">Explore the local project graph</div>`;
   document.querySelector('#city-stage').appendChild(plaque);
 }
 
 function dismissPlaque() {
   districtPlaqueDismissed = true;
   document.querySelector('#district-plaque')?.remove();
+}
+
+function lensCubeSvg(color) {
+  return `<svg class="lens-cube" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 3 20 7.5 12 12 4 7.5Z" fill="${color}" opacity="0.85"/>
+    <path d="M4 7.5 12 12v9L4 16.5Z" fill="${color}" opacity="0.45"/>
+    <path d="M20 7.5 12 12v9l8-4.5Z" fill="${color}" opacity="0.65"/>
+  </svg>`;
+}
+
+// Mini node-link diagram for the district's relationships (Overview tab). In-district nodes
+// sit on the right, external endpoints on the left; sourced edges are solid, illustrative
+// dashed. Every edge resolves to a real relationship record.
+function lensRelationshipDiagram(config, districtIds) {
+  const rels = getDistrictRelationships(relationships, districtIds);
+  if (rels.length === 0) {
+    return '<div class="item"><b>No relationship records touch this district yet</b><span>Connections appear only from relationship records — never from proximity.</span></div>';
+  }
+  const shown = rels.slice(0, 8);
+  const externalNames = [];
+  const insideNames = [];
+  const nameOf = (id) => projectById(id)?.name ?? id;
+  shown.forEach((relationship) => {
+    if (!districtIds.has(relationship.from)) externalNames.push(nameOf(relationship.from));
+    if (!districtIds.has(relationship.to)) externalNames.push(nameOf(relationship.to));
+    if (districtIds.has(relationship.from)) insideNames.push(nameOf(relationship.from));
+    if (districtIds.has(relationship.to)) insideNames.push(nameOf(relationship.to));
+  });
+  const externals = [...new Set(externalNames)];
+  const insides = [...new Set(insideNames)];
+  const rowH = 34;
+  const height = Math.max(externals.length, insides.length) * rowH + 12;
+  const leftY = (index) => 10 + index * rowH + rowH / 2;
+  const rightY = (index) => 10 + index * rowH + rowH / 2;
+  const lines = shown.map((relationship) => {
+    const from = nameOf(relationship.from);
+    const to = nameOf(relationship.to);
+    const fromExternal = !districtIds.has(relationship.from);
+    const label = fromExternal ? from : to;
+    const li = (fromExternal ? externals : insides).indexOf(label);
+    const ri = (fromExternal ? insides : externals).indexOf(fromExternal ? to : from);
+    if (li < 0 || ri < 0) return '';
+    const sourced = isApprovedSourcedRelationship(relationship);
+    return `<line x1="96" y1="${leftY(li)}" x2="204" y2="${rightY(ri)}" stroke="${sourced ? '#c9c0e0' : '#5d5478'}" stroke-width="1.4" ${sourced ? '' : 'stroke-dasharray="4 3"'}/>`;
+  }).join('');
+  const nodeRect = (x, y, label) => {
+    const truncated = label.length > 15 ? label.slice(0, 14) + '…' : label;
+    return `<rect x="${x}" y="${y - 12}" width="100" height="24" rx="5" fill="rgba(232,226,244,0.07)" stroke="rgba(232,226,244,0.18)"/>
+      <text x="${x + 50}" y="${y + 4}" text-anchor="middle" font-size="11" fill="#e8e2f4">${escapeHtml(truncated)}</text>`;
+  };
+  const leftNodes = externals.map((label, index) => nodeRect(0, leftY(index), label)).join('');
+  const rightNodes = insides.map((label, index) => nodeRect(200, rightY(index), label)).join('');
+  const moreNote = rels.length > shown.length ? `<p class="lens-muted">+ ${rels.length - shown.length} more relationship records in the Relationships tab.</p>` : '';
+  return `
+    <div class="lens-diagram">
+      <svg viewBox="0 0 300 ${height}" width="100%" height="${height}" role="img" aria-label="District relationship diagram">
+        ${lines}${leftNodes}${rightNodes}
+      </svg>
+      <div class="lens-legend">
+        <span><i class="line-solid"></i> Sourced</span>
+        <span><i class="line-dashed"></i> Illustrative</span>
+      </div>
+      ${moreNote}
+    </div>`;
 }
 
 function lensModeButtons() {
@@ -4060,9 +4151,10 @@ function lensOverviewHtml(config, districtProjectsList, coverage, districtIds) {
   });
   const filtered = districtModeProjects(featured);
   const featuredRows = filtered.map((project) => `
-    <button type="button" class="lens-row" data-project="${project.id}">
-      <b>${escapeHtml(project.name)}</b>
-      <span>${escapeHtml(districtStatusLabel(project))}</span>
+    <button type="button" class="lens-row lens-featured" data-project="${project.id}">
+      ${lensCubeSvg(config.accent)}
+      <span class="lens-featured-copy"><b>${escapeHtml(project.name)}</b><small>${escapeHtml(districtStatusLabel(project))} profile</small></span>
+      <span class="lens-chevron" aria-hidden="true">›</span>
     </button>`).join('');
   const clusters = districtClusterList(config, districtProjectsList)
     .map((cluster) => `<div class="cat"><b>${escapeHtml(cluster.label)}</b><span>${cluster.count} projects</span></div>`)
@@ -4079,8 +4171,9 @@ function lensOverviewHtml(config, districtProjectsList, coverage, districtIds) {
     <div class="sec">Featured projects</div>
     <p class="lens-muted">Featured means Navigator matches first, then source-backed records, then alphabetical — never a ranking or endorsement.</p>
     ${featuredRows || '<div class="item"><b>No projects in this evidence mode</b><span>Switch the evidence mode above.</span></div>'}
-    ${lensRelationshipsSection(districtIds)}
-    <p class="lens-note">City placement is illustrative. Evidence states apply only to cited claims.</p>`;
+    <div class="sec">District relationships</div>
+    ${lensRelationshipDiagram(config, districtIds)}
+    <div class="lens-info-note"><span class="info" aria-hidden="true">ⓘ</span> Source-backed claims apply only to their cited scope. City placement is illustrative.</div>`;
 }
 
 function lensProjectsHtml(config, districtProjectsList) {
@@ -4149,11 +4242,10 @@ function renderDistrictLens() {
   document.querySelector('#passport').innerHTML = `
     <div class="passport-head">
       <div class="passport-title-row">
-        <h2 class="lens-title" style="color:${config.accent}">${escapeHtml(config.title)}</h2>
+        <h2 class="lens-title">DISTRICT LENS</h2>
         <button class="panel-collapse" id="passport-collapse" aria-expanded="true" aria-label="Collapse district panel">—</button>
       </div>
-      <p class="passport-subtitle">${escapeHtml(config.subtitle)}</p>
-      <p class="project-description">${escapeHtml(config.tagline)}</p>
+      <p class="lens-coverage-line">${coverage.totalProjects} projects · ${coverage.sourceBackedProjects} with source-backed records · ${coverage.relationships} relationships</p>
     </div>
     <div class="passport-body" id="district-panel" role="tabpanel" aria-label="${escapeHtml(config.title)} ${districtTab}">${content}</div>
   `;
