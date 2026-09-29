@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Monad City — DeFi World (mockup)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    color: #e8e2f4;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    width: 1440px;
+    padding: 0 56px 48px;
+  }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0 16px;
+    border-bottom: 1px solid rgba(147, 214, 198, 0.18);
+  }
+  .crumb { display: flex; align-items: center; gap: 12px; }
+  .crumb .back { color: #8f86a8; font-size: 13px; }
+  .crumb .city { color: #8f86a8; font-size: 13px; }
+  .crumb .sep { color: #4a4266; font-size: 13px; }
+  .crumb .glyph { color: #93d6c6; font-size: 15px; }
+  .crumb .here { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; }
+  .snap { color: #8f86a8; font-size: 12px; }
+  .snap b { color: #c9c0e0; font-weight: 600; }
+
+  .hero { margin-top: 22px; }
+  .hero img {
+    width: 100%; height: 560px; object-fit: cover; object-position: center 62%;
+    display: block; border: 1px solid rgba(147, 214, 198, 0.22); border-radius: 6px;
+  }
+  .hero .caption { color: #8f86a8; font-size: 12.5px; margin-top: 10px; }
+
+  .stats { display: flex; gap: 16px; margin-top: 26px; }
+  .tile {
+    flex: 1; border: 1px solid rgba(147, 214, 198, 0.16); border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .tile .num { font-size: 30px; font-weight: 700; color: #93d6c6; }
+  .tile .lbl { font-size: 12.5px; color: #8f86a8; margin-top: 4px; }
+
+  section { margin-top: 40px; border-top: 1px solid rgba(232, 226, 244, 0.14); padding-top: 14px; }
+  section > h2 { font-size: 13.5px; font-weight: 600; color: #c9c0e0; }
+
+  .cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 28px; margin-top: 14px; }
+  .cat b { font-size: 13.5px; font-weight: 600; display: block; }
+  .cat span { font-size: 12.5px; color: #8f86a8; }
+
+  .group { margin-top: 20px; }
+  .group > .gh { font-size: 12.5px; color: #93d6c6; font-weight: 600; margin-bottom: 4px; }
+  .row {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+    padding: 9px 0; border-bottom: 1px solid rgba(232, 226, 244, 0.07);
+  }
+  .row .nm { font-size: 13.5px; font-weight: 600; min-width: 200px; }
+  .row .ds { font-size: 12.5px; color: #8f86a8; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row .st { font-size: 12px; color: #93d6c6; text-align: right; min-width: 210px; }
+  .row .st small { display: block; color: #8f86a8; }
+  .more { color: #8f86a8; font-size: 12.5px; padding: 10px 0; }
+
+  .rel { padding: 9px 0; border-bottom: 1px solid rgba(232, 226, 244, 0.07); }
+  .rel b { font-size: 13.5px; font-weight: 600; display: block; }
+  .rel span { font-size: 12.5px; color: #8f86a8; }
+
+  footer { margin-top: 44px; border-top: 1px solid rgba(232, 226, 244, 0.14); padding-top: 14px; color: #8f86a8; font-size: 12px; }
+  footer b { color: #c9c0e0; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="crumb">
+    <span class="back">‹ Back</span>
+    <span class="city">Monad City</span>
+    <span class="sep">›</span>
+    <span class="glyph">◫</span>
+    <span class="here">DEFI WORLD</span>
+  </div>
+  <div class="snap">Snapshot <b>phase-3.5-v6</b> · reviewed 2026-09-27</div>
+</div>
+
+<div class="hero">
+  <img src="2026-09-27-district-world-defi-hero.png" alt="DeFi island — live 3D view">
+  <div class="caption">The DeFi island — the same live 3D city view, focused on this district. Drag to orbit, click a building for its passport.</div>
+</div>
+
+<div class="stats">
+  <div class="tile"><div class="num">140</div><div class="lbl">projects in this world</div></div>
+  <div class="tile"><div class="num">140</div><div class="lbl">with source-backed records</div></div>
+  <div class="tile"><div class="num">31</div><div class="lbl">categories</div></div>
+  <div class="tile"><div class="num">5</div><div class="lbl">connections beyond the district</div></div>
+</div>
+
+<section>
+  <h2>Categories</h2>
+  <div class="cats">
+    <div class="cat"><b>Dexs</b><span>32 projects</span></div>
+    <div class="cat"><b>Risk Curators</b><span>16 projects</span></div>
+    <div class="cat"><b>Lending</b><span>14 projects</span></div>
+    <div class="cat"><b>Yield</b><span>7 projects</span></div>
+    <div class="cat"><b>Onchain Capital Allocator</b><span>7 projects</span></div>
+    <div class="cat"><b>Derivatives</b><span>7 projects</span></div>
+    <div class="cat"><b>Cross Chain</b><span>7 projects</span></div>
+    <div class="cat"><b>Liquid Staking</b><span>5 projects</span></div>
+    <div class="cat"><b>RWA</b><span>5 projects</span></div>
+    <div class="cat"><b>Yield Aggregator</b><span>4 projects</span></div>
+    <div class="cat"><b>21 more categories</b><span>36 projects</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+
+  <div class="group">
+    <div class="gh">DEXS — 32</div>
+    <div class="row">
+      <div class="nm">Kuru</div>
+      <div class="ds">An onchain order book built for the speed of Monad. Discover how its liquidity connects across the ecosystem.</div>
+      <div class="st">Source-backed<small>kuru.io</small></div>
+    </div>
+    <div class="row">
+      <div class="nm">Sushiswap</div>
+      <div class="ds">Listed in the pinned Monad protocol registry (entry sushiswap, live) under DEX Aggregator, DEX with 5 Monad mainnet contract addresses.</div>
+      <div class="st">Source-backed<small>sushi.com</small></div>
+    </div>
+    <div class="row">
+      <div class="nm">Dirol</div>
+      <div class="ds">Listed in the pinned Monad protocol registry (entry dirol, live) under DEX, DEX Aggregator, Launchpads with 2 Monad mainnet contract addresses.</div>
+      <div class="st">Source-backed<small>dex.dirol.io</small></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="gh">LENDING — 14</div>
+    <div class="row">
+      <div class="nm">Morpho</div>
+      <div class="ds">Listed in the pinned Monad protocol registry (entry morpho, live) under Lending with 35 Monad mainnet contract addresses.</div>
+      <div class="st">Source-backed<small>app.morpho.org</small></div>
+    </div>
+    <div class="row">
+      <div class="nm">Folks Finance</div>
+      <div class="ds">Listed in the pinned Monad protocol registry (entry folks_finance, live) under Lending, Cross Chain with 18 Monad mainnet contract addresses.</div>
+      <div class="st">Source-backed<small>xapp.folks.finance</small></div>
+    </div>
+    <div class="row">
+      <div class="nm">Gearbox</div>
+      <div class="ds">Listed in the pinned Monad protocol registry (entry gearbox_protocol, live) under Lending, Leveraged Farming with 26 Monad mainnet contract addresses.</div>
+      <div class="st">Source-backed<small>gearbox.finance</small></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="gh">LIQUID STAKING — 5</div>
+    <div class="row">
+      <div class="nm">aPriori</div>
+      <div class="ds">A liquid staking and MEV infrastructure protocol connecting Monad validators, stakers, and DeFi applications.</div>
+      <div class="st">Source-backed<small>apriori.fi</small></div>
+    </div>
+    <div class="row">
+      <div class="nm">Magma</div>
+      <div class="ds">A liquid staking project exploring productive capital and composable staking on Monad.</div>
+      <div class="st">Source-backed<small>magma.finance</small></div>
+    </div>
+    <div class="row">
+      <div class="nm">Puffer</div>
+      <div class="ds">Listed in the pinned Monad protocol registry (entry puffer, live) under Liquid Staking, Staking with 1 Monad mainnet contract address.</div>
+      <div class="st">Source-backed<small>puffer.fi</small></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="gh">ONCHAIN CAPITAL ALLOCATOR — 7</div>
+    <div class="row">
+      <div class="nm">Mellow</div>
+      <div class="ds">Listed in the pinned Monad protocol registry (entry mellow, live) under Leveraged Farming, Yield with 52 Monad mainnet contract addresses.</div>
+      <div class="st">Source-backed<small>app.mellow.finance</small></div>
+    </div>
+  </div>
+
+  <div class="more">+ 128 more projects in the full list (every row carries its own status and cited scope)</div>
+</section>
+
+<section>
+  <h2>Connected beyond the district</h2>
+  <div class="rel"><b>Kuru ↔ Pyth Network</b><span>Onchain interaction — sourced · observed. Limited source-backed record; supports only its cited scope.</span></div>
+  <div class="rel"><b>Magma ↔ Switchboard</b><span>Onchain interaction — sourced · observed. Limited source-backed record; supports only its cited scope.</span></div>
+  <div class="rel"><b>Kuru ↔ Monad</b><span>Ecosystem membership — sourced · observed.</span></div>
+  <div class="rel"><b>aPriori ↔ Monad</b><span>Ecosystem membership — sourced · observed.</span></div>
+  <div class="rel"><b>Magma ↔ Monad</b><span>Ecosystem membership — sourced · observed.</span></div>
+</section>
+
+<footer>
+  <b>States apply to their exact cited scope.</b> A source-backed record supports only its bounded claim — never verification, endorsement, safety, or current operation. Snapshot phase-3.5-v6 · reviewed 2026-09-27.
+</footer>
+
+</body>
+</html>

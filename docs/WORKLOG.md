@@ -1353,6 +1353,40 @@ Next:
 
 
 
+### 2026-09-27 — Owner request / lead — District Worlds: mockup-first kickoff
+
+Owner request (verbatim): «при нажатии кнопки, например, "DEFI" меня перекидывало на мир
+DEFI. То есть отдельная страничка с полным обзором экосистемы дефай… Нужно будет сделать для
+каждого дистрикта. Перед началом деланья миров нужно отрисовать как это будет, а внесу
+правки» — a full-page "world" per district, mockup before any building, owner will correct.
+
+Delivered this pass (mockup only — no app code touched):
+- `docs/research/2026-09-27-district-world-mockup.html` + rendered
+  `2026-09-27-district-world-mockup.png` + hero capture
+  `2026-09-27-district-world-defi-hero.png` (live 3D DeFi focus, panel collapsed).
+- The mockup is data-driven from the real v6 state: DeFi world shows 140 projects / 140
+  source-backed / 31 categories / 5 cross-district connections; project rows carry real
+  names, descriptions, statuses, and site hostnames; relationships section lists the real
+  sourced edges (Kuru↔Pyth, Magma↔Switchboard, three Monad memberships).
+- Proposed page anatomy: breadcrumb top bar (Back · Monad City › DEFI WORLD · snapshot chip)
+  → hero (the live 3D island focus embedded) → stats tiles → Categories (counts) → Projects
+  catalog grouped by category (name + one-line description + status + site; row click opens
+  the existing Passport) → Connected beyond the district (sourced edges) → honesty footer.
+
+Open questions for the owner before building:
+1. Entry point: 3D floating district button, district panel button, or both open the world?
+   (Today both fly the camera to the island — the flight becomes the world's hero state.)
+2. Should the world keep the same 3D canvas (camera-focused) or render a separate view?
+3. Copy/layout corrections on the mockup (section order, density, naming "DEFI WORLD").
+
+Implementation sketch (after corrections): a view state in main.js (City/Graph/World),
+catalog rendered from the same data the city uses; all five districts share one template —
+Infrastructure 21, Gaming 11 (2 demo), AI 3 (1 demo), Identity 1 (0 sourced — demo manifest)
+get the same page with their honest numbers.
+
+Next:
+- Owner corrections on the mockup, then implement per district (one template, data-driven).
+
 ### 2026-09-27 — Owner decision — batch-4 closed: no onchain verification, no city entry
 
 Owner decision (in session, verbatim): «на счет batch-4 если ничего через код не бьется, то
