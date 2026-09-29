@@ -1463,6 +1463,27 @@ Next:
 - Owner review of the district experience; polish pass if requested.
 - Refresh pass 2 (from 2026-10-22) remains the last formal §5.3 exit item.
 
+### 2026-09-29 — Lead implementation agent — Per-district visual verification + framing fixes
+
+Owner asked to confirm the concept look for EVERY district. Verified in-browser with
+screenshots; two framing fixes applied:
+
+- Billboards hide entirely inside a district world (dimming was insufficient — a
+  world-unit-sized button dominated the close camera on small islands). Raycast filters
+  hidden sprites, so the click target cannot resurrect them. Breadcrumb/plaque/tabs carry
+  district context instead.
+- District focus radius floor raised 44 → 58 so compact districts (AI, Identity) fit their
+  full skyline including the illustrative height variance.
+
+Verified per district (Overview, screenshot-checked): DeFi (dense skyline, clusters, cubes,
+diagram), Infrastructure (tower variance, 13 relationships incl. 6 sourced), AI (compact
+campus, limited-coverage note, 3 illustrative edges dashed), Gaming (amber venues, Demo
+separation via evidence mode, dashed demo edges), Identity (single Moca Network building,
+0 sourced records stated outright, 2 illustrative edges dashed). Zero console errors.
+
+Limitations: the concept's road-grid street pattern remains deferred (composer-level
+re-layout); building heights are illustrative seeds and encode no metric.
+
 ### 2026-09-29 — Lead implementation agent — District Experience visual pass to the concept composition
 
 Owner review of the D1–D6 build against `docs/concepts/defi-district-concept.png`:

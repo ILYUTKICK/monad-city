@@ -566,7 +566,7 @@ export function createCity3D({
       -((event.clientY - rect.top) / rect.height) * 2 + 1,
     );
     raycaster.setFromCamera(pointer, camera);
-    const hits = raycaster.intersectObjects(districtButtons, false);
+    const hits = raycaster.intersectObjects(districtButtons.filter((sprite) => sprite.visible), false);
     return hits.length
       ? { district: hits[0].object.userData.district, distance: hits[0].distance }
       : null;
@@ -836,7 +836,9 @@ export function createCity3D({
     const island = ISLAND_GROUPS.find((group) => group.key === district);
     if (!island) return false;
     control.targetGoal.set(island.cx, 1.2, island.cz);
-    control.radiusGoal = Math.min(150, Math.max(44, island.radius * 2.1 + 26));
+    // Floor 58: compact districts (AI/Identity) must fit their full skyline, including the
+    // illustrative height variance, without a tower filling the frame.
+    control.radiusGoal = Math.min(150, Math.max(58, island.radius * 2.1 + 26));
     if (reducedMotion) {
       control.target.copy(control.targetGoal);
       control.radius = control.radiusGoal;
@@ -844,15 +846,18 @@ export function createCity3D({
     return true;
   }
 
-  function setDistrictButtonFocus(district) {
+  function setDistrictButtonsVisible(visible) {
     districtButtons.forEach((sprite) => {
-      sprite.material.opacity = !district || sprite.userData.district === district ? 1 : 0.25;
+      sprite.visible = visible;
     });
   }
 
   function enterDistrict(district, { animate = true } = {}) {
     if (!previousCamera) previousCamera = getCameraSnapshot();
-    setDistrictButtonFocus(district);
+    // Inside a district world every billboard hides — the user is already here, and a
+    // world-unit-sized button would dominate the close camera framing. The breadcrumb,
+    // plaque, and tabs carry district context instead.
+    setDistrictButtonsVisible(false);
     if (!animate || reducedMotion) {
       applyDistrictFraming(district);
       control.azimuth = control.azimuthGoal;
@@ -865,7 +870,7 @@ export function createCity3D({
   function leaveDistrict({ restoreCamera: restore = true } = {}) {
     if (restore && previousCamera) restoreCamera(previousCamera);
     previousCamera = null;
-    setDistrictButtonFocus(null);
+    setDistrictButtonsVisible(true);
   }
 
   function zoomBy(factor) {
