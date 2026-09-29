@@ -17,6 +17,20 @@ import {
   reviewGovernanceCompanion,
 } from './evidence.js';
 import { retrieveNavigator } from './retrieval.js';
+import {
+  DISTRICT_EXPERIENCES,
+  DISTRICT_TABS,
+  districtBySlug,
+  districtSlug,
+  districtClusterForType,
+  districtClusterList,
+  getDistrictCoverage,
+  getDistrictEvidence,
+  getDistrictFeaturedProjects,
+  getDistrictProjects,
+  getDistrictRelationships,
+  getDistrictTypes,
+} from './districts.js';
 import { createCity3D } from './city3d.js';
 
 const projects = [
@@ -2862,6 +2876,14 @@ let zoom = 1;
 let showLinks = true;
 let offset = { x: 0, y: 0 };
 let graph = false;
+let scope = 'city'; // 'city' | 'district'
+let activeDistrict = null;
+let districtTab = 'overview';
+let districtEvidenceMode = 'all'; // 'all' | 'source-backed' | 'demo'
+let districtTypeFilter = null;
+let districtEvidenceView = 'all';
+let districtSelectedEdgeId = null;
+let districtPlaqueDismissed = false;
 let navigatorProjectHighlights = new Set();
 let navigatorRelationshipHighlights = new Set();
 
@@ -2905,6 +2927,17 @@ document.querySelector('#app').innerHTML = `
       <button id="about">About the graph <span>↗</span></button>
     </nav>
   </header>
+
+  <div class="district-bar" id="district-bar" hidden>
+    <nav class="district-crumbs" aria-label="Breadcrumb">
+      <button type="button" id="crumb-city">Monad City</button>
+      <span class="crumb-sep" aria-hidden="true">/</span>
+      <span>Districts</span>
+      <span class="crumb-sep" aria-hidden="true">/</span>
+      <span class="crumb-here" id="crumb-district" aria-current="page"></span>
+    </nav>
+    <div class="district-tabs" id="district-tabs" role="tablist" aria-label="District views"></div>
+  </div>
 
   <main>
     <aside class="navigator">
@@ -3057,13 +3090,18 @@ const city3d = createCity3D({
   projects,
   relationships,
   onSelect: (id) => select(id),
+  onDistrictActivate: (district) => navigateToDistrict(district),
   reducedMotion,
   beaconByProject,
 });
 
 function renderKeyboardList() {
   const list = document.querySelector('#city-keyboard');
-  list.innerHTML = projects.map((project) => `
+  // District scope: the keyboard mirror exposes only in-scope buildings, not all 176.
+  const listed = scope === 'district'
+    ? projects.filter((project) => project.district === activeDistrict)
+    : projects;
+  list.innerHTML = listed.map((project) => `
     <li><button type="button" data-id="${project.id}" aria-selected="${project.id === selected}">
       ${project.name}, ${project.district}, status ${project.state}
     </button></li>`).join('');
@@ -3182,7 +3220,11 @@ function renderCity() {
   } else {
     renderKeyboardList();
   }
-  document.querySelector('#context-label').textContent = `${selectedProject().name} selected`;
+  document.querySelector('#context-label').textContent = selectedProject()
+    ? `${selectedProject().name} selected`
+    : scope === 'district'
+      ? `${activeDistrict} district — select a building`
+      : 'City view';
   document.querySelector('#visible-count').textContent = `${filter} · ${projects.filter(visible).length} in view`;
 }
 
@@ -3296,7 +3338,11 @@ function renderSvgCity() {
     };
   });
 
-  document.querySelector('#context-label').textContent = `${selectedProject().name} selected`;
+  document.querySelector('#context-label').textContent = selectedProject()
+    ? `${selectedProject().name} selected`
+    : scope === 'district'
+      ? `${activeDistrict} district — select a building`
+      : 'City view';
   document.querySelector('#visible-count').textContent = `${filter} · ${projects.filter(visible).length} in view`;
 }
 
@@ -3308,6 +3354,7 @@ function clearNavigatorHighlights() {
 function select(id, { preserveNavigatorHighlights = false } = {}) {
   if (!preserveNavigatorHighlights) clearNavigatorHighlights();
   selected = id;
+  dismissPlaque();
   if (!visible(selectedProject())) {
     filter = 'All districts';
     renderDistricts();
@@ -3378,7 +3425,7 @@ function renderNavigatorResult(result) {
 
   const projectControls = result.selectedProjectIds.length
     ? result.selectedProjectIds
-        .map((id) => `<button class="navigator-project" data-project="${escapeHtml(id)}">${escapeHtml(projectName(id))}<span>Open</span></button>`)
+        .map((id) => `<button class="navigator-project" data-project="${escapeHtml(id)}">${escapeHtml(projectName(id))}${result.outOfScopeProjectIds?.includes(id) ? '<small class="navigator-outside">outside district</small>' : ''}<span>Open</span></button>`)
         .join('')
     : '<p class="navigator-empty">No project profiles were selected.</p>';
   const relationshipControls = result.relationshipContexts.length
@@ -3527,6 +3574,7 @@ function runNavigatorSearch(value) {
     relationships,
     evidenceRecords,
     contextProjectIds: selected ? [selected] : [],
+    districtScope: scope === 'district' ? activeDistrict : null,
   });
   applyNavigatorMapAction(result);
   renderNavigatorResult(result);
@@ -3679,7 +3727,12 @@ function evidenceList(evidence) {
 }
 
 function renderPassport() {
+  if (scope === 'district' && !selected) {
+    renderDistrictLens();
+    return;
+  }
   const project = selectedProject();
+  if (!project) return;
   const projectRecords = evidenceForProject(project.id);
   const connections = relationshipsForProject(project.id).map((relationship) => ({
     relationship,
@@ -3689,6 +3742,7 @@ function renderPassport() {
   document.querySelector('#passport').innerHTML = `
     <div class="passport-head">
       <div class="passport-title-row">
+        ${scope === 'district' ? '<button type="button" class="lens-back" id="back-to-lens" aria-label="Back to District Lens">‹ District</button>' : ''}
         <h2>${project.name}</h2>
         <button class="panel-collapse" id="passport-collapse" aria-expanded="true" aria-label="Collapse project passport">—</button>
       </div>
@@ -3780,7 +3834,447 @@ function renderPassport() {
   };
 
   document.querySelector('#trust-info').onclick = () => document.querySelector('#about-dialog').showModal();
+
+  document.querySelector('#back-to-lens')?.addEventListener('click', () => {
+    selected = null;
+    renderPassport();
+  });
 }
+
+// ---- District experience (spec: docs/DISTRICT_EXPERIENCE_SPEC.md) ----
+// One shared renderer driven by src/districts.js. A district is a lens on the same city:
+// same scene, same passports, same evidence semantics. Placement stays illustrative;
+// every visible count derives from data. Cluster membership never implies a relationship.
+
+const CITY_PROMPTS = [...document.querySelectorAll('.prompt')].map((element) => element.dataset.prompt);
+
+function districtConfig() {
+  return activeDistrict ? DISTRICT_EXPERIENCES[activeDistrict] ?? null : null;
+}
+
+function districtProjectIdSet() {
+  return new Set(getDistrictProjects(projects, activeDistrict).map((project) => project.id));
+}
+
+function projectIsSourceBacked(project) {
+  return evidenceForProject(project.id).some((record) => record.reviewStatus === 'approved');
+}
+
+function districtStatusLabel(project) {
+  return projectIsSourceBacked(project) ? 'Source-backed' : 'Illustrative profile';
+}
+
+function districtModeProjects(list) {
+  if (districtEvidenceMode === 'source-backed') return list.filter(projectIsSourceBacked);
+  if (districtEvidenceMode === 'demo') return list.filter((project) => !projectIsSourceBacked(project));
+  return list;
+}
+
+function setNavigatorContext() {
+  const config = districtConfig();
+  const search = document.querySelector('#search');
+  if (search) search.placeholder = config ? 'Ask this district…' : 'Ask the project graph';
+  document.querySelectorAll('.prompt').forEach((element, index) => {
+    const prompt = config ? config.prompts[index] ?? null : CITY_PROMPTS[index] ?? null;
+    if (prompt) {
+      element.dataset.prompt = prompt;
+      const label = element.querySelector('span');
+      if (label) label.textContent = prompt;
+      element.hidden = false;
+    } else {
+      element.hidden = true;
+    }
+  });
+}
+
+function renderDistrictBar() {
+  const config = districtConfig();
+  const bar = document.querySelector('#district-bar');
+  bar.hidden = scope !== 'district';
+  if (!config) return;
+  document.documentElement.style.setProperty('--district-accent', config.accent);
+  document.querySelector('#crumb-district').textContent = `${config.glyph} ${activeDistrict}`;
+  const tabs = document.querySelector('#district-tabs');
+  tabs.innerHTML = DISTRICT_TABS.map((tab) => `
+    <button type="button" role="tab" aria-selected="${districtTab === tab.id}"
+      class="district-tab ${districtTab === tab.id ? 'active' : ''}"
+      data-tab="${tab.id}" tabindex="${districtTab === tab.id ? 0 : -1}">${tab.label}</button>
+  `).join('');
+  tabs.querySelectorAll('.district-tab').forEach((element) => {
+    element.onclick = () => applyDistrictTab(element.dataset.tab);
+    element.onkeydown = districtTabKeydown;
+  });
+}
+
+function districtTabKeydown(event) {
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  const ids = DISTRICT_TABS.map((tab) => tab.id);
+  const index = ids.indexOf(districtTab);
+  const next = event.key === 'ArrowRight' ? (index + 1) % ids.length : (index + ids.length - 1) % ids.length;
+  applyDistrictTab(ids[next]);
+  document.querySelector(`[data-tab="${ids[next]}"]`)?.focus();
+  event.preventDefault();
+}
+
+function applyDistrictTab(tab) {
+  if (scope !== 'district' || !DISTRICT_TABS.some((entry) => entry.id === tab)) return;
+  districtTab = tab;
+  location.hash = routeHash();
+}
+
+function routeHash() {
+  if (scope !== 'district' || !activeDistrict) return '#/city';
+  return `#/district/${districtSlug(activeDistrict)}/${districtTab}`;
+}
+
+function navigateToDistrict(district, { tab = 'overview' } = {}) {
+  const config = DISTRICT_EXPERIENCES[district];
+  if (!config) return;
+  const targetHash = `#/district/${config.slug}/${tab}`;
+  if (location.hash === targetHash) applyRoute();
+  else location.hash = targetHash;
+}
+
+function returnToCity() {
+  if (!location.hash || location.hash === '#/city') applyRoute();
+  else location.hash = '#/city';
+}
+
+function parseHash(hash) {
+  const parts = String(hash ?? '').replace(/^#\/?/, '').split('/').filter(Boolean);
+  if (parts.length === 0 || parts[0] === 'city') return { scope: 'city' };
+  if (parts[0] === 'district' && parts[1]) {
+    const district = districtBySlug(parts[1]);
+    if (!district) return null;
+    const tab = DISTRICT_TABS.some((entry) => entry.id === parts[2]) ? parts[2] : 'overview';
+    return { scope: 'district', district, tab };
+  }
+  return null;
+}
+
+function renderPlaque() {
+  document.querySelector('#district-plaque')?.remove();
+  const config = districtConfig();
+  if (!config || districtPlaqueDismissed) return;
+  const plaque = document.createElement('div');
+  plaque.className = 'district-plaque';
+  plaque.id = 'district-plaque';
+  plaque.innerHTML = `
+    <div class="plaque-glyph" style="color:${config.accent}">${config.glyph}</div>
+    <div class="plaque-title">${escapeHtml(config.title)}</div>
+    <div class="plaque-sub">${escapeHtml(config.subtitle)}</div>
+    <div class="plaque-tag">${escapeHtml(config.tagline)}</div>`;
+  document.querySelector('#city-stage').appendChild(plaque);
+}
+
+function dismissPlaque() {
+  districtPlaqueDismissed = true;
+  document.querySelector('#district-plaque')?.remove();
+}
+
+function lensModeButtons() {
+  return `
+    <div class="sec">Evidence mode</div>
+    <div class="lens-modes" role="group" aria-label="Evidence mode">
+      <button type="button" data-mode="all" aria-pressed="${districtEvidenceMode === 'all'}">All</button>
+      <button type="button" data-mode="source-backed" aria-pressed="${districtEvidenceMode === 'source-backed'}">With cited evidence</button>
+      <button type="button" data-mode="demo" aria-pressed="${districtEvidenceMode === 'demo'}">Illustrative profiles</button>
+    </div>`;
+}
+
+function lensRelRow(relationship, districtIds) {
+  const type = RELATIONSHIP_TYPES[relationship.type];
+  const state = RELATIONSHIP_STATES[relationship.evidenceState];
+  const sourced = isApprovedSourcedRelationship(relationship);
+  const fromIn = districtIds.has(relationship.from);
+  const toIn = districtIds.has(relationship.to);
+  const external = [
+    fromIn ? null : projectById(relationship.from)?.name ?? relationship.from,
+    toIn ? null : projectById(relationship.to)?.name ?? relationship.to,
+  ].filter(Boolean);
+  const records = evidenceForRelationship(relationship);
+  const selected = districtSelectedEdgeId === relationship.id;
+  return `
+    <div class="lens-rel ${selected ? 'selected' : ''}">
+      <button type="button" class="lens-rel-row" data-rel="${relationship.id}">
+        <b>${escapeHtml(projectById(relationship.from)?.name ?? relationship.from)} ↔ ${escapeHtml(projectById(relationship.to)?.name ?? relationship.to)}</b>
+        <span>${escapeHtml(type?.label ?? relationship.type)} — ${sourced ? `Sourced · ${relationship.claimStatus}` : escapeHtml(state?.shortLabel ?? relationship.evidenceState)}${external.length ? ` · outside district: ${escapeHtml(external.join(', '))}` : ''}</span>
+      </button>
+      ${selected ? `<div class="lens-rel-details">
+        <p class="lens-muted">${sourced
+          ? 'Limited source-backed claim; supports only its cited scope — not verification, endorsement, or current operation.'
+          : escapeHtml(state?.meaning ?? 'Illustrative presentation; asserts no factual relationship.')}</p>
+        ${sourced ? `<div class="relationship-evidence-ids"><strong>Exact evidence IDs</strong><span>${relationship.evidenceIds.map(escapeHtml).join(', ')}</span></div>
+        <p class="relationship-scope">${escapeHtml(relationship.scope)}</p>
+        ${governanceDetails('relationship', relationship.id)}
+        <div class="exact-evidence-list">${records.map((record) => evidenceRecordCard(record, { compact: true })).join('')}</div>` : evidenceList(relationship)}
+      </div>` : ''}
+    </div>`;
+}
+
+function lensRelationshipsSection(districtIds) {
+  const rels = getDistrictRelationships(relationships, districtIds);
+  if (rels.length === 0) {
+    return `
+      <div class="sec">Relationships</div>
+      <div class="item"><b>No relationship records touch this district yet</b><span>Connections appear only from relationship records — never from proximity or shared category.</span></div>`;
+  }
+  const rows = rels
+    .filter((relationship) => districtRelFilter === 'all'
+      || (districtRelFilter === 'sourced' && isApprovedSourcedRelationship(relationship))
+      || (districtRelFilter === 'inferred' && (relationship.evidenceState === 'AI-inferred' || relationship.evidenceState === 'illustrative'))
+      || (districtRelFilter === 'declared' && !isApprovedSourcedRelationship(relationship) && relationship.evidenceState !== 'AI-inferred' && relationship.evidenceState !== 'illustrative'))
+    .map((relationship) => lensRelRow(relationship, districtIds))
+    .join('');
+  return `
+    <div class="sec">Relationships</div>
+    <div class="lens-modes" role="group" aria-label="Relationship evidence filter">
+      <button type="button" data-relfilter="all" aria-pressed="${districtRelFilter === 'all'}">All</button>
+      <button type="button" data-relfilter="sourced" aria-pressed="${districtRelFilter === 'sourced'}">Sourced</button>
+      <button type="button" data-relfilter="declared" aria-pressed="${districtRelFilter === 'declared'}">Declared</button>
+      <button type="button" data-relfilter="inferred" aria-pressed="${districtRelFilter === 'inferred'}">AI-inferred</button>
+    </div>
+    ${rows || '<div class="item"><b>No relationships in this class</b><span>Switch the filter to see other classes.</span></div>'}
+    <p class="lens-muted">The graph shows in-district projects plus directly connected external endpoints. Proximity never implies a relationship.</p>`;
+}
+
+function lensCoverageSection(coverage) {
+  return `
+    <div class="sec">Coverage</div>
+    <div class="lens-facts">
+      <div class="item"><b>${coverage.totalProjects} projects</b><span>in this district view</span></div>
+      <div class="item"><b>${coverage.sourceBackedProjects} with source-backed records</b><span>${coverage.illustrativeProjects} illustrative profiles</span></div>
+      <div class="item"><b>${coverage.relationships} relationships</b><span>${coverage.sourcedRelationships} sourced · ${coverage.illustrativeRelationships} illustrative or AI-inferred</span></div>
+      ${coverage.warningRecords ? `<div class="item"><b>${coverage.warningRecords} records with warnings</b><span>stale, conflicting, incomplete, or unavailable flags stay visible</span></div>` : ''}
+    </div>`;
+}
+
+function lensOverviewHtml(config, districtProjectsList, coverage, districtIds) {
+  const matches = [...navigatorProjectHighlights].filter((id) => districtIds.has(id));
+  const featured = getDistrictFeaturedProjects({
+    projects: districtProjectsList,
+    districtProjectIds: districtIds,
+    evidenceRecords,
+    navigatorMatches: matches,
+    limit: 4,
+  });
+  const filtered = districtModeProjects(featured);
+  const featuredRows = filtered.map((project) => `
+    <button type="button" class="lens-row" data-project="${project.id}">
+      <b>${escapeHtml(project.name)}</b>
+      <span>${escapeHtml(districtStatusLabel(project))}</span>
+    </button>`).join('');
+  const clusters = districtClusterList(config, districtProjectsList)
+    .map((cluster) => `<div class="cat"><b>${escapeHtml(cluster.label)}</b><span>${cluster.count} projects</span></div>`)
+    .join('');
+  const sparseNote = districtProjectsList.length < 5
+    ? `<div class="item"><b>Limited coverage</b><span>This district currently contains ${districtProjectsList.length} projects. Open space is more truthful than filler, and new projects enter only through the evidence workflow.</span></div>`
+    : '';
+  return `
+    ${lensCoverageSection(coverage)}
+    ${sparseNote}
+    <div class="sec">Categories</div>
+    <div class="lens-cats">${clusters}</div>
+    ${lensModeButtons()}
+    <div class="sec">Featured projects</div>
+    <p class="lens-muted">Featured means Navigator matches first, then source-backed records, then alphabetical — never a ranking or endorsement.</p>
+    ${featuredRows || '<div class="item"><b>No projects in this evidence mode</b><span>Switch the evidence mode above.</span></div>'}
+    ${lensRelationshipsSection(districtIds)}
+    <p class="lens-note">City placement is illustrative. Evidence states apply only to cited claims.</p>`;
+}
+
+function lensProjectsHtml(config, districtProjectsList) {
+  const types = getDistrictTypes(districtProjectsList);
+  const chips = ['<button type="button" class="lens-chip" data-type="" aria-pressed="' + (districtTypeFilter === null ? 'true' : 'false') + '">All</button>']
+    .concat(types.map((type) => `<button type="button" class="lens-chip" data-type="${escapeHtml(type)}" aria-pressed="${districtTypeFilter === type ? 'true' : 'false'}">${escapeHtml(type)}</button>`))
+    .join('');
+  const filtered = districtModeProjects(districtProjectsList)
+    .filter((project) => !districtTypeFilter || project.type === districtTypeFilter)
+    .sort((left, right) => left.name.localeCompare(right.name));
+  const rows = filtered.map((project) => `
+    <button type="button" class="lens-row" data-project="${project.id}">
+      <b>${escapeHtml(project.name)}</b>
+      <span>${escapeHtml(project.type)} — ${escapeHtml(districtStatusLabel(project))}</span>
+    </button>`).join('');
+  return `
+    <div class="sec">Filter by type</div>
+    <div class="lens-chips">${chips}</div>
+    ${lensModeButtons()}
+    <div class="sec">Projects — alphabetical</div>
+    ${rows || '<div class="item"><b>Nothing matches this filter</b><span>Clear the type filter or switch the evidence mode.</span></div>'}`;
+}
+
+function lensEvidenceHtml(districtProjectsList, districtIds) {
+  const views = ['all', 'observed', 'claimed', 'attested', 'ai-inferred', 'demo', 'review-due', 'warnings'];
+  const chips = views.map((view) => `<button type="button" class="lens-chip" data-evidenceview="${view}" aria-pressed="${districtEvidenceView === view ? 'true' : 'false'}">${view === 'review-due' ? 'Review due' : view === 'ai-inferred' ? 'AI-inferred' : view[0].toUpperCase() + view.slice(1)}</button>`).join('');
+  const groups = districtProjectsList
+    .slice()
+    .sort((left, right) => left.name.localeCompare(right.name))
+    .map((project) => {
+      const records = evidenceForProject(project.id).filter((record) => {
+        if (districtEvidenceView === 'all') return true;
+        if (districtEvidenceView === 'review-due') return governanceRow('evidence', record.id)?.reviewDue === true;
+        if (districtEvidenceView === 'warnings') return record.quality?.stale || record.quality?.conflict || record.quality?.incomplete || record.quality?.unavailable;
+        return record.status === districtEvidenceView;
+      });
+      if (districtEvidenceView === 'demo') {
+        return projectIsSourceBacked(project) ? '' : `<div class="lens-evidence-group"><b>${escapeHtml(project.name)}</b><div class="evidence-panel project-evidence">${evidenceList(project.evidence)}</div></div>`;
+      }
+      if (districtEvidenceView === 'all' && !records.length) {
+        return `<div class="lens-evidence-group"><b>${escapeHtml(project.name)}</b><div class="evidence-panel project-evidence">${evidenceList(project.evidence)}</div></div>`;
+      }
+      if (!records.length) return '';
+      return `<div class="lens-evidence-group"><b>${escapeHtml(project.name)}</b><div class="exact-evidence-list">${records.map((record) => evidenceRecordCard(record, { compact: true })).join('')}</div></div>`;
+    })
+    .join('');
+  return `
+    <div class="sec">Filter records</div>
+    <div class="lens-chips">${chips}</div>
+    ${groups || '<div class="item"><b>No records match this filter</b><span>Review-due is a derived governance state — it never becomes stale by itself.</span></div>'}
+    <p class="lens-muted">Review-due means the review interval has elapsed at the governance instant. It is never an automatic status change.</p>`;
+}
+
+function renderDistrictLens() {
+  const config = districtConfig();
+  if (!config) return;
+  const districtIds = districtProjectIdSet();
+  const districtProjectsList = getDistrictProjects(projects, activeDistrict);
+  const coverage = getDistrictCoverage({ projects: districtProjectsList, evidenceRecords, relationships, districtProjectIds: districtIds });
+  let content = '';
+  if (districtTab === 'projects') content = lensProjectsHtml(config, districtProjectsList);
+  else if (districtTab === 'relationships') content = lensRelationshipsSection(districtIds);
+  else if (districtTab === 'evidence') content = lensEvidenceHtml(districtProjectsList, districtIds);
+  else content = lensOverviewHtml(config, districtProjectsList, coverage, districtIds);
+
+  document.querySelector('#passport').innerHTML = `
+    <div class="passport-head">
+      <div class="passport-title-row">
+        <h2 class="lens-title" style="color:${config.accent}">${escapeHtml(config.title)}</h2>
+        <button class="panel-collapse" id="passport-collapse" aria-expanded="true" aria-label="Collapse district panel">—</button>
+      </div>
+      <p class="passport-subtitle">${escapeHtml(config.subtitle)}</p>
+      <p class="project-description">${escapeHtml(config.tagline)}</p>
+    </div>
+    <div class="passport-body" id="district-panel" role="tabpanel" aria-label="${escapeHtml(config.title)} ${districtTab}">${content}</div>
+  `;
+
+  document.querySelectorAll('#district-panel .lens-modes button').forEach((element) => {
+    element.onclick = () => {
+      districtEvidenceMode = element.dataset.mode;
+      renderPassport();
+    };
+  });
+  document.querySelectorAll('#district-panel .lens-chip[data-type]').forEach((element) => {
+    element.onclick = () => {
+      districtTypeFilter = element.dataset.type || null;
+      renderPassport();
+    };
+  });
+  document.querySelectorAll('#district-panel .lens-chip[data-evidenceview]').forEach((element) => {
+    element.onclick = () => {
+      districtEvidenceView = element.dataset.evidenceview;
+      renderPassport();
+    };
+  });
+  document.querySelectorAll('#district-panel .lens-modes button[data-relfilter]').forEach((element) => {
+    element.onclick = () => {
+      districtRelFilter = element.dataset.relfilter;
+      renderPassport();
+    };
+  });
+  document.querySelectorAll('#district-panel .lens-row').forEach((element) => {
+    element.onclick = () => {
+      dismissPlaque();
+      select(element.dataset.project);
+      focusProjectOnMap(element.dataset.project);
+    };
+  });
+  document.querySelectorAll('#district-panel .lens-rel-row').forEach((element) => {
+    element.onclick = () => {
+      districtSelectedEdgeId = districtSelectedEdgeId === element.dataset.rel ? null : element.dataset.rel;
+      focusNavigatorRelationship(districtSelectedEdgeId ?? element.dataset.rel);
+      renderPassport();
+    };
+  });
+}
+
+function exitDistrictScope({ restoreCamera = true } = {}) {
+  city3d.leaveDistrict({ restoreCamera });
+  filter = 'All districts';
+  clearNavigatorHighlights();
+  document.documentElement.style.removeProperty('--district-accent');
+  document.querySelector('#district-plaque')?.remove();
+}
+
+function applyRoute() {
+  const parsed = parseHash(location.hash);
+  if (!parsed || parsed.scope === 'city') {
+    if (parsed === null && location.hash && location.hash !== '#/city') {
+      location.hash = '#/city';
+      return;
+    }
+    if (scope !== 'city') {
+      const leftDistrict = activeDistrict;
+      scope = 'city';
+      activeDistrict = null;
+      districtTab = 'overview';
+      exitDistrictScope();
+      renderDistrictBar();
+      setNavigatorContext();
+      renderDistricts();
+      renderCity();
+      renderPassport();
+      setPassportExpanded(false);
+      if (leftDistrict) {
+        document.querySelector(`#district-list .district[data-district="${leftDistrict}"]`)?.focus();
+      }
+    }
+    return;
+  }
+
+  const districtChanged = scope !== 'district' || activeDistrict !== parsed.district;
+  const previousTab = districtTab;
+  scope = 'district';
+  activeDistrict = parsed.district;
+  districtTab = parsed.tab;
+  if (districtChanged) {
+    city3d.enterDistrict(activeDistrict, { animate: !reducedMotion });
+    filter = activeDistrict;
+    districtEvidenceMode = 'all';
+    districtTypeFilter = null;
+    districtEvidenceView = 'all';
+    districtRelFilter = 'all';
+    districtSelectedEdgeId = null;
+    districtPlaqueDismissed = false;
+    clearNavigatorHighlights();
+    // Lens-first entry (spec §2.1): a dedicated route opens District Lens; the startup
+    // default selection (monad) or any out-of-district selection never auto-opens a
+    // Passport. An in-district selection is also reset — the route is the source of truth.
+    selected = null;
+    renderPlaque();
+    setNavigatorExpanded(true);
+  }
+  renderDistrictBar();
+  setNavigatorContext();
+  renderDistricts();
+  renderCity();
+  renderPassport();
+  setPassportExpanded(true);
+  if (districtTab === 'relationships') {
+    if (!graph) {
+      setMapView('graph');
+      renderCity();
+    }
+  } else if (previousTab === 'relationships' && graph) {
+    setMapView('city');
+    renderCity();
+  }
+}
+
+let districtRelFilter = 'all';
+
+window.addEventListener('hashchange', applyRoute);
+document.querySelector('#crumb-city').onclick = () => returnToCity();
 
 function renderDistricts() {
   const glyphs = ['◈', '◫', '✧', '▥', '⚄', '◎'];
@@ -3800,21 +4294,13 @@ function renderDistricts() {
 
   document.querySelectorAll('.district').forEach((element) => {
     element.onclick = () => {
-      filter = element.dataset.district;
+      const district = element.dataset.district;
       clearNavigatorHighlights();
-
-      if (!visible(selectedProject())) {
-        selected = projects.find(visible).id;
-        renderPassport();
-      }
-
-      // District navigation: selecting a district flies the camera to its island;
-      // "All districts" returns to the full-archipelago view.
-      if (filter === 'All districts') city3d.reset();
-      else city3d.focusIsland(filter);
-
-      renderDistricts();
-      renderCity();
+      // District entries are hash routes (spec §4): scope, tab, and camera framing live on
+      // the route. "All districts" returns to the city; the quick-filter dimming is
+      // preserved inside district scope through `filter`.
+      if (district === 'All districts') returnToCity();
+      else navigateToDistrict(district);
     };
   });
 }
@@ -3853,6 +4339,12 @@ document.querySelector('#reset').onclick = reset;
 function reset() {
   zoom = 1;
   offset = { x: 0, y: 0 };
+  if (scope === 'district') {
+    // District framing: reset returns to the island view, not the global camera.
+    city3d.enterDistrict(activeDistrict, { animate: !reducedMotion });
+    renderCity();
+    return;
+  }
   filter = 'All districts';
   clearNavigatorHighlights();
   document.querySelector('#search').value = '';
@@ -3927,3 +4419,7 @@ svg.onpointerup = svg.onpointercancel = () => {
 renderDistricts();
 renderCity();
 renderPassport();
+
+// District routes: the hash is the source of truth for scope/tab (spec §13). Apply the
+// current route once at startup so deep links like #/district/defi/overview work.
+applyRoute();

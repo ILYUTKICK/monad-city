@@ -1353,6 +1353,116 @@ Next:
 
 
 
+### 2026-09-29 — Lead implementation agent — District Experience D1–D6 complete (all five districts, four tabs, district-aware Navigator)
+
+Owner directive: implement the complete dedicated district experience per
+`docs/DISTRICT_EXPERIENCE_SPEC.md` (D1–D6, all five districts, no partial delivery).
+Files owned this task: `src/districts.js` (new), `src/main.js`, `src/city3d.js`,
+`src/retrieval.js`, `src/style.css`, `docs/WORKLOG.md`. No evidence snapshot, governance
+companion, claim, source, or relationship was changed.
+
+D1 — shared route and state foundation:
+- `src/districts.js` (new): presentation config for all five districts — slug, glyph, accent,
+  exact spec copy (titles/subtitles/taglines), cluster match-types normalized against the REAL
+  project type vocabulary (extracted from main.js), per-district Navigator prompts — plus pure
+  selectors (getDistrictProjects/Relationships/Evidence/Types/Coverage/FeaturedProjects,
+  districtClusterForType/List). Config contains no counts; unmatched types fall to `Other`.
+- Hash routing in `src/main.js`: `#/city`, `#/district/<slug>/<tab>` for all five districts and
+  four tabs; `parseHash` returns null for invalid slugs → falls back to `#/city` without a
+  crash; `hashchange` + startup `applyRoute()` (deep links work).
+- `city3d.js`: `getCameraSnapshot()`, `restoreCamera()`, `enterDistrict(district, {animate})`,
+  `leaveDistrict({restoreCamera})` — entering stores the prior global camera; reduced-motion
+  jumps instantly; `onDistrictActivate` callback routes billboard clicks (frontmost-target
+  rule unchanged).
+- Breadcrumb (`City / Districts / DeFi`) + local tab row (`role=tablist`, arrow-key
+  navigation) in a new `.district-bar`; district panel buttons route instead of the old
+  filter+fly+auto-select; `Return to city` / crumb / browser Back all restore the prior
+  camera and refocus the originating district control.
+- District entry is lens-first: selection is cleared on entry (the startup `monad` default
+  never auto-opens a Passport — spec §2.1); filter dims other districts as before; City/Graph,
+  selection, search, relationship visibility, zoom, reset, keyboard all preserved; Reset
+  inside a district reframes the island instead of the global camera.
+
+D2 — shared Overview and District Lens:
+- One reusable District Lens in the right panel (renders whenever district scope has no
+  selected project): coverage facts (projects, source-backed vs illustrative profiles,
+  relationships sourced/illustrative, warning records — all data-derived), evidence-mode
+  control (All / With cited evidence / Illustrative profiles), deterministic featured list
+  (Navigator matches → approved evidence → alphabetical; the rule is disclosed in copy),
+  categories with counts, relationships section, placement disclosure.
+- DeFi Overview is the visual reference; sparse districts render an honest "Limited coverage"
+  note instead of filler.
+- Passport transition: selecting a building/row opens the existing Passport with a
+  `‹ District` back action that restores the Lens without leaving the route.
+
+D3 — Projects, Relationships, Evidence tabs:
+- Projects: data-derived type chips (32 for DeFi), evidence-mode control, alphabetical list;
+  a row focuses its building and opens the Passport; empty state on no match.
+- Relationships: district subgraph listing with per-edge provenance (type, Sourced/Declared/
+  AI-inferred class filters, exact evidence IDs, scope, governance details via the existing
+  `governanceDetails`), external endpoints labeled "outside district", click highlights the
+  edge and the tab opens local Graph View; honest empty state when no records touch a
+  district (proximity never implies a relationship).
+- Evidence: all district records with the existing `evidenceRecordCard` renderer + filters
+  (All/Observed/Claimed/Attested/AI-inferred/Demo/Review due/Warnings); Demo projects show
+  their illustrative placeholder evidence; Review-due uses the derived governance row and
+  never auto-becomes stale; no district trust score anywhere.
+
+D4 — contextual Navigator:
+- `retrieveNavigator` accepts `districtScope`: in-scope results rank first, out-of-scope
+  matches stay visible and are labeled "outside district" in the UI, the answer explains the
+  scope expansion ("Search scope expanded beyond the X district…"), and no-result/
+  insufficient-evidence answers say nothing matched inside the district and suggest clearing
+  the scope. Placeholder becomes "Ask this district…"; prompts become district-specific.
+- Verified: "lending" in DeFi → 10 in-scope profiles; "oracle" in DeFi → Pyth/Switchboard
+  with the expansion sentence; cross-district relationship endpoints preserved.
+
+D5 — five personalities (one shared implementation, config-driven):
+- DeFi: dense core copy, four clusters (Trading/Credit/Yield & staking/Assets & payments),
+  140-building district verified at 61 fps; no TVL/ranking encoding.
+- Infrastructure: hub copy, Data & oracles / Interoperability / Privacy clusters, 13
+  relationships with sourced cross-district links visible; no decorative bridges.
+- AI: three-building campus, "Limited coverage" note, AI-inferred relationships labeled
+  illustrative/uncertain; no fabricated dependencies.
+- Gaming: Games/Studios & platforms/Markets clusters; evidence mode separates the two
+  illustrative Demo entities (Nad Arcade, Pixel Forge) in one click; no casino styling.
+- Identity: one real building, explicit limited-coverage and no-relationship states; no
+  authentication/legitimacy language.
+
+D6 — responsive, accessibility, performance, QA:
+- Desktop 1440×900 and 1280×720: no overlap/overflow (panels keep existing collapse
+  behavior); mobile 390×844: city first, no horizontal overflow, tabs horizontally
+  scrollable with snap; lens inherits the existing passport sheet behavior.
+- A11y: tabs use role=tablist/tab with aria-selected and arrow-key support; breadcrumb and
+  Return to city are real buttons; keyboard mirror lists only in-district buildings; focus
+  returns to the originating district control after leaving.
+- Performance: 61 fps sampled in the 140-building DeFi district; Three.js render loop pauses
+  in Graph View exactly as before; reduced-motion removes camera flight (instant framing).
+
+Files changed: `src/districts.js` (new), `src/main.js`, `src/city3d.js`, `src/retrieval.js`,
+`src/style.css`. Evidence files untouched.
+
+Verification: `node --check` on all touched JS; `npm run build` green (v6 promotion gate
+intact); browser QA: all five routes + four tabs each; deep link, billboard entry, panel
+entry, browser Back, camera restoration, Passport↔Lens round-trip; district-scoped and
+cross-district Navigator queries; unsupported/no-result conservatism unchanged; City/Graph
+inside districts; keyboard tab navigation; 1440×900 / 1280×720 / 390×844 without overflow;
+zero console errors.
+
+Known limitations:
+- District "spatial grammar" is expressed through the existing archipelago framing and
+  cluster FILTERS; per-cluster 3D sub-framing is deferred (spec §15 marks it optional until
+  cluster mapping matures). No second scene was created.
+- The aliases field is still data-only; district catalog rows show current names.
+- Reduced-motion camera jump is implemented but was verified by code review only (IAB cannot
+  emulate prefers-reduced-motion).
+- `renderKeyboardList` re-renders on district entry/exit; in-scope keyboard selection is
+  active, cross-district endpoints remain reachable through Navigator/relationship rows.
+
+Next:
+- Owner review of the district experience; polish pass if requested.
+- Refresh pass 2 (from 2026-10-22) remains the last formal §5.3 exit item.
+
 ### 2026-09-27 — Owner request / lead — District Worlds: mockup-first kickoff
 
 Owner request (verbatim): «при нажатии кнопки, например, "DEFI" меня перекидывало на мир

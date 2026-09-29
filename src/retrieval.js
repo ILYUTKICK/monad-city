@@ -924,6 +924,7 @@ export function retrieveNavigator(input) {
     evidenceRecords: suppliedEvidenceRecords = [],
     contextProjectIds = [],
     limit = 10,
+    districtScope = null,
   } = input || {};
 
   if (!Array.isArray(projects) || !Array.isArray(relationships)) {
@@ -1503,7 +1504,7 @@ export function retrieveNavigator(input) {
     matchedEvidenceRecordCount: returnedExactEvidenceIds.length,
   });
 
-  return {
+  return applyDistrictScopeToResult({
     query: rawQuery,
     normalizedQuery: queryText,
     intent,
@@ -1536,7 +1537,42 @@ export function retrieveNavigator(input) {
       unsupportedReasons: [],
       ambiguousStateTerms,
     },
-  };
+  }, { districtScope, projects });
+}
+
+// District scope (spec D4): ordinary queries prefer in-scope results; out-of-district
+// matches stay visible but are labeled, and the answer explains the scope expansion.
+// No relationship is ever inferred from a shared district.
+function applyDistrictScopeToResult(result, { districtScope, projects }) {
+  if (!districtScope) return result;
+  const inScope = (projectId) =>
+    projects.find((project) => project.id === projectId)?.district === districtScope;
+  const ordered = [...(result.selectedProjectIds ?? [])].sort(
+    (left, right) => Number(inScope(right)) - Number(inScope(left)),
+  );
+  const outOfScope = ordered.filter((projectId) => !inScope(projectId));
+  result.selectedProjectIds = ordered;
+  result.primaryProjectId = ordered[0] ?? null;
+  result.districtScope = districtScope;
+  result.outOfScopeProjectIds = outOfScope;
+  if (outOfScope.length > 0) {
+    result.scopeExpanded = true;
+    result.answer = {
+      ...result.answer,
+      text: `${result.answer.text} Search scope expanded beyond the ${districtScope} district: out-of-district matches are labeled below.`,
+    };
+  } else if (result.outcome === 'no-result' || result.outcome === 'insufficient-evidence') {
+    result.answer = {
+      ...result.answer,
+      text: `Nothing matched inside the ${districtScope} district. ${result.answer.text} Clear the district scope to search the whole ecosystem.`,
+    };
+  } else {
+    result.answer = {
+      ...result.answer,
+      text: `${result.answer.text} Results are scoped to the ${districtScope} district.`,
+    };
+  }
+  return result;
 }
 
 function check(condition, message) {

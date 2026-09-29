@@ -42,6 +42,7 @@ export function createCity3D({
   projects,
   relationships,
   onSelect,
+  onDistrictActivate = null,
   reducedMotion = false,
   beaconByProject = {},
 }) {
@@ -691,7 +692,8 @@ export function createCity3D({
       const buttonHit = raycastDistrictButton(event);
       const buttonFront = buttonHit && (!hit || buttonHit.distance < hit.distance);
       if (buttonFront) {
-        focusIsland(buttonHit.district);
+        if (onDistrictActivate) onDistrictActivate(buttonHit.district);
+        else focusIsland(buttonHit.district);
       } else if (hit) {
         onSelect(hit.id);
       }
@@ -795,6 +797,60 @@ export function createCity3D({
     control.radiusGoal = Math.min(150, Math.max(44, island.radius * 2.1 + 26));
   }
 
+  // ---- district scope camera API (consumed by the district routes in main.js) ----
+  let previousCamera = null;
+
+  function getCameraSnapshot() {
+    return {
+      azimuth: control.azimuthGoal,
+      elevation: control.elevationGoal,
+      radius: control.radiusGoal,
+      target: control.targetGoal.clone(),
+    };
+  }
+
+  function restoreCamera(snapshot) {
+    if (!snapshot) return;
+    control.azimuthGoal = snapshot.azimuth;
+    control.elevationGoal = snapshot.elevation;
+    control.radiusGoal = snapshot.radius;
+    control.targetGoal.copy(snapshot.target);
+    if (reducedMotion) {
+      control.azimuth = snapshot.azimuth;
+      control.elevation = snapshot.elevation;
+      control.radius = snapshot.radius;
+      control.target.copy(snapshot.target);
+    }
+  }
+
+  function applyDistrictFraming(district) {
+    const island = ISLAND_GROUPS.find((group) => group.key === district);
+    if (!island) return false;
+    control.targetGoal.set(island.cx, 1.2, island.cz);
+    control.radiusGoal = Math.min(150, Math.max(44, island.radius * 2.1 + 26));
+    if (reducedMotion) {
+      control.target.copy(control.targetGoal);
+      control.radius = control.radiusGoal;
+    }
+    return true;
+  }
+
+  function enterDistrict(district, { animate = true } = {}) {
+    if (!previousCamera) previousCamera = getCameraSnapshot();
+    if (!animate || reducedMotion) {
+      applyDistrictFraming(district);
+      control.azimuth = control.azimuthGoal;
+      control.elevation = control.elevationGoal;
+    } else {
+      applyDistrictFraming(district);
+    }
+  }
+
+  function leaveDistrict({ restoreCamera: restore = true } = {}) {
+    if (restore && previousCamera) restoreCamera(previousCamera);
+    previousCamera = null;
+  }
+
   function zoomBy(factor) {
     control.radiusGoal = Math.min(215, Math.max(38, control.radiusGoal * factor));
   }
@@ -890,5 +946,5 @@ export function createCity3D({
   }
   requestAnimationFrame(frame);
 
-  return { sync, focusProject, focusIsland, zoomBy, reset };
+  return { sync, focusProject, focusIsland, zoomBy, reset, enterDistrict, leaveDistrict, getCameraSnapshot, restoreCamera };
 }
