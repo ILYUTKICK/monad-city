@@ -749,6 +749,11 @@ export function createCity3D({
       selectedRing.position.set(x, 0.07, z);
       selectedOutline.visible = !state.graph;
       selectedOutline.position.set(x, selectedView.topY - 1.55, z);
+    } else {
+      // District Lens state: no selection, so no selection ring may linger from the
+      // previous city selection.
+      selectedRing.visible = false;
+      selectedOutline.visible = false;
     }
 
     projectViews.forEach((view, id) => {
@@ -835,8 +840,15 @@ export function createCity3D({
     return true;
   }
 
+  function setDistrictButtonFocus(district) {
+    districtButtons.forEach((sprite) => {
+      sprite.material.opacity = !district || sprite.userData.district === district ? 1 : 0.25;
+    });
+  }
+
   function enterDistrict(district, { animate = true } = {}) {
     if (!previousCamera) previousCamera = getCameraSnapshot();
+    setDistrictButtonFocus(district);
     if (!animate || reducedMotion) {
       applyDistrictFraming(district);
       control.azimuth = control.azimuthGoal;
@@ -849,6 +861,7 @@ export function createCity3D({
   function leaveDistrict({ restoreCamera: restore = true } = {}) {
     if (restore && previousCamera) restoreCamera(previousCamera);
     previousCamera = null;
+    setDistrictButtonFocus(null);
   }
 
   function zoomBy(factor) {

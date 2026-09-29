@@ -2885,7 +2885,7 @@ details.navigator-evidence {
 
 .district-plaque {
   position: absolute;
-  top: 16px;
+  top: 74px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
