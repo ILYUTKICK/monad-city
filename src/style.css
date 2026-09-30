@@ -138,7 +138,9 @@ header {
   white-space: nowrap;
 }
 
-nav {
+/* Header-only selector: a bare `nav` also matches the district-bar breadcrumb nav and
+   leaks margin-left:auto into it. */
+header nav {
   display: flex;
   align-items: stretch;
   align-self: stretch;
@@ -146,22 +148,22 @@ nav {
   margin-left: auto;
 }
 
-nav button {
+header nav button {
   position: relative;
   padding: 0;
   color: #908997;
   font-size: 0.75rem;
 }
 
-nav button span {
+header nav button span {
   margin-left: 4px;
 }
 
-nav .nav-active {
+header nav .nav-active {
   color: #e4daef;
 }
 
-nav .nav-active::after {
+header nav .nav-active::after {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -1596,7 +1598,7 @@ dialog .dialog-note {
     padding: 0 18px;
   }
 
-  nav {
+  header nav {
     display: none;
   }
 
@@ -2365,6 +2367,120 @@ details.navigator-evidence {
   font-size: 12.5px;
 }
 
+/* ----- grounded AI layer (AI-inferred semantics: violet, visibly uncertain) ----- */
+
+.ai-panel {
+  margin-top: 14px;
+  border-top: 1px solid rgba(232, 226, 244, 0.1);
+  padding-top: 10px;
+}
+
+.ai-panel summary {
+  color: #9a92b2;
+  font-size: 12.5px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ai-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.ai-panel .ai-state {
+  margin-left: 6px;
+  padding: 1px 8px;
+  border: 1px solid rgba(180, 138, 255, 0.4);
+  border-radius: 999px;
+  color: #b48aff;
+  font-size: 11px;
+}
+
+.ai-panel form {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ai-panel label {
+  display: grid;
+  gap: 3px;
+  color: #8f86a8;
+  font-size: 11.5px;
+}
+
+.ai-panel input {
+  border: 1px solid rgba(232, 226, 244, 0.14);
+  border-radius: 8px;
+  background: rgba(10, 10, 16, 0.6);
+  color: #ece6f8;
+  font: inherit;
+  font-size: 12.5px;
+  padding: 7px 9px;
+}
+
+.ai-panel input:focus {
+  outline: none;
+  border-color: rgba(180, 138, 255, 0.55);
+}
+
+.ai-panel button {
+  justify-self: start;
+  border: 1px solid rgba(180, 138, 255, 0.4);
+  border-radius: 8px;
+  background: none;
+  color: #d9c8ff;
+  font: inherit;
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.ai-panel button:hover {
+  background: rgba(180, 138, 255, 0.12);
+}
+
+.ai-note {
+  margin: 2px 0 0;
+  color: #7d7490;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.navigator-ai {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 2px dashed rgba(180, 138, 255, 0.55);
+  background: rgba(180, 138, 255, 0.06);
+}
+
+.navigator-ai-label {
+  margin: 0;
+  color: #b48aff;
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.navigator-ai-text {
+  margin: 6px 0 0;
+  color: #ece6f8;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.navigator-ai-note {
+  margin: 6px 0 0;
+  color: #7d7490;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.navigator-ai-status {
+  margin: 0;
+  color: #9a92b2;
+  font-size: 12.5px;
+}
+
 /* ----- city stage, canvas, labels ----- */
 
 #city-stage {
@@ -2817,17 +2933,16 @@ details.navigator-evidence {
 
 .district-bar {
   display: flex;
-}
-
-.district-bar[hidden] {
-  display: none;
-}
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   padding: 10px 20px;
   background: #0d0d14;
   border-bottom: 1px solid rgba(232, 226, 244, 0.1);
+}
+
+.district-bar[hidden] {
+  display: none;
 }
 
 .district-crumbs {

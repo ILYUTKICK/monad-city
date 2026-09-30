@@ -2012,6 +2012,73 @@ Next:
   models — Qwen/KIMI/Hunyuan credits), deterministic retrieval as fallback; then three clean
   demo-script run-throughs and the Metropolis submission write-up (deadline 13 Oct).
 
+### 2026-09-30 (cont.) — Lead agent / frontend+AI — Grounded AI layer shipped + district-bar CSS repair
+
+Owner: «Начинай AI слой, но и поправь отображение, видишь строка сломалась» + screenshot of the
+district bar. Both delivered this session.
+
+Changed:
+- `src/ai.js` (NEW): the grounded AI layer. `loadAiSettings/saveAiSettings` (localStorage
+  `monad-city.ai-settings`, defaults: DashScope compatible-mode base URL + `qwen-plus`),
+  `aiEnabled` (requires baseUrl+model+key — no key = exactly the old deterministic behavior),
+  `buildGroundingPayload` (question, deterministic outcome/answer, project profiles,
+  relationship contexts, and ONLY approved evidence records — id/status/claim/source/timestamp/
+  scope/limitations/quality flags, capped at 12), `groundAnswer` (OpenAI-compatible
+  `/chat/completions`, temperature 0.2, AbortController-friendly, typed error messages).
+  The system prompt enforces the trust contract: reformulate ONLY from the provided records,
+  cite exact record IDs per claim, preserve Observed/Claimed distinction, never say
+  verified/safe/active/endorsed, say plainly when records do not establish something.
+- `src/main.js`: "Grounded AI" settings `<details>` at the bottom of the Navigator body
+  (endpoint/model/key, key stays in the browser, honest note about what the model may and may
+  not do); `queueGroundedAnswer` after every deterministic render — appends an AI section to
+  the result card: "thinking" state → "AI-inferred answer · model <name>" with the cited text
+  and a note that the deterministic result remains the source of truth; on failure an honest
+  "Grounded AI unavailable" note and the deterministic result untouched. Aborts the previous
+  request on a new search; `unsupported-request` outcomes are never sent to the model.
+- `src/style.css`: AI panel + answer block styled in AI-inferred semantics (violet, dashed
+  border, visibly "uncertain" per VISUAL_DIRECTION); `reflectAiState` chip shows `on · <model>`
+  / `off`.
+- `src/style.css` (district-bar repair, the owner's screenshot): TWO stacked defects.
+  (1) The 55615dc preview fix had inserted `.district-bar[hidden]` INTO the `.district-bar`
+  rule, splitting it — align-items/justify-content/gap/padding/background/border-bottom were
+  orphaned and dropped by the CSS parser (extra `}` at line 2831). Rejoined the rule; brace
+  balance re-verified programmatically. (2) The bar was STILL cramped: a bare `nav { …;
+  margin-left: auto; }` rule (written for the header links) also matched the breadcrumb
+  `<nav class="district-crumbs">`, pushing the crumbs against the tabs (computed
+  margin-left 802px). Scoped all bare `nav` selectors to `header nav` (desktop rule, button
+  rules, and the mobile `display:none`). Side effect per spec §17: the mobile breadcrumb is
+  back — on phones the district bar now shows "Monad City / Districts / <district>" above the
+  tabs, as the spec intended when it removed the plaque.
+
+Files changed: `src/ai.js` (new), `src/main.js`, `src/style.css`, `docs/WORKLOG.md`
+
+Verified:
+- `node --check` + `npm run build` green (SHA gate untouched; evidence snapshot unchanged).
+- District bar: desktop 1440 — crumbs at x=20, tabs right, `space-between`, background +
+  border present; mobile 390 — breadcrumb row restored, tabs scrollable, header nav hidden as
+  intended.
+- AI layer end-to-end with a local OpenAI-compatible mock (CORS-enabled): settings persist
+  ("on · qwen-plus-mock"), a search renders the deterministic result instantly, then the
+  AI section with the model name and per-claim citations of REAL record IDs from the
+  grounding payload ([E-KURU-CAP-001], [E-KURU-CHAIN-001]); error path verified with a
+  non-CORS endpoint → "Grounded AI unavailable … The deterministic result above is
+  unaffected." No key → no AI section at all.
+- Test artifacts cleaned up: localStorage settings removed from the browser, mock server
+  stopped, zero console errors.
+
+Limitations:
+- The AI answer arrives unstyled-markdown from some providers; the UI renders it as plain
+  text (escaped). Model quality/prompt still needs tuning against the real sponsor model.
+- CORS depends on the provider: DashScope/OpenRouter-compatible browser calls are expected to
+  work, but a keyless corporate proxy might not — the honest error state covers it.
+- The AI layer is opt-in BYO-key for now; wiring the hackathon sponsor key is an owner step
+  (register on the platform, paste the key into Grounded AI settings).
+
+Next:
+- Owner: register on hackathon.monad.xyz, get a Qwen (DashScope) key, paste it into
+  Grounded AI settings; tune the system prompt against the real model; then demo run-throughs
+  ×3 and the Metropolis submission write-up (deadline 13 Oct).
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

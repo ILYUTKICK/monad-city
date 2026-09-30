@@ -17,6 +17,7 @@ import {
   reviewGovernanceCompanion,
 } from './evidence.js';
 import { retrieveNavigator, runDistrictNavigatorChecks } from './retrieval.js';
+import { loadAiSettings, saveAiSettings, aiEnabled, groundAnswer } from './ai.js';
 import {
   DISTRICT_EXPERIENCES,
   DISTRICT_TABS,
@@ -2972,6 +2973,16 @@ document.querySelector('#app').innerHTML = `
           </div>
           <div id="district-list"></div>
         </section>
+        <details class="ai-panel" id="ai-panel">
+          <summary>Grounded AI <span class="ai-state" id="ai-state">off</span></summary>
+          <form id="ai-form">
+            <label>API endpoint (OpenAI-compatible)<input id="ai-base-url" autocomplete="off" spellcheck="false" /></label>
+            <label>Model<input id="ai-model" autocomplete="off" spellcheck="false" /></label>
+            <label>API key<input id="ai-key" type="password" autocomplete="off" /></label>
+            <p class="ai-note">The model only reformulates the exact records a search returns and cites their record IDs — it cannot add facts. Your key is stored in this browser and sent only to the endpoint above. Without a key the Navigator stays fully deterministic.</p>
+            <button type="submit">Save AI settings</button>
+          </form>
+        </details>
       </div>
     </aside>
 
@@ -3581,6 +3592,66 @@ function renderNavigatorResult(result) {
       }
     };
   });
+  queueGroundedAnswer(result);
+}
+
+// Grounded AI layer: the deterministic result above renders instantly and stays the source
+// of truth; the model only reformulates it with per-claim record citations. No configured
+// key → no AI section at all, so default behavior is unchanged.
+let groundedAiAbort = null;
+
+function queueGroundedAnswer(result) {
+  const card = document.querySelector('#navigator-result .navigator-result-card');
+  if (!card) return;
+  if (groundedAiAbort) groundedAiAbort.abort();
+  const settings = loadAiSettings();
+  if (!aiEnabled(settings) || result.outcome === 'unsupported-request') return;
+  const mount = document.createElement('section');
+  mount.className = 'navigator-ai';
+  mount.innerHTML = '<p class="navigator-ai-status">Grounded AI · reformulating the exact records…</p>';
+  card.append(mount);
+  groundedAiAbort = new AbortController();
+  const { signal } = groundedAiAbort;
+  groundAnswer({ result, projects, relationships, settings, signal })
+    .then(({ text, model }) => {
+      if (signal.aborted) return;
+      mount.innerHTML = `
+        <p class="navigator-ai-label">AI-inferred answer · model ${escapeHtml(model)}</p>
+        <p class="navigator-ai-text">${escapeHtml(text)}</p>
+        <p class="navigator-ai-note">Reformulated from the exact records above; every claim carries its record ID. The deterministic result remains the source of truth.</p>`;
+    })
+    .catch((error) => {
+      if (signal.aborted || error?.name === 'AbortError') return;
+      mount.innerHTML = `
+        <p class="navigator-ai-label">Grounded AI unavailable</p>
+        <p class="navigator-ai-status">${escapeHtml(error?.message || 'Unknown error')}</p>
+        <p class="navigator-ai-note">The deterministic result above is unaffected.</p>`;
+    });
+}
+
+function reflectAiState() {
+  const settings = loadAiSettings();
+  document.querySelector('#ai-state').textContent = aiEnabled(settings)
+    ? `on · ${settings.model}`
+    : 'off';
+}
+
+function initAiPanel() {
+  const form = document.querySelector('#ai-form');
+  const settings = loadAiSettings();
+  document.querySelector('#ai-base-url').value = settings.baseUrl;
+  document.querySelector('#ai-model').value = settings.model;
+  document.querySelector('#ai-key').value = settings.apiKey;
+  reflectAiState();
+  form.onsubmit = (event) => {
+    event.preventDefault();
+    saveAiSettings({
+      baseUrl: document.querySelector('#ai-base-url').value.trim(),
+      model: document.querySelector('#ai-model').value.trim(),
+      apiKey: document.querySelector('#ai-key').value.trim(),
+    });
+    reflectAiState();
+  };
 }
 
 function focusNavigatorRelationship(id) {
@@ -4618,6 +4689,7 @@ svg.onpointerup = svg.onpointercancel = () => {
 renderDistricts();
 renderCity();
 renderPassport();
+initAiPanel();
 
 // District routes: the hash is the source of truth for scope/tab (spec §13). Apply the
 // current route once at startup so deep links like #/district/defi/overview work.
