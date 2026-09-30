@@ -1959,6 +1959,58 @@ Next:
 
 ```
 
+### 2026-09-30 — Lead agent / frontend — Metropolis demo-blockers fixed + focus legibility polish
+
+Context: chances calibrated against the Metropolis hackathon (monad.xyz/metropolis; track 4
+"Trust, Identity & AI Infrastructure"; submission deadline 13 Oct). Owner priority order:
+demo-blocking bugs first, polish now, a real AI layer next. All fixes verified in-browser.
+
+Changed:
+- `src/main.js` (Navigator): `#search` submits on Enter via explicit `requestSubmit()` —
+  implicit form submission is unreliable in this embedded WebView (reproduced: a trusted
+  Enter keydown reached the input, no submit event fired; `requestSubmit()` works). The
+  keyboard path now matches the ↗ button.
+- `src/main.js` (Navigator): `applyNavigatorMapAction` expands the passport drawer when the
+  result carries `openPassportProjectId` — previously the drawer content updated while the
+  panel stayed collapsed off-screen, so a judge could miss the passport entirely.
+- `src/main.js` (routes): district routes now force the render mode. Non-relationships tabs
+  restore City view (deep-linking a district from city Graph mode kept the node-graph
+  background behind the District Lens), and the `#/city` route resets graph mode so a
+  district-relationships visit cannot leak it into the archipelago.
+- `src/city3d.js` (billboards): district buttons dissolve with camera zoom instead of
+  covering the focused building — smoothstep opacity over `control.radius` 165→205, hidden
+  below. All camera flights (focusProject 58/92, focusIsland ≤150) end fully clear; the
+  default view (300) and max wheel-out (215) keep every button fully opaque. The fade
+  recomputes each frame and gates raycast visibility; the district-scope off switch stays.
+- `src/city3d.js` (legibility polish, per VISUAL_DIRECTION "bright lavender outline"):
+  selected ring fill 0.12→0.2 and `#c8acff`→`#d6c0ff`, selection outline to opacity 1,
+  Navigator match rings fill 0.06→0.13 / stroke 0.7→0.85 and `#a9d0ff`→`#b4d9ff`,
+  result beacons 0.75→0.85.
+
+Files changed: `src/main.js`, `src/city3d.js`, `docs/WORKLOG.md`
+
+Verified:
+- `npm run build` green; SHA-256 promotion gate unchanged (runtime-only changes, snapshot
+  untouched).
+- 1440×900 in-browser: default view shows all five billboards fully opaque; a typed query +
+  Enter runs the search; the Kuru passport auto-expands with its evidence records; the DEFI
+  billboard dissolves during the focus flight so the selected building and brightened ring
+  are unobstructed; Graph→district deep link renders the island with the City toggle
+  selected; the district relationships tab still switches to graph; the breadcrumb exit
+  lands on `#/city` in City view. Zero console errors after the full flow.
+- Billboard distances measured from project data: DeFi button sits at 228 world units from
+  the default camera — the tightest case; the 165–205 fade band keeps it at full opacity.
+
+Limitations:
+- The zoom-fade band is calibrated to the current flight radii; changing focusProject or
+  focusIsland ranges requires retuning the two constants.
+- Playwright `press("Enter")` delivers no key events in this IAB (automation quirk,
+  pre-existing); keyboard verification used the CUA path.
+
+Next:
+- AI layer per owner decision: one real grounded LLM call over graph+evidence (sponsor
+  models — Qwen/KIMI/Hunyuan credits), deterministic retrieval as fallback; then three clean
+  demo-script run-throughs and the Metropolis submission write-up (deadline 13 Oct).
 
 ## Open questions
 

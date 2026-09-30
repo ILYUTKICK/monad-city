@@ -249,17 +249,17 @@ export function createCity3D({
     scene.add(group);
     return group;
   }
-  const selectedRing = flatRing(4.5, 4.95, '#c8acff', 0.12, '#c8acff', 0.95);
+  const selectedRing = flatRing(4.5, 4.95, '#d6c0ff', 0.2, '#d6c0ff', 0.95);
   const selectedOutline = new THREE.LineSegments(
     new THREE.EdgesGeometry(new THREE.BoxGeometry(4.15, 0.55, 3.45)),
-    new THREE.LineBasicMaterial({ color: '#c8acff', transparent: true, opacity: 0.95 }),
+    new THREE.LineBasicMaterial({ color: '#d6c0ff', transparent: true, opacity: 1 }),
   );
   selectedOutline.visible = false;
   scene.add(selectedOutline);
 
   const matchRings = new Map();
   const matchRingFor = (id) => {
-    if (!matchRings.has(id)) matchRings.set(id, flatRing(4.3, 4.7, '#a9d0ff', 0.06, '#a9d0ff', 0.7));
+    if (!matchRings.has(id)) matchRings.set(id, flatRing(4.3, 4.7, '#b4d9ff', 0.13, '#b4d9ff', 0.85));
     return matchRings.get(id);
   };
   const matchBeacons = new Map();
@@ -388,6 +388,14 @@ export function createCity3D({
     districtButtons.push(sprite);
   });
 
+  // Billboards are overview wayfinding: every camera flight that closes in on a building or
+  // frames an island ends below CAMERA_RADIUS_HIDE, so the buttons dissolve with zoom instead
+  // of covering the buildings they label. The band must stay inside the flight range
+  // (focusIsland caps at 150) and below the wheel-out cap (215) so max zoom-out keeps them.
+  const CAMERA_RADIUS_SHOW = 205;
+  const CAMERA_RADIUS_HIDE = 165;
+  let districtButtonsAllowed = true;
+
   // ---------- filler fabric (seeded, never beside a project; scaled per island) ----------
   const fillerMaterials = [];
   const fillerMesh = (w, h, d, x, y, z, hex) => {
@@ -497,6 +505,16 @@ export function createCity3D({
       control.target.z + control.radius * sinE * Math.sin(control.azimuth),
     );
     camera.lookAt(control.target);
+    const billboardT = THREE.MathUtils.clamp(
+      (control.radius - CAMERA_RADIUS_HIDE) / (CAMERA_RADIUS_SHOW - CAMERA_RADIUS_HIDE),
+      0,
+      1,
+    );
+    const billboardOpacity = billboardT * billboardT * (3 - 2 * billboardT);
+    districtButtons.forEach((sprite) => {
+      sprite.material.opacity = billboardOpacity;
+      sprite.visible = districtButtonsAllowed && billboardOpacity > 0.02;
+    });
   }
 
   function panBy(dx, dy) {
@@ -769,8 +787,8 @@ export function createCity3D({
       let beacon = matchBeacons.get(id);
       if (match && !beacon) {
         beacon = new THREE.Mesh(
-          new THREE.OctahedronGeometry(0.75),
-          new THREE.MeshBasicMaterial({ color: '#a9d0ff' }),
+          new THREE.OctahedronGeometry(0.85),
+          new THREE.MeshBasicMaterial({ color: '#b4d9ff' }),
         );
         beacon.position.y = view.topY + 1.5;
         view.group.add(beacon);
@@ -847,6 +865,7 @@ export function createCity3D({
   }
 
   function setDistrictButtonsVisible(visible) {
+    districtButtonsAllowed = visible;
     districtButtons.forEach((sprite) => {
       sprite.visible = visible;
     });

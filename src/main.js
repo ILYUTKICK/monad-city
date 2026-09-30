@@ -3629,6 +3629,9 @@ function applyNavigatorMapAction(result) {
   renderDistricts();
   renderCity();
   renderPassport();
+  // A search that opens a single passport also expands the panel — otherwise the updated
+  // passport stays hidden behind the collapsed drawer the result just advertised.
+  if (action.openPassportProjectId) setPassportExpanded(true);
   if (action.focusProjectId && action.type !== 'focus-district') {
     focusProjectOnMap(action.focusProjectId, {
       neighborhood: action.type === 'focus-neighborhood',
@@ -4395,6 +4398,11 @@ function applyRoute() {
       activeDistrict = null;
       districtTab = 'overview';
       exitDistrictScope();
+      if (graph) {
+        // #/city is the archipelago route; a district relationships visit must not leak
+        // graph mode into it.
+        setMapView('city');
+      }
       renderDistrictBar();
       setNavigatorContext();
       renderDistricts();
@@ -4417,7 +4425,6 @@ function applyRoute() {
     location.replace('#/district/' + districtSlug(activeDistrict) + '/overview');
     return;
   }
-  const previousTab = districtTab;
   districtTab = parsed.tab;
   if (districtChanged) {
     city3d.enterDistrict(activeDistrict, { animate: !reducedMotion });
@@ -4447,7 +4454,9 @@ function applyRoute() {
       setMapView('graph');
       renderCity();
     }
-  } else if (previousTab === 'relationships' && graph) {
+  } else if (graph) {
+    // Only the relationships tab is a graph view; arriving from city Graph mode or from
+    // relationships must restore the island render.
     setMapView('city');
     renderCity();
   }
@@ -4563,6 +4572,14 @@ document.querySelector('#search-form').onsubmit = (event) => {
   event.preventDefault();
   runNavigatorSearch(document.querySelector('#search').value);
 };
+
+// Implicit Enter submission is not reliable in every embedded WebView, so request it
+// explicitly — the keyboard path must match the ↗ button.
+document.querySelector('#search').addEventListener('keydown', (event) => {
+  if (event.key !== 'Enter') return;
+  event.preventDefault();
+  document.querySelector('#search-form').requestSubmit();
+});
 
 document.querySelector('#about').onclick = () => document.querySelector('#about-dialog').showModal();
 document.querySelector('#close-dialog').onclick = () => document.querySelector('#about-dialog').close();
