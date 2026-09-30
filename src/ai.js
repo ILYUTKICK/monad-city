@@ -6,10 +6,10 @@
 export const AI_SETTINGS_STORAGE_KEY = 'monad-city.ai-settings';
 
 export const AI_DEFAULTS = Object.freeze({
-  // OpenAI-compatible chat-completions endpoint. DashScope's compatible mode serves the
-  // hackathon sponsor model (Qwen); any other OpenAI-compatible base URL works too.
-  baseUrl: 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1',
-  model: 'qwen-plus',
+  // Qwen Cloud is the Metropolis hackathon's official sponsor path: keys are issued in its
+  // console, the endpoint is OpenAI-compatible, and the bounty model is qwen3.8-max.
+  baseUrl: 'https://maas.qwencloudapi.com/compatible-mode/v1',
+  model: 'qwen3.8-max',
   apiKey: '',
 });
 
