@@ -17,7 +17,7 @@ import {
   reviewGovernanceCompanion,
 } from './evidence.js';
 import { retrieveNavigator, runDistrictNavigatorChecks } from './retrieval.js';
-import { loadAiSettings, saveAiSettings, aiEnabled, groundAnswer } from './ai.js';
+import { loadAiSettings, saveAiSettings, aiEnabled, runNavigatorAgent } from './ai.js';
 import {
   DISTRICT_EXPERIENCES,
   DISTRICT_TABS,
@@ -2979,7 +2979,7 @@ document.querySelector('#app').innerHTML = `
             <label>API endpoint (OpenAI-compatible)<input id="ai-base-url" autocomplete="off" spellcheck="false" /></label>
             <label>Model<input id="ai-model" autocomplete="off" spellcheck="false" /></label>
             <label>API key<input id="ai-key" type="password" autocomplete="off" /></label>
-            <p class="ai-note">The model only reformulates the exact records a search returns and cites their record IDs — it cannot add facts. Your key is stored in this browser and sent only to the endpoint above. Without a key the Navigator stays fully deterministic.</p>
+            <p class="ai-note">The agent plans and queries local, read-only tools over this project graph — projects, exact evidence records, relationships, coverage — then answers with evidence record IDs after every claim. It cannot add facts or reach the network. Your key is stored in this browser and sent only to the endpoint above. Without a key the Navigator stays fully deterministic.</p>
             <button type="submit">Save AI settings</button>
           </form>
         </details>
@@ -3595,9 +3595,9 @@ function renderNavigatorResult(result) {
   queueGroundedAnswer(result);
 }
 
-// Grounded AI layer: the deterministic result above renders instantly and stays the source
-// of truth; the model only reformulates it with per-claim record citations. No configured
-// key → no AI section at all, so default behavior is unchanged.
+// Agentic AI layer: the deterministic result above renders instantly and stays the source
+// of truth. The agent plans, queries local read-only tools over the same graph, and answers
+// with per-claim record citations. No configured key → no AI section at all.
 let groundedAiAbort = null;
 
 function queueGroundedAnswer(result) {
@@ -3608,17 +3608,38 @@ function queueGroundedAnswer(result) {
   if (!aiEnabled(settings) || result.outcome === 'unsupported-request') return;
   const mount = document.createElement('section');
   mount.className = 'navigator-ai';
-  mount.innerHTML = '<p class="navigator-ai-status">Grounded AI · reformulating the exact records…</p>';
+  mount.innerHTML = '<p class="navigator-ai-label">Agent · planning…</p><div class="navigator-ai-steps"></div>';
   card.append(mount);
+  const steps = mount.querySelector('.navigator-ai-steps');
   groundedAiAbort = new AbortController();
   const { signal } = groundedAiAbort;
-  groundAnswer({ result, projects, relationships, settings, signal })
+  runNavigatorAgent({
+    question: result.query || '',
+    projects,
+    relationships,
+    evidenceRecords,
+    snapshot: {
+      version: evidenceSnapshot.version,
+      recordCount: evidenceSnapshot.records.length,
+      reviewedAt: evidenceSnapshot.reviewedAt,
+    },
+    settings,
+    signal,
+    onStep: (step) => {
+      if (signal.aborted || step.type !== 'tool') return;
+      const line = document.createElement('p');
+      line.className = 'navigator-ai-step';
+      line.textContent = `→ ${step.summary}`;
+      steps.append(line);
+    },
+  })
     .then(({ text, model }) => {
       if (signal.aborted) return;
       mount.innerHTML = `
-        <p class="navigator-ai-label">AI-inferred answer · model ${escapeHtml(model)}</p>
+        <p class="navigator-ai-label">AI-inferred answer · agent on ${escapeHtml(model)}</p>
+        <div class="navigator-ai-steps">${steps.innerHTML}</div>
         <p class="navigator-ai-text">${escapeHtml(text)}</p>
-        <p class="navigator-ai-note">Reformulated from the exact records above; every claim carries its record ID. The deterministic result remains the source of truth.</p>`;
+        <p class="navigator-ai-note">The agent planned, queried local graph tools, and every claim cites its evidence record ID. It saw no data beyond this graph; the deterministic result remains the source of truth.</p>`;
     })
     .catch((error) => {
       if (signal.aborted || error?.name === 'AbortError') return;

@@ -2079,6 +2079,59 @@ Next:
   Grounded AI settings; tune the system prompt against the real model; then demo run-throughs
   ×3 and the Metropolis submission write-up (deadline 13 Oct).
 
+### 2026-09-30 (cont.) — Lead agent / AI — Agentic Navigator core: planning + local tools + per-claim citations
+
+Owner gave go («Даю добро») after the cost briefing (expected spend < $2 of their $10 budget;
+BYO-key, per-search calls only, dev on the cheap model). Target: the Qwen bounty criteria —
+"real agentic use: planning, tool use, multi-step execution", "depth over surface-level calls".
+
+Changed:
+- `src/ai.js`: the single-shot reformulation call became an AGENT. `AGENT_TOOLS` (4 tools,
+  OpenAI function-calling schema): `search_projects` (free text + district/limit, scored
+  name/id/type/tag/description matching), `get_project_evidence` (approved records only:
+  id/status/claim/source/timestamp/scope/limitations/warnings), `get_project_relationships`
+  (typed edges + evidenceState + approved evidence ids), `get_district_coverage` (project /
+  evidence-backed / relationship counts by provenance + snapshot meta; whole-city or
+  per-district). `createToolExecutors` is pure and deterministic — tools read the same
+  in-memory graph the city renders, touch no network, mutate nothing. `runNavigatorAgent`
+  runs the standard tool-calling loop (≤6 rounds): assistant tool_calls → local execution →
+  tool messages → final text; a first-round 400 falls back to a plain grounded call for
+  endpoints that reject the tools parameter. The system prompt keeps the full trust contract
+  (tool-facts only, cite exact record IDs per claim, Observed/Claimed preserved, never
+  verified/safe/active/endorsed, admit gaps, answer in the question's language).
+- `src/main.js`: `queueGroundedAnswer` now runs the agent and renders a LIVE tool trace
+  (`→ search_projects(query="kuru") → 1 match(es)`) inside the result card as steps execute,
+  then the final "AI-inferred answer · agent on <model>" block; the note states the agent saw
+  no data beyond this graph and the deterministic result remains the source of truth.
+  unsupported-request outcomes are still never sent to the model.
+- `src/style.css`: mono step-trace styling.
+
+Files changed: `src/ai.js`, `src/main.js`, `src/style.css`, `docs/WORKLOG.md`
+
+Verified:
+- `node --check` + `npm run build` green (SHA gate untouched).
+- Executors unit-tested on real data (node): kuru search 1 match / evidence 5 approved records
+  (E-KURU-CAP-001 Claimed first) / kuru 3 edges, monad 8 edges / city coverage 176-172-17
+  (6 sourced + 11 illustrative-or-declared, snapshot phase-3.5-v6) / Identity 1-0 / unknown
+  project and bad district return honest errors with hints.
+- Browser end-to-end with a multi-turn mock (tool_call → tool result → answer): the trace
+  renders live, the final answer cites REAL record ids pulled from REAL tool results
+  ([E-KURU-CAP-001], [E-KURU-CHAIN-001]), passport auto-expands, zero console errors,
+  test key + mock server cleaned up afterwards.
+
+Limitations:
+- Untested against the real Qwen endpoint until the owner's key lands (model names, CORS, and
+  tool-call formatting may need small prompt/param tuning).
+- The trace shows tool calls but not the model's hidden planning text; planning is implicit
+  in the call sequence.
+- max_tokens 700 and 6 rounds bound cost per question; long landscape answers may truncate.
+
+Next:
+- Owner pastes the Qwen Cloud key into Grounded AI settings → tune against the real model
+  → three clean demo run-throughs → Metropolis submission write-up + the Qwen blog article
+  (bounty deliverable). Kimi multilingual slot only after the core is stable (owner decision
+  pending).
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

@@ -2481,6 +2481,19 @@ details.navigator-evidence {
   font-size: 12.5px;
 }
 
+.navigator-ai-steps {
+  margin: 8px 0 0;
+  display: grid;
+  gap: 3px;
+}
+
+.navigator-ai-step {
+  margin: 0;
+  color: #8a7fb8;
+  font: 11px/1.4 ui-monospace, Menlo, monospace;
+  overflow-wrap: anywhere;
+}
+
 /* ----- city stage, canvas, labels ----- */
 
 #city-stage {
