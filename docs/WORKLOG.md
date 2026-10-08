@@ -2319,6 +2319,39 @@ Verified:
 Next:
 - Continue submission form mapping and video preparation when the owner's form arrives.
 
+### 2026-10-08 — Submission form fields prepared and entered
+
+Owner supplied four form screenshots and requested filling the entry. The authenticated Chrome
+form at `hackathon.monad.xyz/project?tab=submission` was available. Owner confirmed there are
+no technical-demo or pitch videos yet.
+
+Changed:
+- Kept name and selected Trust, Identity & AI Infrastructure track; entered the current AI
+  description, planned go-to-market strategy, public app URL and judge instructions.
+- Created a 1024px PNG logo export of the existing diamond identity (32,230 bytes) and uploaded
+  it; the portal marked logo complete. No app UI or README changes were made.
+- Finalized the public Qwen implementation article, explaining its contribution, tested
+  OpenRouter path and actual limitations. Its public GitHub URL is the prepared bounty link.
+- Updated submission package and recording script with verified form limits and deadline.
+
+Verified:
+- The form accepted 54-character tagline, 1,507-character description, 1,157-character
+  go-to-market text and 1,305-character judge instructions, within its displayed limits.
+- Save Changes accepted the initial fields and updated the saved timestamp. Link entry and
+  final save are the next UI step after publishing the article.
+- Logo dimensions/bytes pass displayed limits; native picker selected only the project PNG.
+- Official bounty detail requires actual Qwen agentic use, a demoable product on Monad and a
+  published article/blog post. It names no explicit endpoint or publishing-host restriction.
+- Form deadline: 14 October 2026 at 06:59 GMT+3. Demo max 3 minutes, pitch max 2 minutes.
+
+Limitations / next:
+- Required video URLs remain empty; no final submission was made.
+- A complete live-product URL field does not establish the "run on Monad Mainnet or Testnet"
+  eligibility requirement. Current app is static/read-only with no app contract or runtime
+  chain queries; organizer clarification remains necessary. Article-format acceptance is also
+  not established by successful URL validation.
+- Save the public article link, confirm saved readiness, record both videos and review the entry.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

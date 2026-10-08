@@ -110,7 +110,8 @@ track label and eligibility in the submission form.
 | Demo video | Script ready in `docs/DEMO_SCRIPT.md`; no finished video or hosted link yet |
 | Pitch video | Spoken script below; no finished video or hosted link yet |
 | Screenshot | `docs/preview.png` — actual application capture |
-| Agent design note | `docs/QWEN_BUILD_NOTES.md` — draft article, not published |
+| Qwen article | https://github.com/ILYUTKICK/monad-city/blob/main/docs/QWEN_BUILD_NOTES.md — published technical article; acceptance as the bounty's article format remains an organizer decision |
+| Logo | `docs/assets/monad-city-logo.png` — 1024 × 1024 PNG, 32,230 bytes; exported from the existing diamond identity |
 | Team / presenter | Owner to supply the actual name and team details in the form |
 
 ## Short spoken pitch (about 60–75 seconds)
@@ -140,7 +141,7 @@ they can inspect.
 - [x] Public repository availability checked.
 - [x] README and current project context reconciled with implementation.
 - [x] Short demo and pitch scripts prepared.
-- [ ] Verify form-specific fields, required assets and exact limits from the owner's screenshot.
+- [x] Read form-specific fields, required assets and exact limits from the owner's screenshots and live form.
 - [x] Deploy the current tested build and test the public URL without the owner's browser key.
 - [x] Match the deployed application to repository commit `6a4bb5459d4b88411b0e9e1d8a4a7c088926e8f5`; later changes in this preparation stage are documentation only.
 - [ ] Record the real AI path; edit waiting time transparently if needed.
@@ -148,15 +149,44 @@ they can inspect.
 - [ ] Fill actual team details, selected track, links and assets; review the final form.
 - [ ] Submit on the portal and retain its confirmation.
 
-Official portal checked 2026-10-08: https://hackathon.monad.xyz/ displays “1 Sep to 13 Oct”.
-The exact deadline time, video durations, upload limits, field limits and full eligibility rules
-are not established by that public login page. Do not turn another entrant's README into rules.
-The owner's form will be the source for final field mapping.
+Authenticated portal checked 2026-10-08: deadline **14 October 2026, 06:59 GMT+3**.
+Form limits: project name 120 characters; one-line description 200; description, go-to-market
+and judge instructions 8,000 each. Logo: PNG/JPG/WEBP, max 2 MB, at least 500 px, max 4 million
+pixels. Technical demo: working product, max 3 minutes. Pitch: team, problem and motivation,
+max 2 minutes. Videos require hosted HTTPS links. Optional ad: max 30 seconds; X profile optional.
+
+The live-product field explicitly requires "Must run on Monad Mainnet or Testnet". The current
+application is a static research interface using Monad ecosystem evidence, with no app contract
+or runtime chain queries. A complete link field does not establish eligibility. Confirm the
+read-only application's fit with organizers before treating the entry as eligible.
 
 ## Sponsor bounty notes
 
-Qwen integration is implemented and has been exercised through OpenRouter. That alone does not
-establish compliance with an Alibaba/Qwen bounty that may require a specific endpoint, model,
-article, credits, or demonstration. `QWEN_BUILD_NOTES.md` documents actual use; check the official
-bounty text before claiming eligibility. Other sponsor integrations are not implemented and
-should not be selected just because their projects appear in the dataset.
+The authenticated [Qwen bounty](https://hackathon.monad.xyz/tracks/best-builds-with-qwen-3-8-max)
+requires real agentic Qwen 3.8 Max use, a working product deployed and demoable on Monad, and
+a published article/blog post about Qwen's use and value. Its visible text does not explicitly
+require a direct Qwen Cloud endpoint or a particular publishing host. We document OpenRouter
+use and supply a public GitHub article; eligibility and acceptance of that article format are
+not guaranteed. Other sponsor integrations are not implemented.
+
+## Form progress (2026-10-08)
+
+Track retained: Trust, Identity & AI Infrastructure. Name retained: Monad City. Updated tagline
+and description to include the current optional agent, actual counts and read-only boundaries.
+Added go-to-market plan, public app URL, judge instructions and PNG logo. No team credentials,
+shared API key, existing partnerships or traction claims were invented.
+
+Go-to-market plan: first users are Monad newcomers and builders researching infrastructure.
+Planned acquisition uses practical project research posts and short demos on X and in Monad
+builder communities, feedback from a small tester group, and invitations to project teams to
+check source links. Planned measures are reaching a relevant Passport, opening a source and
+returning for another research task. Structured agent access and source submissions are future
+steps, not implemented functionality.
+
+Judge instructions cover keyless Kuru source search, full-record inspection, Magma–Switchboard
+relationship inspection, City/Graph, district filters and the active-contract evidence gap.
+Optional agent setup specifies the user's own OpenRouter key, endpoint
+`https://openrouter.ai/api/v1` and tested model `qwen/qwen3.8-max-0902`. No key is supplied.
+
+Owner confirmed no videos exist yet. Required technical-demo and pitch URLs stay empty.
+Optional ad and X profile stay empty. No final submission confirmation exists.

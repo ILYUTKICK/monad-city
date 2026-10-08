@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Monad City</title>
+  <rect width="1024" height="1024" fill="#0e0d14"/>
+  <path d="M512 152 872 512 512 872 152 512Z" fill="none" stroke="#bea3ff" stroke-width="22"/>
+  <path d="M512 230 794 512 512 794 230 512Z" fill="none" stroke="#bea3ff" stroke-width="10"/>
+  <path d="M512 272 752 512 512 752 272 512Z" fill="#bea3ff"/>
+</svg>

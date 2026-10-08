@@ -2,9 +2,10 @@
 
 ## Recording target
 
-Approximately 2 minutes 20 seconds. This is an editorial target, not a verified hackathon limit.
-Adjust to the exact limit shown in the final form. A separate short pitch is in
-`docs/SUBMISSION_PACKAGE.md`.
+Approximately 2 minutes 20 seconds, within the form's confirmed maximum of 3 minutes.
+The technical demo must show the working product, not slides or a code walkthrough.
+A separate pitch (maximum 2 minutes) must introduce the team, problem, and motivation;
+its spoken draft is in `docs/SUBMISSION_PACKAGE.md`. Add the actual presenter/team introduction.
 
 Record actual application interaction and real provider output. No prepared answer should be
 shown as a live model response. A finished video has not yet been created.
@@ -65,6 +66,7 @@ can establish.
 ## Export and hosting
 
 Record at 1080p if the capture tool permits, with readable browser zoom and clear narration.
-Use a standard MP4 (H.264/AAC) and retain the original recording. Exact file-size and duration
-requirements remain pending the official form. The hosted video link must be accessible to
-judges without the presenter's account; test that access before entering it in the form.
+Use a standard MP4 (H.264/AAC) and retain the original recording. The form accepts HTTPS links
+to YouTube, Loom, Vimeo, or another video host: demo up to 3 minutes, pitch up to 2 minutes.
+The optional promotional clip is up to 30 seconds. No file-size limit for hosted videos was
+displayed in the form. Test judge access without the presenter's account before entering links.

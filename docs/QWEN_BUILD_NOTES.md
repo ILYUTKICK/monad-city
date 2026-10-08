@@ -1,7 +1,6 @@
-# How Monad City uses a tool-calling AI agent to select ecosystem evidence
+# How Monad City uses Qwen to select ecosystem evidence
 
-Draft implementation article for the submission. It has not been published and is not a
-statement that a sponsor bounty's conditions have been met.
+Published implementation note, 2026-10-08.
 
 Monad City starts with a problem in ecosystem discovery: finding a project is easier than
 understanding which statements about it have a source. The interface presents Monad projects
@@ -19,6 +18,18 @@ The optional agent selects relevant evidence. It can call four local tools:
 These tools inspect the checked-in graph in the browser. They do not crawl websites, query a
 blockchain, execute transactions, or change the snapshot. The provider receives the question
 and tool results through an OpenAI-compatible chat-completions API.
+
+## What Qwen contributes
+
+Qwen supplies the tool-calling model for the tested agent path. It can choose which graph
+tools to call, use their returned evidence to make subsequent calls, and select the records
+relevant to the user's question. For example, investigating a declared integration can require
+reading a project's relationships and then inspecting the exact records behind that edge.
+
+This gives the Navigator an additional way to inspect the structured graph without a separate
+hard-coded answer for every question. The deterministic search still handles basic discovery
+and map focus; Qwen's contribution is the bounded tool conversation and final evidence
+selection. We have not measured a quality or latency improvement over other models.
 
 ## Why final output is a selection
 
@@ -65,5 +76,15 @@ of the public build. Future shared access would require a separately scoped back
 management design.
 
 The next product step is reviewed relationship coverage and evidence refresh, followed by easier
-access to the structured graph for other agents. Sponsor eligibility, accepted endpoints/models,
-and any article-publication requirements must be checked against the actual bounty rules.
+access to the structured graph for other agents.
+
+## Try it and inspect the code
+
+- [Monad City](https://monad-city.vercel.app/)
+- [Agent implementation](../src/ai.js)
+- [AI tests](../scripts/ai-checks.test.js)
+- [Recorded QA results](QA_REPORT_2026-10-08.md)
+
+The tested model is Qwen through OpenRouter, rather than a direct Qwen Cloud endpoint.
+This article documents that implementation; it does not establish acceptance for a sponsor
+bounty or the hackathon's requirement for a product deployed on Monad.
