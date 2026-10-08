@@ -190,3 +190,7 @@ Optional agent setup specifies the user's own OpenRouter key, endpoint
 
 Owner confirmed no videos exist yet. Required technical-demo and pitch URLs stay empty.
 Optional ad and X profile stay empty. No final submission confirmation exists.
+
+Portal progress was saved at 2026-10-08 12:58 UTC (15:58 Moscow): **5/6 sections complete**,
+including the Qwen article field. Only the required demo/pitch section remains incomplete in
+the portal checklist. This is saved progress, not a final submission or eligibility approval.

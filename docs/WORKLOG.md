@@ -2352,6 +2352,20 @@ Limitations / next:
   not established by successful URL validation.
 - Save the public article link, confirm saved readiness, record both videos and review the entry.
 
+### 2026-10-08 — Submission progress saved (5/6)
+
+- Published Qwen article in commit `a297397` and opened its GitHub page while signed out;
+  article text and implementation links rendered publicly.
+- Entered that URL into the selected Alibaba Cloud bounty. The portal showed 1 of 1 bounty
+  fields complete and 5 of 6 submission sections complete.
+- Saved again; portal displayed "Progress saved", last saved 2026-10-08 12:58 UTC,
+  and disabled Save Changes. Only the demo/pitch section remains incomplete in its checklist.
+- Required demo and pitch fields remain empty by the owner's confirmation; no fake links,
+  shared credentials, or final submission were supplied.
+- Confirmation capture: `/private/tmp/monad-city-submission-saved.png`.
+- Technical eligibility remains distinct from field completeness: clarify the read-only app's
+  fit with the Monad Mainnet/Testnet requirement, then record and link both real videos.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
