@@ -2300,6 +2300,25 @@ Limitations / next:
 - Finished demo/pitch videos and exact submission-form requirements remain pending.
   Map the prepared copy to the owner's screenshot and record the actual agent flow.
 
+### 2026-10-08 — README simplified
+
+Owner requested an ordinary, minimal project README without hackathon positioning.
+
+Changed:
+- Replaced the long README with a brief description, app link, screenshot, feature list,
+  local setup, optional AI setup and development commands.
+- Removed submission materials, sponsor/bounty language, pitch copy and detailed workflow
+  inventories from the README. Their dedicated documents remain available.
+- Retained the browser key/provider behavior and a short explanation of static data and
+  illustrative content.
+
+Verified:
+- Commands match package.json; referenced files exist; git diff whitespace check passes.
+- Documentation-only change; application behavior and evidence snapshot are unchanged.
+
+Next:
+- Continue submission form mapping and video preparation when the owner's form arrives.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
