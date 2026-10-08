@@ -1,10 +1,38 @@
 # Monad City — AI Navigator
 
+## Current optional agent layer — 2026-10-08
+
+The deterministic retrieval contract below remains the authority for map selection and local
+results. The current prototype also has an optional browser-based OpenAI-compatible agent in
+`src/ai.js`, using a user-configured endpoint, model and key. Queries and local tool results go
+to that provider; tools themselves query only the in-memory graph. This is not document RAG,
+live crawling, blockchain access, or a backend.
+
+The agent may call `search_projects`, `get_project_evidence`, `get_project_relationships` and
+`get_district_coverage` for at most six completion rounds. Final output is a constrained JSON
+selection: `evidence` with 1–3 evidence IDs, `coverage` with a previously queried scope, or
+`insufficient-evidence`. No model-written factual prose is displayed. Every selected evidence
+ID must have been retrieved in the current tool conversation, be approved, carry an available
+HTTPS source, support factual claims and have an eligible claim status. Exact record claims,
+statuses, source links, scope and limitations are rendered by the application. Quality warnings
+stay visible; `timeBoundEligible` is eligibility metadata, not a warning. Selection relevance
+remains an AI inference, and neither ID validation nor rendering verifies source accuracy.
+
+Unsupported conclusions, unmet proof conditions and empty queries stay local. An explicit
+tools-not-supported HTTP400 returns the deterministic fallback without a plain model retry.
+Other provider errors retain the local result. `finish_reason: length` is rejected with an
+incomplete-response notice, rather than displaying a partial answer. Tool messages are complete
+JSON; payloads are not cut halfway through a record. The old reformulation helpers remain unused
+by the UI.
+
+Run the bounded provider simulations and dataset regressions with `npm run test:ai`. They use
+an artificial key and no external network.
+
 ## Purpose and Phase 3 bounded-source extension
 
 The Navigator is a grounded interface to the Monad project graph. It helps a user find, understand, compare, and navigate projects; it is not a generic conversational assistant.
 
-The Navigator uses deterministic structured retrieval over the curated local `projects` and `relationships` arrays and joins the exact-claim records promoted in the active evidence snapshot (52 records across 36 projects as of phase-3.5-v3). It still has no external API, model call, embeddings, network access, backend, or paid service. Profiles without source-backed records remain illustrative Demo data.
+The local Navigator uses deterministic structured retrieval over the curated `projects` and `relationships` arrays and joins the exact-claim records promoted in the active evidence snapshot. At phase-3.5-v6 this is 193 records, with approved evidence for 172 of 176 displayed projects and six sourced relationships. Local retrieval itself has no model call, embeddings, external API or backend. Profiles without source-backed records remain illustrative Demo data. The optional provider-backed layer is described above.
 
 `src/retrieval.js` is intentionally independent from UI state. Its pure entry point is:
 

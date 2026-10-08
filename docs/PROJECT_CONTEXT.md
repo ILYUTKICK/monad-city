@@ -68,42 +68,39 @@ Directories and explorers already exist. Monad City needs to win through the com
 
 If a feature does not strengthen one of these, it is probably scope creep.
 
-## Current prototype status
+## Current prototype status (2026-10-08)
 
-The current repository contains a dependency-free, review-gated static prototype:
+The repository is a static vanilla JS/CSS application with vendored Three.js for the City
+and SVG for Graph View. Current implementation and `docs/WORKLOG.md` supersede the earlier
+10-project / v2 / no-AI prototype description.
 
-- `src/main.js` renders the SVG City/Graph interface, filters, search, grounded Navigator results, and Project Passport;
-- `src/retrieval.js` provides deterministic local retrieval over projects, categories, capabilities, relationships, and evidence;
-- `data/evidence-snapshots/phase-3.5-v2.json` is the active checked-in approved evidence snapshot;
-- `src/evidence-snapshots/phase-3.5-v2.generated.js` is its deterministic promoted runtime module;
-- the immutable `phase-3.5-v1` JSON/module pair remains available for explicit rollback;
-- `src/evidence.js` selects and validates the active snapshot;
-- `scripts/evidence-workflow.js` supports local proposal, review, snapshot, diff, promotion, and verification steps;
-- `src/style.css` contains the visual system and responsive layouts;
-- `index.html` is the shell and `README.md` documents local operation.
+Implemented:
 
-Current functionality includes:
+- 176 projects across five districts; 172 have approved bounded evidence records;
+- active snapshot `phase-3.5-v6`: 193 records and 6 sourced relationships;
+- hybrid graph: 17 edges, including 11 illustrative or AI-inferred patterns;
+- project selection, City/Graph, district routes and four district views, Passport,
+  evidence links, quality/scope/limitation disclosures and review governance;
+- deterministic local Navigator retrieval, authoritative for map actions;
+- optional browser-based tool-calling AI, tested with Qwen via OpenRouter;
+- constrained AI evidence selection: only eligible IDs retrieved in the current tool
+  conversation may supply exact record claims to the UI; arbitrary model prose is rejected;
+- build-time manual evidence review and immutable SHA-256-gated snapshot promotion;
+- responsive UI and self-hosted Instrument Sans.
 
-- 10 illustrative projects across 5 districts;
-- City and Graph views;
-- district filters and project search;
-- click-to-select buildings;
-- deterministic local Navigator queries with grounded evidence references, uncertainty, and conservative no-result states;
-- Project Passport with exact source-backed records for a bounded subset and explicit Demo fallbacks;
-- 22 approved evidence records and 6 sourced relationships across 6 curated entities;
-- review-gated evidence states and a versioned, SHA-256-confirmed runtime promotion workflow;
-- drag, zoom, reset, and relationship visibility controls.
+The active evidence pair must match SHA-256
+`9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b`.
+Prior immutable snapshot pairs remain in the repository as explicit historical boundaries.
 
-Current limitations:
+Limitations:
 
-- no real AI;
-- no RAG;
-- no wallet or ownership claim;
-- no live blockchain connection, indexer, crawler, external API, or backend;
-- no live source synchronization or automatic project discovery;
-- source-backed records cover only six entities and support only their exact cited scopes;
-- project descriptions, placements, project-state patterns, and unsupported relationships remain illustrative Demo data;
-- review approval and canonical snapshot equality do not prove source accuracy, freshness, safety, legitimacy, or endorsement.
+- no runtime evidence synchronization, automatic discovery, document RAG, embeddings,
+  wallet flow, live blockchain feed, transaction execution or application backend;
+- optional AI requires a user-configured provider/key and browser-compatible endpoint;
+- static evidence supports exact cited scope, often directory listing or publisher claims;
+- source freshness, safety, legitimacy, endorsement and current activity are not established
+  by review approval, ID validation or the snapshot digest;
+- layout and heights are illustrative; unsupported profiles/edges remain labelled accordingly.
 
 ## Design north star
 

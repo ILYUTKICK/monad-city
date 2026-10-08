@@ -1,71 +1,69 @@
-# Monad City — Demo Script
+# Monad City — demo recording script
 
-## Target length
+## Recording target
 
-90 seconds.
+Approximately 2 minutes 20 seconds. This is an editorial target, not a verified hackathon limit.
+Adjust to the exact limit shown in the final form. A separate short pitch is in
+`docs/SUBMISSION_PACKAGE.md`.
 
-## Story
+Record actual application interaction and real provider output. No prepared answer should be
+shown as a live model response. A finished video has not yet been created.
 
-### 0–10 seconds — Problem
+## Before recording
 
-“Monad has many projects, but understanding how they connect still requires jumping between directories, docs, explorers, and social posts.”
+- Use the current public build when available; verify that its source matches this repository.
+- Use a desktop viewport around 1440×900. Start at `#/city` and reset the map.
+- Configure your own endpoint/model/key privately, then collapse AI settings. Record no key.
+- Confirm that `Show Kuru sources` and the Magma–Switchboard query finish with actual evidence
+  and a tool trace. Source selection and number of tool calls may vary; narration must match.
+- Keep a local no-key run available for provider failure. Label it local retrieval, and do not
+  describe it as a live AI run.
 
-Show the city and its districts.
+## Screen actions and English narration
 
-### 10–25 seconds — Ask the Navigator
+| Time | Screen action | Spoken narration |
+| --- | --- | --- |
+| 0:00–0:15 | Show the city overview and districts. | “Understanding a Monad project often means jumping between directories, documentation, registries, and explorers. Monad City brings project discovery, relationships, and their sources into one interface.” |
+| 0:15–0:35 | Ask `Show Kuru sources`. Keep the local result and actual AI tool activity visible. | “I’ll start with Kuru. Local graph retrieval finds the project and controls the map. The optional AI agent uses graph tools to inspect evidence and select relevant records.” |
+| 0:35–1:00 | Open the Kuru Passport. Show one Claimed record, its source link, and `Inspect full record`. | “The Passport shows the exact claim, who published it, and what the source supports. Claimed and Observed are distinct. We can inspect the full record and its limitations; one source does not make the whole project verified.” |
+| 1:00–1:35 | Ask `Explain the Magma Switchboard declared integration sources`. Expand the returned relationship and its record, then switch Graph View. | “Now I can inspect a documented connection. This record is a publisher's declaration about Magma and Switchboard. The graph shows its endpoints, but the evidence remains bounded: it is not reciprocal confirmation or a live service-health check.” |
+| 1:35–1:55 | Ask `Find AI projects with active contracts`. Show `Evidence unavailable`. | “A project can match the AI category without evidence of current activity. Here the Navigator explains that gap. It does not turn a listing or an inferred connection into proof.” |
+| 1:55–2:10 | Return to City, open DeFi Overview, briefly show Projects or Evidence. | “The current build contains 176 projects and 193 evidence records. District views help narrow the search. Sourced connections remain separate from illustrative or inferred edges.” |
+| 2:10–2:20 | Finish on the city or one clear Passport. | “Monad City gives people a city to explore and agents a graph they can inspect, with the sources and uncertainty kept visible.” |
 
-Ask:
+The AI waits are not guaranteed to fit these slots. If editing removes waiting time, add a simple
+“AI response wait shortened” caption to that cut. Do not speed up output to imply latency that
+was not observed. If the real query fails, retry outside the recording or include the honest
+failure/local-result state.
 
-> Show Kuru sources.
+## What must be visible
 
-The Navigator selects Kuru and returns five exact approved-snapshot evidence IDs with source links.
-Explain that each source supports only its displayed bounded claim.
+1. A city action tied to a query or project selection.
+2. A real agent tool call and resulting selected evidence in at least one recorded run.
+3. A source record's claim status, source and scope/limitations.
+4. A sourced relationship with its precise claim status.
+5. The evidence-gap response.
 
-### 25–45 seconds — Open a Passport
+The live agent layer selects 1–3 records. The local result may expose more. Do not promise that
+all five Kuru records will appear in the AI selection or a fixed sequence of tool calls.
 
-Open the Kuru Passport. Show:
+## Short version if the form limit is tighter
 
-- project description;
-- observed/claimed/attested/inferred status;
-- sources;
-- evidence timestamp;
-- contracts or activity;
-- connected projects.
+Keep Kuru search → Passport/source disclosure → one relationship in Graph View → evidence gap.
+Remove the district tour. Retain the explanation of what the model selects and what the source
+can establish.
 
-Keep the Demo profile-state label visible: sourced records do not turn the whole project into a
-verified or endorsed project.
+## Three rehearsal runs
 
-### 45–60 seconds — Show conservative uncertainty
+| Run | Mode | Pass condition | Status |
+| --- | --- | --- | --- |
+| 1 | No provider key / local discovery | City, Passport, source disclosure, districts and Graph work. | Previous QA covers these flows; repeat on public build. |
+| 2 | Owner's configured Qwen provider | Real tool calls end in eligible selected records; sources and limits visible. | Source/relationship queries passed previous QA; full timed rehearsal pending. |
+| 3 | Final recording conditions | Complete the chosen script, readable screen, actual output, no exposed key. | Pending recording. |
 
-Ask:
+## Export and hosting
 
-> Find AI projects with active contracts.
-
-The Navigator may focus the illustrative AI project, but it returns `Evidence unavailable`
-because the snapshot cannot establish active contracts or current onchain activity.
-
-### 60–78 seconds — Explain a relationship
-
-Ask:
-
-> Explain the Magma Switchboard declared integration sources.
-
-Open the relationship result. Show the `Claimed` status, exact evidence ID, publisher, scope, and
-limitations. Explain that a one-sided project declaration is not reciprocal confirmation or a live
-oracle-health check.
-
-### 78–86 seconds — Show the graph
-
-Focus the Magma–Switchboard result in Graph View. Explain that the city is a human-readable
-interface for the underlying evidence-linked project graph.
-
-### 86–90 seconds — Positioning
-
-“Monad City is a proof-backed AI navigator for the Monad ecosystem: a machine-readable graph for agents and a human-explorable city for everyone else.”
-
-## Demo rules
-
-- Never call illustrative data verified.
-- If a feature is mocked, label it Demo mode.
-- Prefer one excellent end-to-end story over many unfinished features.
-- Do not spend demo time explaining implementation details unless asked.
+Record at 1080p if the capture tool permits, with readable browser zoom and clear narration.
+Use a standard MP4 (H.264/AAC) and retain the original recording. Exact file-size and duration
+requirements remain pending the official form. The hosted video link must be accessible to
+judges without the presenter's account; test that access before entering it in the form.

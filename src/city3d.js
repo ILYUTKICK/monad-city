@@ -334,33 +334,36 @@ export function createCity3D({
     const label = island.key;
     const color = DISTRICT_BUTTON_COLORS[label] ?? '#aa8ae8';
     const glyph = DISTRICT_BUTTON_GLYPHS[label] ?? '◈';
-    const text = `${label.toUpperCase()} · ${island.list.length}`;
+    const text = `${label} · ${island.list.length}`;
 
-    // One canvas per district, drawn once. Deterministic system monospace — web fonts may not
-    // be loaded when the canvas draws.
+    // Paint immediately with the system fallback, then refresh the same texture once the
+    // self-hosted UI font is ready. Map startup never depends on a font request succeeding.
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    const font = '700 44px ui-monospace, Menlo, monospace';
-    ctx.font = font;
-    const glyphWidth = ctx.measureText(`${glyph} `).width;
-    const textWidth = ctx.measureText(text).width;
-    const padding = 30;
-    canvas.width = Math.ceil(glyphWidth + textWidth + padding * 2);
-    canvas.height = 92;
-    ctx.font = font;
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    ctx.beginPath();
-    ctx.roundRect(1.5, 1.5, canvas.width - 3, canvas.height - 3, 22);
-    ctx.fillStyle = 'rgba(10,10,16,0.88)';
-    ctx.fill();
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = color;
-    ctx.stroke();
-    ctx.fillStyle = color;
-    ctx.fillText(glyph, padding, canvas.height / 2 + 2);
-    ctx.fillStyle = '#f3edff';
-    ctx.fillText(text, padding + glyphWidth, canvas.height / 2 + 2);
+    const font = '600 40px "Instrument Sans", system-ui, sans-serif';
+    const drawLabel = () => {
+      ctx.font = font;
+      const glyphWidth = ctx.measureText(`${glyph} `).width;
+      const textWidth = ctx.measureText(text).width;
+      const padding = 28;
+      canvas.width = Math.ceil(glyphWidth + textWidth + padding * 2);
+      canvas.height = 88;
+      ctx.font = font;
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.beginPath();
+      ctx.roundRect(1, 1, canvas.width - 2, canvas.height - 2, 14);
+      ctx.fillStyle = 'rgba(15,15,22,0.96)';
+      ctx.fill();
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+      ctx.fillStyle = color;
+      ctx.fillText(glyph, padding, canvas.height / 2 + 1);
+      ctx.fillStyle = '#e9e6ef';
+      ctx.fillText(text, padding + glyphWidth, canvas.height / 2 + 1);
+    };
+    drawLabel();
 
     const sprite = new THREE.Sprite(
       new THREE.SpriteMaterial({
@@ -373,19 +376,24 @@ export function createCity3D({
     );
     // Always-on wayfinding, not geometry: exempt from depth testing and drawn above the
     // buildings (renderOrder) so tall towers never occlude the buttons. Altitude follows the
-    // island's own skyline — maxTopY + 10 clears every rooftop name pill (a ~20px pill tops
-    // out near topY + 6 at the default camera) — and world height 6 keeps the 44px canvas
-    // type readable at the default camera (radius 300).
+    // island's skyline: maxTopY + 15 separates district titles from rooftop project names
+    // (a ~20px label tops out near topY + 6 at the default camera). The restrained scale
+    // keeps project names above district furniture in the visual hierarchy.
     sprite.renderOrder = 20;
     const maxTopY = Math.max(
       ...island.list.map((project) => (project.id === 'monad' ? 6.9 : 0.35 + project.h * SCALE + 1)),
     );
-    sprite.position.set(island.cx, maxTopY + 10, island.cz);
-    const worldH = 6.0;
+    sprite.position.set(island.cx, maxTopY + 15, island.cz);
+    const worldH = 5.6;
     sprite.scale.set(worldH * (canvas.width / canvas.height), worldH, 1);
     sprite.userData.district = island.key;
     scene.add(sprite);
     districtButtons.push(sprite);
+    document.fonts.load(font).then(() => {
+      drawLabel();
+      sprite.material.map.needsUpdate = true;
+      sprite.scale.set(worldH * (canvas.width / canvas.height), worldH, 1);
+    }).catch(() => { /* Keep the readable fallback if the local font cannot load. */ });
   });
 
   // Billboards are overview wayfinding: every camera flight that closes in on a building or

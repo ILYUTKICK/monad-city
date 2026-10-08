@@ -1,9 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('./assets/fonts/instrument-sans/InstrumentSans-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('./assets/fonts/instrument-sans/InstrumentSans-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('./assets/fonts/instrument-sans/InstrumentSans-SemiBold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('./assets/fonts/instrument-sans/InstrumentSans-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
 
 :root {
+  --font-ui: 'Instrument Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: #e9e6ef;
   background: #0a0a0f;
-  font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-ui);
   font-size: 16px;
   font-synthesis: none;
   font-weight: 400;
@@ -13,8 +44,8 @@
   --border: #282631;
   --border-soft: #211f29;
   --text: #e9e6ef;
-  --muted: #9891a2;
-  --faint: #716a7d;
+  --muted: #aaa4b6;
+  --faint: #8d8799;
   --lavender: #bea3ff;
   --lavender-soft: #8f79bc;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -111,7 +142,7 @@ header {
   align-items: center;
   gap: 9px;
   color: #f0edf5;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-ui);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -134,7 +165,7 @@ header {
   padding-left: 24px;
   border-left: 1px solid #32303a;
   color: #8f8998;
-  font-size: 0.75rem;
+  font-size: 13px;
   white-space: nowrap;
 }
 
@@ -151,8 +182,8 @@ header nav {
 header nav button {
   position: relative;
   padding: 0;
-  color: #908997;
-  font-size: 0.75rem;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 header nav button span {
@@ -227,7 +258,7 @@ aside {
 .navigator-intro h1 {
   margin-top: 10px;
   color: #e9e4ef;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-ui);
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -235,8 +266,8 @@ aside {
 
 .navigator-intro p {
   margin-top: 8px;
-  color: #8f8998;
-  font-size: 0.75rem;
+  color: var(--muted);
+  font-size: 13px;
   line-height: 1.55;
 }
 
@@ -301,7 +332,7 @@ input:focus {
   background: #111019;
 }
 
-form button {
+#search-form button {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -558,7 +589,7 @@ form button {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 37px;
+  min-height: 40px;
   padding: 0 9px;
   gap: 9px;
   border: 1px solid transparent;
@@ -615,7 +646,7 @@ form button {
 .city-top h2 {
   margin-top: 7px;
   color: #e8e3ed;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-ui);
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -650,7 +681,7 @@ form button {
 
 .view-toggle button {
   min-width: 66px;
-  height: 31px;
+  height: 36px;
   padding: 0 10px;
   border-radius: 4px;
   color: #7f768a;
@@ -749,8 +780,8 @@ form button {
 
 .city-controls button {
   display: grid;
-  width: 33px;
-  height: 33px;
+  width: 36px;
+  height: 36px;
   place-items: center;
   color: #afa3b9;
   font-size: 1rem;
@@ -879,14 +910,14 @@ form button {
   border-radius: 11px;
   background: color-mix(in srgb, var(--project) 19%, #15121b);
   color: #f2ebf9;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-ui);
   font-size: 1.55rem;
   font-weight: 600;
 }
 
 .project-heading h2 {
   color: #f0edf3;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-ui);
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: -0.035em;
@@ -1416,7 +1447,7 @@ dialog::backdrop {
 
 dialog h2 {
   margin: 13px 0 5px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-ui);
   font-size: 1.65rem;
   font-weight: 600;
 }
@@ -2131,18 +2162,18 @@ details.navigator-evidence {
    ===================================================================== */
 
 :root {
-  --island-panel: rgba(13, 13, 19, 0.93);
-  --island-border: rgba(169, 142, 230, 0.28);
+  --island-panel: #0f0f16;
+  --island-border: rgba(205, 198, 225, 0.16);
 }
 
 /* ----- guidebook typography (shared by floating panels) ----- */
 
 .navigator,
 .passport {
-  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
-  font-size: 13px;
+  font-family: var(--font-ui);
+  font-size: 14px;
   line-height: 1.5;
-  color: #ece6f8;
+  color: var(--text);
 }
 
 .navigator-head {
@@ -2154,13 +2185,13 @@ details.navigator-evidence {
 
 .navigator-head h1 {
   margin: 0;
-  color: #ece6f8;
-  font-size: 14px;
-  font-weight: 700;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
 }
 
 #navigator-body {
-  margin-top: 11px;
+  margin-top: 16px;
 }
 
 .panel-collapse {
@@ -2180,7 +2211,7 @@ details.navigator-evidence {
 
 .panel-collapse:hover,
 .panel-collapse:focus-visible {
-  color: #ece6f8;
+  color: var(--text);
   border-color: rgba(169, 142, 230, 0.55);
 }
 
@@ -2198,28 +2229,29 @@ details.navigator-evidence {
 .passport-title-row h2 {
   margin: 0;
   color: #f3edff;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
 .passport-subtitle {
   margin: 2px 0 0;
-  color: #9a92b2;
+  color: var(--muted);
   font-size: 12.5px;
 }
 
 .project-description {
-  margin: 10px 0 0;
-  color: #cfc8dd;
-  font-size: 13px;
+  margin: 12px 0 0;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .sec {
-  margin-top: 15px;
+  margin-top: 20px;
   padding-bottom: 6px;
-  border-bottom: 1px solid rgba(169, 142, 230, 0.18);
-  color: #ece6f8;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
   font-size: 13.5px;
   font-weight: 600;
 }
@@ -2240,15 +2272,15 @@ details.navigator-evidence {
 
 .item b {
   display: block;
-  color: #ece6f8;
-  font-size: 13px;
+  color: var(--text);
+  font-size: 14px;
   font-weight: 600;
 }
 
 .item span {
   display: block;
   margin-top: 2px;
-  color: #9a92b2;
+  color: var(--muted);
   font-size: 12.5px;
   line-height: 1.45;
 }
@@ -2272,16 +2304,17 @@ details.navigator-evidence {
 #search {
   width: 100%;
   padding: 9px 40px 9px 11px;
-  border: 1px solid rgba(169, 142, 230, 0.35);
+  border: 1px solid rgba(205, 198, 225, 0.24);
   border-radius: 6px;
   background: rgba(6, 6, 10, 0.7);
   color: #f3edff;
-  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-  font-size: 12.5px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  min-height: 44px;
 }
 
 #search::placeholder {
-  color: #7d7690;
+  color: var(--muted);
 }
 
 #search:focus {
@@ -2310,12 +2343,12 @@ details.navigator-evidence {
 .prompt {
   display: block;
   width: 100%;
-  padding: 5px 0;
+  padding: 8px 0;
   border: none;
   background: none;
-  color: #c3b6e6;
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 13px;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 14px;
   text-align: left;
   cursor: pointer;
 }
@@ -2350,20 +2383,20 @@ details.navigator-evidence {
 
 .navigator-outcome {
   color: #8b84a3;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .navigator-answer {
   margin: 6px 0 0;
-  color: #ece6f8;
-  font-size: 13px;
+  color: var(--text);
+  font-size: 14px;
 }
 
 .navigator-next {
   margin: 6px 0 0;
-  color: #9a92b2;
+  color: var(--muted);
   font-size: 12.5px;
 }
 
@@ -2376,7 +2409,7 @@ details.navigator-evidence {
 }
 
 .ai-panel summary {
-  color: #9a92b2;
+  color: var(--muted);
   font-size: 12.5px;
   cursor: pointer;
   list-style: none;
@@ -2392,27 +2425,30 @@ details.navigator-evidence {
   border: 1px solid rgba(180, 138, 255, 0.4);
   border-radius: 999px;
   color: #b48aff;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .ai-panel form {
   display: grid;
+  min-width: 0;
   gap: 8px;
   margin-top: 10px;
 }
 
 .ai-panel label {
   display: grid;
+  min-width: 0;
   gap: 3px;
-  color: #8f86a8;
-  font-size: 11.5px;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .ai-panel input {
+  min-width: 0;
   border: 1px solid rgba(232, 226, 244, 0.14);
   border-radius: 8px;
   background: rgba(10, 10, 16, 0.6);
-  color: #ece6f8;
+  color: var(--text);
   font: inherit;
   font-size: 12.5px;
   padding: 7px 9px;
@@ -2424,6 +2460,10 @@ details.navigator-evidence {
 }
 
 .ai-panel button {
+  position: static;
+  width: auto;
+  height: auto;
+  min-height: 40px;
   justify-self: start;
   border: 1px solid rgba(180, 138, 255, 0.4);
   border-radius: 8px;
@@ -2441,8 +2481,8 @@ details.navigator-evidence {
 
 .ai-note {
   margin: 2px 0 0;
-  color: #7d7490;
-  font-size: 11px;
+  color: var(--muted);
+  font-size: 12px;
   line-height: 1.45;
 }
 
@@ -2463,21 +2503,41 @@ details.navigator-evidence {
 
 .navigator-ai-text {
   margin: 6px 0 0;
-  color: #ece6f8;
-  font-size: 13px;
-  line-height: 1.5;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.navigator-ai-record + .navigator-ai-record {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.navigator-ai-record .evidence-source {
+  display: block;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.navigator-ai-record summary {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .navigator-ai-note {
   margin: 6px 0 0;
-  color: #7d7490;
-  font-size: 11px;
+  color: var(--muted);
+  font-size: 12px;
   line-height: 1.45;
 }
 
 .navigator-ai-status {
   margin: 0;
-  color: #9a92b2;
+  color: var(--muted);
   font-size: 12.5px;
 }
 
@@ -2536,14 +2596,14 @@ details.navigator-evidence {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 2px 9px;
-  border: 1px solid rgba(169, 142, 230, 0.4);
-  border-radius: 10px;
+  padding: 3px 8px;
+  border: 1px solid rgba(205, 198, 225, 0.2);
+  border-radius: 5px;
   background: rgba(13, 13, 19, 0.88);
   color: #d9d2ee;
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 11.5px;
-  font-weight: 600;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
   white-space: nowrap;
   transition: opacity 160ms ease;
 }
@@ -2551,7 +2611,7 @@ details.navigator-evidence {
 .city-label.active {
   border-color: #c8acff;
   color: #f3edff;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .city-label.hover {
@@ -2565,7 +2625,7 @@ details.navigator-evidence {
   main {
     display: block;
     position: relative;
-    height: calc(100vh - 64px);
+    height: calc(100dvh - 100px);
     min-height: 560px;
   }
 
@@ -2586,13 +2646,13 @@ details.navigator-evidence {
     top: 16px;
     left: 16px;
     z-index: 30;
-    width: 432px;
+    width: 384px;
     max-height: calc(100% - 32px);
-    padding: 14px 16px;
+    padding: 18px 20px;
     border: 1px solid var(--island-border);
     border-radius: 8px;
     background: var(--island-panel);
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 12px 32px rgba(4, 3, 10, 0.3);
     overflow: auto;
   }
 
@@ -2601,13 +2661,13 @@ details.navigator-evidence {
     top: 16px;
     right: 16px;
     z-index: 30;
-    width: 340px;
+    width: 356px;
     max-height: calc(100% - 32px);
-    padding: 14px 16px;
+    padding: 18px 20px;
     border: 1px solid var(--island-border);
     border-radius: 8px;
     background: var(--island-panel);
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 12px 32px rgba(4, 3, 10, 0.3);
     overflow: auto;
   }
 
@@ -2624,7 +2684,7 @@ details.navigator-evidence {
   .city-context {
     top: auto;
     bottom: 16px;
-    left: 470px;
+    left: 16px;
     right: auto;
     z-index: 25;
     padding: 8px 12px;
@@ -2636,7 +2696,7 @@ details.navigator-evidence {
   .city-controls {
     top: auto;
     bottom: 16px;
-    right: 384px;
+    right: 16px;
     z-index: 25;
     padding: 4px;
     border: 1px solid rgba(169, 142, 230, 0.22);
@@ -2838,9 +2898,10 @@ details.navigator-evidence {
 
 .exact-evidence-record .evidence-claim {
   margin: 0;
+  padding: 0;
   color: #ece6f8;
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .evidence-meta {
@@ -2849,15 +2910,20 @@ details.navigator-evidence {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 5px;
-  color: #9a92b2;
+  color: var(--muted);
   font-size: 12px;
 }
 
 .evidence-state-word {
-  color: #c8acff;
-  font-size: 11.5px;
+  color: var(--muted);
+  font-size: 12px;
   font-weight: 600;
 }
+
+.evidence-state-word[data-state="Observed"] { color: #a4c1d6; }
+.evidence-state-word[data-state="Claimed"] { color: #d3b785; }
+.evidence-state-word[data-state="Attested"] { color: #9cc7b1; }
+.evidence-state-word[data-state="AI-inferred"] { color: #c8acff; }
 
 .source-link {
   display: inline-block;
@@ -2870,7 +2936,7 @@ details.navigator-evidence {
 
 .record-audit summary {
   margin-top: 7px;
-  color: #9a92b2;
+  color: var(--muted);
   font-size: 12px;
   cursor: pointer;
 }
@@ -2963,13 +3029,13 @@ details.navigator-evidence {
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: #8f86a8;
+  color: var(--muted);
 }
 
 .district-crumbs button {
   background: none;
   border: none;
-  color: #8f86a8;
+  color: var(--muted);
   font: inherit;
   cursor: pointer;
   padding: 4px 6px;
@@ -2998,7 +3064,7 @@ details.navigator-evidence {
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  color: #8f86a8;
+  color: var(--muted);
   font: inherit;
   font-size: 13px;
   font-weight: 500;
@@ -3038,18 +3104,18 @@ details.navigator-evidence {
   color: #e8e2f4;
 }
 .plaque-sub { font-size: 12.5px; color: #c9c0e0; margin-top: 2px; }
-.plaque-tag { font-size: 11.5px; color: #8f86a8; margin-top: 4px; }
+.plaque-tag { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
 
 .lens-title {
-  font-size: 15px !important;
-  letter-spacing: 0.07em;
+  font-size: 16px !important;
+  letter-spacing: -0.015em;
 }
 
 .lens-back {
   background: none;
   border: 1px solid rgba(232, 226, 244, 0.2);
   border-radius: 6px;
-  color: #8f86a8;
+  color: var(--muted);
   font: inherit;
   font-size: 12px;
   padding: 3px 8px;
@@ -3076,7 +3142,7 @@ details.navigator-evidence {
   background: none;
   border: 1px solid rgba(232, 226, 244, 0.18);
   border-radius: 999px;
-  color: #8f86a8;
+  color: var(--muted);
   font: inherit;
   font-size: 12px;
   padding: 4px 10px;
@@ -3101,7 +3167,7 @@ details.navigator-evidence {
   background: none;
   border: 1px solid rgba(232, 226, 244, 0.18);
   border-radius: 6px;
-  color: #8f86a8;
+  color: var(--muted);
   font: inherit;
   font-size: 12px;
   padding: 3px 9px;
@@ -3121,7 +3187,7 @@ details.navigator-evidence {
 }
 
 .lens-cats .cat b { font-size: 12.5px; font-weight: 600; display: block; }
-.lens-cats .cat span { font-size: 11.5px; color: #8f86a8; }
+.lens-cats .cat span { font-size: 12.5px; color: var(--muted); }
 
 .lens-row {
   display: flex;
@@ -3140,7 +3206,7 @@ details.navigator-evidence {
 }
 
 .lens-row b { font-size: 13px; font-weight: 600; }
-.lens-row span { font-size: 11.5px; color: #8f86a8; text-align: right; }
+.lens-row span { font-size: 12.5px; color: var(--muted); text-align: right; }
 
 .lens-row:hover,
 .lens-row:focus-visible {
@@ -3148,14 +3214,14 @@ details.navigator-evidence {
 }
 
 .lens-muted {
-  font-size: 11.5px;
-  color: #8f86a8;
+  font-size: 12.5px;
+  color: var(--muted);
   margin: 6px 0;
 }
 
 .lens-note {
-  font-size: 11.5px;
-  color: #8f86a8;
+  font-size: 12.5px;
+  color: var(--muted);
   border-top: 1px solid rgba(232, 226, 244, 0.1);
   padding-top: 10px;
   margin-top: 14px;
@@ -3175,7 +3241,7 @@ details.navigator-evidence {
 }
 
 .lens-rel-row b { font-size: 13px; font-weight: 600; display: block; }
-.lens-rel-row span { font-size: 11.5px; color: #8f86a8; }
+.lens-rel-row span { font-size: 12.5px; color: var(--muted); }
 
 .lens-rel.selected .lens-rel-row {
   border-bottom-color: var(--district-accent);
@@ -3198,7 +3264,7 @@ details.navigator-evidence {
 .navigator-outside {
   display: block;
   font-size: 10.5px;
-  color: #8f86a8;
+  color: var(--muted);
 }
 
 @media (max-width: 940px) {
@@ -3238,8 +3304,8 @@ details.navigator-evidence {
 /* ---- District lens: concept styling ---- */
 
 .lens-coverage-line {
-  font-size: 11.5px;
-  color: #8f86a8;
+  font-size: 12.5px;
+  color: var(--muted);
   margin-top: 4px;
 }
 
@@ -3262,12 +3328,12 @@ details.navigator-evidence {
 }
 
 .lens-featured-copy small {
-  font-size: 11px;
-  color: #8f86a8;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .lens-chevron {
-  color: #8f86a8;
+  color: var(--muted);
   font-size: 15px;
 }
 
@@ -3301,8 +3367,8 @@ details.navigator-evidence {
   display: flex;
   gap: 14px;
   margin-top: 6px;
-  font-size: 11px;
-  color: #8f86a8;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .lens-legend i {
@@ -3323,8 +3389,8 @@ details.navigator-evidence {
   display: flex;
   gap: 8px;
   align-items: flex-start;
-  font-size: 11.5px;
-  color: #8f86a8;
+  font-size: 12.5px;
+  color: var(--muted);
   background: rgba(232, 226, 244, 0.05);
   border-radius: 6px;
   padding: 8px 10px;
@@ -3382,19 +3448,20 @@ details.navigator-evidence {
 
 .district-menu b {
   margin-left: auto;
-  color: #8f86a8;
+  color: var(--muted);
   font-weight: 400;
 }
 
 .district-id-note {
-  font-size: 11.5px;
-  color: #8f86a8;
+  font-size: 12.5px;
+  color: var(--muted);
   margin-top: 10px;
 }
 
 .plaque-title {
   font-size: 22px;
-  letter-spacing: 0.14em;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 /* ---- P1 corrective: panels must not extend the root scroll width ---- */
@@ -3414,3 +3481,50 @@ details.navigator-evidence {
 }
 
 
+/* Submission polish: shared reading rhythm and map controls. */
+.district-count, .district-menu b, #visible-count, .evidence-meta {
+  font-variant-numeric: tabular-nums;
+}
+.district { font-size: 14px; }
+.district-count { color: var(--muted); font-size: 12px; }
+.legend { font-size: 12px; border-color: var(--island-border); }
+.legend > span, .legend button { color: var(--muted); }
+.city-context { font-size: 12px; }
+#visible-count { color: var(--muted); }
+.navigator-details summary, .navigator-project, .navigator-relationship,
+.navigator-evidence { font-size: 12.5px; }
+.navigator-project span, .navigator-relationship small, .navigator-evidence small,
+.navigator-details summary span { font-size: 12px; color: var(--muted); }
+dialog { background: var(--panel-raised); border-color: var(--island-border); }
+dialog h2 { letter-spacing: -.025em; }
+dialog h3 { font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 600; }
+dialog p, .state-explain { font-size: 14px; color: var(--muted); line-height: 1.65; }
+@media (min-width: 941px) {
+  main:has(.passport:not(.collapsed)) .city-controls { right: 388px; }
+  main:has(.navigator:not(.collapsed)) .city-context { left: 420px; bottom: 68px; }
+}
+@media (min-width: 941px) and (max-width: 1200px) {
+  .legend { width: 220px; justify-content: center; flex-wrap: wrap; gap: 8px 12px; }
+  main .city-controls { left: 50%; right: auto; bottom: 86px; transform: translateX(-50%); }
+  main:has(.passport:not(.collapsed)) .city-controls { right: auto; }
+  main .city-context, main:has(.navigator:not(.collapsed)) .city-context {
+    left: 50%; bottom: 144px; transform: translateX(-50%);
+  }
+  .city-context .context-line, .city-context #visible-count { display: none; }
+}
+@media (max-width: 940px) {
+  .view-toggle button, .city-controls button, .ai-panel button { min-height: 44px; }
+  .city-controls button { width: 44px; }
+  #search, .ai-panel input { font-size: 16px; }
+  .navigator, .passport { padding: 20px; }
+}
+
+/* Source disclosures remain secondary, but readable when expanded. */
+.evidence-list dt { font-size: 12px; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.evidence-list dd, .governance-details span, .governance-details small,
+.governance-details strong, .governance-details p, .governance-note,
+.support-note, .limitations-list { font-size: 12px; line-height: 1.55; }
+.governance-details span, .governance-details small, .governance-details p,
+.governance-note, .support-note { color: var(--muted); }
+.review-status, .governance-state, .quality-flag { max-width: 100%; font-size: 11px; letter-spacing: 0; text-transform: none; line-height: 1.25; }
+.relationship-evidence summary, .relationship-scope, .evidence-meaning { font-size: 12.5px; }

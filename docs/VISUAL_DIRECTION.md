@@ -78,6 +78,13 @@ Use color for meaning, not decoration:
 
 ## Typography and copy
 
+Submission polish, 2026-10-08: use self-hosted Instrument Sans throughout the interface,
+with weight and size carrying hierarchy. Keep map furniture quiet, primary reading copy
+near-neutral, and reserve semantic color for district orientation and provenance. Design
+variance 3 / motion 2 / density 5; this remains a spatial application, with no landing-page
+composition or decorative animation. The supplied `taste-skill` and `redesign-skill`
+guidance informs typography and preservation of the existing product.
+
 - Short labels beat paragraphs on the map.
 - Use one clear headline and one supporting sentence.
 - Keep trust language concrete: “Claimed by project wallet” is better than “Trusted project.”

@@ -2974,12 +2974,12 @@ document.querySelector('#app').innerHTML = `
           <div id="district-list"></div>
         </section>
         <details class="ai-panel" id="ai-panel">
-          <summary>Grounded AI <span class="ai-state" id="ai-state">off</span></summary>
+          <summary>AI settings <span class="ai-state" id="ai-state">Off</span></summary>
           <form id="ai-form">
             <label>API endpoint (OpenAI-compatible)<input id="ai-base-url" autocomplete="off" spellcheck="false" /></label>
             <label>Model<input id="ai-model" autocomplete="off" spellcheck="false" /></label>
             <label>API key<input id="ai-key" type="password" autocomplete="off" /></label>
-            <p class="ai-note">The agent plans and queries local, read-only tools over this project graph — projects, exact evidence records, relationships, coverage — then answers with evidence record IDs after every claim. It cannot add facts or reach the network. Your key is stored in this browser and sent only to the endpoint above. Without a key the Navigator stays fully deterministic.</p>
+            <p class="ai-note">The model uses local, read-only graph tools and selects evidence. Project facts are displayed as exact source records, with their status and limitations. Questions and tool results are sent to the API endpoint above. Your key is stored in this browser and sent to that endpoint. Without a key the Navigator uses local retrieval.</p>
             <button type="submit">Save AI settings</button>
           </form>
         </details>
@@ -3049,8 +3049,7 @@ document.querySelector('#app').innerHTML = `
 
   <dialog id="about-dialog">
     <button id="close-dialog" aria-label="Close">×</button>
-    <span class="eyebrow">THE IDEA BEHIND THE CITY</span>
-    <h2>Trust has a geography.</h2>
+    <h2>About Monad City</h2>
     <p>
       Monad City makes an ecosystem’s relationships explorable. Buildings are projects,
       districts organize discovery, and connections make dependencies visible.
@@ -3059,8 +3058,9 @@ document.querySelector('#app').innerHTML = `
       This hybrid prototype has a limited static sourced subset of exact claims and relationships;
       all other placements, descriptions, project-state patterns, and unsupported relationships are
       illustrative Demo data. A source supports only its stated scope, never generic endorsement,
-      safety, quality, current operation, or global verification. AI Navigator uses deterministic
-      local retrieval; no live AI, wallet, blockchain, or backend is connected.
+      safety, quality, current operation, or global verification. AI Navigator searches the local
+      project graph and can use an optional AI provider to select relevant source records.
+      The app has no wallet connection, live blockchain feed, or backend.
     </p>
     <h3>Project state requirements</h3>
     <div class="state-explain">
@@ -3605,7 +3605,7 @@ function queueGroundedAnswer(result) {
   if (!card) return;
   if (groundedAiAbort) groundedAiAbort.abort();
   const settings = loadAiSettings();
-  if (!aiEnabled(settings) || result.outcome === 'unsupported-request') return;
+  if (!aiEnabled(settings) || ['unsupported-request', 'insufficient-evidence', 'invalid-query'].includes(result.outcome)) return;
   const mount = document.createElement('section');
   mount.className = 'navigator-ai';
   mount.innerHTML = '<p class="navigator-ai-label">Agent · planning…</p><div class="navigator-ai-steps"></div>';
@@ -3633,18 +3633,40 @@ function queueGroundedAnswer(result) {
       steps.append(line);
     },
   })
-    .then(({ text, model }) => {
+    .then(({ text, model, mode, reason, records }) => {
       if (signal.aborted) return;
+      if (mode === 'local-fallback') {
+        mount.innerHTML = `
+          <p class="navigator-ai-label">Local Navigator result</p>
+          <p class="navigator-ai-status">${escapeHtml(reason)}</p>`;
+        return;
+      }
+      const labels = {
+        evidence: 'AI-selected evidence · exact source records',
+        coverage: 'AI-selected scope · local graph counts',
+        'insufficient-evidence': 'Evidence gap · local tools',
+      };
+      const recordHtml = (records || []).map((record) => `
+        <section class="navigator-ai-record">
+          <p class="navigator-ai-text">${escapeHtml(record.status)} — ${escapeHtml(record.claim)} [${escapeHtml(record.id)}]</p>
+          <a class="evidence-source" href="${escapeHtml(record.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(record.source)} ↗</a>
+          ${record.warnings?.length ? `<p class="navigator-ai-note">Warnings: ${escapeHtml(record.warnings.join(', '))}.</p>` : ''}
+          <details><summary>Scope &amp; limitations</summary>
+            <p class="navigator-ai-note">${escapeHtml(record.scope || '')}</p>
+            <p class="navigator-ai-note">${escapeHtml((record.limitations || []).join(' '))}</p>
+          </details>
+        </section>`).join('');
       mount.innerHTML = `
-        <p class="navigator-ai-label">AI-inferred answer · agent on ${escapeHtml(model)}</p>
+        <p class="navigator-ai-label">${escapeHtml(labels[mode] || 'Local graph result')} · ${escapeHtml(model)}</p>
         <div class="navigator-ai-steps">${steps.innerHTML}</div>
-        <p class="navigator-ai-text">${escapeHtml(text)}</p>
-        <p class="navigator-ai-note">The agent planned, queried local graph tools, and every claim cites its evidence record ID. It saw no data beyond this graph; the deterministic result remains the source of truth.</p>`;
+        ${recordHtml || `<p class="navigator-ai-text">${escapeHtml(text)}</p>`}
+        <p class="navigator-ai-note">${mode === 'evidence' ? 'AI selects relevance; source records retain their exact scope. Citation IDs were checked against eligible records retrieved by the tools.' : 'This result uses only the local graph tool output.'} The local result controls the map.</p>`;
     })
     .catch((error) => {
       if (signal.aborted || error?.name === 'AbortError') return;
       mount.innerHTML = `
-        <p class="navigator-ai-label">Grounded AI unavailable</p>
+        <p class="navigator-ai-label">${error?.message?.includes('incomplete (token limit)') ? 'AI response incomplete' : 'Grounded AI unavailable'}</p>
+        <div class="navigator-ai-steps">${steps.innerHTML}</div>
         <p class="navigator-ai-status">${escapeHtml(error?.message || 'Unknown error')}</p>
         <p class="navigator-ai-note">The deterministic result above is unaffected.</p>`;
     });
@@ -3652,9 +3674,9 @@ function queueGroundedAnswer(result) {
 
 function reflectAiState() {
   const settings = loadAiSettings();
-  document.querySelector('#ai-state').textContent = aiEnabled(settings)
-    ? `on · ${settings.model}`
-    : 'off';
+  const stateLabel = document.querySelector('#ai-state');
+  stateLabel.textContent = aiEnabled(settings) ? 'Enabled' : 'Off';
+  stateLabel.title = aiEnabled(settings) ? `Configured model: ${settings.model}` : 'Optional AI provider is disabled';
 }
 
 function initAiPanel() {
@@ -3827,7 +3849,7 @@ function evidenceRecordCard(record, { compact = false } = {}) {
     <article class="exact-evidence-record">
       <p class="evidence-claim">${escapeHtml(record.claim || record.supportedProposition || 'Evidence record unavailable.')}</p>
       <div class="evidence-meta">
-        <span class="evidence-state-word">${escapeHtml(record.status || 'Unavailable')}</span>
+        <span class="evidence-state-word" data-state="${escapeHtml(record.status || 'Unavailable')}">${escapeHtml(record.status || 'Unavailable')}</span>
         ${sourceLink}
       </div>
       <details class="record-audit">
@@ -4165,7 +4187,7 @@ function renderPlaque() {
   plaque.id = 'district-plaque';
   plaque.innerHTML = `
     <div class="plaque-glyph" style="color:${config.accent}">${config.glyph}</div>
-    <div class="plaque-title">${escapeHtml(activeDistrict.toUpperCase())}</div>
+    <div class="plaque-title">${escapeHtml(activeDistrict)}</div>
     <div class="plaque-tag">Explore the local project graph</div>`;
   document.querySelector('#city-stage').appendChild(plaque);
 }
@@ -4418,7 +4440,7 @@ function renderDistrictLens() {
   document.querySelector('#passport').innerHTML = `
     <div class="passport-head">
       <div class="passport-title-row">
-        <h2 class="lens-title">DISTRICT LENS</h2>
+        <h2 class="lens-title">District lens</h2>
         <button class="panel-collapse" id="passport-collapse" aria-expanded="true" aria-label="Collapse district panel">—</button>
       </div>
       <p class="lens-coverage-line">${plural(coverage.totalProjects, 'project')} · ${coverage.sourceBackedProjects} with source-backed records · ${plural(coverage.relationships, 'relationship')}</p>

@@ -66,9 +66,13 @@ no idle motion (there is no idle motion anyway).
 
 ## 5. HUD and typography (guidebook contract)
 
-- One family in panels: DM Sans (already imported by `src/style.css`). Space Grotesk stays only
-  in the existing brand/headline slots it already occupies. Mono only where functional:
-  Navigator query line, district map labels, roof monograms.
+- Submission polish (2026-10-08): Instrument Sans is the one self-hosted UI family,
+  weights 400/500/600/700, with the upstream OFL license and provenance in
+  `src/assets/fonts/instrument-sans/`. The existing brand wording is unchanged.
+  Mono is reserved for record identifiers, addresses, tool traces, and roof monograms.
+  Query inputs and district billboards use the UI family; canvas labels refresh after font load.
+- Reading text: 14px/1.55; panel titles: 16px/600; Passport project name: 24px/600;
+  supporting text: 12–13px. Counts use tabular numerals.
 - No "·" separator chains in panel copy; em-dash allowed; two-line "bold label + muted
   description" is the default text pattern.
 - Section headers: 13.5px/600 with a thin bottom rule; no caps, no letterspacing.

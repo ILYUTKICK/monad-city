@@ -1,7 +1,6 @@
-// Grounded AI layer for the Navigator. The deterministic retrieval in retrieval.js stays the
-// source of truth: this module only reformulates what retrieval already returned, from the
-// exact approved evidence records, under a strict no-additions contract. No key, no call —
-// the Navigator behaves exactly as before.
+// The agent selects evidence through local tools. Final facts are rendered from the exact
+// records, never from model-written prose. Deterministic retrieval remains the map authority.
+import { retrieveNavigator } from './retrieval.js';
 
 export const AI_SETTINGS_STORAGE_KEY = 'monad-city.ai-settings';
 
@@ -146,17 +145,21 @@ const AGENT_SYSTEM_PROMPT = [
   'You are the AI Navigator agent of Monad City, a source-grounded map of the Monad ecosystem.',
   'You answer questions about projects, evidence, and relationships by using the provided tools. They query a local, deterministic evidence graph.',
   'How to work:',
-  '- Plan silently, call tools as needed (several times if useful), then answer. You have at most 6 tool rounds.',
+  '- Plan silently, call tools, then select the records that answer the question. You have at most 6 tool rounds.',
   '- Prefer get_project_evidence over guessing; use get_district_coverage for landscape questions.',
   'Hard rules:',
   '- State ONLY facts that appear in tool results. Never add facts, addresses, dates, or numbers from your own knowledge.',
-  '- After every factual claim, cite the exact evidence record IDs in square brackets, e.g. [E-KURU-CAP-001].',
+  '- Select only eligible evidence IDs returned by get_project_evidence in this conversation. Profiles and illustrative edges cannot support facts.',
   '- Preserve status distinctions: "Observed" means an artifact was inspected; "Claimed" means a publisher said so. Never present a claim as verified.',
   '- Never state that any project is verified, safe, legitimate, active, or endorsed.',
   '- If the tools do not establish something (for example current activity), say so plainly instead of guessing.',
   '- No investment advice, no recommendations.',
-  '- Answer in the language of the user question.',
-  'Output only the final answer text.',
+  'Final response contract:',
+  '- Output ONLY one JSON object, with no Markdown, commentary, headings, tables, or answer prose.',
+  '- For project facts or relationships: {"kind":"evidence","evidenceIds":["E-EXAMPLE-001"]}. Select 1-3 relevant eligible records; prefer 2. Fetch evidence before selecting it.',
+  '- For coverage counts: {"kind":"coverage","scope":"whole city"}, or use the exact scope returned by get_district_coverage. Call that tool first.',
+  '- If tools cannot establish the requested claim: {"kind":"insufficient-evidence"}.',
+  'The application will display the exact claims, statuses, sources and limitations from the selected records. You cannot supply or override their text.',
 ].join('\n');
 
 export const AGENT_TOOLS = [
@@ -164,7 +167,7 @@ export const AGENT_TOOLS = [
     type: 'function',
     function: {
       name: 'search_projects',
-      description: 'Search Monad ecosystem project profiles by free text. Returns matching projects with id, name, district, type, and tag.',
+      description: 'Search illustrative project profiles by free text. Returns matching project IDs for navigation. Profile copy is not evidence; fetch get_project_evidence before selecting facts.',
       parameters: {
         type: 'object',
         properties: {
@@ -225,8 +228,11 @@ export function createToolExecutors({ projects, relationships, evidenceRecords, 
     publishedAt: record.publishedAt || record.capturedAt || null,
     scope: record.scope || null,
     limitations: record.limitations || null,
+    eligible: record.supportsFactualClaims === true && record.source?.available === true
+      && /^https:\/\/\S+$/i.test(record.source?.url || '') && !record.quality?.unavailable
+      && ['Observed', 'Claimed', 'Attested'].includes(record.status),
     warnings: Object.entries(record.quality || {})
-      .filter(([, flagged]) => flagged)
+      .filter(([flag, flagged]) => flagged && flag !== 'timeBoundEligible')
       .map(([flag]) => flag),
   });
 
@@ -234,7 +240,7 @@ export function createToolExecutors({ projects, relationships, evidenceRecords, 
     search_projects(args) {
       const query = normalize(args?.query);
       const district = args?.district ? normalize(args.district) : null;
-      const limit = Math.min(Number(args?.limit) || 8, 20);
+      const limit = Math.max(1, Math.min(Math.floor(Number(args?.limit)) || 8, 20));
       if (!query) return { matches: [], note: 'Empty query.' };
       const scored = [];
       for (const project of projects) {
@@ -361,7 +367,8 @@ async function chatCompletion({ settings, body, signal }) {
   }
   if (!response.ok) {
     const detail = await response.text().catch(() => '');
-    const error = new Error(`The AI endpoint answered ${response.status}. ${detail.slice(0, 160)}`);
+    const hints = { 401: 'Check the API key.', 402: 'Check the provider balance.', 429: 'The provider rate limit was reached.' };
+    const error = new Error(`The AI endpoint answered ${response.status}. ${hints[response.status] || 'The local result remains available.'}`);
     error.status = response.status;
     error.detail = detail.slice(0, 300);
     throw error;
@@ -369,16 +376,71 @@ async function chatCompletion({ settings, body, signal }) {
   return response.json();
 }
 
+function finalSelection(message, { seenRecords, coverageResults, steps }) {
+  if (!steps.length) throw new Error('The agent did not query the graph. Its answer was not displayed.');
+  let selection;
+  try { selection = JSON.parse(message.content); } catch {
+    throw new Error('The agent returned an invalid evidence selection. Its answer was not displayed.');
+  }
+  if (!selection || typeof selection !== 'object' || Array.isArray(selection)) {
+    throw new Error('The agent returned an invalid evidence selection.');
+  }
+  const allowedKeys = {
+    evidence: ['kind', 'evidenceIds'],
+    coverage: ['kind', 'scope'],
+    'insufficient-evidence': ['kind'],
+  }[selection.kind];
+  if (!allowedKeys || Object.keys(selection).some((key) => !allowedKeys.includes(key))) {
+    throw new Error('The agent supplied unsupported answer fields. Its answer was not displayed.');
+  }
+  if (selection.kind === 'evidence') {
+    const ids = selection.evidenceIds;
+    if (!Array.isArray(ids) || !ids.length || ids.length > 3 || new Set(ids).size !== ids.length
+      || ids.some((id) => typeof id !== 'string' || !seenRecords.get(id)?.eligible)) {
+      throw new Error('The agent selected evidence that was not retrieved or cannot support facts.');
+    }
+    const records = ids.map((id) => seenRecords.get(id));
+    return {
+      mode: 'evidence',
+      evidenceIds: ids,
+      records,
+      text: records.map((record) => [
+        `${record.status} — ${record.claim} [${record.id}]`,
+        `Scope: ${record.scope}`,
+        ...(record.warnings.length ? [`Warnings: ${record.warnings.join(', ')}.`] : []),
+        ...(record.limitations?.length ? [`Limitations: ${record.limitations.join(' ')}`] : []),
+      ].join('\n')).join('\n\n'),
+    };
+  }
+  if (selection.kind === 'coverage') {
+    const coverage = coverageResults.get(selection.scope);
+    if (!coverage) throw new Error('The agent selected coverage that was not queried.');
+    return {
+      mode: 'coverage',
+      text: `Local graph · ${coverage.scope}: ${coverage.projects} project profiles; ${coverage.projectsWithApprovedEvidence} carry approved evidence records. ${coverage.relationships} relationships touch this scope: ${coverage.relationshipsByProvenance.sourced || 0} sourced, ${coverage.relationshipsByProvenance['illustrative-or-declared'] || 0} illustrative or declared. These are computed dataset counts, not evidence of current project activity.`,
+    };
+  }
+  return { mode: 'insufficient-evidence', text: 'The local tools did not establish this claim. Inspect the evidence and its bounded scope in the Passport.' };
+}
+
 export async function runNavigatorAgent({ question, projects, relationships, evidenceRecords, snapshot, settings, signal, onStep }) {
   if (!aiEnabled(settings)) throw new Error('Grounded AI is not configured.');
+  const query = String(question || '');
+  const localResult = retrieveNavigator({ query, projects, relationships, evidenceRecords });
+  if (['unsupported-request', 'insufficient-evidence', 'invalid-query'].includes(localResult.outcome)) {
+    return { mode: 'local-fallback', reason: localResult.answer.text, steps: [], model: settings.model };
+  }
+  if (query.length > 500) throw new Error('Please keep the question under 500 characters.');
   const executors = createToolExecutors({ projects, relationships, evidenceRecords, snapshot });
   const messages = [
     { role: 'system', content: AGENT_SYSTEM_PROMPT },
-    { role: 'user', content: String(question || '').slice(0, 500) },
+    { role: 'user', content: query },
   ];
   const steps = [];
+  const seenRecords = new Map();
+  const coverageResults = new Map();
 
-  const runOnce = (withTools) => chatCompletion({
+  const runOnce = () => chatCompletion({
     settings,
     signal,
     body: {
@@ -386,25 +448,30 @@ export async function runNavigatorAgent({ question, projects, relationships, evi
       temperature: 0.2,
       max_tokens: 700,
       messages,
-      ...(withTools ? { tools: AGENT_TOOLS, tool_choice: 'auto' } : {}),
+      tools: AGENT_TOOLS,
+      tool_choice: 'auto',
     },
   });
 
   let response = null;
   for (let round = 0; round < AGENT_MAX_STEPS; round += 1) {
     try {
-      response = await runOnce(true);
+      response = await runOnce();
     } catch (error) {
-      // Some OpenAI-compatible endpoints reject the tools parameter; fall back to a plain
-      // grounded answer instead of failing the whole feature.
-      if (round === 0 && error?.status === 400) {
-        response = await runOnce(false);
-        break;
+      // Never retry an ungrounded plain completion. The deterministic result is the
+      // compatibility fallback, and only explicit tool-rejection errors take this path.
+      if (round === 0 && error?.status === 400
+        && /tool[_ -]?choice|\btools?\b|function[_ -]?calling/i.test(error.detail || '')
+        && /unsupported|not supported|does not support|not allowed|unrecognized|unknown|not available/i.test(error.detail || '')) {
+        return { mode: 'local-fallback', reason: 'This endpoint does not support graph tools. Showing the local Navigator result.', model: settings.model, steps };
       }
       throw error;
     }
     const message = response?.choices?.[0]?.message;
     if (!message) throw new Error('The AI endpoint returned no message.');
+    const finishReason = response.choices[0].finish_reason;
+    if (finishReason === 'length') throw new Error('The AI response was incomplete (token limit). No partial answer was displayed. Try a narrower question.');
+    if (finishReason === 'content_filter') throw new Error('The provider declined the response. The local result remains available.');
     if (Array.isArray(message.tool_calls) && message.tool_calls.length) {
       messages.push({ role: 'assistant', content: message.content || null, tool_calls: message.tool_calls });
       for (const call of message.tool_calls) {
@@ -413,7 +480,7 @@ export async function runNavigatorAgent({ question, projects, relationships, evi
         try { args = JSON.parse(call?.function?.arguments || '{}'); } catch { /* keep empty args */ }
         let result;
         try {
-          result = executors[name] ? executors[name](args) : { error: `Unknown tool "${name}".` };
+          result = Object.hasOwn(executors, name) ? executors[name](args) : { error: `Unknown tool "${name}".` };
         } catch (toolError) {
           result = { error: toolError?.message || 'Tool execution failed.' };
         }
@@ -423,15 +490,19 @@ export async function runNavigatorAgent({ question, projects, relationships, evi
         messages.push({
           role: 'tool',
           tool_call_id: call.id,
-          content: JSON.stringify(result).slice(0, 6000),
+          content: JSON.stringify(result),
         });
+        if (name === 'get_project_evidence') {
+          for (const record of result.records || []) seenRecords.set(record.id, record);
+        }
+        if (name === 'get_district_coverage' && !result.error) coverageResults.set(result.scope, result);
       }
       continue;
     }
-    const text = message.content?.trim();
-    if (!text) throw new Error('The agent returned no answer text.');
+    if (typeof message.content !== 'string' || !message.content.trim()) throw new Error('The agent returned no evidence selection.');
+    const answer = finalSelection(message, { seenRecords, coverageResults, steps });
     onStep?.({ type: 'answer' });
-    return { text, model: response.model || settings.model, steps };
+    return { ...answer, model: response.model || settings.model, steps };
   }
   throw new Error('The agent used all planning rounds without answering. Try a narrower question.');
 }

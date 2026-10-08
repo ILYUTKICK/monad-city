@@ -2132,6 +2132,145 @@ Next:
   (bounty deliverable). Kimi multilingual slot only after the core is stable (owner decision
   pending).
 
+### 2026-10-08 — Lead / QA — Real OpenRouter verification and bounded regression checks
+
+Owner requested the necessary checks after opening the application and personally saving the
+OpenRouter settings. Owned files: `docs/QA_REPORT_2026-10-08.md`, `docs/WORKLOG.md`; application
+source unchanged.
+
+Changed:
+- Added the detailed verification report with reproducible defect conditions and priorities.
+
+Verified:
+- `npm run build` passes; active phase-3.5-v6 has 193 records and 6 sourced relationships,
+  canonical SHA-256 `9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b`.
+- 24 local assertions pass: data/evidence contracts, governance fixtures, eight district
+  checks, retrieval outcomes, approved-only evidence tools, unknown entities/districts,
+  actual coverage counts, nonmutation, and a simulated multi-round tool loop.
+- Real `Show Kuru sources` through OpenRouter / `qwen/qwen3.8-max-0902` calls
+  search_projects → get_project_evidence (5 records) → get_project_relationships (3 edges),
+  and renders its answer and trace. User credentials were not read or recorded.
+- Browser: Kuru selection + Passport, City/Graph, DeFi filter (140), return-to-city route,
+  search, and unsupported safety query. Exercised flow has no error/warning console logs.
+- Wide 1440×900 and narrow 390×844 examined. Viewport override reset; app tab left open.
+
+Limitations / failures:
+- Simulated provider answer with zero tools, prohibited positive safety claim and invented
+  evidence ID is accepted. UI promises grounding checks that are not enforced.
+- Simulated first-round HTTP400 + successful plain response throws planning-round exhaustion;
+  this fallback also lacks retrieved evidence context.
+- Real answer is raw Markdown and stops mid-sentence. Code caps responses at 700 tokens and
+  ignores finish_reason; token exhaustion is likely, but the provider reason was not captured.
+- API save button inherits absolute positioning and 30×30 size; text clips on narrow screens.
+- Real AI testing stopped at the incomplete answer. No further paid requests, public
+  deployment, source refresh, or changes to application code were performed.
+
+Artifacts:
+- `/private/tmp/monad-city-checks.json`, `/private/tmp/monad-city-qwen-check.png`,
+  `/private/tmp/monad-city-mobile-check.png`; details in `docs/QA_REPORT_2026-10-08.md`.
+
+Next:
+- Repair answer acceptance, safe fallback, truncation/presentation and the API save button;
+  then repeat targeted checks, real evidence/relationship queries and three demo runs.
+
+### 2026-10-08 — Lead / AI + frontend — Resolve the four QA defects
+
+Owner: «ДАвай исправляем». Owned application files: `src/ai.js`, `src/main.js`, `src/style.css`;
+verification: `package.json`, `scripts/ai-checks.test.js`; documentation: `docs/AI_NAVIGATOR.md`,
+`docs/QA_REPORT_2026-10-08.md`, this log. Prior QA changes preserved.
+
+Changed:
+- Agent now returns only a constrained selection of retrieved eligible evidence IDs, a queried
+  coverage scope, or an evidence gap. Arbitrary model prose never becomes factual UI copy.
+  Exact source records supply claim/status/link/scope/limitations; warnings stay visible.
+- Rejected zero-tool responses, unknown/unretrieved/ineligible evidence, unexpected prose fields,
+  malformed/oversized selections and incomplete provider completions. Eligibility does not imply
+  source accuracy or freshness; AI relevance and deterministic map authority remain separate.
+- Tools-not-supported HTTP400 returns the local result without a plain completion retry.
+  Other errors retain their classification, with private provider details omitted from UI.
+- Unsupported conclusions, insufficient proof and empty queries stay local at both entry points.
+- Kept tool-result JSON intact instead of slicing at 6000 characters; removed inherited tool
+  dispatch; corrected timeBoundEligible being counted as a warning.
+- Scoped search-button CSS and restored API save button to normal flow; no new dependencies,
+  backend, or source/snapshot changes.
+- Added `npm run test:ai` and updated the current optional-agent contract in Navigator docs.
+
+Verified:
+- 19 provider-fixture/dataset tests pass. Fixtures use artificial credentials and no network.
+- Build and JS syntax checks pass; phase-3.5-v6 hash/193 records/6 sourced relationships unchanged.
+- Real Qwen/OpenRouter: Kuru source query returns exact Claimed/Observed records without
+  truncation or Markdown. Magma–Switchboard query executes seven tool calls and selects
+  E-MAGMA-SWITCHBOARD-001 + E-SWITCHBOARD-CAP-001, retaining the one-sided scope and limitations.
+- Browser: source links and limitation disclosure, Passport, City/Graph, DeFi (140),
+  return-to-city, safety refusal and insufficient activity proof. Refusal/proof failure show
+  zero AI sections. No error/warning console logs in exercised flow.
+- Mobile 390×844: save button ~114×40px, static, full text visible; desktop 1440×900 checked.
+  Viewport restored and app tab retained. Screenshots recorded in the updated QA report.
+
+Limitations:
+- AI still chooses relevance; exact-source rendering checks provenance eligibility, not truth.
+- Map actions remain governed by local retrieval. Source records remain English and bounded.
+- HTTP400 and truncation regression cases were simulated; real happy paths used configured Qwen.
+
+Next:
+- Three final demo rehearsals, submission text and the remaining hackathon deliverables.
+
+### 2026-10-08 — Submission typography and interface polish
+
+Changed:
+- Applied owner-requested taste/redesign guidance to the existing spatial application.
+- Two bounded agents supplied a read-only audit and licensed font assets; root owned implementation.
+- Unified UI and district billboards in self-hosted Instrument Sans (400/500/600/700), removed
+  external font import, increased reading/disclosure text, and updated typography contracts.
+- Quiet solid panels, narrower Navigator, calmer labels, distinct source-state colors and tabular counts.
+- Corrected map-control overlap at compact desktop and with the open Passport; removed root
+  desktop overflow caused by footer height. Clarified About and condensed AI settings badge.
+- Files: src/style.css, src/city3d.js, src/main.js, index.html, src/assets/fonts/instrument-sans/,
+  docs/VISUAL_DIRECTION.md, docs/VOXEL_ISLAND_SPEC.md, docs/UI_POLISH_2026-10-08.md, this log.
+
+Verified:
+- Build, 19 AI fixture tests, syntax checks and diff whitespace checks pass.
+- Browser: building selection, Passport/source disclosure, insufficient-activity Navigator,
+  City/Graph, DeFi and return, About, AI settings. 1440×900 / 1024×768 / 390×844 checked.
+- Compact desktop and mobile have no root width overflow; desktop fits the full viewport height.
+- No browser warnings/errors. Evidence v6 hash, 193 records and 6 sourced edges unchanged.
+- Screenshots and detailed verification recorded in docs/UI_POLISH_2026-10-08.md.
+
+Limitations:
+- Presentation polish does not change evidence currency, camera framing, close-range map density
+  or optional provider behavior. No real model requests were needed for this visual pass.
+
+Next:
+- Assemble submission text/links/video and rehearse the deployed demo.
+
+### 2026-10-08 — Submission materials and public deployment preparation
+
+Owner requested the next submission preparation stage; confirmed there is no public app URL
+and will send the final form. Root owns README.md, docs/PROJECT_CONTEXT.md, docs/DEMO_SCRIPT.md,
+docs/SUBMISSION_PACKAGE.md, docs/QWEN_BUILD_NOTES.md, docs/preview.png, vercel.json, this log.
+
+Changed:
+- English short/full descriptions, problem/differentiation/Monad/AI/stack fields, spoken pitch,
+  link inventory and honest release checklist; recommended Trust, Identity & AI Infrastructure.
+- Demo script with actual screen actions, 2m20 editorial target, variable real agent trace,
+  transparent wait-time edits and local fallback. Finished videos are still pending.
+- Draft Qwen implementation article; endpoint/model bounty compliance explicitly unconfirmed.
+- README and current project context corrected: optional real agent, 172/176 coverage,
+  193 records, 6 sourced / 17 total edges, no live evidence refresh or document RAG.
+- Updated README screenshot from the actual polished build. Added static Vercel configuration.
+
+Verified:
+- Dataset counts computed from source/runtime; repository is public, remote is
+  https://github.com/ILYUTKICK/monad-city, default branch main, homepage URL empty.
+- Build and all 19 bounded AI tests pass; evidence hash unchanged; diff whitespace clean.
+- Official portal displays 1 Sep–13 Oct. Exact submission fields/video limits and bounty rules
+  remain unverified until the owner's form arrives.
+- Connected Vercel account has one team, ilyutkicks-projects, and no existing monad-city project.
+
+Next:
+- Save and publish the tested version, create its public static deployment, inspect the public
+  build without a shared key, then add verified links and match the owner's submission form.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
