@@ -6,6 +6,9 @@ interactive isometric city.
 The city is the interface. Every building is a project, source-backed claims carry inspectable evidence, and illustrative profiles remain separate.
 Every record says how the information is known and what its source can establish.
 
+[Open the public demo](https://monad-city.vercel.app/) ·
+[Source repository](https://github.com/ILYUTKICK/monad-city)
+
 ![Monad City — the district archipelago](docs/preview.png)
 
 ## What is inside
@@ -61,6 +64,8 @@ serves that bundle.
 The full local discovery flow works without an API key. To exercise the agent, open **AI settings**
 in the Navigator, enter an OpenAI-compatible endpoint, a tool-capable model, and your own key,
 then choose **Save AI settings**. The provider must permit browser requests (CORS).
+Settings belong to the browser and site origin: settings saved on localhost do not transfer
+to the public demo. The public build includes no shared provider key.
 
 The current build was exercised with OpenRouter and `qwen/qwen3.8-max-0902`. This is an
 implementation test, not confirmation of sponsor-bounty eligibility. The default fields point

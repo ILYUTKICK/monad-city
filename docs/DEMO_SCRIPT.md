@@ -11,7 +11,8 @@ shown as a live model response. A finished video has not yet been created.
 
 ## Before recording
 
-- Use the current public build when available; verify that its source matches this repository.
+- Use https://monad-city.vercel.app/ — the current public build matches application commit `6a4bb54`.
+- Configure the owner's provider in **AI settings** on this origin before recording the agent path; localhost settings do not transfer. Keep the key out of the recording.
 - Use a desktop viewport around 1440×900. Start at `#/city` and reset the map.
 - Configure your own endpoint/model/key privately, then collapse AI settings. Record no key.
 - Confirm that `Show Kuru sources` and the Magma–Switchboard query finish with actual evidence
@@ -57,7 +58,7 @@ can establish.
 
 | Run | Mode | Pass condition | Status |
 | --- | --- | --- | --- |
-| 1 | No provider key / local discovery | City, Passport, source disclosure, districts and Graph work. | Previous QA covers these flows; repeat on public build. |
+| 1 | No provider key / local discovery | City, Passport, source disclosure, districts and Graph work. | Passed on the public build 2026-10-08, including Kuru search, full record, Graph, DeFi filter, active-contract evidence gap, and 390px layout. |
 | 2 | Owner's configured Qwen provider | Real tool calls end in eligible selected records; sources and limits visible. | Source/relationship queries passed previous QA; full timed rehearsal pending. |
 | 3 | Final recording conditions | Complete the chosen script, readable screen, actual output, no exposed key. | Pending recording. |
 

@@ -106,7 +106,7 @@ track label and eligibility in the submission form.
 | Item | Value / status |
 | --- | --- |
 | Repository | https://github.com/ILYUTKICK/monad-city — public, checked 2026-10-08 |
-| Public application | Pending deployment; localhost is not a judge-facing link |
+| Public application | https://monad-city.vercel.app/ — production build, opened without a Vercel login on 2026-10-08; local discovery works without a provider key |
 | Demo video | Script ready in `docs/DEMO_SCRIPT.md`; no finished video or hosted link yet |
 | Pitch video | Spoken script below; no finished video or hosted link yet |
 | Screenshot | `docs/preview.png` — actual application capture |
@@ -141,8 +141,8 @@ they can inspect.
 - [x] README and current project context reconciled with implementation.
 - [x] Short demo and pitch scripts prepared.
 - [ ] Verify form-specific fields, required assets and exact limits from the owner's screenshot.
-- [ ] Deploy the current tested build and test the public URL without the owner's browser key.
-- [ ] Keep repository code and the deployed version in sync.
+- [x] Deploy the current tested build and test the public URL without the owner's browser key.
+- [x] Match the deployed application to repository commit `6a4bb5459d4b88411b0e9e1d8a4a7c088926e8f5`; later changes in this preparation stage are documentation only.
 - [ ] Record the real AI path; edit waiting time transparently if needed.
 - [ ] Upload demo/pitch videos to the chosen service and test judge access.
 - [ ] Fill actual team details, selected track, links and assets; review the final form.

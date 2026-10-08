@@ -2271,6 +2271,35 @@ Next:
 - Save and publish the tested version, create its public static deployment, inspect the public
   build without a shared key, then add verified links and match the owner's submission form.
 
+### 2026-10-08 — Public submission demo deployed
+
+Changed:
+- Committed the approved AI fixes, typography polish and submission preparation as
+  `6a4bb5459d4b88411b0e9e1d8a4a7c088926e8f5` and pushed main to the public repository.
+- Created Vercel project `monad-city` in the connected `ilyutkicks-projects` team and deployed
+  that exact GitHub commit to production. Deployment `dpl_D95H7iyvXj82oMKom9kJDR8YoEsS`
+  reached READY; production alias is https://monad-city.vercel.app/.
+- Added the verified demo URL and browser-origin setup note to README, submission package
+  and demo script. No shared provider credential was added to the build.
+
+Verified:
+- Opened the production domain without a Vercel login; no protection setting was changed.
+- Fresh-origin AI settings were Off. Keyless Kuru search selected the correct Passport;
+  documentation source and full record E-KURU-CAP-001 were inspectable.
+- Graph displayed exact evidence IDs and illustrative limitations; DeFi district filter
+  worked; the AI active-contract prompt returned the bounded evidence-unavailable result.
+- Instrument Sans is the computed body font. Document width equals viewport width at
+  1280px and 390px; mobile viewport was restored after testing. Browser warnings/errors: none.
+- Public captures: `/private/tmp/monad-city-public-desktop.png` and
+  `/private/tmp/monad-city-public-mobile.png`.
+
+Limitations / next:
+- The public agent path needs the owner's provider configuration on the public origin;
+  it was not retested with a paid provider during deployment checks. Previous real-provider
+  source and relationship tests remain documented in the QA report.
+- Finished demo/pitch videos and exact submission-form requirements remain pending.
+  Map the prepared copy to the owner's screenshot and record the actual agent flow.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
