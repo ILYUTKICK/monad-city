@@ -155,6 +155,7 @@ they can inspect.
 - [x] Read form-specific fields, required assets and exact limits from the owner's screenshots and live form.
 - [x] Deploy the current tested build and test the public URL without the owner's browser key.
 - [x] Update the public build and repository with the verified Testnet registry configuration: application commit `a3417d06f60d50e6a60924f54c31f3dd248fb948`, READY production deployment `dpl_7fCezkRkTADKhJFBqud1WUrvHr8P` on 2026-10-10; public-origin Kuru publication check passed.
+- [x] Activate and publish expanded v7: 217 records, 28 sourced relationships; application commit `da110172e7006e0361ea02171b01140c305b4762`, READY production deployment `dpl_H4AAAFKTQYndJinL4NzkwUwKXHdt`; public Beefy publication check passed at block 69908916.
 - [ ] Record the real AI path; edit waiting time transparently if needed.
 - [ ] Upload demo/pitch videos to the chosen service and test judge access.
 - [ ] Fill actual team details, selected track, links and assets; review the final form.

@@ -2806,6 +2806,26 @@ Limitations / next:
   then verify the public v7 build and judge-facing keyless flow. Portal copy still needs
   refreshing before final submission; required demo/pitch recordings remain outstanding.
 
+### 2026-10-10 — Public v7 release verified
+
+- Source commit `da110172e7006e0361ea02171b01140c305b4762` pushed to the existing public
+  `ILYUTKICK/monad-city` main branch. Production deployment
+  `dpl_H4AAAFKTQYndJinL4NzkwUwKXHdt` is READY and assigned to
+  https://monad-city.vercel.app/; team/project/commit/environment match the intended target.
+- Public evidence import, registry configuration and v7 manifest match local bytes exactly.
+  Local operator publication page remains HTTP 404 on the public deployment.
+- Public keyless Navigator finds Beefy; Passport displays new Claimed source records and 16
+  sourced relationships. New E-BEEFY-AAVE-V3-001 publication check matches active v7 at block
+  69908916. Browser console contains no errors. Local City/Graph switch displays new edges;
+  public DeFi Relationships exposes all 29 touching edges (26 sourced, three illustrative).
+- Screenshot: `/private/tmp/monad-city-v7-publication-match.png`.
+- Responsive verification limitation: the in-app browser viewport adapter accepts a 390px
+  override but actual DOM/screenshot width remains 1280px, including after reload and in a new
+  tab. The override was reset and the temporary tab closed. No new mobile verification claim
+  is made; this release changes evidence/configuration without changing CSS or layout code.
+- Submission copy now contains v7 counts and actual transaction/IPFS references. The portal
+  itself still needs refreshing, and the technical demo/pitch recordings are still outstanding.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
