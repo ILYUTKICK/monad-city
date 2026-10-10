@@ -77,8 +77,8 @@ and SVG for Graph View. Current implementation and `docs/WORKLOG.md` supersede t
 Implemented:
 
 - 176 projects across five districts; 172 have approved bounded evidence records;
-- active snapshot `phase-3.5-v6`: 193 records and 6 sourced relationships;
-- hybrid graph: 17 edges, including 11 illustrative or AI-inferred patterns;
+- active snapshot `phase-3.5-v7`: 217 records and 28 sourced relationships;
+- hybrid graph: 39 edges, including 11 illustrative or AI-inferred patterns;
 - project selection, City/Graph, district routes and four district views, Passport,
   evidence links, quality/scope/limitation disclosures and review governance;
 - deterministic local Navigator retrieval, authoritative for map actions;
@@ -89,18 +89,18 @@ Implemented:
 - responsive UI and self-hosted Instrument Sans.
 - isolated Solidity evidence registry implementation with immutable history, permanent subject
   revocations, publisher/revoker roles, delayed admin transfer and explicit migration;
-- deterministic SHA-256/Merkle bundles for all 193 records and 6 sourced relationships;
+- deterministic SHA-256/Merkle bundles for all 217 records and 28 sourced relationships;
 - explicit read-only Passport publication checks and an optional Navigator publication tool.
   The registry is deployed on Monad Testnet at `0x8d53153a8a25c81701954eed66154b3ebba8b8c7`;
   receipt, runtime/constructor bindings and roles were checked through the official RPC.
-  The owner published v6 in transaction
-  `0x701709d9860a724c2fba971c2a2194d9407d5078c17803861eff50d52364e5c0`, block `69858636`.
+  The owner published v7 in transaction
+  `0x3e0fa8cc915fc02ef9590ef22420e61c1e9b15cf20362f99b39c09785e039d14`, block `69899471`.
   Exact commitments and representative evidence/relationship proofs match; the official RPC
   reports that block finalized. Source correspondence is verified in Sourcify.
   The app pins this Testnet publication for explicit read-only checks.
 
 The active evidence pair must match SHA-256
-`9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b`.
+`6a6c7cf9830460fca3ce75bdbfd8510b72b6fba70ada136eb145e45a95155d28`.
 Prior immutable snapshot pairs remain in the repository as explicit historical boundaries.
 
 Limitations:

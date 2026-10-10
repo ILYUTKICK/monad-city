@@ -8,7 +8,7 @@ if (!globalThis.crypto?.subtle) Object.defineProperty(globalThis, 'crypto', { va
 const { estimate, validateRequest, verifyReceipt, hash } = await import('../../tools/registry-deploy/core.js');
 const request = JSON.parse(fs.readFileSync(new URL('../../tools/registry-deploy/request.json', import.meta.url)));
 const artifact = JSON.parse(fs.readFileSync(new URL('../artifacts/MonadCityRegistry.json', import.meta.url)));
-const { validatePublication, checkPublication, verifyPublicationReceipt } = await import('../../tools/registry-publish/core.js');
+const { validatePublication, checkPublication, verifyPublicationReceipt, publicationData, PUBLICATION_PREDECESSORS } = await import('../../tools/registry-publish/core.js');
 const { encodeWord, hexBytes } = await import('../../src/onchain-rpc.js');
 const pubRequest = JSON.parse(fs.readFileSync(new URL('../../tools/registry-publish/request.json', import.meta.url)));
 const json = p => JSON.parse(fs.readFileSync(new URL('../../' + p, import.meta.url)));
@@ -69,13 +69,43 @@ try {
   }
   assert.equal(published?.status, 'publication-receipt-verified');
   assert.equal(published.publicationId, prepared.expectedPublicationId);
-  await assert.rejects(checkPublication(prepared, artifact, audit, local), /already has a publication/);
+  await assert.rejects(checkPublication(prepared, artifact, audit, local), /head changed|already published/);
   const wrongInput = async (method, params) => {
     const result = await local(method, params);
     return method === 'eth_getTransactionByHash' ? { ...result, input: '0x1234' } : result;
   };
   await assert.rejects(verifyPublicationReceipt(pubHash, prepared, artifact, bundle, audit, wrongInput), /differs from/);
+  // A synthetic commitment fixture exercises CAS publication history on loopback only.
+  // It is never exported, approved, uploaded, or accepted by production bundle validation.
+  assert.equal(published.publicationId, PUBLICATION_PREDECESSORS['phase-3.5-v7']);
+  const successorManifest = structuredClone(bundle.manifest);
+  successorManifest.snapshot.version = 'phase-3.5-v7';
+  successorManifest.snapshot.versionHash = await hash(new TextEncoder().encode('disposable-second-publication-fixture'));
+  successorManifest.snapshot.portableSnapshotId = await hash(hexBytes(successorManifest.domains.snapshotId.id
+    + successorManifest.namespace.id.slice(2) + successorManifest.snapshot.versionHash.slice(2)
+    + successorManifest.snapshot.canonicalSha256Bytes32.slice(2)));
+  const successor = structuredClone(prepared);
+  successor.snapshotVersion = 'phase-3.5-v7';
+  successor.previousPublicationId = published.publicationId;
+  successor.portableSnapshotId = successorManifest.snapshot.portableSnapshotId;
+  successor.transaction.data = publicationData(successorManifest, successor.manifestUri, successor.previousPublicationId);
+  successor.transactionDataSha256 = await hash(hexBytes(successor.transaction.data));
+  successor.expectedPublicationId = await hash(hexBytes(successorManifest.domains.publicationId.id
+    + encodeWord(10143n, 'uint256') + encodeWord(audit.address, 'address') + successor.portableSnapshotId.slice(2)));
+  const successorBundle = { ...bundle, manifest: successorManifest };
+  await assert.rejects(validatePublication(successor, artifact, successorBundle, audit));
+  const successorFee = await checkPublication(successor, artifact, audit, local);
+  const successorHash = await local('eth_sendTransaction', [{ ...successor.transaction, gas: successorFee.gas, gasPrice: successorFee.gasPrice }]);
+  let replaced;
+  for (let attempt = 0; attempt < 50; attempt++) {
+    replaced = await verifyPublicationReceipt(successorHash, successor, artifact, successorBundle, audit, local);
+    if (replaced) break;
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  assert.equal(replaced?.previousPublicationId, published.publicationId);
+  assert.equal(replaced?.publicationId, successor.expectedPublicationId);
+  await assert.rejects(checkPublication(successor, artifact, audit, local), /head changed|already published/);
   console.log(JSON.stringify({ environment: 'disposable-loopback-only', result: 'pass',
-    checks: ['request', 'estimate', 'constructor simulation', 'actual receipt and runtime', 'identity and roles', 'wrong sender rejected', 'publication simulation and receipt', 'duplicate publication blocked', 'wrong publication input rejected'],
+    checks: ['request', 'estimate', 'constructor simulation', 'actual receipt and runtime', 'identity and roles', 'wrong sender rejected', 'publication simulation and receipt', 'duplicate publication blocked', 'wrong publication input rejected', 'successor with nonzero predecessor', 'previous publication becomes superseded', 'synthetic successor bundle rejected by production validation'],
     externalTransaction: false }, null, 2));
 } finally { child.kill('SIGTERM'); }

@@ -14,15 +14,15 @@ import {
 import {
   APPROVED_EVIDENCE_SNAPSHOT,
   APPROVED_EVIDENCE_SNAPSHOT_SHA256,
-} from './evidence-snapshots/phase-3.5-v6.generated.js';
+} from './evidence-snapshots/phase-3.5-v7.generated.js';
 
 export const EVIDENCE_DATA_MODE = 'sourced-limited';
 
 export { REVIEW_STATUSES };
 
-export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v6';
-export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-09-27T18:20:00Z';
-export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-09-27T18:20:00Z';
+export const EVIDENCE_SNAPSHOT_VERSION = 'phase-3.5-v7';
+export const EVIDENCE_SNAPSHOT_CREATED_AT = '2026-10-10T15:56:53Z';
+export const EVIDENCE_SNAPSHOT_REVIEWED_AT = '2026-10-10T15:56:53Z';
 export const REVIEW_GOVERNANCE_AS_OF = EVIDENCE_SNAPSHOT_REVIEWED_AT;
 export { REVIEW_GOVERNANCE_POLICY_VERSION };
 
@@ -132,6 +132,7 @@ export const EXPECTED_SNAPSHOT_COUNTS = Object.freeze({
   'phase-3.5-v4': Object.freeze({ records: 142, relationships: 6 }),
   'phase-3.5-v5': Object.freeze({ records: 190, relationships: 6 }),
   'phase-3.5-v6': Object.freeze({ records: 193, relationships: 6 }),
+  'phase-3.5-v7': Object.freeze({ records: 217, relationships: 28 }),
 });
 
 export const EVIDENCE_STATUSES = Object.freeze([

@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "status": "unsigned",
+  "transaction": {
+    "from": "0x9A0C8040A8C6aB9F65F544578b891Fba599799F8",
+    "to": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+    "chainId": "0x279f",
+    "value": "0x0",
+    "data": "0x9afdff700000000000000000000000000000000000000000000000000000000000000020fec6c275c2154f7f7a21404276a7a2bf74288a133b082b9172f81b47a67d6ce66a6c7cf9830460fca3ce75bdbfd8510b72b6fba70ada136eb145e45a95155d28f5cce948ab9aba676359280726cbcfb78a2ce5a57dd4520366f5d14232cd1a1f69721ecfa5155454e474dc6265229e97b542c634542490d7352021b50c6e62fb6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa00000000000000000000000000000000000000000000000000000000000000d9000000000000000000000000000000000000000000000000000000000000001c000000000000000000000000000000000000000000000000000000006aca6045000000000000000000000000000000000000000000000000000000006aca604500000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000000000000000000050697066733a2f2f626166796265696537336866756b6b7178726170326d746670356c77326f33707634717a74726775736d34666e766962776c6962773773626174342f6d616e69666573742e6a736f6e00000000000000000000000000000000"
+  },
+  "transactionDataSha256": "0xd4a5adc9701dec93376699e829cf1b1d671b458b3b18eaede732dc522ceb0e67",
+  "manifestUri": "ipfs://bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/manifest.json",
+  "snapshotVersion": "phase-3.5-v7",
+  "previousPublicationId": "0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa",
+  "portableSnapshotId": "0xa48fff2d58dd21d46decfd96c40040dfe3f17b8f055dee305c8cc72f6339b2bd",
+  "expectedPublicationId": "0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c",
+  "deployment": {
+    "schemaVersion": 1,
+    "status": "deployment-verified-publication-pending",
+    "chainId": 10143,
+    "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+    "transactionHash": "0xa5929d3d1600548dfbbf9a60e8e997c1cb7a534fe08bcd0e5e821a1831fc51b3",
+    "blockNumber": "69845790",
+    "blockHash": "0x68f23aa37aceadb18cf21774b3d356ae9e0ef79e829d9376e20abaf42ad43eeb",
+    "runtimeCodeSha256": "0x4a1c938da6c2eec8aa7f35d1fcf19522af88b9b93134747f0a0baa7f350fae70",
+    "namespace": "monad-city:registry:main:v1",
+    "namespaceId": "0x07715c605c9d90b28bad5a413c4797b590db4bad65e2725355e62cca3c62d959",
+    "deploymentId": "0x73b30e21f07c74808b78b19af771cf2a4fe7db6e94e2ea79c93c2d8cacea41e7",
+    "roles": {
+      "name": "MonadCityRegistry",
+      "namespace": "monad-city:registry:main:v1",
+      "admin": "0x9A0C8040A8C6aB9F65F544578b891Fba599799F8",
+      "publisher": "0x9A0C8040A8C6aB9F65F544578b891Fba599799F8",
+      "revoker": "0x9A0C8040A8C6aB9F65F544578b891Fba599799F8",
+      "adminDelaySeconds": 172800,
+      "predecessor": "0x0000000000000000000000000000000000000000",
+      "predecessorPublication": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "compiler": {
+        "version": "0.8.30+commit.73712a01",
+        "evmVersion": "cancun",
+        "optimizer": {
+          "enabled": true,
+          "runs": 200
+        },
+        "viaIR": true,
+        "bytecodeHash": "none",
+        "appendCBOR": false,
+        "openZeppelinContracts": "5.7.0"
+      },
+      "creationCodeSha256": "0x93bde75678489480bbacd87c39fbf093a9bb8770a160881962fb9c05b00130d1"
+    },
+    "transactionDataSha256": "0xbc7e0d7f209918c221437452c900b195a408d86cddca16a5223181cfc952b873",
+    "checkedAt": "2026-10-10T14:12:27.609Z",
+    "rpcUrl": "https://testnet-rpc.monad.xyz",
+    "scope": "Receipt and code checked at the deployment block through one trusted RPC. No publication, content availability or independent finality check is claimed."
+  },
+  "storageCopies": [
+    {
+      "gateway": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/",
+      "path": "manifest.json",
+      "retrievedUrl": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/manifest.json",
+      "sha256": "0x693246e3b932eda404d12cf0907a5191d9419321ec367a1e1f8d36b18a1c007c"
+    },
+    {
+      "gateway": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/",
+      "path": "evidence-proofs.json",
+      "retrievedUrl": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/evidence-proofs.json",
+      "sha256": "0x63d9ff256c64e8aca2d73815e8812494738e294c6eef65b790d059496725360c"
+    },
+    {
+      "gateway": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/",
+      "path": "relationship-proofs.json",
+      "retrievedUrl": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/relationship-proofs.json",
+      "sha256": "0xa7e3c3f35fc7b99bc565f4f27f14cd6febe460840fa791c7665e984756256ab5"
+    },
+    {
+      "gateway": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/",
+      "path": "data/evidence-snapshots/phase-3.5-v7.json",
+      "retrievedUrl": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/data/evidence-snapshots/phase-3.5-v7.json",
+      "sha256": "0x18d4896a69fd02fc4322f20439083e01f0420566c940597e9cbff4c11e6d7e33"
+    },
+    {
+      "gateway": "https://ipfs.filebase.io/ipfs/",
+      "path": "manifest.json",
+      "retrievedUrl": "https://ipfs.filebase.io/ipfs/bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/manifest.json?download=true",
+      "sha256": "0x693246e3b932eda404d12cf0907a5191d9419321ec367a1e1f8d36b18a1c007c"
+    },
+    {
+      "gateway": "https://ipfs.filebase.io/ipfs/",
+      "path": "evidence-proofs.json",
+      "retrievedUrl": "https://ipfs.filebase.io/ipfs/bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/evidence-proofs.json?download=true",
+      "sha256": "0x63d9ff256c64e8aca2d73815e8812494738e294c6eef65b790d059496725360c"
+    },
+    {
+      "gateway": "https://ipfs.filebase.io/ipfs/",
+      "path": "relationship-proofs.json",
+      "retrievedUrl": "https://ipfs.filebase.io/ipfs/bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/relationship-proofs.json?download=true",
+      "sha256": "0xa7e3c3f35fc7b99bc565f4f27f14cd6febe460840fa791c7665e984756256ab5"
+    },
+    {
+      "gateway": "https://ipfs.filebase.io/ipfs/",
+      "path": "data/evidence-snapshots/phase-3.5-v7.json",
+      "retrievedUrl": "https://ipfs.filebase.io/ipfs/bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/data/evidence-snapshots/phase-3.5-v7.json?download=true",
+      "sha256": "0x18d4896a69fd02fc4322f20439083e01f0420566c940597e9cbff4c11e6d7e33"
+    }
+  ],
+  "simulation": {
+    "gas": "0x69110",
+    "gasPrice": "0x17bfac7c00",
+    "maximumFeeWei": "43895904000000000",
+    "estimatedGas": "391229",
+    "checkedAt": "2026-10-10T16:11:38.598Z",
+    "blockNumber": "69869590",
+    "blockHash": "0xa232c4b62fa389aa96b0d69a312ddeffb9bbf497c142d5f5bdd1f991efcb0b98"
+  },
+  "note": "Unsigned request only. Recheck wallet, current head, code, chain, content availability, balance and fee before signing. No publication has occurred."
+}

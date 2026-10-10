@@ -107,6 +107,7 @@ const EVIDENCE_CADENCE_DAYS = Object.freeze({
   'official-directory-listing|mutable-url': 30,
   'project-address-publication|mutable-url': 30,
   'project-declared-relationship|mutable-url': 60,
+  'project-declared-relationship|pinned-snapshot': 60,
   'network-configuration|mutable-url': 90,
   'project-documentation|mutable-url': 90,
   'official-launch-record|mutable-url': 180,
@@ -354,6 +355,12 @@ function validateInlineReviewPolicy(workspace, label = 'Artifact') {
   );
   subjects.forEach(({ kind, subject }) => {
     const subjectLabel = `${kind === 'evidence' ? 'Evidence' : 'Relationship'} ${subject.id}`;
+    if (kind === 'evidence') {
+      const key = `${subject.evidenceType}|${subject.source.referenceType}`;
+      assert(EVIDENCE_CADENCE_DAYS[key], `${subjectLabel} has unsupported cadence combination ${key}`);
+    } else {
+      assert(RELATIONSHIP_CADENCE_DAYS[subject.type], `${subjectLabel} has unsupported cadence type ${subject.type}`);
+    }
     assert(
       Object.prototype.hasOwnProperty.call(subject, 'reviewMetadata'),
       `${subjectLabel} must contain reviewMetadata under ${REVIEW_POLICY_VERSION}`,

@@ -1,8 +1,9 @@
 import { CHAIN, RPC, validateWallet, mon } from '../registry-deploy/core.js';
 import { validatePublication, checkAvailability, checkPublication, verifyPublicationReceipt } from './core.js';
+import { reviewedRegistryRelease } from '../../scripts/registry/releases.js';
 const $ = id => document.getElementById(id);
 let request, artifact, bundle, deployment, provider, estimateResult, audit, busy = false, sent = false, validated = false;
-const storageKey = 'monad-city:testnet:publication:phase-3.5-v6:transaction';
+let storageKey;
 function message(text, error = false) { $('status').textContent = text; $('status').dataset.error = String(error); }
 function invalidate() { estimateResult = null; $('estimate').hidden = true; $('publish').disabled = true; }
 function renderButtons() {
@@ -107,13 +108,20 @@ $('download').addEventListener('click', () => {
 await action(async () => {
   if (!['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) throw new Error('This operator page must run on localhost.');
   const load = async url => { const response = await fetch(url, { cache: 'no-store' }); if (!response.ok) throw new Error('Missing publication artifact.'); return response.json(); };
+  const release = reviewedRegistryRelease(new URLSearchParams(location.search).get('version') || 'phase-3.5-v6');
+  storageKey = `monad-city:testnet:publication:${release.version}:transaction`;
+  const requestUrl = release.version === 'phase-3.5-v6' ? './request.json' : `./requests/${release.version}.json`;
+  const directory = `../../data/registry/${release.version}`;
   const [prepared, compiled, reviewed, manifest, evidenceArtifact, relationshipArtifact, snapshot] = await Promise.all([
-    load('./request.json'), load('../../contracts/artifacts/MonadCityRegistry.json'), load('../../data/registry/deployments/monad-testnet-genesis.json'),
-    load('../../data/registry/phase-3.5-v6/manifest.json'), load('../../data/registry/phase-3.5-v6/evidence-proofs.json'),
-    load('../../data/registry/phase-3.5-v6/relationship-proofs.json'), load('../../data/evidence-snapshots/phase-3.5-v6.json')]);
+    load(requestUrl), load('../../contracts/artifacts/MonadCityRegistry.json'), load('../../data/registry/deployments/monad-testnet-genesis.json'),
+    load(`${directory}/manifest.json`), load(`${directory}/evidence-proofs.json`),
+    load(`${directory}/relationship-proofs.json`), load(`../../data/evidence-snapshots/${release.version}.json`)]);
   request = prepared; artifact = compiled; deployment = reviewed; bundle = { manifest, evidenceArtifact, relationshipArtifact, snapshot };
   await validatePublication(request, artifact, bundle, deployment);
   $('contract').textContent = deployment.address;
+  $('snapshot').textContent = `${release.version} · ${release.evidenceCount} evidence records · ${release.relationshipCount} relationships`;
+  $('predecessor').textContent = 'Previous publication: ' + (request.previousPublicationId || 'Genesis');
+  $('unsigned-request').href = requestUrl;
   const gateway = request.storageCopies.find(c => c.gateway.includes('.mypinata.cloud/')).gateway;
   $('content').href = gateway + request.manifestUri.slice(7);
   $('content').textContent = request.manifestUri;

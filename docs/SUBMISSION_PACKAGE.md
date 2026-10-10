@@ -37,8 +37,8 @@ eligible evidence IDs retrieved during that conversation. The application displa
 claims rather than model-written factual prose, retaining source status, scope, and limitations.
 If evidence cannot establish an activity claim, the Navigator explains the gap.
 
-The current build contains 176 projects, with 193 approved evidence records covering 172 of them.
-Six relationships have source-backed evidence; other displayed edges remain explicitly
+The current build contains 176 projects, with 217 approved evidence records covering 172 of them.
+Twenty-eight relationships have source-backed evidence; other displayed edges remain explicitly
 illustrative or AI-inferred. Evidence comes from manually reviewed, versioned snapshots. The
 build verifies that the reviewed snapshot matches its runtime module.
 
@@ -71,7 +71,7 @@ The dataset, districts, project identities, source records, and relationship ins
 specific to the Monad ecosystem. Monad City helps users discover its applications and helps
 builders inspect documented integrations. This version is an ecosystem research interface;
 the app reads a deployed evidence registry on Monad Testnet (chain 10143). The owner published
-v6 in transaction `0x701709d9860a724c2fba971c2a2194d9407d5078c17803861eff50d52364e5c0`.
+v7 in transaction `0x3e0fa8cc915fc02ef9590ef22420e61c1e9b15cf20362f99b39c09785e039d14`.
 Passport checks verify the exact record's inclusion and current publication state. No user wallet
 is required to explore or check records.
 
@@ -138,7 +138,7 @@ connection between projects. The AI agent uses local graph tools to find relevan
 The app displays exact source records, with their status and limitations, rather than letting
 the model invent factual explanations.
 
-The current prototype has 176 projects and 193 evidence records. It also shows when the data
+The current prototype has 176 projects and 217 evidence records. It also shows when the data
 cannot establish a requested claim, such as current contract activity.
 
 Our next step is to expand reviewed relationship coverage and make this structured knowledge
@@ -154,7 +154,7 @@ they can inspect.
 - [x] Short demo and pitch scripts prepared.
 - [x] Read form-specific fields, required assets and exact limits from the owner's screenshots and live form.
 - [x] Deploy the current tested build and test the public URL without the owner's browser key.
-- [ ] Update the public build and repository with the verified Testnet registry configuration; record the resulting deployment and source commit.
+- [x] Update the public build and repository with the verified Testnet registry configuration: application commit `a3417d06f60d50e6a60924f54c31f3dd248fb948`, READY production deployment `dpl_7fCezkRkTADKhJFBqud1WUrvHr8P` on 2026-10-10; public-origin Kuru publication check passed.
 - [ ] Record the real AI path; edit waiting time transparently if needed.
 - [ ] Upload demo/pitch videos to the chosen service and test judge access.
 - [ ] Fill actual team details, selected track, links and assets; review the final form.
@@ -209,10 +209,10 @@ the portal checklist. This is saved progress, not a final submission or eligibil
 ## Verified Testnet integration (2026-10-10)
 
 - Contract: `0x8d53153a8a25c81701954eed66154b3ebba8b8c7`, Monad Testnet 10143.
-- Publication: [transaction](https://testnet.monadscan.com/tx/0x701709d9860a724c2fba971c2a2194d9407d5078c17803861eff50d52364e5c0), block 69858636.
-- Exact commitments, 193 evidence records, six relationships and manifest URI match the reviewed v6 bundle.
+- Publication: [transaction](https://testnet.monadscan.com/tx/0x3e0fa8cc915fc02ef9590ef22420e61c1e9b15cf20362f99b39c09785e039d14), block 69899471.
+- Exact commitments, 217 evidence records, 28 relationships and manifest URI match the reviewed v7 bundle.
 - Official RPC reports the matching block finalized; current representative evidence/relationship proofs pass, including each supporting evidence record. One trusted RPC is used.
 - [Verified contract source](https://repo.sourcify.dev/10143/0x8d53153a8a25c81701954eed66154B3EbBa8b8c7): creation and runtime match.
-- Public manifest: `ipfs://bafybeidbeznfdsuqr542slcqbdstgnkmxn7dyuf5de226jyzavhgskyo2i/manifest.json`.
+- Public manifest: `ipfs://bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/manifest.json`.
 - Add to judge instructions: open a source-backed Passport, expand **Inspect full record**, click **Check publication**, and inspect the returned block. No wallet or API key is needed for this check.
 - Portal text saved on 2026-10-08 predates this integration and must be refreshed before final submission.

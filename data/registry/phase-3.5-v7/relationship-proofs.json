@@ -1,0 +1,1245 @@
+{
+  "kind": "monad-city-relationship-registry-proofs",
+  "schemaVersion": 1,
+  "subjectKind": "relationship",
+  "portableSnapshotId": "0xa48fff2d58dd21d46decfd96c40040dfe3f17b8f055dee305c8cc72f6339b2bd",
+  "root": "0x69721ecfa5155454e474dc6265229e97b542c634542490d7352021b50c6e62fb",
+  "count": 28,
+  "entries": [
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-shmonad-asset",
+      "idHash": "0x8f27f3634b71b35756ca2dcb51f3645995da6961747e991175734928ae9f9470",
+      "payloadSha256": "0x0950347cd1b84343a604236fd73cb6f474061b7b959f60f05585dd58496ca9f0",
+      "leafSha256": "0x0753e9ff901791bf5a27200dc6d53df621e4172884b946d74fadd6b15cfe0b85",
+      "payload": {
+        "id": "beefy-shmonad-asset",
+        "from": "beefy",
+        "to": "shmonad",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-SHMONAD-ASSET-001",
+          "E-SHMONAD-TOKEN-MAPPING-001"
+        ],
+        "scope": "Documented asset dependency through Beefy's Curve basket on Monad: shMON, mapped to ShMonad by exact published address; not a bilateral partnership.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Exposure is through a Curve pool; balances, token backing, redemption and current execution were not checked."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x0790fc787c49325bbfdd693eca4b64e0a5afa7330d664e14f215bed0209d734e",
+        "0x12f6bd40326eb1abb1c107929acc8926af1d713b15e439ec1204794ef846f74e",
+        "0x07503415d3c409d8bcd6e3c94856befbf77aa53c9423e240bd64f3b0ba3d61ab",
+        "0x5b302dfcf366b2fe2a52debd028fbce3e1b943d8186eff52bf25b6500468c803",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "leverup-pyth-oracle",
+      "idHash": "0x3e8a82fd279a832a25e3fe9a10051a2c356f5a3c7fd8531ed071191f59ed41a1",
+      "payloadSha256": "0x47178e1c650f589e2ca8a34f11cb33aca06e239cdeb7377c81e59489aea426b1",
+      "leafSha256": "0x0790fc787c49325bbfdd693eca4b64e0a5afa7330d664e14f215bed0209d734e",
+      "payload": {
+        "id": "leverup-pyth-oracle",
+        "from": "leverup",
+        "to": "pyth",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-LEVERUP-PYTH-ORACLE-001",
+          "E-LEVERUP-MEM-001"
+        ],
+        "scope": "Oracle-provider architecture declared by LeverUp, a Monad-listed project; the article does not establish an exact Monad mainnet feed or contract mapping.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Chain context comes from the existing Monad directory record. The article alone does not identify a chain-specific feed, deployed adapter, freshness or latency."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x0753e9ff901791bf5a27200dc6d53df621e4172884b946d74fadd6b15cfe0b85",
+        "0x12f6bd40326eb1abb1c107929acc8926af1d713b15e439ec1204794ef846f74e",
+        "0x07503415d3c409d8bcd6e3c94856befbf77aa53c9423e240bd64f3b0ba3d61ab",
+        "0x5b302dfcf366b2fe2a52debd028fbce3e1b943d8186eff52bf25b6500468c803",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-uniswap",
+      "idHash": "0x18277de0b4cd54d450c68d08fdfbc52185b65c3f988b8492983cfa7b62f30877",
+      "payloadSha256": "0xa294d1b5dd72a6a39be15cd67752376893bb3a000910393461631b757bdf6089",
+      "leafSha256": "0x0e2f04adbe573553674205d87817563334f8c3c0acc0b4faf95509412db83008",
+      "payload": {
+        "id": "beefy-uniswap",
+        "from": "beefy",
+        "to": "uniswap",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-UNISWAP-001"
+        ],
+        "scope": "Beefy configuration maps Monad product uniswap-cow-monad-wbtc-usdc-rp (WBTC-USDC Reward Pool) to platform Uniswap; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x1e99c37a322109fb19ecbb0d798c87cb41dde4205c3fa72255869614a285ca8c",
+        "0x900976a6072227777d558024cb1e4ce74be881ba948cf2ed2ddd63f23bba750a",
+        "0x07503415d3c409d8bcd6e3c94856befbf77aa53c9423e240bd64f3b0ba3d61ab",
+        "0x5b302dfcf366b2fe2a52debd028fbce3e1b943d8186eff52bf25b6500468c803",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-neverland",
+      "idHash": "0x9836a1cf34e4b24081473ddd7acbb60fa5ed7cd281c78d2b33bb356b71604e16",
+      "payloadSha256": "0xe94ae7df10df37c63e31acd0f30d6fe40fb5ecd62cb1aa6fa108c47baa8ff4ef",
+      "leafSha256": "0x1e99c37a322109fb19ecbb0d798c87cb41dde4205c3fa72255869614a285ca8c",
+      "payload": {
+        "id": "beefy-neverland",
+        "from": "beefy",
+        "to": "neverland",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-NEVERLAND-001"
+        ],
+        "scope": "Beefy configuration maps Monad product neverland-monad-wmon (WMON) to platform Neverland; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x0e2f04adbe573553674205d87817563334f8c3c0acc0b4faf95509412db83008",
+        "0x900976a6072227777d558024cb1e4ce74be881ba948cf2ed2ddd63f23bba750a",
+        "0x07503415d3c409d8bcd6e3c94856befbf77aa53c9423e240bd64f3b0ba3d61ab",
+        "0x5b302dfcf366b2fe2a52debd028fbce3e1b943d8186eff52bf25b6500468c803",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-pancakeswap",
+      "idHash": "0xa6749a451da9d63886ba1eee8a45691b650d893988f13fd916ac24f580edf925",
+      "payloadSha256": "0xbd11834d4aba5bce12297b2a7b037f8e10037091e821bf6d19021ba6b8e2911d",
+      "leafSha256": "0x20f1c8806e9da64cd1b14e0946cbec0c536b3fd244c421b9d311b6f071353287",
+      "payload": {
+        "id": "beefy-pancakeswap",
+        "from": "beefy",
+        "to": "pancakeswap",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-PANCAKESWAP-001"
+        ],
+        "scope": "Beefy configuration maps Monad product pancake-cow-monad-wmon-usdc-rp (USDC-WMON Reward Pool) to platform PancakeSwap; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x2b7336219ace6b55ac59f0f4d5c61e424094835e9fcc5c045c0756832f67c5a9",
+        "0x4066fe685dc71335c5789278b588c060e66717784d15dc5e0a5bd0855c14680d",
+        "0xbaf427536dea5c188cb1f76ade0ffe95ef5ecb88c6ad5b552cc5df2391dbc1ec",
+        "0x5b302dfcf366b2fe2a52debd028fbce3e1b943d8186eff52bf25b6500468c803",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-steakhouse-financial-vault",
+      "idHash": "0x5cb774c0c8e13e91f17b7adfd3da9e87963063a593da6053b6edc1b36ee7b115",
+      "payloadSha256": "0x74bbe9f540bf328a57b80c69c680154aedf3fbec5f0a40ec1ed4cb7a46f80ac4",
+      "leafSha256": "0x2b7336219ace6b55ac59f0f4d5c61e424094835e9fcc5c045c0756832f67c5a9",
+      "payload": {
+        "id": "beefy-steakhouse-financial-vault",
+        "from": "beefy",
+        "to": "steakhouse-financial",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-STEAKHOUSE-FINANCIAL-VAULT-001"
+        ],
+        "scope": "Beefy product morpho-monad-steakhouse-prime-weth links https://app.morpho.org/monad/vault/0xbeef04b01e0275D4ac2e2986256BB14E3Ff6ef42/steakhouse-prime-eth and assigns curatorId steakhouse; only this product association is supported.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Curator identity is a publisher label, not independently verified control of a curator address."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x20f1c8806e9da64cd1b14e0946cbec0c536b3fd244c421b9d311b6f071353287",
+        "0x4066fe685dc71335c5789278b588c060e66717784d15dc5e0a5bd0855c14680d",
+        "0xbaf427536dea5c188cb1f76ade0ffe95ef5ecb88c6ad5b552cc5df2391dbc1ec",
+        "0x5b302dfcf366b2fe2a52debd028fbce3e1b943d8186eff52bf25b6500468c803",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-morpho-blue",
+      "idHash": "0xbef97428e06f342def4b4c634f0037899e1421a5dafe8b3a47cfce9ebe323e6a",
+      "payloadSha256": "0x18e821ca6146aa58ea348f38f5648a5e906d748b49f4ac73ad6cc8674ca261eb",
+      "leafSha256": "0x3009e244b2338b5a8576aabe1c6f6296243d7a10cccf6a16cd47b7fb6382635c",
+      "payload": {
+        "id": "beefy-morpho-blue",
+        "from": "beefy",
+        "to": "morpho-blue",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-MORPHO-BLUE-001"
+        ],
+        "scope": "Beefy configuration maps Monad product morpho-v2-monad-august-usdc-v2 (USDC (August v2)) to platform Morpho; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x3a3c341aa3ef3d40206f7d2f81aebeaa0ff12588decedd57bb48cf05305c0e17",
+        "0x3987890d6cc80f6bacc849398510999d60c7e5f97a2d6430a9f26fb87a9d8783",
+        "0xbaf427536dea5c188cb1f76ade0ffe95ef5ecb88c6ad5b552cc5df2391dbc1ec",
+        "0x5b302dfcf366b2fe2a52debd028fbce3e1b943d8186eff52bf25b6500468c803",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-switchboard",
+      "idHash": "0xe76d9817f66ed55f81c4d0cd6c5a078da4239be9c8212e858f0daf54d126c76f",
+      "payloadSha256": "0xa7e475cafa26add55f65d43d595f0e36320a49b276348895033afeeefafb140f",
+      "leafSha256": "0x3a3c341aa3ef3d40206f7d2f81aebeaa0ff12588decedd57bb48cf05305c0e17",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-SWITCHBOARD-MEM-001",
+          "E-SWITCHBOARD-CAP-001"
+        ],
+        "from": "monad",
+        "id": "monad-switchboard",
+        "limitations": [
+          "No scoped third-party attestation was found."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        },
+        "scope": "Switchboard appeared in the official Monad infrastructure directory under Oracle.",
+        "status": "Observed",
+        "to": "switchboard",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0x3009e244b2338b5a8576aabe1c6f6296243d7a10cccf6a16cd47b7fb6382635c",
+        "0x3987890d6cc80f6bacc849398510999d60c7e5f97a2d6430a9f26fb87a9d8783",
+        "0xbaf427536dea5c188cb1f76ade0ffe95ef5ecb88c6ad5b552cc5df2391dbc1ec",
+        "0x5b302dfcf366b2fe2a52debd028fbce3e1b943d8186eff52bf25b6500468c803",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-hyperithm-vault",
+      "idHash": "0xb7c99e1ceba8661c484618726aa88542bcd632af282f4b8246dba0606b2ca500",
+      "payloadSha256": "0x3890978279a4f0cc6bb7571274e44af79bd0b65c9587c01bb03503d2406d4fda",
+      "leafSha256": "0x4f95469a6eee25aa6687de5cb553cf5ff9a2dbe8a7623bac80da66fee8761531",
+      "payload": {
+        "id": "beefy-hyperithm-vault",
+        "from": "beefy",
+        "to": "hyperithm",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-HYPERITHM-VAULT-001"
+        ],
+        "scope": "Beefy product morpho-monad-hyperithm-usdc links https://app.morpho.org/monad/vault/0x78999cc96d2Ba0341588C60CcB0E91c6C33CF371/hyperithm-usdc-apex and assigns curatorId hyperithm; only this product association is supported.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Curator identity is a publisher label, not independently verified control of a curator address."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x562eb3d81d4095d39697dd238120bf8d93a3fb4e5800fb517776cc83ec95d38a",
+        "0xe5fc951aea48326cba4021c6834ecae4837f91189354d6ee32ad088331d50967",
+        "0xc52f4dded7599902a1eae7a3ff3d4fff26fe15a4cccc6634c481af328f05e8c8",
+        "0x3f0f7308e183c5102cb6247172d8ffa64f09d6104a1ddc39f1e23dda9adf5d09",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-curve",
+      "idHash": "0x3ee6a010218a9237547bae46693e03287b72eaf8d735abeefac1d90e0987a5d2",
+      "payloadSha256": "0xc5850a25f931954ef7daa3b702df0a364b6343fcb956cd070755bc7deefdd7f4",
+      "leafSha256": "0x562eb3d81d4095d39697dd238120bf8d93a3fb4e5800fb517776cc83ec95d38a",
+      "payload": {
+        "id": "beefy-curve",
+        "from": "beefy",
+        "to": "curve",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-CURVE-001"
+        ],
+        "scope": "Beefy configuration maps Monad product curve-monad-mon-lsts (WMON/shMON/sMON/gMON) to platform Curve; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x4f95469a6eee25aa6687de5cb553cf5ff9a2dbe8a7623bac80da66fee8761531",
+        "0xe5fc951aea48326cba4021c6834ecae4837f91189354d6ee32ad088331d50967",
+        "0xc52f4dded7599902a1eae7a3ff3d4fff26fe15a4cccc6634c481af328f05e8c8",
+        "0x3f0f7308e183c5102cb6247172d8ffa64f09d6104a1ddc39f1e23dda9adf5d09",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-kintsu-asset",
+      "idHash": "0x9ad4678ee7b776e48268c2a8fbbcd760bf1095b582fa5aa0badc3996143440ab",
+      "payloadSha256": "0x3a95468077545fb8eefbeffa1fe6df43b71f714b9a552695c8138c987081a574",
+      "leafSha256": "0x58b1983c976cf857e12cb05113a0a09faa5971f9859a6f197e7e32dcc0bd7f6f",
+      "payload": {
+        "id": "beefy-kintsu-asset",
+        "from": "beefy",
+        "to": "kintsu",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-KINTSU-ASSET-001",
+          "E-KINTSU-TOKEN-MAPPING-001"
+        ],
+        "scope": "Documented asset dependency through Beefy's Curve basket on Monad: sMON, mapped to Kintsu by exact published address; not a bilateral partnership.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Exposure is through a Curve pool; balances, token backing, redemption and current execution were not checked."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x599f7341860b316e2fbc68efeeb5c9cdb65b9887bec84fb132f06a69ff48f06a",
+        "0x1b539b592f4d2d30c8cce2e1c0e4026b2030ea8dcc85d14bc151c5bc5ba76235",
+        "0xc52f4dded7599902a1eae7a3ff3d4fff26fe15a4cccc6634c481af328f05e8c8",
+        "0x3f0f7308e183c5102cb6247172d8ffa64f09d6104a1ddc39f1e23dda9adf5d09",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "perpl-agora-collateral",
+      "idHash": "0xba0b491684995e38fd835836cef5ac25633e992b447bad0f3e17c21b4e7a1b0e",
+      "payloadSha256": "0x63e97458fb480f4520fc7d09b84c725e894ed12b2c29ecea4cd88d325267bd6b",
+      "leafSha256": "0x599f7341860b316e2fbc68efeeb5c9cdb65b9887bec84fb132f06a69ff48f06a",
+      "payload": {
+        "id": "perpl-agora-collateral",
+        "from": "perpl",
+        "to": "agora",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-PERPL-AGORA-COLLATERAL-001",
+          "E-AGORA-REGISTRY-001"
+        ],
+        "scope": "Documented collateral dependency: Perpl mainnet uses the published AUSD token address associated with Agora in the Monad registry.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Documentation and address correspondence do not prove a live deposited balance, reserve backing or transaction execution."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x58b1983c976cf857e12cb05113a0a09faa5971f9859a6f197e7e32dcc0bd7f6f",
+        "0x1b539b592f4d2d30c8cce2e1c0e4026b2030ea8dcc85d14bc151c5bc5ba76235",
+        "0xc52f4dded7599902a1eae7a3ff3d4fff26fe15a4cccc6634c481af328f05e8c8",
+        "0x3f0f7308e183c5102cb6247172d8ffa64f09d6104a1ddc39f1e23dda9adf5d09",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-magma-asset",
+      "idHash": "0xc81aa8cae9bbe09e01f6efa801e88ec6df34f1ef6430e3125d5f116826278a86",
+      "payloadSha256": "0x6b1244923f3b9bfcd5b86a3136a883f3488c3669977948ce09e30a61691377ae",
+      "leafSha256": "0x68ebcb09de97129d4c76f7a0e440b20bf27683d51897ecd3baa6dd312cb37056",
+      "payload": {
+        "id": "beefy-magma-asset",
+        "from": "beefy",
+        "to": "magma",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-MAGMA-ASSET-001",
+          "E-MAGMA-REGISTRY-001"
+        ],
+        "scope": "Documented asset dependency through Beefy's Curve basket on Monad: gMON, mapped to Magma by exact published address; not a bilateral partnership.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Exposure is through a Curve pool; balances, token backing, redemption and current execution were not checked."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x6ed7e172e909c17169bb13d34800e0b4bc8b6ee617379b6233d6dc1b130b337f",
+        "0x7332f740e750a8ad8c0eb245d5ec6fd98ebffce568a8b54016bebb8f1e5ec5ed",
+        "0xf66ab63c3dfe8277324a4ecf5295ee8bf8f0984d1674897f202454685f3c5d6e",
+        "0x3f0f7308e183c5102cb6247172d8ffa64f09d6104a1ddc39f1e23dda9adf5d09",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-curvance",
+      "idHash": "0xb25913bf844049612f93a89b9020c6d51f8dbb8f0f95799971775df4538bfb12",
+      "payloadSha256": "0xa17b9ee5c13a5d8152588b80e250070af208df816c0f73cbb659d7c306e64913",
+      "leafSha256": "0x6ed7e172e909c17169bb13d34800e0b4bc8b6ee617379b6233d6dc1b130b337f",
+      "payload": {
+        "id": "beefy-curvance",
+        "from": "beefy",
+        "to": "curvance",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-CURVANCE-001"
+        ],
+        "scope": "Beefy configuration maps Monad product curvance-monad-ausd-earnausd-ausd (AUSD (earnAUSD-AUSD Market)) to platform Curvance; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x68ebcb09de97129d4c76f7a0e440b20bf27683d51897ecd3baa6dd312cb37056",
+        "0x7332f740e750a8ad8c0eb245d5ec6fd98ebffce568a8b54016bebb8f1e5ec5ed",
+        "0xf66ab63c3dfe8277324a4ecf5295ee8bf8f0984d1674897f202454685f3c5d6e",
+        "0x3f0f7308e183c5102cb6247172d8ffa64f09d6104a1ddc39f1e23dda9adf5d09",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-aave-v3",
+      "idHash": "0x982732263487b2fc8ce70bf5bb27226214506878dfa4daebccf2c42426fc5269",
+      "payloadSha256": "0x318cf11e77d03c11de9f01b57dbc7cefb0df2e37ecbba6628a13b33cec10a556",
+      "leafSha256": "0x7173a631f3d604c6f6134fcc3de87ec9e33b6f69981c07d07a8542750322a425",
+      "payload": {
+        "id": "beefy-aave-v3",
+        "from": "beefy",
+        "to": "aave-v3",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-AAVE-V3-001"
+        ],
+        "scope": "Beefy configuration maps Monad product aavev3-monad-usdc (USDC) to platform Aave V3; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x8e5c9b07bd1cbab5de3c48620101ace56c8652b0c636d38cace262b959108662",
+        "0x42b77c3b1a16dafc0c6d28ab66ea232218572bb1629e57491de5fcd4644e8442",
+        "0xf66ab63c3dfe8277324a4ecf5295ee8bf8f0984d1674897f202454685f3c5d6e",
+        "0x3f0f7308e183c5102cb6247172d8ffa64f09d6104a1ddc39f1e23dda9adf5d09",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-euler",
+      "idHash": "0x11fb19ed493e56d716a5101e57fff598d527de8a5e655d5725f52c0f42fdb9bc",
+      "payloadSha256": "0x83f9b2f217155e61e736341c2fc7f0def938ada41bfa8773863294b59bdd259c",
+      "leafSha256": "0x8e5c9b07bd1cbab5de3c48620101ace56c8652b0c636d38cace262b959108662",
+      "payload": {
+        "id": "beefy-euler",
+        "from": "beefy",
+        "to": "euler",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-EULER-001"
+        ],
+        "scope": "Beefy configuration maps Monad product euler-monad-alphagrowth-ausd (AUSD (AlphaGrowth)) to platform Euler; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x7173a631f3d604c6f6134fcc3de87ec9e33b6f69981c07d07a8542750322a425",
+        "0x42b77c3b1a16dafc0c6d28ab66ea232218572bb1629e57491de5fcd4644e8442",
+        "0xf66ab63c3dfe8277324a4ecf5295ee8bf8f0984d1674897f202454685f3c5d6e",
+        "0x3f0f7308e183c5102cb6247172d8ffa64f09d6104a1ddc39f1e23dda9adf5d09",
+        "0x4a24ea871da42a5bd4c218032e693b4ed50b90588b882f468170f2c635440f09"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-apriori",
+      "idHash": "0xab8e679c9b19b42b50994c51ec2a8ba49b0b27212bc9610e4aaf56615fdfbdd4",
+      "payloadSha256": "0x1a946dc6436b9005ef059bf5f8b55b4e8abf99be2407f511efd33cdf9e511ddf",
+      "leafSha256": "0x92609020c669d33ee98dae5628091e5cf6034a3a9ffb60d4eb8dad011be89465",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-APRIORI-REGISTRY-001",
+          "E-APRIORI-CAP-001"
+        ],
+        "from": "monad",
+        "id": "monad-apriori",
+        "limitations": [
+          "No signed owner claim was found; preserve the identity-transition limitation."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        },
+        "scope": "The legacy aPriori entry appeared in the pinned Monad mainnet registry; current context is scoped to Capricorn/aprMON.",
+        "status": "Observed",
+        "to": "aPriori",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0x935a1a594eff4a35c2083b90a142c3460739cff749fe51eb7ab3949a328e313b",
+        "0x96606c0806e930696e3e490d6d6dd568b7a4f11ee6fc9c08eba40027b99054af",
+        "0xeecb13e6ba77a90c8cc46d010c8700296b893c17dae7d7ce99438b1b3e5d6ddb",
+        "0x81db70b92a41e9264c7c11b5fbec0dc7e6ac5f565a48de0851b850d0ab21163e",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-pyth-002",
+      "idHash": "0xbadbf619e28d8a1f217e4b1f94f593a3d477f314501d36c5bc07f6003a1443ce",
+      "payloadSha256": "0x7fb04c8fbc4f351365dc666d7ca79a192fe89c0823cf7e6eaa548cc144a0eb99",
+      "leafSha256": "0x935a1a594eff4a35c2083b90a142c3460739cff749fe51eb7ab3949a328e313b",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-PYTH-MEM-001"
+        ],
+        "from": "monad",
+        "id": "monad-pyth-002",
+        "limitations": [
+          "Membership is not endorsement or proof of fresh feeds.",
+          "Current Pyth contract-address docs do not expose a Monad mapping, and membership does not prove feed freshness or deployment."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 2,
+          "supersedesRelationshipId": "monad-pyth"
+        },
+        "scope": "Pyth appeared in the official Monad infrastructure directory under Oracle.",
+        "status": "Observed",
+        "to": "pyth",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0x92609020c669d33ee98dae5628091e5cf6034a3a9ffb60d4eb8dad011be89465",
+        "0x96606c0806e930696e3e490d6d6dd568b7a4f11ee6fc9c08eba40027b99054af",
+        "0xeecb13e6ba77a90c8cc46d010c8700296b893c17dae7d7ce99438b1b3e5d6ddb",
+        "0x81db70b92a41e9264c7c11b5fbec0dc7e6ac5f565a48de0851b850d0ab21163e",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "august-digital-morpho-vault",
+      "idHash": "0x8198a854c842ee717b815f7d5626fa415af336796e982d27cc1a6cc7e597d852",
+      "payloadSha256": "0x6c79748ec9460f0ff70b7b32ecbc497a2c9002be252e2926da411febf7cf0426",
+      "leafSha256": "0x98268eb5ef5cc7a3ae7ca869f0a1141571da505b41cb8c0e0277f21ef8fad6ac",
+      "payload": {
+        "id": "august-digital-morpho-vault",
+        "from": "august-digital",
+        "to": "morpho-blue",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-AUGUST-DIGITAL-MORPHO-VAULT-001"
+        ],
+        "scope": "Morpho's Monad vault page associates August Digital with the specific named vault; publisher identification, not independently verified curator authority.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The page contains changing financial metrics; no metrics, live allocation, wallet identity or onchain curator role are included in this claim."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0xa3b8a662d543a0193396d3478b40eed123794d617d01448de9d1150b6434e2e9",
+        "0xd55dcd0fb25b0b225a77ba7f71a79391eb3a1386cc63d6897d9451ec7a5ccb72",
+        "0xeecb13e6ba77a90c8cc46d010c8700296b893c17dae7d7ce99438b1b3e5d6ddb",
+        "0x81db70b92a41e9264c7c11b5fbec0dc7e6ac5f565a48de0851b850d0ab21163e",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-gearbox",
+      "idHash": "0x2fb3d2c9204c12fdec938c48f71aea41d384f048ec5ef655ff7da8b0c7093c49",
+      "payloadSha256": "0x3c6376d0e2e9eaa8f331e2422a5d41bb8cdb12f158c7472307049d7872e7971c",
+      "leafSha256": "0xa3b8a662d543a0193396d3478b40eed123794d617d01448de9d1150b6434e2e9",
+      "payload": {
+        "id": "beefy-gearbox",
+        "from": "beefy",
+        "to": "gearbox",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-GEARBOX-001"
+        ],
+        "scope": "Beefy configuration maps Monad product gearbox-monad-edge-usdc (USDC (Edge UltraYield)) to platform Gearbox; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0x98268eb5ef5cc7a3ae7ca869f0a1141571da505b41cb8c0e0277f21ef8fad6ac",
+        "0xd55dcd0fb25b0b225a77ba7f71a79391eb3a1386cc63d6897d9451ec7a5ccb72",
+        "0xeecb13e6ba77a90c8cc46d010c8700296b893c17dae7d7ce99438b1b3e5d6ddb",
+        "0x81db70b92a41e9264c7c11b5fbec0dc7e6ac5f565a48de0851b850d0ab21163e",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "hyperithm-morpho-vault",
+      "idHash": "0x5d241cb85eec21981dcef402cd0a7caac25f65a9c0dc9fac828edcc5f8d1d482",
+      "payloadSha256": "0xbec520161085e8b2f1a8e7fdf5b037d5f7fca9567018fead6d836f5a4dc98550",
+      "leafSha256": "0xb613cddedd72a605607ea7d82a449fbcf36e39e3be0e02318983a8d90db16330",
+      "payload": {
+        "id": "hyperithm-morpho-vault",
+        "from": "hyperithm",
+        "to": "morpho-blue",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-HYPERITHM-MORPHO-VAULT-001"
+        ],
+        "scope": "Morpho's Monad vault page associates Hyperithm with the specific named vault; publisher identification, not independently verified curator authority.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The page contains changing financial metrics; no metrics, live allocation, wallet identity or onchain curator role are included in this claim."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0xb9fae150c89985f0fcd619310a430ddd083d986ee461766e68a11939bee6a2f6",
+        "0x373460fd792fd5efc81dc6be5a32f1b5da3834c0151323db4c8c51917c7224ca",
+        "0xcd37de6fc57a859cd44adef75f2d0fd2a576d104a1652ae90fcf3d515be17613",
+        "0x81db70b92a41e9264c7c11b5fbec0dc7e6ac5f565a48de0851b850d0ab21163e",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-balancer",
+      "idHash": "0x6f87ac228b1c1acb381b457e474962e5c632403352ed7cd8fe1d5f75e92dd5fb",
+      "payloadSha256": "0x90e30963ec002aa9d2303a4c690e14e2ddc7e241aae607bd3f7b9832edfcbfc9",
+      "leafSha256": "0xb9fae150c89985f0fcd619310a430ddd083d986ee461766e68a11939bee6a2f6",
+      "payload": {
+        "id": "beefy-balancer",
+        "from": "beefy",
+        "to": "balancer",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-BALANCER-001"
+        ],
+        "scope": "Beefy configuration maps Monad product balancerv3-monad-usdt0-ausd-usdc (USDT0/AUSD/USDC V3) to platform Balancer; this is a documented strategy dependency.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0xb613cddedd72a605607ea7d82a449fbcf36e39e3be0e02318983a8d90db16330",
+        "0x373460fd792fd5efc81dc6be5a32f1b5da3834c0151323db4c8c51917c7224ca",
+        "0xcd37de6fc57a859cd44adef75f2d0fd2a576d104a1652ae90fcf3d515be17613",
+        "0x81db70b92a41e9264c7c11b5fbec0dc7e6ac5f565a48de0851b850d0ab21163e",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-kuru-002",
+      "idHash": "0x61daeacf610034b78b6351a1f2393d50cb5ca5803571e72f47b9dc3cd354d943",
+      "payloadSha256": "0xe039792027c485ca5335d28ccbb48bd18cfe5542cfb2851db54e5fe059bffadf",
+      "leafSha256": "0xbc212175e24ee3eafd4e599f649c94a6de17106da4479bd7eb9b8a45f9c0055d",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-KURU-MEM-002"
+        ],
+        "from": "monad",
+        "id": "monad-kuru-002",
+        "limitations": [
+          "Directory membership is not endorsement, safety review, or an onchain interaction."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 2,
+          "supersedesRelationshipId": "monad-kuru"
+        },
+        "scope": "At the 2026-09-22 refresh, Kuru appeared in the Monad Foundation App Portal Spot Trading section as ‘Trading Hub on Monad.’",
+        "status": "Observed",
+        "to": "kuru",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0xc856214fde04ca7b3b7be0d94801bfd6ac06aabd17a1ae903c5874a706dae3f9",
+        "0x27ae9eaab8cf19ea7cb3175f8f8272134f1f6218ed21a33c547cded00d5d7ed5",
+        "0xcd37de6fc57a859cd44adef75f2d0fd2a576d104a1652ae90fcf3d515be17613",
+        "0x81db70b92a41e9264c7c11b5fbec0dc7e6ac5f565a48de0851b850d0ab21163e",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "agora-layerzero-oft",
+      "idHash": "0xee8bde73618acd74e578e41b5a765599f69ac4a5899162be04c83c1340b7d50b",
+      "payloadSha256": "0xb07a2155c5116d70e63a1a262a1e1e9858c77a18fbe4779601c72ea427c5b37c",
+      "leafSha256": "0xc856214fde04ca7b3b7be0d94801bfd6ac06aabd17a1ae903c5874a706dae3f9",
+      "payload": {
+        "id": "agora-layerzero-oft",
+        "from": "agora",
+        "to": "layerzero-v2",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-AGORA-LAYERZERO-OFT-001"
+        ],
+        "scope": "Agora’s announcement associates AUSD with LayerZero OFT and Monad; the announcement describes both adoption and future rollout, not a tested bridge route.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Rollout language is prospective in part; current routes, peer configuration and bridge security were not checked."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0xbc212175e24ee3eafd4e599f649c94a6de17106da4479bd7eb9b8a45f9c0055d",
+        "0x27ae9eaab8cf19ea7cb3175f8f8272134f1f6218ed21a33c547cded00d5d7ed5",
+        "0xcd37de6fc57a859cd44adef75f2d0fd2a576d104a1652ae90fcf3d515be17613",
+        "0x81db70b92a41e9264c7c11b5fbec0dc7e6ac5f565a48de0851b850d0ab21163e",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "magma-switchboard",
+      "idHash": "0xdbc22594e63110790c2bb5e7b592db00def9443886f0e55642fb36525c2c209b",
+      "payloadSha256": "0x4bb32ca934562efc1b39c7c47f3076f5db0413d170b09480af443e0883db0f4e",
+      "leafSha256": "0xd5a9b81d2b98529ce01b46b522052202dc8c35358109ebdfd5c1152d199bad59",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-MAGMA-SWITCHBOARD-001"
+        ],
+        "from": "magma",
+        "id": "magma-switchboard",
+        "limitations": [
+          "One-sided project declaration; no reciprocal confirmation or fresh-feed observation."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        },
+        "scope": "Magma documentation names Switchboard and publishes two gMON feed IDs.",
+        "status": "Claimed",
+        "to": "switchboard",
+        "type": "declared_integration"
+      },
+      "proof": [
+        "0xd64d03fdd446ddf49dbdc63453aed459d0a35fa84a9772d67e0dcaf77ecb1393",
+        "0x932f3bbb2c3481d4b31df241d8c157d72de993fe330f775350d79de03ea0f1a0",
+        "0x66a1ac95a23768056b6ca8a88655fb408207c584c79c1610b5955b87c137a9e8",
+        "0xa7ff4e45ccf4f4a8ac8e57a576545f3515fc50cd23c02f25d8214aa506e113b2",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-magma",
+      "idHash": "0x32f03db9746654a2278cab00e6c26dd9645fa4bdb6c4117842e60df8610ddfd8",
+      "payloadSha256": "0xe54e7ba21e87ab1e0ef403702a125b04637a9654c60f9db3eba3a76db35675ef",
+      "leafSha256": "0xd64d03fdd446ddf49dbdc63453aed459d0a35fa84a9772d67e0dcaf77ecb1393",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-MAGMA-REGISTRY-001",
+          "E-MAGMA-CAP-001"
+        ],
+        "from": "monad",
+        "id": "monad-magma",
+        "limitations": [
+          "Registry membership is not endorsement, safety, or measured activity."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        },
+        "scope": "Magma appeared in the pinned Monad mainnet registry and documents a Monad deployment.",
+        "status": "Observed",
+        "to": "magma",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0xd5a9b81d2b98529ce01b46b522052202dc8c35358109ebdfd5c1152d199bad59",
+        "0x932f3bbb2c3481d4b31df241d8c157d72de993fe330f775350d79de03ea0f1a0",
+        "0x66a1ac95a23768056b6ca8a88655fb408207c584c79c1610b5955b87c137a9e8",
+        "0xa7ff4e45ccf4f4a8ac8e57a576545f3515fc50cd23c02f25d8214aa506e113b2",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "steakhouse-financial-morpho-vault",
+      "idHash": "0xc21798b43d7bb4ccfbf35b46034262f4a891cd12cda73aacd50f71e80f413347",
+      "payloadSha256": "0xccc75e1ad567c68a175a1860affbf8a7cfbb3a1c7561800adf009adb2dcd8547",
+      "leafSha256": "0xef285476cea30dff7c7b547f6378194211f195eed6083bec2956060fa0b59b40",
+      "payload": {
+        "id": "steakhouse-financial-morpho-vault",
+        "from": "steakhouse-financial",
+        "to": "morpho-blue",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-STEAKHOUSE-FINANCIAL-MORPHO-VAULT-001"
+        ],
+        "scope": "Morpho's Monad vault page associates Steakhouse Financial with the specific named vault; publisher identification, not independently verified curator authority.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "The page contains changing financial metrics; no metrics, live allocation, wallet identity or onchain curator role are included in this claim."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0xfd425e4e310a8b1001bd50c5f8f8c653f25fe1247056cea486b8a2bc9b7d9c6f",
+        "0x9b013c6fa18c9d42cfd1e9e7a1e00a550045af5126c16699a108c46654eba1ba",
+        "0x66a1ac95a23768056b6ca8a88655fb408207c584c79c1610b5955b87c137a9e8",
+        "0xa7ff4e45ccf4f4a8ac8e57a576545f3515fc50cd23c02f25d8214aa506e113b2",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-august-digital-vault",
+      "idHash": "0x7ae937b889f4598178f564010e8e923d3691e4f19a7608e09a51f9ea5917e924",
+      "payloadSha256": "0xe915083d8fc2817163c769f61b87783061b00799ad6ebbb8f76aab29e608c4a6",
+      "leafSha256": "0xfd425e4e310a8b1001bd50c5f8f8c653f25fe1247056cea486b8a2bc9b7d9c6f",
+      "payload": {
+        "id": "beefy-august-digital-vault",
+        "from": "beefy",
+        "to": "august-digital",
+        "type": "declared_integration",
+        "status": "Claimed",
+        "evidenceIds": [
+          "E-BEEFY-AUGUST-DIGITAL-VAULT-001"
+        ],
+        "scope": "Beefy product morpho-v2-monad-august-usdc-v2 links https://app.morpho.org/monad/vault/0x80017bF0f793EBbE9679Cd61ff0e395B62CAbB59/august-usdc-v2 and assigns curatorId august-digital; only this product association is supported.",
+        "limitations": [
+          "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+          "Curator identity is a publisher label, not independently verified control of a curator address."
+        ],
+        "dataMode": "sourced-limited",
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-10-10T15:56:53Z",
+        "reviewMetadata": {
+          "reviewerRef": "reviewer:r-5e554d4387bab74d",
+          "reviewerRole": "relationship-reviewer",
+          "reviewedAt": "2026-10-10T15:56:53Z",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+        },
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        }
+      },
+      "proof": [
+        "0xef285476cea30dff7c7b547f6378194211f195eed6083bec2956060fa0b59b40",
+        "0x9b013c6fa18c9d42cfd1e9e7a1e00a550045af5126c16699a108c46654eba1ba",
+        "0x66a1ac95a23768056b6ca8a88655fb408207c584c79c1610b5955b87c137a9e8",
+        "0xa7ff4e45ccf4f4a8ac8e57a576545f3515fc50cd23c02f25d8214aa506e113b2",
+        "0x829f7f834c9f6091140cfaa0bb445a6c729fbdcbd3dde9b813de58a67098f9c7"
+      ]
+    }
+  ]
+}

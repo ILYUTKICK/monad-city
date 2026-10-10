@@ -1,0 +1,615 @@
+{
+  "kind": "monad-city-relationship-expansion-research",
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-10T15:40:07.754Z",
+  "baseSnapshot": "data/evidence-snapshots/phase-3.5-v6.json",
+  "status": "maintainer-review-required",
+  "method": "Bounded primary-source fetches and manual payload inspection; no automatic approval, no indexer.",
+  "sources": [
+    {
+      "source": {
+        "url": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+        "publisher": "Beefy Finance",
+        "title": "Beefy Monad vault configuration at pinned commit",
+        "kind": "repository-file",
+        "referenceType": "pinned-snapshot",
+        "presentationMutable": false,
+        "available": true
+      },
+      "retrievedAt": "2026-10-10T15:39:57Z",
+      "responseSha256": "31c6a6023536e06ec18b6cf4a44b76e49d2f412da74e2a11be275429a1ca2441",
+      "httpStatus": 200,
+      "requiredTokensFound": [
+        "\"network\": \"monad\""
+      ]
+    },
+    {
+      "source": {
+        "url": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json",
+        "publisher": "Monad protocol registry contributors",
+        "title": "Pinned Monad mainnet protocol registry",
+        "kind": "repository-file",
+        "referenceType": "pinned-snapshot",
+        "presentationMutable": false,
+        "available": true
+      },
+      "retrievedAt": "2026-10-10T15:39:58Z",
+      "responseSha256": "fba24d2e94ce3eebe63cfba9b474e343ff6ba80e7de8082ed6f7d4bfef302630",
+      "httpStatus": 200,
+      "requiredTokensFound": [
+        "StakedMonad",
+        "shmonad",
+        "gMON"
+      ]
+    },
+    {
+      "source": {
+        "url": "https://app.morpho.org/monad/vault/0xbeef04b01e0275D4ac2e2986256BB14E3Ff6ef42/steakhouse-prime-eth",
+        "publisher": "Morpho Association",
+        "title": "Morpho Monad vault — Steakhouse Financial",
+        "kind": "documentation-html",
+        "referenceType": "mutable-url",
+        "presentationMutable": true,
+        "available": true
+      },
+      "retrievedAt": "2026-10-10T15:40:01Z",
+      "responseSha256": "3398a05228c268d90928800954bcbe1a12872bff835a177925246c384f0edb46",
+      "httpStatus": 200,
+      "requiredTokensFound": [
+        "Steakhouse",
+        "Monad"
+      ]
+    },
+    {
+      "source": {
+        "url": "https://app.morpho.org/monad/vault/0x78999cc96d2Ba0341588C60CcB0E91c6C33CF371/hyperithm-usdc-apex",
+        "publisher": "Morpho Association",
+        "title": "Morpho Monad vault — Hyperithm",
+        "kind": "documentation-html",
+        "referenceType": "mutable-url",
+        "presentationMutable": true,
+        "available": true
+      },
+      "retrievedAt": "2026-10-10T15:40:03Z",
+      "responseSha256": "dc5acea42c0d37ed74886ca7adacf4743c8035566644950737770ea0522abe14",
+      "httpStatus": 200,
+      "requiredTokensFound": [
+        "Hyperithm",
+        "Monad"
+      ]
+    },
+    {
+      "source": {
+        "url": "https://app.morpho.org/monad/vault/0x80017bF0f793EBbE9679Cd61ff0e395B62CAbB59/august-usdc-v2",
+        "publisher": "Morpho Association",
+        "title": "Morpho Monad vault — August Digital",
+        "kind": "documentation-html",
+        "referenceType": "mutable-url",
+        "presentationMutable": true,
+        "available": true
+      },
+      "retrievedAt": "2026-10-10T15:40:04Z",
+      "responseSha256": "c6baaf3825b246596e33e63e4bf5b18d279beade24f11150b636a502ed6b463c",
+      "httpStatus": 200,
+      "requiredTokensFound": [
+        "August",
+        "Monad"
+      ]
+    },
+    {
+      "source": {
+        "url": "https://www.agora.finance/blog/ausd-now-borderless-onchain",
+        "publisher": "Agora",
+        "title": "AUSD: Now Borderless Onchain",
+        "kind": "documentation-html",
+        "referenceType": "mutable-url",
+        "presentationMutable": true,
+        "available": true
+      },
+      "retrievedAt": "2026-10-10T15:40:06Z",
+      "responseSha256": "aebbbac503f871370d8615c2092842d07323b1eb80045bcb92a18d83cfade1c4",
+      "httpStatus": 200,
+      "requiredTokensFound": [
+        "LayerZero",
+        "Monad",
+        "OFT"
+      ]
+    },
+    {
+      "source": {
+        "url": "https://raw.githubusercontent.com/PerplFoundation/api-docs/25ab6e2c75c8f84d0550da8c3be30af49ad631f2/README.md",
+        "publisher": "Perpl Foundation",
+        "title": "Perpl API documentation — pinned network configuration",
+        "kind": "repository-file",
+        "referenceType": "pinned-snapshot",
+        "presentationMutable": false,
+        "available": true
+      },
+      "retrievedAt": "2026-10-10T15:40:06Z",
+      "responseSha256": "7d6be064462ea5fccb35d810c257fbb683a21d3e187edb572b775e0e52ad9106",
+      "httpStatus": 200,
+      "requiredTokensFound": [
+        "143",
+        "AUSD",
+        "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a"
+      ]
+    },
+    {
+      "source": {
+        "url": "https://paragraph.com/@leverup/oracle-price-integrity-permissioned-validators",
+        "publisher": "LeverUp",
+        "title": "Oracle Integrity: Why Permissioned Validators and Protection Triggers Matter for Perp DEXs",
+        "kind": "documentation-html",
+        "referenceType": "mutable-url",
+        "presentationMutable": true,
+        "available": true
+      },
+      "retrievedAt": "2026-10-10T15:40:07Z",
+      "responseSha256": "e1b4c46146dd42bdf150bcd2671cc6e97bf025a311cab88cce97c4f8a7da1528",
+      "httpStatus": 200,
+      "requiredTokensFound": [
+        "LeverUp",
+        "Pyth Pro",
+        "permissioned"
+      ]
+    }
+  ],
+  "beefySelections": [
+    {
+      "id": "morpho-v2-monad-august-usdc-v2",
+      "name": "USDC (August v2)",
+      "network": "monad",
+      "platformId": "morpho",
+      "curatorId": "august-digital",
+      "assets": [
+        "USDC"
+      ],
+      "earnContractAddress": "0xA3d999114BCE3d9771703f06C490e77EE83E589a",
+      "underlyingPlatformUrl": "https://app.morpho.org/monad/vault/0x80017bF0f793EBbE9679Cd61ff0e395B62CAbB59/august-usdc-v2"
+    },
+    {
+      "id": "balancerv3-monad-usdt0-ausd-usdc",
+      "name": "USDT0/AUSD/USDC V3",
+      "network": "monad",
+      "platformId": "balancer",
+      "assets": [
+        "wnUSDT0",
+        "wnAUSD",
+        "wnUSDC"
+      ],
+      "earnContractAddress": "0xd0331a023C35514c2EF99Eb34ED868737e9dCeA3"
+    },
+    {
+      "id": "morpho-monad-steakhouse-prime-weth",
+      "name": "WETH (Steakhouse, Prime V2)",
+      "network": "monad",
+      "platformId": "morpho",
+      "curatorId": "steakhouse",
+      "assets": [
+        "WETH"
+      ],
+      "earnContractAddress": "0x83B0a383C3d1b94F28A453735C692d166B561681",
+      "underlyingPlatformUrl": "https://app.morpho.org/monad/vault/0xbeef04b01e0275D4ac2e2986256BB14E3Ff6ef42/steakhouse-prime-eth"
+    },
+    {
+      "id": "gearbox-monad-edge-usdc",
+      "name": "USDC (Edge UltraYield)",
+      "network": "monad",
+      "platformId": "gearbox",
+      "curatorId": "edge",
+      "assets": [
+        "USDC"
+      ],
+      "earnContractAddress": "0x39A1992C9C1074e334DB16bBc6A27f0fDe72ce8f",
+      "underlyingPlatformUrl": "https://app.gearbox.finance/pools/143/0x6b343f7b797f1488aa48c49d540690f2b2c89751"
+    },
+    {
+      "id": "euler-monad-alphagrowth-ausd",
+      "name": "AUSD (AlphaGrowth)",
+      "network": "monad",
+      "platformId": "euler",
+      "curatorId": "alphagrowth",
+      "assets": [
+        "AUSD"
+      ],
+      "earnContractAddress": "0x7C80e8F83cb8AbA22B9606219129b88d0365a8Da",
+      "underlyingPlatformUrl": "https://euler.alphagrowth.io/lend/0x438cedcE647491B1d93a73d491eC19A50194c222?network=143"
+    },
+    {
+      "id": "morpho-monad-hyperithm-usdc",
+      "name": "USDC (Hyperithm, Apex V2)",
+      "network": "monad",
+      "platformId": "morpho",
+      "curatorId": "hyperithm",
+      "assets": [
+        "USDC"
+      ],
+      "earnContractAddress": "0xA95FCe7251396b66661379fb33B7c6F4F26CAf91",
+      "underlyingPlatformUrl": "https://app.morpho.org/monad/vault/0x78999cc96d2Ba0341588C60CcB0E91c6C33CF371/hyperithm-usdc-apex"
+    },
+    {
+      "id": "curvance-monad-ausd-earnausd-ausd",
+      "name": "AUSD (earnAUSD-AUSD Market)",
+      "network": "monad",
+      "platformId": "curvance",
+      "assets": [
+        "AUSD"
+      ],
+      "earnContractAddress": "0xD0a2829De21BC3b54305D30E58b07F4C8B6f838f"
+    },
+    {
+      "id": "neverland-monad-wmon",
+      "name": "WMON",
+      "network": "monad",
+      "platformId": "neverland",
+      "assets": [
+        "WMON"
+      ],
+      "earnContractAddress": "0x5556cF644FA856cE7D2E0C5258d1Db9fF2B7528b"
+    },
+    {
+      "id": "aavev3-monad-usdc",
+      "name": "USDC",
+      "network": "monad",
+      "platformId": "aave",
+      "assets": [
+        "USDC"
+      ],
+      "earnContractAddress": "0xb3e09fb538186983661f1c581B3eDc2778d24EF8"
+    },
+    {
+      "id": "curve-monad-mon-lsts",
+      "name": "WMON/shMON/sMON/gMON",
+      "network": "monad",
+      "platformId": "curve",
+      "assets": [
+        "WMON",
+        "shMON",
+        "sMON",
+        "gMON"
+      ],
+      "earnContractAddress": "0x189518d8130060C75072c954caf962D12EeA19F8"
+    },
+    {
+      "id": "pancake-cow-monad-wmon-usdc-rp",
+      "name": "USDC-WMON Reward Pool",
+      "network": "monad",
+      "platformId": "pancakeswap",
+      "assets": [
+        "USDC",
+        "WMON"
+      ],
+      "earnContractAddress": "0x3A134B05E48F4b5A23eCdC6551Ef551EAEDca272"
+    },
+    {
+      "id": "uniswap-cow-monad-wbtc-usdc-rp",
+      "name": "WBTC-USDC Reward Pool",
+      "network": "monad",
+      "platformId": "uniswap",
+      "assets": [
+        "WBTC",
+        "USDC"
+      ],
+      "earnContractAddress": "0x87e5737f5aC2dad996d9DfDe58B3822a88F45cF8"
+    }
+  ],
+  "supportingTokenRecords": [
+    {
+      "id": "E-KINTSU-TOKEN-MAPPING-001",
+      "claim": "Pinned Monad registry entry kintsu maps Kintsu's staking token address 0xA3227C5969757783154C60bF0bC1944180ed81B9; listing/address identity only.",
+      "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+    },
+    {
+      "id": "E-SHMONAD-TOKEN-MAPPING-001",
+      "claim": "Pinned Monad registry entry fastlane maps ShMonad's staking token address 0x1B68626dCa36c7fE922fD2d55E4f631d962dE19c; listing/address identity only.",
+      "sourceUrl": "https://raw.githubusercontent.com/monad-crypto/protocols/36fddcc0021fffe81c7b73a8672347538ec2c9eb/protocols-mainnet.json"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "beefy-aave-v3",
+      "from": "beefy",
+      "to": "aave-v3",
+      "evidenceId": "E-BEEFY-AAVE-V3-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product aavev3-monad-usdc (USDC) to platform Aave V3; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-morpho-blue",
+      "from": "beefy",
+      "to": "morpho-blue",
+      "evidenceId": "E-BEEFY-MORPHO-BLUE-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product morpho-v2-monad-august-usdc-v2 (USDC (August v2)) to platform Morpho; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-euler",
+      "from": "beefy",
+      "to": "euler",
+      "evidenceId": "E-BEEFY-EULER-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product euler-monad-alphagrowth-ausd (AUSD (AlphaGrowth)) to platform Euler; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-curve",
+      "from": "beefy",
+      "to": "curve",
+      "evidenceId": "E-BEEFY-CURVE-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product curve-monad-mon-lsts (WMON/shMON/sMON/gMON) to platform Curve; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-balancer",
+      "from": "beefy",
+      "to": "balancer",
+      "evidenceId": "E-BEEFY-BALANCER-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product balancerv3-monad-usdt0-ausd-usdc (USDT0/AUSD/USDC V3) to platform Balancer; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-neverland",
+      "from": "beefy",
+      "to": "neverland",
+      "evidenceId": "E-BEEFY-NEVERLAND-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product neverland-monad-wmon (WMON) to platform Neverland; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-pancakeswap",
+      "from": "beefy",
+      "to": "pancakeswap",
+      "evidenceId": "E-BEEFY-PANCAKESWAP-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product pancake-cow-monad-wmon-usdc-rp (USDC-WMON Reward Pool) to platform PancakeSwap; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-uniswap",
+      "from": "beefy",
+      "to": "uniswap",
+      "evidenceId": "E-BEEFY-UNISWAP-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product uniswap-cow-monad-wbtc-usdc-rp (WBTC-USDC Reward Pool) to platform Uniswap; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-gearbox",
+      "from": "beefy",
+      "to": "gearbox",
+      "evidenceId": "E-BEEFY-GEARBOX-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product gearbox-monad-edge-usdc (USDC (Edge UltraYield)) to platform Gearbox; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-curvance",
+      "from": "beefy",
+      "to": "curvance",
+      "evidenceId": "E-BEEFY-CURVANCE-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy configuration maps Monad product curvance-monad-ausd-earnausd-ausd (AUSD (earnAUSD-AUSD Market)) to platform Curvance; this is a documented strategy dependency.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The configuration status field is not independently observed activity; this record does not establish the product is operating now."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-kintsu-asset",
+      "from": "beefy",
+      "to": "kintsu",
+      "evidenceId": "E-BEEFY-KINTSU-ASSET-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Documented asset dependency through Beefy's Curve basket on Monad: sMON, mapped to Kintsu by exact published address; not a bilateral partnership.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Exposure is through a Curve pool; balances, token backing, redemption and current execution were not checked."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-magma-asset",
+      "from": "beefy",
+      "to": "magma",
+      "evidenceId": "E-BEEFY-MAGMA-ASSET-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Documented asset dependency through Beefy's Curve basket on Monad: gMON, mapped to Magma by exact published address; not a bilateral partnership.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Exposure is through a Curve pool; balances, token backing, redemption and current execution were not checked."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-shmonad-asset",
+      "from": "beefy",
+      "to": "shmonad",
+      "evidenceId": "E-BEEFY-SHMONAD-ASSET-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Documented asset dependency through Beefy's Curve basket on Monad: shMON, mapped to ShMonad by exact published address; not a bilateral partnership.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Exposure is through a Curve pool; balances, token backing, redemption and current execution were not checked."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-steakhouse-financial-vault",
+      "from": "beefy",
+      "to": "steakhouse-financial",
+      "evidenceId": "E-BEEFY-STEAKHOUSE-FINANCIAL-VAULT-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy product morpho-monad-steakhouse-prime-weth links https://app.morpho.org/monad/vault/0xbeef04b01e0275D4ac2e2986256BB14E3Ff6ef42/steakhouse-prime-eth and assigns curatorId steakhouse; only this product association is supported.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Curator identity is a publisher label, not independently verified control of a curator address."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "steakhouse-financial-morpho-vault",
+      "from": "steakhouse-financial",
+      "to": "morpho-blue",
+      "evidenceId": "E-STEAKHOUSE-FINANCIAL-MORPHO-VAULT-001",
+      "sourceUrl": "https://app.morpho.org/monad/vault/0xbeef04b01e0275D4ac2e2986256BB14E3Ff6ef42/steakhouse-prime-eth",
+      "scope": "Morpho's Monad vault page associates Steakhouse Financial with the specific named vault; publisher identification, not independently verified curator authority.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The page contains changing financial metrics; no metrics, live allocation, wallet identity or onchain curator role are included in this claim."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-hyperithm-vault",
+      "from": "beefy",
+      "to": "hyperithm",
+      "evidenceId": "E-BEEFY-HYPERITHM-VAULT-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy product morpho-monad-hyperithm-usdc links https://app.morpho.org/monad/vault/0x78999cc96d2Ba0341588C60CcB0E91c6C33CF371/hyperithm-usdc-apex and assigns curatorId hyperithm; only this product association is supported.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Curator identity is a publisher label, not independently verified control of a curator address."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "hyperithm-morpho-vault",
+      "from": "hyperithm",
+      "to": "morpho-blue",
+      "evidenceId": "E-HYPERITHM-MORPHO-VAULT-001",
+      "sourceUrl": "https://app.morpho.org/monad/vault/0x78999cc96d2Ba0341588C60CcB0E91c6C33CF371/hyperithm-usdc-apex",
+      "scope": "Morpho's Monad vault page associates Hyperithm with the specific named vault; publisher identification, not independently verified curator authority.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The page contains changing financial metrics; no metrics, live allocation, wallet identity or onchain curator role are included in this claim."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "beefy-august-digital-vault",
+      "from": "beefy",
+      "to": "august-digital",
+      "evidenceId": "E-BEEFY-AUGUST-DIGITAL-VAULT-001",
+      "sourceUrl": "https://raw.githubusercontent.com/beefyfinance/beefy-v2/b7098b467950b1ac01dbb248241bbc9bfae72e0b/src/config/vault/monad.json",
+      "scope": "Beefy product morpho-v2-monad-august-usdc-v2 links https://app.morpho.org/monad/vault/0x80017bF0f793EBbE9679Cd61ff0e395B62CAbB59/august-usdc-v2 and assigns curatorId august-digital; only this product association is supported.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Curator identity is a publisher label, not independently verified control of a curator address."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "august-digital-morpho-vault",
+      "from": "august-digital",
+      "to": "morpho-blue",
+      "evidenceId": "E-AUGUST-DIGITAL-MORPHO-VAULT-001",
+      "sourceUrl": "https://app.morpho.org/monad/vault/0x80017bF0f793EBbE9679Cd61ff0e395B62CAbB59/august-usdc-v2",
+      "scope": "Morpho's Monad vault page associates August Digital with the specific named vault; publisher identification, not independently verified curator authority.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "The page contains changing financial metrics; no metrics, live allocation, wallet identity or onchain curator role are included in this claim."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "agora-layerzero-oft",
+      "from": "agora",
+      "to": "layerzero-v2",
+      "evidenceId": "E-AGORA-LAYERZERO-OFT-001",
+      "sourceUrl": "https://www.agora.finance/blog/ausd-now-borderless-onchain",
+      "scope": "Agora’s announcement associates AUSD with LayerZero OFT and Monad; the announcement describes both adoption and future rollout, not a tested bridge route.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Rollout language is prospective in part; current routes, peer configuration and bridge security were not checked."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "perpl-agora-collateral",
+      "from": "perpl",
+      "to": "agora",
+      "evidenceId": "E-PERPL-AGORA-COLLATERAL-001",
+      "sourceUrl": "https://raw.githubusercontent.com/PerplFoundation/api-docs/25ab6e2c75c8f84d0550da8c3be30af49ad631f2/README.md",
+      "scope": "Documented collateral dependency: Perpl mainnet uses the published AUSD token address associated with Agora in the Monad registry.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Documentation and address correspondence do not prove a live deposited balance, reserve backing or transaction execution."
+      ],
+      "incomplete": false
+    },
+    {
+      "id": "leverup-pyth-oracle",
+      "from": "leverup",
+      "to": "pyth",
+      "evidenceId": "E-LEVERUP-PYTH-ORACLE-001",
+      "sourceUrl": "https://paragraph.com/@leverup/oracle-price-integrity-permissioned-validators",
+      "scope": "Oracle-provider architecture declared by LeverUp, a Monad-listed project; the article does not establish an exact Monad mainnet feed or contract mapping.",
+      "limitations": [
+        "Publisher declaration only; no transaction, live allocation, reciprocal confirmation, performance or safety claim is established.",
+        "Chain context comes from the existing Monad directory record. The article alone does not identify a chain-specific feed, deployed adapter, freshness or latency."
+      ],
+      "incomplete": true
+    }
+  ],
+  "limitations": [
+    "Source response hashes document this retrieval; mutable URLs are not content-addressed archives.",
+    "No published timestamps inferred from retrieval time.",
+    "No automatic review or runtime promotion."
+  ],
+  "restoredLineageOnly": {
+    "evidence": [
+      "E-MELLOW-CORE-REG-001",
+      "E-MELLOW-RESTAKING-REG-001",
+      "E-TOWNSQUARE-LENDING-REG-001",
+      "E-TOWNSQUARE-LOOP-VAULTS-REG-001",
+      "E-KURU-MEM-001",
+      "E-PYTH-CAP-001"
+    ],
+    "relationships": [
+      "monad-kuru",
+      "monad-pyth"
+    ]
+  }
+}

@@ -155,7 +155,7 @@ test('computed coverage can only use a queried scope', async () => {
     const answer = await promise;
     assert.equal(answer.mode, 'coverage');
     assert.match(answer.text, /176 project profiles; 172 carry/);
-    assert.match(answer.text, /6 sourced, 11 illustrative/);
+    assert.match(answer.text, /28 sourced, 11 illustrative/);
   });
   await withResponses([tools([['get_district_coverage', { district: 'DeFi' }]]), completion('{"kind":"coverage","scope":"whole city"}')], async (promise) => {
     await assert.rejects(promise, /coverage that was not queried/);

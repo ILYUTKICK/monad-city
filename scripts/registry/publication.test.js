@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { webcrypto } from 'node:crypto';
 if (!globalThis.crypto?.subtle) Object.defineProperty(globalThis, 'crypto', { value: webcrypto });
-const { validatePublication, checkPublication, checkAvailability, verifyPublicationReceipt } = await import('../../tools/registry-publish/core.js');
+const { validatePublication, checkPublication, checkAvailability, verifyPublicationReceipt, publicationData, ZERO, PUBLICATION_PREDECESSORS } = await import('../../tools/registry-publish/core.js');
+const { decodeWords } = await import('../../src/onchain-rpc.js');
 const json = p => JSON.parse(fs.readFileSync(new URL('../../' + p, import.meta.url)));
 const request = json('tools/registry-publish/request.json');
 const artifact = json('contracts/artifacts/MonadCityRegistry.json');
@@ -33,4 +34,15 @@ test('publication receipt distinguishes pending from reverted transactions', asy
   const txHash = '0x' + 'aa'.repeat(32);
   assert.equal(await verifyPublicationReceipt(txHash, request, artifact, bundle, deployment, async method => method === 'eth_chainId' ? '0x279f' : null), null);
   await assert.rejects(verifyPublicationReceipt(txHash, request, artifact, bundle, deployment, async method => method === 'eth_chainId' ? '0x279f' : { transactionHash: txHash, status: '0x0' }), /reverted/);
+});
+test('successor calldata binds the nonzero predecessor; changing a reviewed predecessor is rejected', async () => {
+  const previous = PUBLICATION_PREDECESSORS['phase-3.5-v7'];
+  const encoded = publicationData(bundle.manifest, request.manifestUri, previous);
+  const tuple = decodeWords('0x' + encoded.slice(10, 10 + 64 * 11), 11);
+  assert.equal(tuple[5], previous);
+  assert.equal(decodeWords('0x' + request.transaction.data.slice(10, 10 + 64 * 11), 11)[5], ZERO);
+  const changed = structuredClone(request);
+  changed.previousPublicationId = previous;
+  changed.transaction.data = encoded;
+  await assert.rejects(validatePublication(changed, artifact, bundle, deployment), /predecessor/);
 });

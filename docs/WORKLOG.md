@@ -2635,6 +2635,177 @@ Limitations / next:
 - One retained IPFS pin, one RPC and Testnet owner role overlap do not declare production acceptance.
 - Final submission still needs the demo/pitch recordings and refreshed portal description.
 
+### 2026-10-10 — Public Testnet integration deployed and checked
+
+Changed:
+- Public integration/source release `a3417d06f60d50e6a60924f54c31f3dd248fb948` pushed to
+  `ILYUTKICK/monad-city` main. Repository is public, ID 1389856087.
+- Existing Vercel Git integration produced READY production deployment
+  `dpl_7fCezkRkTADKhJFBqud1WUrvHr8P`, alias `https://monad-city.vercel.app/`.
+  Intended project/team and exact source SHA were checked before release; no duplicate
+  manual deployment or protection change was needed.
+- Submission checklist now records the verified public integration.
+
+Verified:
+- Public URL loads without a Vercel login. Browser AI settings are Off; no provider key is used.
+- Keyless `Show Kuru sources` opens the correct Passport. Expanded `E-KURU-CAP-001` and
+  **Check publication** returns an active unrevoked match on chain 10143 at block `69860403`.
+- Public configuration/client and all three proof bundle files byte-match the reviewed local
+  build. The operator signing page returns HTTP 404 on the public site.
+- City/Graph switch and DeFi district route work. At 390px, document width equals viewport
+  width. Temporary viewport override was reset; the public tab remains available to the owner.
+- Public screenshot: `/private/tmp/monad-city-public-onchain.png`.
+
+Limitations / next:
+- Current checks rely on one trusted RPC; source accuracy/freshness/safety are not established.
+- Optional real AI continues to require private per-origin user provider settings. No shared
+  API key was deployed or inspected. Testnet publication is not a production security audit.
+- Prepared submission copy now includes the integration; saved portal text must still be refreshed,
+  and required technical-demo/pitch videos still need recording and hosted links.
+
+### 2026-10-10 — Relationship expansion prepared for maintainer review
+
+Changed:
+- Prepared 24 new evidence candidates and 22 relationship candidates, with exact primary-source
+  scopes, retrieval timestamps and source-response hashes. The concrete decision list is
+  `docs/RELATIONSHIP_EXPANSION_REVIEW.md`; research and candidate artifacts are dated 2026-10-10.
+- Proposed v7 would contain 217 approved evidence records, 28 sourced relationships and 39
+  hybrid graph edges. Existing v6 payloads and decisions are unchanged. Six historical evidence
+  payloads and two historical edges were recovered only to resolve lineage; they remain withheld.
+- Beefy configuration supports strategy/platform, pool-asset and curator-label dependencies.
+  Morpho supports three specific branded vault associations. Perpl documents AUSD collateral;
+  Agora describes an OFT adoption/rollout. LeverUp's Pyth architecture remains explicitly
+  incomplete without a chain-specific feed or adapter mapping. No partnership, source truth,
+  safety, live bridge or operating balance is inferred from these records.
+- Prepared successor publication tooling with independently pinned release hashes and Testnet
+  predecessor IDs, version-specific unsigned requests and wallet state, compare-and-swap head
+  checks, and receipt verification of the superseded predecessor. Existing signed v6 request,
+  published snapshot and active application configuration are preserved.
+- Graph cardinality validation now derives sourced edges from the promoted snapshot and accounts
+  for illustrative edges replaced by sourced edges. Duplicate, endpoint and evidence checks remain.
+
+Verified:
+- Candidate workspace validation passes: 223 evidence subjects (193 approved / 30 needs-review)
+  and 30 relationships (six approved / 24 needs-review), including withheld historical subjects.
+- Build and all 199 existing v6 membership proofs pass; 21 AI, 11 onchain, 10 registry,
+  six publication and two expansion tests pass.
+- Disposable local-chain publication test passes, including a second publication against the
+  nonzero v6 predecessor, predecessor supersession and duplicate rejection. Its synthetic
+  successor fixture is rejected by production bundle validation; no external transaction occurred.
+- Local browser confirms the existing v6 operator request still validates. Selecting unapproved
+  v7 fails before wallet access, with every publication/receipt control disabled.
+- Whitespace checks pass. No new snapshot, IPFS pin, transaction or runtime promotion was made.
+
+Limitations / next:
+- An explicit maintainer decision is pending, as required by `EVIDENCE_SNAPSHOT_WORKFLOW.md`.
+  The review question permits the full bounded set, omission of the incomplete LeverUp edge,
+  or amendments. Candidate source inspection is not a human approval.
+- After the decision, record individual review decisions, create immutable v7 and every proof,
+  pin/retrieve exact public files, prepare the successor request, and hand signing to the owner.
+  Activate v7 only after exact receipt, finality and record checks; current public runtime stays v6.
+
+### 2026-10-10 — Maintainer approved the full relationship expansion
+
+Changed:
+- The maintainer explicitly replied “Да включай” after the concrete 24-record / 22-edge review.
+  Recorded all 46 individual approval decisions at `2026-10-10T15:56:53Z` with opaque action
+  reference `reviewer:r-5e554d4387bab74d`. All limitations and the incomplete LeverUp architecture
+  warning remain. The six recovered historical records and two historical edges remain withheld.
+- Created immutable approved `phase-3.5-v7` JSON and generated module, canonical SHA-256
+  `6a6c7cf9830460fca3ce75bdbfd8510b72b6fba70ada136eb145e45a95155d28`:
+  217 evidence records and 28 sourced relationships. Diff shows 24/22 additions, zero removals
+  and zero changes to the original 193/6 payloads or decisions.
+- Generated and verified 245 membership proofs. Portable snapshot ID:
+  `0xa48fff2d58dd21d46decfd96c40040dfe3f17b8f055dee305c8cc72f6339b2bd`.
+- Public four-file folder uploaded to the existing owner Pinata account as
+  `bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4`.
+- Added the explicit `project-declared-relationship|pinned-snapshot` cadence row (60 days),
+  matching the existing mutable declaration interval. This supports pinned publisher
+  configuration without extending its review lifetime. CLI inline validation now rejects
+  unsupported evidence/reference and relationship/type cadence combinations before approval
+  or projection; both runtime and workflow tables and trust/data documentation match.
+- Registry export output-name checks now bind to the reviewed artifact version and exact hash,
+  allowing an explicitly selected successor while retaining exclusive immutable file creation.
+
+Verified:
+- Approved workspace, JSON/module pair and full v7 proof bundle validate. All 245 inline
+  decisions are current at the explicit snapshot review instant using the shared cadence rules.
+- Three expansion tests, six publication tests, 10 registry tests and 21 AI tests pass.
+  Active v6 build and whitespace checks pass. The compatibility-only governance CLI is not
+  applicable to inline v7 metadata; cadence was checked directly with the shared functions.
+- Pinata primary gateway retrieves exact public v7 bytes. Initial independent Filebase request
+  returned HTTP 504 during new-content propagation; bounded retrieval retry is in progress.
+
+Limitations / next:
+- No successor transaction has been signed or broadcast. Application/import/config remain on
+  published v6 until exact v7 receipt/finality checks. Prepare the unsigned request only after
+  independent exact-byte retrieval, then hand the signing action to the owner.
+
+### 2026-10-10 — Expanded snapshot ready for owner signing
+
+Verified / prepared:
+- All four exact public files retrieved through both Pinata and Filebase (eight byte checks).
+  Filebase's download view bypassed its cached initial timeout; the actual retrieved URLs are
+  retained in the audit. Timeout retry now includes the entire response body and still rejects
+  altered bytes, oversized files and permanent HTTP failures.
+- Availability audit: `data/registry/deployments/monad-testnet-v7-ipfs-availability.json`.
+  This proves retrieval only; there is still one retained Pinata pin.
+- Prepared `tools/registry-publish/requests/phase-3.5-v7.json`, value zero, exact reviewed
+  snapshot, predecessor `0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa`.
+  RPC simulation returns expected publication ID
+  `0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c`;
+  initial maximum fee is 0.043895904 Testnet MON. No signing or external submission occurred.
+- Isolated v7 runtime copy passes evidence/governance/data contracts and eight district Navigator
+  checks: 176 projects, 217 records, 28 sourced relationships, 39 hybrid edges and 16 Beefy edges.
+  The real active application still uses v6; no fabricated publication configuration was created.
+- Native Chrome loads the reviewed v7 request and connects the already authorized publisher
+  account. The operator's fresh public-content, code, identity, head, role, balance and fee check
+  precedes the owner-only publish button.
+- Fresh Chrome check succeeds: balance 4.606082 MON, prepared fee 0.043895 MON and
+  “Ready for wallet confirmation”. Publish is enabled; the agent did not click it.
+  Handoff screenshot: `/private/tmp/monad-city-v7-ready-to-sign.png`.
+
+Next:
+- Owner must click Publish and confirm the Testnet transaction in the wallet. Once its hash is
+  supplied, verify receipt, exact commitments, predecessor supersession and finalized block;
+  record versioned audits, activate v7 and its actual publication configuration, verify browser
+  flows, update current project/submission counts, and deploy the public source/app update.
+
+### 2026-10-10 — v7 successor publication verified and activated
+
+Changed:
+- Maintainer supplied signed transaction `0x3e0fa8cc915fc02ef9590ef22420e61c1e9b15cf20362f99b39c09785e039d14`.
+- Activated immutable `phase-3.5-v7` JSON/module pair, SHA-256
+  `6a6c7cf9830460fca3ce75bdbfd8510b72b6fba70ada136eb145e45a95155d28`.
+  Counts: 217 evidence records, 28 sourced relationships, 39 hybrid edges; 11 remain illustrative.
+- Updated build verification, registry workflow defaults, actual publication configuration,
+  current project context and submission copy. Original v6 artifacts and signed requests remain historical.
+- Added versioned receipt, finality and representative record audit files under
+  `data/registry/deployments/monad-testnet-v7-*`.
+
+Verified:
+- Successful receipt in block 69899471, hash
+  `0xa029782c3218e11101928e29b43fe725cce1af100ffccf9aed2e50740b309be2`.
+  Exact reviewed calldata, publisher, destination, chain, zero value, code pin, commitments,
+  counts, timestamps and public manifest URI match the approved request.
+- Official RPC reports finalized block 69907872. Current head is v7 publication
+  `0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c`;
+  v6 predecessor is superseded. Registry migration lineage remains genesis (depth zero).
+- Live runtime checks match for Beefy evidence and new Beefy–Kintsu, Beefy–Morpho,
+  LeverUp–Pyth relationships, including all supporting records and revocation checks.
+- Build verifies the v7 snapshot/module pair and all 245 Merkle proofs.
+- 21 AI, 11 read-only onchain, 10 registry, six publication and three expansion tests pass.
+  Updated one stale coverage expectation from six to 28 sourced edges.
+- Local browser loads v7, opens Beefy with its 16 sourced relationships and obtains a real
+  publication match for new record E-BEEFY-AAVE-V3-001 at block 69908342.
+
+Limitations / next:
+- Publication proves exact bytes and lifecycle through one trusted RPC, not source truth or
+  live project activity. New edges retain Claimed status and original scope/limitations.
+- Publish the verified source change through the existing main-branch Vercel integration,
+  then verify the public v7 build and judge-facing keyless flow. Portal copy still needs
+  refreshing before final submission; required demo/pitch recordings remain outstanding.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

@@ -104,6 +104,7 @@ intervals; the shortest interval wins, so a warning cannot postpone a shorter ba
 | Incomplete evidence (`quality.incomplete: true`) | 60 days |
 | `official-directory-listing` or `project-address-publication` on a mutable URL | 30 days |
 | `project-declared-relationship` on a mutable URL | 60 days |
+| `project-declared-relationship` in a pinned publisher snapshot | 60 days |
 | `network-configuration` or `project-documentation` on a mutable URL | 90 days |
 | `official-launch-record` on a mutable URL | 180 days |
 | `protocol-registry-snapshot` with a pinned snapshot | 365 days |

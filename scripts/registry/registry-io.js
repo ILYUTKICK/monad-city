@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { webcrypto } from 'node:crypto';
+import { reviewedRegistryRelease } from './releases.js';
 import {
   REGISTRY_CANONICALIZATION,
   REGISTRY_DOMAIN_TAGS,
@@ -24,12 +25,7 @@ if (!globalThis.crypto?.subtle) {
   });
 }
 
-export const ACTIVE_REGISTRY_SNAPSHOT = Object.freeze({
-  version: 'phase-3.5-v6',
-  canonicalSha256: '9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b',
-  evidenceCount: 193,
-  relationshipCount: 6,
-});
+export const ACTIVE_REGISTRY_SNAPSHOT = reviewedRegistryRelease('phase-3.5-v7');
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -61,7 +57,7 @@ function assertUniqueIds(items, label) {
   return ids;
 }
 
-export async function validateRegistrySnapshot(snapshot, expected = ACTIVE_REGISTRY_SNAPSHOT) {
+export async function validateRegistrySnapshot(snapshot, expected = reviewedRegistryRelease(snapshot?.version)) {
   assert(snapshot?.kind === 'approved-evidence-snapshot', 'Source is not an approved evidence snapshot');
   assert(snapshot.version === expected.version, `Expected snapshot ${expected.version}, received ${snapshot.version}`);
   assert(snapshot.dataMode === 'sourced-limited', 'Snapshot dataMode must be sourced-limited');
@@ -181,7 +177,9 @@ export async function buildRegistryArtifacts(snapshot, sourcePath) {
 
 export function writeNewRegistryDirectory(outputDirectory, artifacts) {
   const resolved = path.resolve(outputDirectory);
-  assert(path.basename(resolved) === ACTIVE_REGISTRY_SNAPSHOT.version, `Registry output directory must be named ${ACTIVE_REGISTRY_SNAPSHOT.version}`);
+  const release = reviewedRegistryRelease(artifacts.manifest.snapshot.version);
+  assert(artifacts.manifest.snapshot.canonicalSha256 === release.canonicalSha256, 'Registry output differs from the reviewed release');
+  assert(path.basename(resolved) === release.version, `Registry output directory must be named ${release.version}`);
   fs.mkdirSync(path.dirname(resolved), { recursive: true });
   try {
     fs.mkdirSync(resolved, { recursive: false });

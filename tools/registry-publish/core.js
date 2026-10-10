@@ -2,15 +2,22 @@
 import { CHAIN, rpc, hash, validateRuntime, deploymentFee } from '../registry-deploy/core.js';
 import { encodeWord, hexBytes, decodeWords, wordBool } from '../../src/onchain-rpc.js';
 import { verifyRegistryBundle } from '../../src/registry-proof.js';
+import { reviewedRegistryRelease } from '../../scripts/registry/releases.js';
 export const ZERO = '0x' + '00'.repeat(32);
 export const SNAPSHOT_SHA = '0x9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b';
+// Chain-specific publication lineage is independently pinned, never taken on trust from a request.
+export const PUBLICATION_PREDECESSORS = Object.freeze({
+  'phase-3.5-v6': ZERO,
+  'phase-3.5-v7': '0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa',
+});
 const SIGNATURE = 'publish((bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint64,uint64,string))';
 const fail = (ok, text) => { if (!ok) throw new Error(text); };
-export function publicationData(manifest, uri) {
+export function publicationData(manifest, uri, previousPublicationId = ZERO) {
+  hexBytes(previousPublicationId, 32);
   fail(/^ipfs:\/\/(Qm[1-9A-HJ-NP-Za-km-z]{44}|b[a-z2-7]{20,120})\/manifest\.json$/.test(uri), 'Invalid public manifest URI.');
   const text = Array.from(new TextEncoder().encode(uri), b => b.toString(16).padStart(2, '0')).join('');
   const words = [manifest.snapshot.versionHash, manifest.snapshot.canonicalSha256Bytes32,
-    manifest.commitments.evidence.root, manifest.commitments.relationship.root, ZERO].map(v => encodeWord(v));
+    manifest.commitments.evidence.root, manifest.commitments.relationship.root, previousPublicationId].map(v => encodeWord(v));
   for (const v of [manifest.commitments.evidence.count, manifest.commitments.relationship.count,
     Date.parse(manifest.snapshot.createdAt) / 1000, Date.parse(manifest.snapshot.reviewedAt) / 1000]) {
     fail(Number.isSafeInteger(v) && v >= 0 && BigInt(v) < 1n << 64n, 'Invalid publication integer.');
@@ -25,10 +32,15 @@ export async function validatePublication(request, artifact, bundle, deployment)
   fail(artifact.methodIdentifiers[SIGNATURE] === '9afdff70', 'Compiled publication selector mismatch.');
   await verifyRegistryBundle(bundle);
   const m = bundle.manifest, tx = request.transaction;
-  fail(m.snapshot.version === 'phase-3.5-v6' && m.snapshot.canonicalSha256Bytes32 === SNAPSHOT_SHA, 'Snapshot differs from the approved release.');
+  const release = reviewedRegistryRelease(m.snapshot.version);
+  fail(m.snapshot.canonicalSha256Bytes32 === '0x' + release.canonicalSha256
+    && m.commitments.evidence.count === release.evidenceCount && m.commitments.relationship.count === release.relationshipCount, 'Snapshot differs from the approved release.');
+  fail(request.snapshotVersion === release.version, 'Request snapshot version mismatch.');
+  const previous = request.previousPublicationId ?? (release.version === 'phase-3.5-v6' ? ZERO : null);
+  fail(previous && previous === PUBLICATION_PREDECESSORS[release.version], 'Unreviewed publication predecessor.');
   fail(Object.keys(tx).sort().join(',') === 'chainId,data,from,to,value' && tx.chainId === '0x279f' && tx.value === '0x0', 'Unexpected publication transaction fields.');
   fail(tx.to.toLowerCase() === deployment.address.toLowerCase() && tx.from.toLowerCase() === deployment.roles.publisher.toLowerCase(), 'Publication destination or publisher mismatch.');
-  fail(tx.data === publicationData(m, request.manifestUri), 'Publication calldata differs from the reviewed snapshot.');
+  fail(tx.data === publicationData(m, request.manifestUri, previous), 'Publication calldata differs from the reviewed snapshot.');
   fail(await hash(hexBytes(tx.data)) === request.transactionDataSha256, 'Publication data hash mismatch.');
   const expected = await hash(hexBytes(m.domains.publicationId.id + encodeWord(BigInt(CHAIN), 'uint256')
     + encodeWord(deployment.address, 'address') + m.snapshot.portableSnapshotId.slice(2)));
@@ -67,7 +79,13 @@ export async function checkPublication(request, artifact, deployment, read = rpc
   const [head, namespace, identity, frozen, successor, role] = await Promise.all([
     call('headPublicationId()'), call('namespaceId()'), call('deploymentId()'), call('publicationFrozen()'), call('successorRegistry()'), call('PUBLISHER_ROLE()'),
   ]);
-  fail(head[0] === ZERO, 'The registry already has a publication. Inspect its receipt before retrying.');
+  const previous = request.previousPublicationId ?? ZERO;
+  fail(previous === PUBLICATION_PREDECESSORS[request.snapshotVersion], 'Unreviewed publication predecessor.');
+  fail(head[0] === previous, 'Registry head changed or this release is already published. Inspect its receipt before retrying.');
+  if (previous !== ZERO) {
+    const predecessor = await call('getPublication(bytes32)', encodeWord(previous), 17);
+    fail(BigInt(predecessor[16]) === 1n && BigInt(predecessor[15]) === 0n, 'Previous publication must be active and unrevoked.');
+  }
   fail(namespace[0] === deployment.namespaceId && identity[0] === deployment.deploymentId, 'Registry identity mismatch.');
   fail(!wordBool(frozen[0]) && /^0x0+$/.test(successor[0]), 'Registry is frozen or migrated.');
   fail(wordBool((await call('hasRole(bytes32,address)', encodeWord(role[0]) + encodeWord(request.transaction.from, 'address')))[0]), 'Publisher role is missing.');
@@ -96,8 +114,9 @@ export async function verifyPublicationReceipt(txHash, request, artifact, bundle
   fail(await validateRuntime(await read('eth_getCode', [deployment.address, block.number]), artifact) === deployment.runtimeCodeSha256, 'Registry runtime pin mismatch.');
   const call = caller(request, artifact, read, block.number), m = bundle.manifest;
   const publication = await call('getPublication(bytes32)', encodeWord(request.expectedPublicationId), 17);
-  const expected = [m.snapshot.portableSnapshotId, m.snapshot.versionHash, SNAPSHOT_SHA,
-    m.commitments.evidence.root, m.commitments.relationship.root, ZERO, await hash(new TextEncoder().encode(request.manifestUri)), ZERO,
+  const previous = request.previousPublicationId ?? ZERO;
+  const expected = [m.snapshot.portableSnapshotId, m.snapshot.versionHash, m.snapshot.canonicalSha256Bytes32,
+    m.commitments.evidence.root, m.commitments.relationship.root, previous, await hash(new TextEncoder().encode(request.manifestUri)), ZERO,
     '0x' + encodeWord(request.transaction.from, 'address'), '0x' + '00'.repeat(32)];
   for (let i = 0; i < expected.length; i++) fail(publication[i] === expected[i], 'Publication commitments or publisher mismatch.');
   const numbers = [m.commitments.evidence.count, m.commitments.relationship.count, Date.parse(m.snapshot.createdAt) / 1000,
@@ -105,10 +124,12 @@ export async function verifyPublicationReceipt(txHash, request, artifact, bundle
   numbers.forEach((v, i) => fail(BigInt(publication[i + 10]) === BigInt(v), 'Publication counts, timestamps or state mismatch.'));
   fail((await call('headPublicationId()'))[0] === request.expectedPublicationId
     && (await call('publicationIdForVersion(bytes32)', encodeWord(m.snapshot.versionHash)))[0] === request.expectedPublicationId, 'Publication head or version mismatch.');
+  if (previous !== ZERO) fail(BigInt((await call('getPublication(bytes32)', encodeWord(previous), 17))[16]) === 2n, 'Previous publication was not superseded.');
   fail((await read('eth_getBlockByNumber', [block.number, false])).hash === block.hash, 'Publication block changed during verification.');
   return { schemaVersion: 1, status: 'publication-receipt-verified', chainId: CHAIN, address: deployment.address,
     transactionHash: txHash, blockNumber: BigInt(block.number).toString(), blockHash: block.hash, publishedAt: BigInt(block.timestamp).toString(),
-    publicationId: request.expectedPublicationId, manifestUri: request.manifestUri, publisher: request.transaction.from,
+    publicationId: request.expectedPublicationId, previousPublicationId: previous, snapshotVersion: m.snapshot.version,
+    snapshotSha256: m.snapshot.canonicalSha256, manifestUri: request.manifestUri, publisher: request.transaction.from,
     runtimeCodeSha256: deployment.runtimeCodeSha256, checkedAt: new Date().toISOString(),
     scope: 'Receipt and exact publication commitments checked at the publication block through one trusted RPC. Finality and current per-record lifecycle must be checked separately.' };
 }

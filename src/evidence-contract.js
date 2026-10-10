@@ -352,6 +352,7 @@ const GOVERNANCE_EVIDENCE_CADENCE_DAYS = Object.freeze({
   'official-directory-listing|mutable-url': 30,
   'project-address-publication|mutable-url': 30,
   'project-declared-relationship|mutable-url': 60,
+  'project-declared-relationship|pinned-snapshot': 60,
   'network-configuration|mutable-url': 90,
   'project-documentation|mutable-url': 90,
   'official-launch-record|mutable-url': 180,

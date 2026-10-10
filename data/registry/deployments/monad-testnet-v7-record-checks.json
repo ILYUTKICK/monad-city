@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-10T19:25:22.642Z",
+  "records": [
+    {
+      "subjectKind": "evidence",
+      "subjectId": "E-BEEFY-MEM-001",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v7",
+      "blockNumber": "69908065",
+      "blockHash": "0x354967ceb9062345ca01c85b186aae722c72876121444e903425f3e5d3318077",
+      "blockTimestamp": "1791660315",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-kintsu-asset",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v7",
+      "blockNumber": "69908075",
+      "blockHash": "0x007486e1d3813ed44135ec4261d06e6177efe0ac14f31abe89a6f637dba23854",
+      "blockTimestamp": "1791660318",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-BEEFY-KINTSU-ASSET-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        },
+        {
+          "subjectId": "E-KINTSU-TOKEN-MAPPING-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-morpho-blue",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v7",
+      "blockNumber": "69908081",
+      "blockHash": "0xab5c7b44ca30122c6cf9610b0567afb0197ba9f53a1fd05b576d00493f3917e1",
+      "blockTimestamp": "1791660320",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-BEEFY-MORPHO-BLUE-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "leverup-pyth-oracle",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v7",
+      "blockNumber": "69908086",
+      "blockHash": "0x12fd85453653101d078c3561a04e221596bb0661c05c7c16474a4a172253f18e",
+      "blockTimestamp": "1791660321",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-LEVERUP-PYTH-ORACLE-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        },
+        {
+          "subjectId": "E-LEVERUP-MEM-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    }
+  ]
+}

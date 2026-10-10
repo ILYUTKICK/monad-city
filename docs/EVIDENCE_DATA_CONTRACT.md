@@ -158,6 +158,7 @@ shorter source-type cadence.
 | `official-directory-listing` | `mutable-url` | 30 |
 | `project-address-publication` | `mutable-url` | 30 |
 | `project-declared-relationship` | `mutable-url` | 60 |
+| `project-declared-relationship` | `pinned-snapshot` | 60 |
 | `network-configuration` | `mutable-url` | 90 |
 | `project-documentation` | `mutable-url` | 90 |
 | `official-launch-record` | `mutable-url` | 180 |
@@ -165,6 +166,8 @@ shorter source-type cadence.
 | `explorer-transaction` | `stable-artifact-url` | 365 |
 
 Any pair absent from the table is a validation error even when a warning flag is true.
+The pinned publisher-declaration row uses the same 60-day cadence as a mutable declaration:
+an immutable configuration capture does not establish that the integration still operates.
 `quality.stale` does not alter cadence: it is
 a payload warning that continues to constrain supported scope. For an evidence subject,
 `nextReviewAt = reviewedAt + days * 86_400_000` milliseconds. There is no calendar-month math,

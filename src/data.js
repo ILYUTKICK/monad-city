@@ -486,8 +486,10 @@ export function validateDataContract(projects) {
   if (demoRelationships.length !== 15) {
     throw new Error('The explicit Demo fallback must contain exactly 15 relationships');
   }
-  if (sourcedRelationships.length !== 6 || relationships.length !== 17) {
-    throw new Error('The hybrid graph must contain six sourced relationships and 17 active relationships');
+  const expectedSourced = relationshipProposals.length;
+  const expectedHybrid = demoRelationships.length - sourcedRelationshipsReplacingDemo.size + expectedSourced;
+  if (sourcedRelationships.length !== expectedSourced || relationships.length !== expectedHybrid) {
+    throw new Error('The hybrid graph must preserve every approved sourced relationship and its Demo fallback join');
   }
   if (relationshipIds.size !== relationships.length) {
     throw new Error('The active hybrid graph contains duplicate relationship IDs');

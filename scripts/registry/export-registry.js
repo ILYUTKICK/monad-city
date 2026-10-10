@@ -13,8 +13,8 @@ function option(name, fallback) {
 }
 
 try {
-  const snapshotPath = option('snapshot', 'data/evidence-snapshots/phase-3.5-v6.json');
-  const outputDirectory = option('out', 'data/registry/phase-3.5-v6');
+  const snapshotPath = option('snapshot', 'data/evidence-snapshots/phase-3.5-v7.json');
+  const outputDirectory = option('out', 'data/registry/phase-3.5-v7');
   const snapshot = readJson(snapshotPath);
   const sourcePath = path.relative(process.cwd(), snapshot.resolved).split(path.sep).join('/');
   const artifacts = await buildRegistryArtifacts(snapshot.value, sourcePath);

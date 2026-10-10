@@ -2,6 +2,7 @@
 
 import process from 'node:process';
 import { ACTIVE_REGISTRY_SNAPSHOT, readJson, validateRegistrySnapshot, verifyRegistryFiles } from './registry-io.js';
+import { reviewedRegistryRelease } from './releases.js';
 
 function option(name, fallback) {
   const index = process.argv.indexOf(`--${name}`);
@@ -15,10 +16,11 @@ try {
   const snapshotPath = option('snapshot', `data/evidence-snapshots/${ACTIVE_REGISTRY_SNAPSHOT.version}.json`);
   const registryDirectory = option('registry', `data/registry/${ACTIVE_REGISTRY_SNAPSHOT.version}`);
   const snapshot = readJson(snapshotPath);
+  const release = reviewedRegistryRelease(snapshot.value.version);
   await validateRegistrySnapshot(snapshot.value);
   const verified = await verifyRegistryFiles(registryDirectory, snapshot.value);
-  if (verified.manifest.snapshot.canonicalSha256 !== ACTIVE_REGISTRY_SNAPSHOT.canonicalSha256) {
-    throw new Error('Registry manifest is not bound to the active approved snapshot');
+  if (verified.manifest.snapshot.canonicalSha256 !== release.canonicalSha256) {
+    throw new Error('Registry manifest is not bound to the reviewed approved snapshot');
   }
   console.log(JSON.stringify({
     valid: true,
