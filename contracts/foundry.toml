@@ -1,0 +1,28 @@
+[profile.default]
+src = "src"
+test = "test"
+out = "out"
+cache_path = "cache"
+libs = ["node_modules"]
+fs_permissions = [{ access = "read", path = "../data/registry/phase-3.5-v6" }]
+solc_version = "0.8.30"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+bytecode_hash = "none"
+cbor_metadata = false
+
+[fmt]
+line_length = 120
+tab_width = 4
+bracket_spacing = true
+int_types = "long"
+quote_style = "double"
+
+[fuzz]
+runs = 512
+
+# Foundry 1.8+ only. Deployment preflight selects this profile/flag explicitly.
+[profile.monad]
+network = "monad"

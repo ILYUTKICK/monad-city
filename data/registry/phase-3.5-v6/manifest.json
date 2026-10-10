@@ -1,0 +1,95 @@
+{
+  "kind": "monad-city-evidence-registry-manifest",
+  "schemaVersion": 1,
+  "canonicalization": "monad-city-canonical-json-v1",
+  "hashAlgorithm": "sha256",
+  "namespace": {
+    "value": "monad-city:registry:main:v1",
+    "id": "0x07715c605c9d90b28bad5a413c4797b590db4bad65e2725355e62cca3c62d959"
+  },
+  "domains": {
+    "snapshotId": {
+      "value": "monad-city:registry:snapshot-id:v1",
+      "id": "0x62381c337ff733f22ed1a2729474028c3579d30b1c79bd46d999510ac96668bf"
+    },
+    "publicationId": {
+      "value": "monad-city:registry:publication-id:v1",
+      "id": "0x22bd26e1dc5b68ad05ca6cd665a5d77a03b4ed07017c0c4e579a74c04423ab9b"
+    },
+    "deploymentId": {
+      "value": "monad-city:registry:deployment-id:v1",
+      "id": "0xcdee87ad61bd7e6e2d471dbfbd31771f047cdd66878a41b534759b6123f5b798"
+    },
+    "evidenceLeaf": {
+      "value": "monad-city:registry:evidence-leaf:v1",
+      "id": "0x782434cf7edfc3ce43d33dfde36a4127f9c8654b347dca0da5b1aa7797921a28"
+    },
+    "evidenceNode": {
+      "value": "monad-city:registry:evidence-node:v1",
+      "id": "0x0575f33c9d8d7d646c1575bcab491ac5df37614e53033d347a0ed98a088cad39"
+    },
+    "relationshipLeaf": {
+      "value": "monad-city:registry:relationship-leaf:v1",
+      "id": "0x3c40cf705f77902b3f096cca4f62970ce3dde64dc4d1562751823699f0fa311a"
+    },
+    "relationshipNode": {
+      "value": "monad-city:registry:relationship-node:v1",
+      "id": "0x67d75333848c6832d5f53c64d081d759d4408b2e0dbd436bcc66f7e6eb311f45"
+    }
+  },
+  "snapshot": {
+    "sourcePath": "data/evidence-snapshots/phase-3.5-v6.json",
+    "version": "phase-3.5-v6",
+    "versionHash": "0x1d4941f7182efa3313f434e6a2ead429292fbd28a64db3799fc738b2af3a6735",
+    "canonicalSha256": "9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b",
+    "canonicalSha256Bytes32": "0x9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b",
+    "portableSnapshotId": "0x7c9d1211d600742ac6b34e64f53410742f156bb953f602756b12f6b1f4ac54c3",
+    "createdAt": "2026-09-27T18:20:00Z",
+    "reviewedAt": "2026-09-27T18:20:00Z",
+    "reviewPolicyVersion": "phase-3.7-review-policy-v1"
+  },
+  "commitments": {
+    "evidence": {
+      "root": "0x5eb0597c4b583f148e760d749dd75f38c54ddce2dffeba1280b5b3500a1cb35e",
+      "count": 193
+    },
+    "relationship": {
+      "root": "0xa21b45b628eb8c4b1842900ccd6bdc0b5d2728e974bcf734e695c79e5f29e930",
+      "count": 6
+    }
+  },
+  "artifacts": {
+    "evidence": {
+      "path": "evidence-proofs.json",
+      "canonicalSha256": "c98dd91f8ca7f53755e036adc35243a2b8c15ff7f18aedea1e9f9177c0a13024"
+    },
+    "relationship": {
+      "path": "relationship-proofs.json",
+      "canonicalSha256": "de7e51133d3bded4c8ccafa925a7dd7ba1548bd3aa3c11c637321e0a7c619b13"
+    }
+  },
+  "deployment": {
+    "status": "unconfigured",
+    "chainId": null,
+    "registryAddress": null,
+    "contractCodeHash": null,
+    "publisherAddress": null,
+    "publicationId": null,
+    "transactionHash": null,
+    "blockNumber": null,
+    "publishedAt": null,
+    "manifestURI": null
+  },
+  "lifecycle": {
+    "status": "unconfigured",
+    "publicationLookup": null,
+    "globalEvidenceRevocationLookup": null,
+    "globalRelationshipRevocationLookup": null
+  },
+  "limitations": [
+    "This export commits to approved snapshot bytes and membership only; it does not verify source truth, freshness, project safety, legitimacy, activity, or endorsement.",
+    "No deployment is configured and this export does not claim that either root has been published onchain.",
+    "A relationship proof establishes snapshot membership only; factual use must also verify every referenced evidence record separately.",
+    "Permanent subject revocation must be checked across the complete predecessor-registry lineage for this namespace; a current-deployment-only lookup is insufficient."
+  ]
+}

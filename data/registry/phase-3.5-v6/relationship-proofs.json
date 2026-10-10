@@ -1,0 +1,260 @@
+{
+  "kind": "monad-city-relationship-registry-proofs",
+  "schemaVersion": 1,
+  "subjectKind": "relationship",
+  "portableSnapshotId": "0x7c9d1211d600742ac6b34e64f53410742f156bb953f602756b12f6b1f4ac54c3",
+  "root": "0xa21b45b628eb8c4b1842900ccd6bdc0b5d2728e974bcf734e695c79e5f29e930",
+  "count": 6,
+  "entries": [
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-switchboard",
+      "idHash": "0xe76d9817f66ed55f81c4d0cd6c5a078da4239be9c8212e858f0daf54d126c76f",
+      "payloadSha256": "0xa7e475cafa26add55f65d43d595f0e36320a49b276348895033afeeefafb140f",
+      "leafSha256": "0x07efc824ec5a82b6b42ba57d028c2cfb0470a589905b60a1b3d0a8e5ac01ad71",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-SWITCHBOARD-MEM-001",
+          "E-SWITCHBOARD-CAP-001"
+        ],
+        "from": "monad",
+        "id": "monad-switchboard",
+        "limitations": [
+          "No scoped third-party attestation was found."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        },
+        "scope": "Switchboard appeared in the official Monad infrastructure directory under Oracle.",
+        "status": "Observed",
+        "to": "switchboard",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0x53b6224a8e7846e362109bad2f56a17dbee6502f42ce69389cc5da3a9027d79c",
+        "0x6c39eda22d93458d4841933bfce644f83e8d4978169874a925e96adee5bbe35f",
+        "0x7519f8fe88aea59b5907b36b4af3537df16bc43d902e91ed89df9834f0e9c519"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-pyth-002",
+      "idHash": "0xbadbf619e28d8a1f217e4b1f94f593a3d477f314501d36c5bc07f6003a1443ce",
+      "payloadSha256": "0x7fb04c8fbc4f351365dc666d7ca79a192fe89c0823cf7e6eaa548cc144a0eb99",
+      "leafSha256": "0x53b6224a8e7846e362109bad2f56a17dbee6502f42ce69389cc5da3a9027d79c",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-PYTH-MEM-001"
+        ],
+        "from": "monad",
+        "id": "monad-pyth-002",
+        "limitations": [
+          "Membership is not endorsement or proof of fresh feeds.",
+          "Current Pyth contract-address docs do not expose a Monad mapping, and membership does not prove feed freshness or deployment."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 2,
+          "supersedesRelationshipId": "monad-pyth"
+        },
+        "scope": "Pyth appeared in the official Monad infrastructure directory under Oracle.",
+        "status": "Observed",
+        "to": "pyth",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0x07efc824ec5a82b6b42ba57d028c2cfb0470a589905b60a1b3d0a8e5ac01ad71",
+        "0x6c39eda22d93458d4841933bfce644f83e8d4978169874a925e96adee5bbe35f",
+        "0x7519f8fe88aea59b5907b36b4af3537df16bc43d902e91ed89df9834f0e9c519"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "magma-switchboard",
+      "idHash": "0xdbc22594e63110790c2bb5e7b592db00def9443886f0e55642fb36525c2c209b",
+      "payloadSha256": "0x4bb32ca934562efc1b39c7c47f3076f5db0413d170b09480af443e0883db0f4e",
+      "leafSha256": "0x91d8de4da52998d41f75bb8fa78c0dd0f27229f961c5d30f5c2924e41656be92",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-MAGMA-SWITCHBOARD-001"
+        ],
+        "from": "magma",
+        "id": "magma-switchboard",
+        "limitations": [
+          "One-sided project declaration; no reciprocal confirmation or fresh-feed observation."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        },
+        "scope": "Magma documentation names Switchboard and publishes two gMON feed IDs.",
+        "status": "Claimed",
+        "to": "switchboard",
+        "type": "declared_integration"
+      },
+      "proof": [
+        "0xaa67cf333189883a62968ebc44466b62ac020c6ff34ea9c0499894830d5e62eb",
+        "0x6e3918399d72d9b176306d8ad8c05a7899624c4101562a73a9e722929aa3a3d9",
+        "0x7519f8fe88aea59b5907b36b4af3537df16bc43d902e91ed89df9834f0e9c519"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-apriori",
+      "idHash": "0xab8e679c9b19b42b50994c51ec2a8ba49b0b27212bc9610e4aaf56615fdfbdd4",
+      "payloadSha256": "0x1a946dc6436b9005ef059bf5f8b55b4e8abf99be2407f511efd33cdf9e511ddf",
+      "leafSha256": "0xaa67cf333189883a62968ebc44466b62ac020c6ff34ea9c0499894830d5e62eb",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-APRIORI-REGISTRY-001",
+          "E-APRIORI-CAP-001"
+        ],
+        "from": "monad",
+        "id": "monad-apriori",
+        "limitations": [
+          "No signed owner claim was found; preserve the identity-transition limitation."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        },
+        "scope": "The legacy aPriori entry appeared in the pinned Monad mainnet registry; current context is scoped to Capricorn/aprMON.",
+        "status": "Observed",
+        "to": "aPriori",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0x91d8de4da52998d41f75bb8fa78c0dd0f27229f961c5d30f5c2924e41656be92",
+        "0x6e3918399d72d9b176306d8ad8c05a7899624c4101562a73a9e722929aa3a3d9",
+        "0x7519f8fe88aea59b5907b36b4af3537df16bc43d902e91ed89df9834f0e9c519"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-kuru-002",
+      "idHash": "0x61daeacf610034b78b6351a1f2393d50cb5ca5803571e72f47b9dc3cd354d943",
+      "payloadSha256": "0xe039792027c485ca5335d28ccbb48bd18cfe5542cfb2851db54e5fe059bffadf",
+      "leafSha256": "0xe661d13e85575e9906f724940a3c5a48d841fb7fd2ab5df43d9c40f0df26e9a7",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-KURU-MEM-002"
+        ],
+        "from": "monad",
+        "id": "monad-kuru-002",
+        "limitations": [
+          "Directory membership is not endorsement, safety review, or an onchain interaction."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 2,
+          "supersedesRelationshipId": "monad-kuru"
+        },
+        "scope": "At the 2026-09-22 refresh, Kuru appeared in the Monad Foundation App Portal Spot Trading section as ‘Trading Hub on Monad.’",
+        "status": "Observed",
+        "to": "kuru",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0xf8c4f0c5bc6cf4907aace10874594f000e1daf0c93aea4d722a5ac5672689a1c",
+        "0xcd5507a4423587352a4d1a89418e26b124c12205f20ae576a2ae6bbcae70d01f",
+        "0xba336f3f5caceb70c18914ffe815d308b51b8b288f781b1d622be96ac5b4a804"
+      ]
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-magma",
+      "idHash": "0x32f03db9746654a2278cab00e6c26dd9645fa4bdb6c4117842e60df8610ddfd8",
+      "payloadSha256": "0xe54e7ba21e87ab1e0ef403702a125b04637a9654c60f9db3eba3a76db35675ef",
+      "leafSha256": "0xf8c4f0c5bc6cf4907aace10874594f000e1daf0c93aea4d722a5ac5672689a1c",
+      "payload": {
+        "dataMode": "sourced-limited",
+        "evidenceIds": [
+          "E-MAGMA-REGISTRY-001",
+          "E-MAGMA-CAP-001"
+        ],
+        "from": "monad",
+        "id": "monad-magma",
+        "limitations": [
+          "Registry membership is not endorsement, safety, or measured activity."
+        ],
+        "reviewMetadata": {
+          "decisionReason": "evidence-resolved-with-limitations",
+          "reviewMethod": "manual-relationship-evidence-inspection",
+          "reviewPolicyVersion": "phase-3.7-review-policy-v1",
+          "reviewedAt": "2026-09-22T22:02:32Z",
+          "reviewerRef": "reviewer:r-f3bffe2b8f830e50",
+          "reviewerRole": "relationship-reviewer"
+        },
+        "reviewStatus": "approved",
+        "reviewedAt": "2026-09-22T22:02:32Z",
+        "revision": {
+          "sequence": 1,
+          "supersedesRelationshipId": null
+        },
+        "scope": "Magma appeared in the pinned Monad mainnet registry and documents a Monad deployment.",
+        "status": "Observed",
+        "to": "magma",
+        "type": "ecosystem_membership"
+      },
+      "proof": [
+        "0xe661d13e85575e9906f724940a3c5a48d841fb7fd2ab5df43d9c40f0df26e9a7",
+        "0xcd5507a4423587352a4d1a89418e26b124c12205f20ae576a2ae6bbcae70d01f",
+        "0xba336f3f5caceb70c18914ffe815d308b51b8b288f781b1d622be96ac5b4a804"
+      ]
+    }
+  ]
+}

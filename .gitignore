@@ -3,3 +3,6 @@ node_modules/
 *.log
 *.zip
 dist/
+
+# Reproducible local upload copies; canonical registry sources live in data/.
+artifacts/ipfs/

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "status": "match",
+  "runtimeMatch": "match",
+  "creationMatch": "match",
+  "chainId": 10143,
+  "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+  "jobId": "4cbeb211-5b7e-4d55-8451-f33c520cf7b8",
+  "matchId": "55878725",
+  "jobStartedAt": "2026-10-10T14:42:15.000Z",
+  "jobFinishedAt": "2026-10-10T14:42:17.000Z",
+  "jobUrl": "https://verify.sourcify.dev/jobs/4cbeb211-5b7e-4d55-8451-f33c520cf7b8",
+  "repositoryUrl": "https://repo.sourcify.dev/10143/0x8d53153a8a25c81701954eed66154B3EbBa8b8c7",
+  "compilerInputSha256": "df91a599f845c92edfb4f0632df7c68a732a49cc46036e5b81c1841bef950638",
+  "scope": "Owner-authorized public source verification. Creation and runtime correspondence confirmed by Sourcify; this is not an independent security audit. Etherscan/Monadscan verification is not claimed."
+}

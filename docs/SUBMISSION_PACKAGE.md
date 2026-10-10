@@ -1,6 +1,6 @@
 # Monad City — Metropolis submission package
 
-Prepared: 2026-10-08. Public copy below describes the implemented build, not the roadmap.
+Updated: 2026-10-10. Public copy below describes the implemented build, not the roadmap.
 
 ## Submission fields
 
@@ -32,7 +32,7 @@ same connections directly.
 
 The AI Navigator combines deterministic retrieval with an optional tool-calling agent. Local
 retrieval controls map selection. The agent can search projects, inspect evidence and
-relationships, and read district coverage through four local tools. Its final response selects
+relationships, and read district coverage through four local graph tools, plus an optional read-only publication check. Its final response selects
 eligible evidence IDs retrieved during that conversation. The application displays exact record
 claims rather than model-written factual prose, retaining source status, scope, and limitations.
 If evidence cannot establish an activity claim, the Navigator explains the gap.
@@ -41,6 +41,11 @@ The current build contains 176 projects, with 193 approved evidence records cove
 Six relationships have source-backed evidence; other displayed edges remain explicitly
 illustrative or AI-inferred. Evidence comes from manually reviewed, versioned snapshots. The
 build verifies that the reviewed snapshot matches its runtime module.
+
+The reviewed snapshot is also published in an immutable registry on Monad Testnet. Each record
+can be checked against its Merkle root and the publication's current lifecycle. The full snapshot,
+manifest and proofs are publicly available through IPFS. These checks establish that the publisher
+committed those exact bytes; they do not establish source truth, freshness or project safety.
 
 Monad City is implemented in vanilla JavaScript and CSS with vendored Three.js. The optional AI
 path has been tested using Qwen through OpenRouter. It is a read-only prototype without a wallet
@@ -65,12 +70,17 @@ reasoning inspectable.
 The dataset, districts, project identities, source records, and relationship inspection are
 specific to the Monad ecosystem. Monad City helps users discover its applications and helps
 builders inspect documented integrations. This version is an ecosystem research interface;
-it does not execute transactions or deploy an application contract on Monad.
+the app reads a deployed evidence registry on Monad Testnet (chain 10143). The owner published
+v6 in transaction `0x701709d9860a724c2fba971c2a2194d9407d5078c17803861eff50d52364e5c0`.
+Passport checks verify the exact record's inclusion and current publication state. No user wallet
+is required to explore or check records.
 
 ### How AI is used
 
 A user-configured OpenAI-compatible model calls four local tools: search_projects,
-get_project_evidence, get_project_relationships, and get_district_coverage. A bounded agent loop
+get_project_evidence, get_project_relationships, and get_district_coverage. An optional fifth tool,
+check_registry_publication, can check exact retrieved records against the pinned Testnet registry.
+A bounded agent loop
 validates the final selection against evidence retrieved in that run. The interface renders
 exact claims and citations from those records. Deterministic retrieval remains responsible for
 map actions, and missing evidence or provider errors preserve the local experience.
@@ -80,13 +90,14 @@ map actions, and missing evidence or provider errors preserve the local experien
 Vanilla JavaScript, CSS, vendored Three.js r170, SVG Graph View, Node.js build tooling,
 versioned JSON evidence snapshots, and an optional OpenAI-compatible tool-calling provider.
 The tested provider path is OpenRouter with qwen/qwen3.8-max-0902. No model training,
-embeddings, document RAG, backend API, or smart-contract execution is implemented.
+embeddings, document RAG or backend API is implemented. The registry uses Solidity 0.8.30,
+OpenZeppelin 5.7.0 and SHA-256 Merkle proofs; the app performs read-only chain queries.
 
 ### Current status
 
 Working static prototype with an optional real AI agent, local discovery without credentials,
-responsive City/Graph views, district navigation, Passport/source disclosure, and a validated
-snapshot pipeline. Nineteen bounded AI/dataset tests pass; real source and relationship queries
+responsive City/Graph views, district navigation, Passport/source disclosure, a validated
+snapshot pipeline and an active Monad Testnet evidence publication. Nineteen bounded AI/dataset tests pass; real source and relationship queries
 were exercised with the configured Qwen model.
 
 ### Next steps
@@ -143,7 +154,7 @@ they can inspect.
 - [x] Short demo and pitch scripts prepared.
 - [x] Read form-specific fields, required assets and exact limits from the owner's screenshots and live form.
 - [x] Deploy the current tested build and test the public URL without the owner's browser key.
-- [x] Match the deployed application to repository commit `6a4bb5459d4b88411b0e9e1d8a4a7c088926e8f5`; later changes in this preparation stage are documentation only.
+- [ ] Update the public build and repository with the verified Testnet registry configuration; record the resulting deployment and source commit.
 - [ ] Record the real AI path; edit waiting time transparently if needed.
 - [ ] Upload demo/pitch videos to the chosen service and test judge access.
 - [ ] Fill actual team details, selected track, links and assets; review the final form.
@@ -155,10 +166,10 @@ and judge instructions 8,000 each. Logo: PNG/JPG/WEBP, max 2 MB, at least 500 px
 pixels. Technical demo: working product, max 3 minutes. Pitch: team, problem and motivation,
 max 2 minutes. Videos require hosted HTTPS links. Optional ad: max 30 seconds; X profile optional.
 
-The live-product field explicitly requires "Must run on Monad Mainnet or Testnet". The current
-application is a static research interface using Monad ecosystem evidence, with no app contract
-or runtime chain queries. A complete link field does not establish eligibility. Confirm the
-read-only application's fit with organizers before treating the entry as eligible.
+The live-product field explicitly requires "Must run on Monad Mainnet or Testnet". The app now uses an immutable evidence registry deployed on Monad Testnet and verifies exact
+record publication/inclusion through read-only RPC calls. The source snapshot remains reviewed
+and static; there is no live indexer. This is a concrete chain integration. Final track/bounty
+eligibility remains the organizer's decision.
 
 ## Sponsor bounty notes
 
@@ -194,3 +205,14 @@ Optional ad and X profile stay empty. No final submission confirmation exists.
 Portal progress was saved at 2026-10-08 12:58 UTC (15:58 Moscow): **5/6 sections complete**,
 including the Qwen article field. Only the required demo/pitch section remains incomplete in
 the portal checklist. This is saved progress, not a final submission or eligibility approval.
+
+## Verified Testnet integration (2026-10-10)
+
+- Contract: `0x8d53153a8a25c81701954eed66154b3ebba8b8c7`, Monad Testnet 10143.
+- Publication: [transaction](https://testnet.monadscan.com/tx/0x701709d9860a724c2fba971c2a2194d9407d5078c17803861eff50d52364e5c0), block 69858636.
+- Exact commitments, 193 evidence records, six relationships and manifest URI match the reviewed v6 bundle.
+- Official RPC reports the matching block finalized; current representative evidence/relationship proofs pass, including each supporting evidence record. One trusted RPC is used.
+- [Verified contract source](https://repo.sourcify.dev/10143/0x8d53153a8a25c81701954eed66154B3EbBa8b8c7): creation and runtime match.
+- Public manifest: `ipfs://bafybeidbeznfdsuqr542slcqbdstgnkmxn7dyuf5de226jyzavhgskyo2i/manifest.json`.
+- Add to judge instructions: open a source-backed Passport, expand **Inspect full record**, click **Check publication**, and inspect the returned block. No wallet or API key is needed for this check.
+- Portal text saved on 2026-10-08 predates this integration and must be refreshed before final submission.

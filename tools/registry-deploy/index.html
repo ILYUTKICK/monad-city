@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deploy registry · Monad City</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <main>
+    <a class="brand" href="/#/city">Monad City <span>/ Registry</span></a>
+    <header><span class="label">MONAD TESTNET · 10143</span>
+      <h1>Publish the foundation.</h1>
+      <p>Create the evidence registry with your wallet. Publishing the reviewed snapshot is a separate step.</p>
+    </header>
+    <section aria-labelledby="settings-title">
+      <h2 id="settings-title">Deployment settings</h2>
+      <dl>
+        <div><dt>Contract</dt><dd>MonadCityRegistry · immutable</dd></div>
+        <div><dt>Administrator, publisher, revoker</dt><dd id="wallet" class="address">Loading…</dd></div>
+        <div><dt>Admin transfer delay</dt><dd>48 hours <small>Role changes take effect immediately.</small></dd></div>
+        <div><dt>History</dt><dd>New registry · no predecessor</dd></div>
+        <div><dt>Transfer value</dt><dd>0 MON · network fee only</dd></div>
+      </dl>
+      <details><summary>Inspect prepared transaction</summary>
+        <p>Solidity 0.8.30 · OpenZeppelin 5.7.0 · Cancun · optimizer 200 · via IR</p>
+        <p class="address" id="data-hash"></p>
+        <a href="./request.json" download="monad-city-testnet-deployment.json">Download unsigned request</a>
+      </details>
+    </section>
+    <section aria-labelledby="sign-title">
+      <h2 id="sign-title">Connect and review</h2>
+      <p id="provider-note">Use Chrome with MetaMask, Rabby, or another Ethereum wallet extension.</p>
+      <div class="actions">
+        <button id="connect" disabled>Connect wallet</button>
+        <button id="network" class="secondary" disabled>Switch to Monad Testnet</button>
+        <button id="check" class="secondary" disabled>Check deployment</button>
+      </div>
+      <dl id="estimate" hidden>
+        <div><dt>Wallet balance</dt><dd id="balance"></dd></div>
+        <div><dt>Prepared network fee</dt><dd id="fee"></dd></div>
+        <div><dt>Simulation</dt><dd>Creation succeeds · runtime matches</dd></div>
+      </dl>
+      <p class="hint">The gas limit includes a 10% buffer. Monad charges against the gas limit. Review the final fee in your wallet.</p>
+      <button id="deploy" disabled>Deploy — confirm in wallet</button>
+      <p id="status" role="status" aria-live="polite">Validating the prepared request…</p>
+    </section>
+    <section aria-labelledby="receipt-title">
+      <h2 id="receipt-title">Deployment receipt</h2>
+      <p>After confirmation, the page checks the receipt, runtime code, registry identity and roles.</p>
+      <label for="transaction">Transaction hash <span>(also restores a previous deployment)</span></label>
+      <div class="receipt-actions"><input id="transaction" placeholder="0x…" spellcheck="false" autocomplete="off"><button id="receipt" class="secondary" disabled>Check receipt</button></div>
+      <a id="explorer" hidden target="_blank" rel="noopener noreferrer">View transaction</a>
+      <pre id="result" hidden></pre>
+      <button id="download" class="secondary" hidden>Download verified receipt</button>
+    </section>
+    <footer>Testnet operator page. Keys stay in your wallet. Deploying an empty registry does not publish or verify any project evidence.</footer>
+  </main>
+</body>
+</html>

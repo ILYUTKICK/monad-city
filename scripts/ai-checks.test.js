@@ -6,7 +6,7 @@ import vm from 'node:vm';
 import { createProjectEvidence, relationships, validateDataContract } from '../src/data.js';
 import { evidenceRecords, evidenceSnapshot, validateEvidenceContract, validateReviewGovernanceFixtures } from '../src/evidence.js';
 import { retrieveNavigator, runDistrictNavigatorChecks } from '../src/retrieval.js';
-import { runNavigatorAgent } from '../src/ai.js';
+import { runNavigatorAgent, createToolExecutors } from '../src/ai.js';
 
 // Reuse the actual prototype data without starting its DOM/3D entry point.
 const source = readFileSync(new URL('../src/main.js', import.meta.url), 'utf8');
@@ -199,4 +199,27 @@ test('local source retrieval keeps its Passport selection', () => {
   const result = retrieveNavigator({ query: input.question, projects, relationships, evidenceRecords });
   assert.equal(result.outcome, 'results');
   assert.deepEqual(result.selectedProjectIds, ['kuru']);
+});
+
+test('registry tool requires a retrieved ID, awaits a pinned read and keeps withdrawn evidence ineligible', async () => {
+  let reads = 0;
+  const executors = createToolExecutors({ ...input, registryCheck: async (id) => {
+    reads++;
+    assert.equal(id, 'E-KURU-CAP-001');
+    return { status: 'subject-revoked', included: true, usable: false, blockNumber: '42' };
+  } });
+  assert.ok((await executors.check_registry_publication({ evidenceId: 'E-KURU-CAP-001' })).error);
+  assert.equal(reads, 0);
+  executors.get_project_evidence({ projectId: 'kuru' });
+  const result = await executors.check_registry_publication({ evidenceId: 'E-KURU-CAP-001', rpcUrl: 'https://untrusted.test' });
+  assert.equal(result.status, 'subject-revoked');
+  assert.equal(reads, 1);
+  assert.equal(executors.get_project_evidence({ projectId: 'kuru' }).records.find((item) => item.id === 'E-KURU-CAP-001').eligible, false);
+  assert.equal(createToolExecutors(input).check_registry_publication, undefined);
+});
+
+test('agent cannot select an evidence record after observing its onchain withdrawal', async () => {
+  await withResponses([tools(), tools([['check_registry_publication', { evidenceId: 'E-KURU-CAP-001' }]]), selection()],
+    async (result) => { await assert.rejects(result, /cannot support facts/); },
+    { registryCheck: async () => ({ status: 'subject-revoked', usable: false, included: true }) });
 });

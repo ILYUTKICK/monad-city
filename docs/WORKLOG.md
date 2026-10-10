@@ -2366,6 +2366,275 @@ Limitations / next:
 - Technical eligibility remains distinct from field completeness: clarify the read-only app's
   fit with the Monad Mainnet/Testnet requirement, then record and link both real videos.
 
+### 2026-10-08 — Final onchain registry architecture and implementation authorized
+
+Owner explicitly requested an architect and implementation agents to plan the final registry
+and implement its smart contract, rather than stop at an initial snapshot anchor.
+
+Ownership:
+- Architecture agent: docs/ONCHAIN_REGISTRY_ARCHITECTURE.md and optional final plan.
+- Contract agent: contracts/**, isolated Solidity toolchain, EVM tests and deployment procedure.
+- Trust/data agent: scripts/registry/**, src/registry-proof.js and data/registry/** artifacts.
+- Lead: read-only browser integration, main UI, optional Navigator tool, root build/package
+  integration and shared documentation. No overlapping rewrites.
+
+Scope includes version history, governance/publisher permissions, lifecycle/revocation,
+individual record commitments/proofs, deterministic exports of the existing approved snapshot,
+and read-only application verification. The v6 snapshot, evidence semantics and dependency-free
+frontend remain intact. Contract tooling is isolated from browser runtime dependencies.
+
+Boundary: no private key handling, wallet signing, network deployment or fabricated deployment
+address. Deployment transactions require the owner's wallet after implementation is reviewable.
+Publication and content matching do not establish source truth, current activity or endorsement.
+
+### 2026-10-10 — Final registry implemented and locally verified
+
+Changed:
+- Immutable Solidity registry, isolated OpenZeppelin 5.7.0 / Solidity 0.8.30 toolchain,
+  compiler-derived ABI/artifacts, deployment/publication/migration simulation scripts.
+- SHA-256 canonical export for the unchanged approved v6 snapshot: 193 evidence records,
+  six sourced relationships, separate Merkle roots and full-payload inclusion proofs.
+- Linear publication history, publisher/revoker permissions, delayed two-step admin transfer,
+  permanent subject-ID revocation across predecessor lineage, explicit non-proxy migration.
+  Genesis depth is zero; maximum is 32 predecessor hops (33 linked deployments).
+- Dependency-free browser verifier pins chain, actual runtime code digest, namespace,
+  lineage, publisher, content commitments, publication ID/previous ID/time/URI and reviewed
+  publication block. All current reads use one numbered block with a final hash recheck.
+- Passport controls distinguish active, superseded, migrated, snapshot withdrawal, subject
+  withdrawal and supporting-evidence withdrawal. Relationships check every cited record.
+- Optional AI publication tool is restricted to already retrieved IDs and at most three distinct
+  checks per question; observed withdrawals prevent those IDs from supporting the answer.
+  Local deterministic retrieval describes the local snapshot and makes no live-state claim.
+- Build verifies registry bundle and copies proof files for explicit on-demand retrieval.
+  Node 18 CLI WebCrypto fallback keeps browser code free of Node imports.
+- Final architecture and deployment acceptance plan live in ONCHAIN_REGISTRY_ARCHITECTURE.md
+  and ONCHAIN_REGISTRY_PLAN.md. README stays a short ordinary project introduction.
+
+Verified:
+- Original approved snapshot/runtime SHA-256 remains
+  `9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b`.
+- Registry tests: 10; read-only client tests: 11; AI tests: 21; all pass.
+- Forge tests: 26, including 512 fuzz cases, actual JS export proofs, role rotation,
+  delayed admin transfer, malformed inputs and multi-hop/post-migration withdrawals.
+- Compiler artifact/selector checks and formatting pass.
+- Actual loopback Anvil + browser-client integration passes active, global subject withdrawal,
+  supporting-evidence withdrawal, superseded and migrated states. Anvil needs loopback network
+  permission under the desktop sandbox; the approved rerun used no external RPC or private key.
+- Browser: load, Passport, search, Navigator, City/Graph, district filter and narrow 390×844
+  layout checked. Narrow document width/scroll width both 390. Unconfigured controls correctly
+  disabled. Screenshot: `/private/tmp/monad-city-registry-passport.png`.
+- Build passes; no source snapshot, runtime snapshot or registry artifact payload changed.
+
+Limitations and next:
+- No Monad deployment or publication occurred; REGISTRY_CONFIG is explicitly unconfigured.
+- Local Foundry 1.7.1 does not satisfy Monad deployment tooling. Official Monad documentation
+  calls for Foundry 1.8+ with Monad execution enabled; deployment preflight intentionally blocks.
+- Before a real deployment: upgrade tooling, run Monad-mode gates, review the contract and role
+  accounts, publish exact artifacts to durable storage, simulate then sign with the owner's wallet,
+  verify source/runtime/receipt/finality, and pin the reviewed deployment in a separate app change.
+- Default-admin transfer delay does not delay role changes or migration confirmation.
+- Publication proves exact content commitment and lifecycle at an inspected block, not source
+  accuracy, safety, endorsement, freshness or hackathon eligibility. RPC remains trusted.
+
+### 2026-10-10 — Foundry upgraded and Monad-mode gate passed
+
+Owner authorized the Foundry update. The official foundryup installer installed Forge, Cast,
+Anvil and Chisel 1.8.0 (commit `61ae26af36320d4fa1020f7db53785885e29eeb5`) and verified download
+attestations/hashes. The existing 1.7.1 release remains available for rollback through foundryup.
+
+Changed:
+- Refreshed contracts/artifacts/MonadCityRegistry.json after recompilation: only immutable AST
+  reference IDs changed. ABI, selectors, creation/runtime template bytecode and immutable byte
+  offsets are unchanged. No Solidity source or evidence record changed.
+- Updated contracts/DEPLOYMENT.md and docs/ONCHAIN_REGISTRY_PLAN.md to record the cleared
+  toolchain gate. Ownership for this update: compiler export, deployment guide, acceptance plan
+  and this log.
+
+Verified:
+- All four installed binaries report 1.8.0.
+- `npm --prefix contracts run preflight:deployment` passes: formatting/build, 26 tests using
+  `--network monad`, 512 fuzz runs, compiler-derived artifact verification and actual loopback
+  Anvil/client checks for active, global withdrawal, support withdrawal, supersession and migration.
+- Creation SHA-256 remains `0x93bde75678489480bbacd87c39fbf093a9bb8770a160881962fb9c05b00130d1`;
+  runtime template SHA-256 remains `0xefc9ddb1fe06d922bdb235001ee6de5cdb42882a10fae7f188b46369b1a04c63`.
+- Foundry 1.8 emits advisory lint notes/warnings; the full gate has no failing tests.
+
+Next: review deployment inputs and publish/deploy the exact release through the owner's wallet.
+No external transaction occurred; the application's registry configuration remains unconfigured.
+
+### 2026-10-10 — Testnet wallet deployment prepared
+
+Owner supplied public deployment wallet `0x9A0C8040A8C6aB9F65F544578b891Fba599799F8` and funded it
+through the Monad faucet. A read-only Testnet RPC check returned chain ID 10143 and balance 5 MON.
+All three initial roles use that wallet; administrator transfer delay is 172800 seconds; genesis
+predecessor registry/publication are zero. Role overlap is an authorized Testnet rehearsal choice,
+not production administration acceptance.
+
+Ownership and changes:
+- `tools/registry-deploy/`: standalone localhost operator page, pinned unsigned request, independent
+  constructor encoder and runtime/receipt verification; it is excluded from the application build.
+- `contracts/script/prepare-testnet.mjs`, `contracts/script/operator-e2e.mjs`,
+  `scripts/registry/operator.test.js`, contract package scripts, deployment guide and acceptance plan.
+- Wallet signing happens only on the owner's explicit page action and wallet confirmation. No key
+  or seed entry exists. Chain/account changes invalidate estimates. Unknown wallet submission state
+  blocks duplicate attempts across reloads; receipt recovery accepts a public transaction hash.
+- Runtime comparison pins executable bytes, checks repeated immutables and independently verifies
+  all genesis bindings, identity, roles and admin delay at the receipt block. Audit downloads state
+  that publication and independent finality remain pending.
+
+Verified:
+- Live Testnet read-only creation simulation succeeds and matches the pinned runtime template.
+  Gas estimate 3120557; prepared gas limit 3432613; contemporaneous buffered fee 0.350126526 MON.
+  Fees are refreshed immediately before the owner requests wallet confirmation.
+- Six focused operator tests pass, including tampered constructor/runtime, wrong chain/account,
+  inadequate balance, unreasonable gas, pending/reverted/mismatched receipt behavior.
+- Actual disposable loopback Anvil rehearsal passes simulation, deployment, receipt/code/immutable
+  bindings/identity/roles checks and wrong sender rejection. Local funding and impersonation never
+  touched Monad Testnet. Loopback permission was granted after sandbox bind restrictions.
+- Application build, syntax and whitespace checks pass. Snapshot/proof digests remain unchanged.
+- Chrome page loads with a detected wallet extension and enabled Connect control; IAB correctly
+  shows the no-extension state. No browser console errors. Screenshot saved at
+  `/private/tmp/monad-city-testnet-deploy.png`.
+
+Pending:
+- The Chrome operator page is open for owner connection and signing. No external deployment or
+  publication transaction has been submitted by the agent. Application config remains unconfigured.
+- After signing: verify actual receipt, then retain and retrieve exact content-addressed bundle,
+  publish v6 through the owner wallet, verify publication/finality, and activate a reviewed config.
+- Independent production security/account/storage/monitoring acceptance remains outstanding.
+
+### 2026-10-10 — Owner-signed Testnet registry deployment verified
+
+The owner returned deployment transaction
+`0xa5929d3d1600548dfbbf9a60e8e997c1cb7a534fe08bcd0e5e821a1831fc51b3`.
+
+Changed / ownership:
+- Public immutable audit files in `data/registry/deployments/`: receipt/identity/roles/code digest
+  and a separate provider-finalized observation. No canonical evidence or proof file was edited.
+- Updated README, PROJECT_CONTEXT, deployment guide and acceptance plan to distinguish deployed
+  empty Testnet registry from pending snapshot publication and app configuration.
+- `scripts/registry/prepare-upload.mjs` reproduces a four-file IPFS upload folder under ignored
+  `artifacts/ipfs/phase-3.5-v6`, preserving the manifest sourcePath directory for the snapshot.
+- `contracts/script/prepare-publication.mjs` prepares an unsigned call only after exact uploaded
+  bytes are retrieved through two public gateways and local proof/current
+  chain gates pass. No hosted CID is available yet; the command has not been executed for signing.
+- Compiler standard JSON source input retained in `contracts/verification/` for later verification.
+
+Verified:
+- Actual registry address `0x8d53153a8a25c81701954eed66154b3ebba8b8c7`, chain 10143, block 69845790,
+  block hash `0x68f23aa37aceadb18cf21774b3d356ae9e0ef79e829d9376e20abaf42ad43eeb`.
+- The mined zero-value creation transaction matches the exact prepared sender/data. Runtime
+  instructions and all repeated immutable bindings match, with actual runtime SHA-256
+  `0x4a1c938da6c2eec8aa7f35d1fcf19522af88b9b93134747f0a0baa7f350fae70`.
+- Namespace/deployment identity, genesis depth/zero predecessor, all three wallet roles,
+  172800-second administrator delay, unfrozen empty head and zero successor match.
+- Official RPC reports finalized block 69846297, beyond the matching deployment block.
+  This is one provider's finalized status, not independent consensus verification.
+- Upload folder validates all 193 evidence and six relationship vectors against the unchanged
+  active snapshot. Compiler input contains 12 sources with the pinned settings.
+- Browser receipt checker shows the actual deployed address and publication pending.
+  Screenshot: `/private/tmp/monad-city-testnet-deployed.png`.
+
+Pending / limitations:
+- Source verification submission to Sourcify was rejected by automatic approval review because
+  deployment authorization did not explicitly permit sending potentially private source code
+  to that third party. The exact code/compiler payload is ready; explicit owner approval was
+  requested. No submission was made and no bypass attempted.
+- Owner was asked which IPFS account/service is available. Public folder upload, independent
+  retrieval, first publication, source verification and reviewed app activation remain pending.
+- No publication transaction was sent. Portable proof manifest and app config remain unconfigured;
+  the newly verified deployment is recorded separately. Production acceptance is still incomplete.
+
+### 2026-10-10 — Public source verification, IPFS availability and unsigned publication
+
+Owner authorization: the owner explicitly permitted public source publication and completed free
+Pinata account registration themselves. No credentials were read or received.
+
+Changed / ownership:
+- `contracts/verification/monad-testnet-standard-input.json` and separate public Sourcify audit:
+  runtime and creation both `match`, job `4cbeb211-5b7e-4d55-8451-f33c520cf7b8`.
+  The earlier automatic approval rejection is cleared by explicit public-source authorization;
+  the authorized submission succeeded. No Etherscan/Monadscan verification is claimed.
+- Uploaded the unchanged four-file folder publicly through Pinata's UI. Root CID:
+  `bafybeidbeznfdsuqr542slcqbdstgnkmxn7dyuf5de226jyzavhgskyo2i`.
+- `contracts/script/prepare-publication.mjs` now uses the observed public Pinata gateway plus
+  the independently operated Filebase public gateway. The former ipfs.io/dweb.link endpoints
+  return HTTP 429 explaining migration to service-worker gateways; they are not used as proof
+  of absence. Retrieval timeout/502/503/504 retries are bounded to one retry and fail closed.
+- `tools/registry-publish/{index.html,style.css,app.js,core.js,request.json}`: localhost-only
+  operator page, excluded from the public app. Full local bundle verification, independent ABI
+  encoder, exact destination/publisher/network/value checks, public byte-digest rechecks,
+  code/identity/head/role/simulation/fee gates and duplicate-send recovery.
+- Separate IPFS retrieval audit, publication unit tests, disposable loopback rehearsal and
+  deployment documentation. Canonical snapshot/proof payloads were not changed.
+
+Verified:
+- All four files retrieved through both Pinata and Filebase (eight exact-byte comparisons),
+  recorded in `data/registry/deployments/monad-testnet-ipfs-availability.json`.
+- All 199 local proof vectors and snapshot binding validated before request generation.
+- Read-only Monad Testnet simulation returned expected publication ID
+  `0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa`.
+- Prepared buffered gas limit 429322, fee estimate 0.043790844 test MON at preparation time;
+  refresh before signing. This is not a fixed or promised fee.
+- Five publication tests pass: independent ABI vs cast, rejected transaction mutations,
+  gateway errors/changed bytes, wrong chain, pending/reverted receipt.
+- Disposable loopback Anvil deployment and actual publication receipt pass; existing head blocks
+  a duplicate and mismatched transaction input is rejected. The test initially observed a pending
+  receipt; it now explicitly waits for mining before asserting. No external transaction occurred.
+- `npm run build`, eleven read-only onchain tests and `git diff --check` pass.
+- Native Chrome page validates the request, connects the existing publisher wallet and completes
+  all four public file checks plus the live Testnet simulation. Ready-for-confirmation state shows
+  balance 4.649873 MON and estimated fee 0.043790 MON. No Publish or wallet signing action was taken.
+  Screenshot: `/private/tmp/monad-city-publication-ready.png`.
+
+Limitations / next:
+- Pinata owner pin is the retained IPFS copy; Filebase retrieval does not establish a second
+  independently retained pin. Availability is a point-in-time observation, not permanent storage.
+- No publication transaction has been signed or broadcast. The core app remains unconfigured.
+- Owner signs the prepared publication in their wallet, then receipt/finality/current record proofs
+  are verified before the reviewed app configuration is activated.
+- Production account controls, independent security review, replicated retention and monitoring
+  remain outstanding; this is the authorized Testnet rehearsal.
+
+### 2026-10-10 — Owner publication verified and Testnet client activated
+
+The owner supplied publication transaction
+`0x701709d9860a724c2fba971c2a2194d9407d5078c17803861eff50d52364e5c0`.
+The preceding repeated deployment hash was correctly identified as contract creation; a current
+head read already showed the expected publication. No duplicate transaction was sent.
+
+Changed / ownership:
+- Added separate immutable public publication receipt, provider-finality and representative
+  record-check audits under `data/registry/deployments/`.
+- `src/registry-config.js` now pins the reviewed Testnet address, actual runtime SHA-256,
+  publication transaction/block/hash/timestamp/URI/publisher and genesis lineage.
+- README remains an ordinary short project README. PROJECT_CONTEXT, deployment/acceptance
+  documents, submission description and demo script reflect the real bounded chain integration.
+- The unconfigured-client test now supplies an explicit unconfigured fixture, so it tests that
+  state even after the default application config changes. No client behavior was weakened.
+
+Verified:
+- Mined zero-value call matches the prepared publisher, destination, complete calldata and chain.
+- Publication ID `0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa`,
+  block `69858636`, hash `0x3c278fe9d5c1445a5f23cd7f75bc15da859da6203ee3859d10035e4ee9bd56a7`.
+- All roots, snapshot/portable/version digests, 193/6 counts, source timestamps, URI hash and
+  publisher/state match. Runtime pin, head and version lookup match the prepared release.
+- Official RPC reported finalized block `69859057` beyond the matching publication block.
+  This remains a single trusted provider observation, not independent consensus verification.
+- Two evidence records and two relationships return `matched` through the actual read-only client;
+  every evidence record supporting the relationships is verified separately.
+- Local browser Passport check for `E-KURU-CAP-001` returns an active, unrevoked match on chain
+  10143 at block `69859855`; CORS and real browser RPC/artifact flow succeed.
+- `npm run build`, 21 AI tests, 11 onchain tests and whitespace check pass. The unchanged canonical
+  snapshot and all 199 proof vectors are validated by the build gate.
+- Changed public-source candidates were scanned for credential patterns: no findings in 70 files.
+
+Limitations / next:
+- Public deployment update and public-origin browser verification follow this checkpoint.
+- No shared AI provider credential is supplied; the optional model still needs the user's own key.
+- One retained IPFS pin, one RPC and Testnet owner role overlap do not declare production acceptance.
+- Final submission still needs the demo/pitch recordings and refreshed portal description.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

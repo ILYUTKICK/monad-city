@@ -12,6 +12,7 @@ Explore the Monad ecosystem through an interactive city. Find projects, inspect 
 - Project profiles with sources and relationship details.
 - Navigator that finds projects and highlights them on the map.
 - Optional AI agent that searches the project graph and selects relevant evidence.
+- Onchain publication checks for exact evidence records on Monad Testnet.
 
 Built with vanilla JavaScript, CSS, Three.js, and SVG.
 
@@ -42,3 +43,6 @@ npm run test:ai   # run AI tests without external API calls
 Project data comes from a checked-in snapshot. Sources support the specific claims shown; illustrative profiles and relationships are labeled. City layout and building size do not represent rankings.
 
 See [AI Navigator](docs/AI_NAVIGATOR.md) and [Trust Model](docs/TRUST_MODEL.md) for details.
+
+The optional evidence publication registry lives in [contracts](contracts/DEPLOYMENT.md).
+The reviewed snapshot is published on Monad Testnet. Open a full evidence record and click **Check publication** to check its inclusion. This confirms publication, not source accuracy or project safety.

@@ -2,7 +2,7 @@
 
 ## Recording target
 
-Approximately 2 minutes 20 seconds, within the form's confirmed maximum of 3 minutes.
+Approximately 2 minutes 40 seconds, within the form's confirmed maximum of 3 minutes.
 The technical demo must show the working product, not slides or a code walkthrough.
 A separate pitch (maximum 2 minutes) must introduce the team, problem, and motivation;
 its spoken draft is in `docs/SUBMISSION_PACKAGE.md`. Add the actual presenter/team introduction.
@@ -12,7 +12,7 @@ shown as a live model response. A finished video has not yet been created.
 
 ## Before recording
 
-- Use https://monad-city.vercel.app/ — the current public build matches application commit `6a4bb54`.
+- Use https://monad-city.vercel.app/ — confirm the deployed registry configuration matches the verified Testnet publication before recording.
 - Configure the owner's provider in **AI settings** on this origin before recording the agent path; localhost settings do not transfer. Keep the key out of the recording.
 - Use a desktop viewport around 1440×900. Start at `#/city` and reset the map.
 - Configure your own endpoint/model/key privately, then collapse AI settings. Record no key.
@@ -30,8 +30,9 @@ shown as a live model response. A finished video has not yet been created.
 | 0:35–1:00 | Open the Kuru Passport. Show one Claimed record, its source link, and `Inspect full record`. | “The Passport shows the exact claim, who published it, and what the source supports. Claimed and Observed are distinct. We can inspect the full record and its limitations; one source does not make the whole project verified.” |
 | 1:00–1:35 | Ask `Explain the Magma Switchboard declared integration sources`. Expand the returned relationship and its record, then switch Graph View. | “Now I can inspect a documented connection. This record is a publisher's declaration about Magma and Switchboard. The graph shows its endpoints, but the evidence remains bounded: it is not reciprocal confirmation or a live service-health check.” |
 | 1:35–1:55 | Ask `Find AI projects with active contracts`. Show `Evidence unavailable`. | “A project can match the AI category without evidence of current activity. Here the Navigator explains that gap. It does not turn a listing or an inferred connection into proof.” |
-| 1:55–2:10 | Return to City, open DeFi Overview, briefly show Projects or Evidence. | “The current build contains 176 projects and 193 evidence records. District views help narrow the search. Sourced connections remain separate from illustrative or inferred edges.” |
-| 2:10–2:20 | Finish on the city or one clear Passport. | “Monad City gives people a city to explore and agents a graph they can inspect, with the sources and uncertainty kept visible.” |
+| 1:55–2:15 | Expand a Kuru source record and click **Check publication**. Keep the matched result and checked block visible. | “This exact record is included in our published snapshot on Monad Testnet. The check reads the registry and verifies its proof and current publication state. It proves publication of the data, not the truth of the source.” |
+| 2:15–2:30 | Return to City, open DeFi Overview, briefly show Projects or Evidence. | “The current build contains 176 projects and 193 evidence records. District views help narrow the search. Sourced connections remain separate from illustrative or inferred edges.” |
+| 2:30–2:40 | Finish on the city or one clear Passport. | “Monad City gives people a city to explore and agents a graph they can inspect, with the sources and uncertainty kept visible.” |
 
 The AI waits are not guaranteed to fit these slots. If editing removes waiting time, add a simple
 “AI response wait shortened” caption to that cut. Do not speed up output to imply latency that
@@ -45,13 +46,14 @@ failure/local-result state.
 3. A source record's claim status, source and scope/limitations.
 4. A sourced relationship with its precise claim status.
 5. The evidence-gap response.
+6. A real Monad Testnet publication check with the exact record and checked block visible.
 
 The live agent layer selects 1–3 records. The local result may expose more. Do not promise that
 all five Kuru records will appear in the AI selection or a fixed sequence of tool calls.
 
 ## Short version if the form limit is tighter
 
-Keep Kuru search → Passport/source disclosure → one relationship in Graph View → evidence gap.
+Keep Kuru search → Passport/source disclosure and Testnet publication check → one relationship in Graph View → evidence gap.
 Remove the district tour. Retain the explanation of what the model selects and what the source
 can establish.
 

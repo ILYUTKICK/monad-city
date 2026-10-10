@@ -68,7 +68,7 @@ Directories and explorers already exist. Monad City needs to win through the com
 
 If a feature does not strengthen one of these, it is probably scope creep.
 
-## Current prototype status (2026-10-08)
+## Current prototype status (2026-10-10)
 
 The repository is a static vanilla JS/CSS application with vendored Three.js for the City
 and SVG for Graph View. Current implementation and `docs/WORKLOG.md` supersede the earlier
@@ -87,6 +87,17 @@ Implemented:
   conversation may supply exact record claims to the UI; arbitrary model prose is rejected;
 - build-time manual evidence review and immutable SHA-256-gated snapshot promotion;
 - responsive UI and self-hosted Instrument Sans.
+- isolated Solidity evidence registry implementation with immutable history, permanent subject
+  revocations, publisher/revoker roles, delayed admin transfer and explicit migration;
+- deterministic SHA-256/Merkle bundles for all 193 records and 6 sourced relationships;
+- explicit read-only Passport publication checks and an optional Navigator publication tool.
+  The registry is deployed on Monad Testnet at `0x8d53153a8a25c81701954eed66154b3ebba8b8c7`;
+  receipt, runtime/constructor bindings and roles were checked through the official RPC.
+  The owner published v6 in transaction
+  `0x701709d9860a724c2fba971c2a2194d9407d5078c17803861eff50d52364e5c0`, block `69858636`.
+  Exact commitments and representative evidence/relationship proofs match; the official RPC
+  reports that block finalized. Source correspondence is verified in Sourcify.
+  The app pins this Testnet publication for explicit read-only checks.
 
 The active evidence pair must match SHA-256
 `9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5ddde685b94e6b3b`.
@@ -96,6 +107,8 @@ Limitations:
 
 - no runtime evidence synchronization, automatic discovery, document RAG, embeddings,
   wallet flow, live blockchain feed, transaction execution or application backend;
+- onchain checks trust one configured RPC and prove publication/inclusion only;
+- Testnet rehearsal does not satisfy production security, administration or monitoring gates;
 - optional AI requires a user-configured provider/key and browser-compatible endpoint;
 - static evidence supports exact cited scope, often directory listing or publisher claims;
 - source freshness, safety, legitimacy, endorsement and current activity are not established

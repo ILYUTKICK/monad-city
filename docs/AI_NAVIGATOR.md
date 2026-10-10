@@ -271,6 +271,20 @@ The map action is `preserve-view`, with no new highlights, so an unsuccessful se
 - Conflicting or stale evidence is not resolved by ranking. A future ingestion layer must expose conflicts and source timestamps explicitly.
 - The Navigator must refuse safety, legitimacy, endorsement, and investment conclusions; those are outside this retrieval contract.
 
+### Onchain publication tool (implemented, deployment unconfigured)
+
+When a reviewed deployment is configured, the optional AI can call
+`check_registry_publication` for an exact evidence ID already returned by
+`get_project_evidence`. The application supplies the pinned deployment and read-only client;
+the model cannot choose a contract, RPC endpoint or transaction. The tool reports a checked
+block, exact inclusion and lifecycle, never source truth, safety, endorsement or freshness.
+An observed withdrawal makes that ID ineligible for the current agent answer, including after
+another local retrieval. Unavailable checks do not establish an onchain result. The final answer
+still accepts only bounded record selections; arbitrary model prose remains rejected.
+
+The deterministic local Navigator continues to describe the approved local snapshot. It does
+not automatically query the chain or claim that locally approved records are active onchain.
+
 ## Future RAG path (not implemented)
 
 The current hybrid source/Demo graph keeps structured retrieval as the first stage. Later phases may add graph traversal, document chunks, precomputed embeddings, and constrained language-model synthesis. Only retrieved, attributable chunks should reach a model, and the structured result contract should remain the authority for selected IDs, edge IDs, evidence, uncertainty, and map actions.

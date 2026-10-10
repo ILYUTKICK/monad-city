@@ -1,0 +1,30 @@
+{
+  "name": "@monad-city/evidence-registry-contracts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Isolated Solidity package for Monad City's immutable evidence snapshot registry.",
+  "license": "MIT",
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test",
+    "test:gas": "forge test --gas-report",
+    "fmt": "forge fmt --check",
+    "artifacts": "node script/export-artifacts.mjs --write",
+    "artifacts:check": "node script/export-artifacts.mjs --check",
+    "test:e2e": "node script/e2e-client.mjs",
+    "test:operator": "node --test ../scripts/registry/operator.test.js",
+    "test:operator:e2e": "node script/operator-e2e.mjs",
+    "prepare:testnet": "node script/prepare-testnet.mjs",
+    "prepare:publication": "node script/prepare-publication.mjs",
+    "preflight": "node script/preflight.mjs",
+    "preflight:deployment": "node script/preflight.mjs --deployment",
+    "test:publication": "node --test ../scripts/registry/publication.test.js",
+    "test:publication:e2e": "node script/publication-e2e.mjs"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

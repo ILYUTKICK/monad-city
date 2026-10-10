@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "deploymentTransactionHash": "0xa5929d3d1600548dfbbf9a60e8e997c1cb7a534fe08bcd0e5e821a1831fc51b3",
+  "deploymentBlockNumber": "69845790",
+  "deploymentBlockHash": "0x68f23aa37aceadb18cf21774b3d356ae9e0ef79e829d9376e20abaf42ad43eeb",
+  "deploymentBlockTimestamp": "2026-10-10T14:11:48.000Z",
+  "observedDate": "2026-10-10",
+  "providerFinalizedBlockNumber": "69846297",
+  "rpcUrl": "https://testnet-rpc.monad.xyz",
+  "scope": "Deployment block matched the receipt and was below the finalized height reported by this single trusted RPC. No independent consensus or source verification is claimed."
+}

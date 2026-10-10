@@ -216,8 +216,20 @@ export const AGENT_TOOLS = [
   },
 ];
 
-export function createToolExecutors({ projects, relationships, evidenceRecords, snapshot }) {
+const REGISTRY_TOOL = {
+  type: 'function',
+  function: {
+    name: 'check_registry_publication',
+    description: 'Read the pinned onchain publication for an evidence ID already returned by get_project_evidence. Establishes exact inclusion and revocation at a checked block, never source truth, safety, endorsement or freshness. Cannot sign or choose a contract/RPC.',
+    parameters: { type: 'object', properties: { evidenceId: { type: 'string' } }, required: ['evidenceId'], additionalProperties: false },
+  },
+};
+
+export function createToolExecutors({ projects, relationships, evidenceRecords, snapshot, registryCheck }) {
   const approvedRecords = evidenceRecords.filter((record) => record?.reviewStatus === 'approved');
+  const retrievedIds = new Set();
+  const withdrawnIds = new Set();
+  const publicationChecks = new Map();
   const normalize = (value) => String(value ?? '').toLowerCase().trim();
   const recordPayload = (record) => ({
     id: record.id,
@@ -228,7 +240,7 @@ export function createToolExecutors({ projects, relationships, evidenceRecords, 
     publishedAt: record.publishedAt || record.capturedAt || null,
     scope: record.scope || null,
     limitations: record.limitations || null,
-    eligible: record.supportsFactualClaims === true && record.source?.available === true
+    eligible: !withdrawnIds.has(record.id) && record.supportsFactualClaims === true && record.source?.available === true
       && /^https:\/\/\S+$/i.test(record.source?.url || '') && !record.quality?.unavailable
       && ['Observed', 'Claimed', 'Attested'].includes(record.status),
     warnings: Object.entries(record.quality || {})
@@ -237,6 +249,21 @@ export function createToolExecutors({ projects, relationships, evidenceRecords, 
   });
 
   return {
+    ...(typeof registryCheck === 'function' ? {
+      async check_registry_publication(args) {
+        if (typeof args?.evidenceId !== 'string' || !retrievedIds.has(args.evidenceId)) return { error: 'Retrieve this exact evidence ID first.' };
+        if (!publicationChecks.has(args.evidenceId)) {
+          if (publicationChecks.size >= 3) return { error: 'Publication check limit reached for this question.' };
+          publicationChecks.set(args.evidenceId, Promise.resolve().then(() => registryCheck(args.evidenceId)));
+        }
+        const result = await publicationChecks.get(args.evidenceId);
+        if (['snapshot-revoked', 'subject-revoked'].includes(result.status)) withdrawnIds.add(args.evidenceId);
+        return { evidenceId: args.evidenceId, status: result.status, included: result.included === true,
+          usable: result.usable === true, chainId: result.chainId ?? null, blockNumber: result.blockNumber ?? null,
+          blockHash: result.blockHash ?? null, publicationId: result.publicationId ?? null,
+          meaning: 'Exact publication and inclusion only; source truth, safety, endorsement and freshness are not established.' };
+      },
+    } : {}),
     search_projects(args) {
       const query = normalize(args?.query);
       const district = args?.district ? normalize(args.district) : null;
@@ -282,6 +309,7 @@ export function createToolExecutors({ projects, relationships, evidenceRecords, 
         .filter((record) => record.projectId === project.id)
         .slice(0, 15)
         .map(recordPayload);
+      records.forEach((record) => retrievedIds.add(record.id));
       return {
         project: { id: project.id, name: project.name, district: project.district, type: project.type },
         approvedRecordCount: records.length,
@@ -346,6 +374,7 @@ function summarizeToolStep(name, args, result) {
   if (name === 'get_project_evidence') return `${name}(${argText}) → ${result?.approvedRecordCount ?? 0} record(s)`;
   if (name === 'get_project_relationships') return `${name}(${argText}) → ${result?.relationships?.length ?? 0} edge(s)`;
   if (name === 'get_district_coverage') return `${name}(${argText}) → ${result?.projectsWithApprovedEvidence ?? '?'}/${result?.projects ?? '?'} projects with evidence`;
+  if (name === 'check_registry_publication') return `${name}(${argText}) → ${result.status}${result.blockNumber ? ` at block ${result.blockNumber}` : ''}; publication only`;
   return `${name}(${argText})`;
 }
 
@@ -423,7 +452,7 @@ function finalSelection(message, { seenRecords, coverageResults, steps }) {
   return { mode: 'insufficient-evidence', text: 'The local tools did not establish this claim. Inspect the evidence and its bounded scope in the Passport.' };
 }
 
-export async function runNavigatorAgent({ question, projects, relationships, evidenceRecords, snapshot, settings, signal, onStep }) {
+export async function runNavigatorAgent({ question, projects, relationships, evidenceRecords, snapshot, settings, signal, onStep, registryCheck }) {
   if (!aiEnabled(settings)) throw new Error('Grounded AI is not configured.');
   const query = String(question || '');
   const localResult = retrieveNavigator({ query, projects, relationships, evidenceRecords });
@@ -431,7 +460,7 @@ export async function runNavigatorAgent({ question, projects, relationships, evi
     return { mode: 'local-fallback', reason: localResult.answer.text, steps: [], model: settings.model };
   }
   if (query.length > 500) throw new Error('Please keep the question under 500 characters.');
-  const executors = createToolExecutors({ projects, relationships, evidenceRecords, snapshot });
+  const executors = createToolExecutors({ projects, relationships, evidenceRecords, snapshot, registryCheck });
   const messages = [
     { role: 'system', content: AGENT_SYSTEM_PROMPT },
     { role: 'user', content: query },
@@ -448,7 +477,7 @@ export async function runNavigatorAgent({ question, projects, relationships, evi
       temperature: 0.2,
       max_tokens: 700,
       messages,
-      tools: AGENT_TOOLS,
+      tools: registryCheck ? [...AGENT_TOOLS, REGISTRY_TOOL] : AGENT_TOOLS,
       tool_choice: 'auto',
     },
   });
@@ -480,7 +509,7 @@ export async function runNavigatorAgent({ question, projects, relationships, evi
         try { args = JSON.parse(call?.function?.arguments || '{}'); } catch { /* keep empty args */ }
         let result;
         try {
-          result = Object.hasOwn(executors, name) ? executors[name](args) : { error: `Unknown tool "${name}".` };
+          result = Object.hasOwn(executors, name) ? await executors[name](args) : { error: `Unknown tool "${name}".` };
         } catch (toolError) {
           result = { error: toolError?.message || 'Tool execution failed.' };
         }
@@ -494,6 +523,10 @@ export async function runNavigatorAgent({ question, projects, relationships, evi
         });
         if (name === 'get_project_evidence') {
           for (const record of result.records || []) seenRecords.set(record.id, record);
+        }
+        if (name === 'check_registry_publication' && ['snapshot-revoked', 'subject-revoked'].includes(result.status)) {
+          const record = seenRecords.get(result.evidenceId);
+          if (record) record.eligible = false;
         }
         if (name === 'get_district_coverage' && !result.error) coverageResults.set(result.scope, result);
       }

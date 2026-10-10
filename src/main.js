@@ -18,6 +18,8 @@ import {
 } from './evidence.js';
 import { retrieveNavigator, runDistrictNavigatorChecks } from './retrieval.js';
 import { loadAiSettings, saveAiSettings, aiEnabled, runNavigatorAgent } from './ai.js';
+import { checkRegistryRecord, registryStatusText } from './onchain.js';
+import { REGISTRY_CONFIG } from './registry-config.js';
 import {
   DISTRICT_EXPERIENCES,
   DISTRICT_TABS,
@@ -3615,6 +3617,8 @@ function queueGroundedAnswer(result) {
   const { signal } = groundedAiAbort;
   runNavigatorAgent({
     question: result.query || '',
+    registryCheck: REGISTRY_CONFIG.status === 'configured'
+      ? (evidenceId) => checkRegistryRecord({ subjectId: evidenceId, snapshot: evidenceSnapshot, signal }) : undefined,
     projects,
     relationships,
     evidenceRecords,
@@ -3874,9 +3878,46 @@ function evidenceRecordCard(record, { compact = false } = {}) {
           <div><dt>Limitations</dt><dd><ul class="limitations-list">${limitations}</ul></dd></div>
           <div><dt>Data mode</dt><dd><span class="sourced-value">LIMITED SOURCED</span> Exact claim only; not a project-wide trust badge.</dd></div>
         </dl>
+        ${registryPublicationControl('evidence', record.id)}
       </details>
     </article>`;
 }
+
+function registryPublicationControl(kind, id) {
+  const configured = REGISTRY_CONFIG.status === 'configured';
+  return `<section class="registry-publication" data-registry-kind="${escapeHtml(kind)}" data-registry-id="${escapeHtml(id)}">
+    <strong>Onchain publication</strong>
+    <p class="registry-result" role="status">${configured ? 'Not checked. Read the configured registry at a specific block.' : registryStatusText({ status: 'unconfigured' })}</p>
+    <button type="button" class="registry-check" ${configured ? '' : 'disabled'}>Check publication</button>
+    <small>Inclusion records publication of this exact data. Source accuracy, safety and freshness require separate review. Results rely on the configured network provider and describe only the checked block.</small>
+  </section>`;
+}
+
+document.addEventListener('click', async (event) => {
+  const button = event.target.closest('.registry-check');
+  if (!button || button.disabled) return;
+  const section = button.closest('.registry-publication');
+  const resultElement = section.querySelector('.registry-result');
+  button.disabled = true;
+  resultElement.textContent = 'Checking publication…';
+  const result = await checkRegistryRecord({ subjectKind: section.dataset.registryKind,
+    subjectId: section.dataset.registryId, snapshot: evidenceSnapshot });
+  if (!section.isConnected) return;
+  resultElement.textContent = registryStatusText(result)
+    + (result.blockNumber ? ` Chain ${result.chainId}, block ${result.blockNumber}.` : '');
+  section.dataset.registryStatus = result.status;
+  if (result.blockHash) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Inspect publication check';
+    const text = document.createElement('pre');
+    text.textContent = JSON.stringify(result, null, 2);
+    details.append(summary, text);
+    section.querySelector('details')?.remove();
+    section.append(details);
+  }
+  button.disabled = false;
+});
 
 function evidenceList(evidence) {
   return `
@@ -3988,7 +4029,7 @@ function renderPassport() {
                     <strong>${relationshipType.label}</strong>
                     <code>${relationship.type}</code>
                   </div>
-                  ${sourced ? `<div class="relationship-evidence-ids"><strong>Exact evidence IDs</strong><span>${relationship.evidenceIds.map(escapeHtml).join(', ')}</span></div><p class="relationship-scope">${escapeHtml(relationship.scope)}</p>${governanceDetails('relationship', relationship.id)}<div class="exact-evidence-list">${records.map((record) => evidenceRecordCard(record)).join('')}</div>` : evidenceList(relationship)}
+                  ${sourced ? `<div class="relationship-evidence-ids"><strong>Exact evidence IDs</strong><span>${relationship.evidenceIds.map(escapeHtml).join(', ')}</span></div><p class="relationship-scope">${escapeHtml(relationship.scope)}</p>${governanceDetails('relationship', relationship.id)}${registryPublicationControl('relationship', relationship.id)}<div class="exact-evidence-list">${records.map((record) => evidenceRecordCard(record)).join('')}</div>` : evidenceList(relationship)}
                 </details>
               </article>
             `;

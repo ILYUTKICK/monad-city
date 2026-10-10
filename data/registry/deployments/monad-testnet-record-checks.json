@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "subjectKind": "evidence",
+      "subjectId": "E-ZKSWAP-V2-REG-001",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v6",
+      "blockNumber": "69859063",
+      "blockHash": "0x3e9bc9da8d73cc04673c01de00a059dc41a25c70e7125d6c1f5f2bebcb7f4297",
+      "blockTimestamp": "1791645516",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "evidence",
+      "subjectId": "E-MEMETOK-REGISTRY-001",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v6",
+      "blockNumber": "69859077",
+      "blockHash": "0xf9c23f66a2f20519c177c1471931ea698a71b5944482087a2ef1cd50e32ffbb9",
+      "blockTimestamp": "1791645521",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-switchboard",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v6",
+      "blockNumber": "69859099",
+      "blockHash": "0x5e1879f9abe0f86ac32e6d0d6cad1949900c29ebc26ffe31b4f8fa9befaa8412",
+      "blockTimestamp": "1791645527",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-SWITCHBOARD-MEM-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        },
+        {
+          "subjectId": "E-SWITCHBOARD-CAP-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-pyth-002",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v6",
+      "blockNumber": "69859126",
+      "blockHash": "0x4755e574deb220c4d925ee7a3f0eafac304047cf7867b31d3e52ef2e714d3ca0",
+      "blockTimestamp": "1791645536",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-PYTH-MEM-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    }
+  ],
+  "scope": "Representative current evidence and relationship inclusion/lifecycle checks through one trusted RPC; all supporting evidence records checked separately."
+}

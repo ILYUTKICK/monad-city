@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "build": "npm run evidence:verify-promotion && node build.js",
+    "build": "npm run evidence:verify-promotion && npm run registry:verify && node build.js",
     "preview": "node server.js dist",
     "test:ai": "node --test scripts/ai-checks.test.js",
     "evidence:workflow": "node scripts/evidence-workflow.js",
@@ -28,6 +28,13 @@
     "research:fetch-app-portal": "node scripts/research/fetch-app-portal.js",
     "research:intake": "node scripts/ecosystem-intake.js",
     "research:select-batch-1": "node scripts/research/select-batch-1.js",
-    "research:select-batch-2": "node scripts/research/select-batch-2.js"
+    "research:select-batch-2": "node scripts/research/select-batch-2.js",
+    "test:onchain": "node --test scripts/onchain-checks.test.js",
+    "test:registry": "node --test scripts/registry/registry.test.js",
+    "registry:export": "node scripts/registry/export-registry.js",
+    "registry:verify": "node scripts/registry/verify-registry.js",
+    "registry:prepare-upload": "node scripts/registry/prepare-upload.mjs",
+    "contracts:build": "npm --prefix contracts run build",
+    "contracts:test": "npm --prefix contracts test"
   }
 }

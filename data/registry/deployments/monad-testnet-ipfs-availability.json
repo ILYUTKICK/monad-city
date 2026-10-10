@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "status": "public-upload-retrieval-verified",
+  "snapshotVersion": "phase-3.5-v6",
+  "manifestUri": "ipfs://bafybeidbeznfdsuqr542slcqbdstgnkmxn7dyuf5de226jyzavhgskyo2i/manifest.json",
+  "cid": "bafybeidbeznfdsuqr542slcqbdstgnkmxn7dyuf5de226jyzavhgskyo2i",
+  "copies": [
+    {
+      "gateway": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/",
+      "path": "manifest.json",
+      "sha256": "0xc5ec7e3c48a840987dddfd610c39ad9c1b05053ba8909cc53bdbb205aef25dc4"
+    },
+    {
+      "gateway": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/",
+      "path": "evidence-proofs.json",
+      "sha256": "0xac99d8443cc2023ce4b52dc7d1c0e086743fc0b3e5a016b7f633b6ae6af5f395"
+    },
+    {
+      "gateway": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/",
+      "path": "relationship-proofs.json",
+      "sha256": "0x0d09546a4a12ad218d8f6fa1ffd279d18d349e452f7e8ec06c5e11293b76f0c9"
+    },
+    {
+      "gateway": "https://turquoise-written-perch-899.mypinata.cloud/ipfs/",
+      "path": "data/evidence-snapshots/phase-3.5-v6.json",
+      "sha256": "0xcd14f2e12769c51293642340e69296c17e907c6e1f46c4829265d688c0988f81"
+    },
+    {
+      "gateway": "https://ipfs.filebase.io/ipfs/",
+      "path": "manifest.json",
+      "sha256": "0xc5ec7e3c48a840987dddfd610c39ad9c1b05053ba8909cc53bdbb205aef25dc4"
+    },
+    {
+      "gateway": "https://ipfs.filebase.io/ipfs/",
+      "path": "evidence-proofs.json",
+      "sha256": "0xac99d8443cc2023ce4b52dc7d1c0e086743fc0b3e5a016b7f633b6ae6af5f395"
+    },
+    {
+      "gateway": "https://ipfs.filebase.io/ipfs/",
+      "path": "relationship-proofs.json",
+      "sha256": "0x0d09546a4a12ad218d8f6fa1ffd279d18d349e452f7e8ec06c5e11293b76f0c9"
+    },
+    {
+      "gateway": "https://ipfs.filebase.io/ipfs/",
+      "path": "data/evidence-snapshots/phase-3.5-v6.json",
+      "sha256": "0xcd14f2e12769c51293642340e69296c17e907c6e1f46c4829265d688c0988f81"
+    }
+  ],
+  "checkedAt": "2026-10-10T15:01:16.022Z",
+  "scope": "All four files retrieved through Pinata and Filebase and matched exact reviewed bytes. Only the owner Pinata pin is retained by this workflow; gateway access is not a second retention guarantee. No onchain publication is claimed."
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "status": "provider-finalized",
+  "chainId": 10143,
+  "publicationTransactionHash": "0x701709d9860a724c2fba971c2a2194d9407d5078c17803861eff50d52364e5c0",
+  "publicationBlockNumber": "69858636",
+  "publicationBlockHash": "0x3c278fe9d5c1445a5f23cd7f75bc15da859da6203ee3859d10035e4ee9bd56a7",
+  "finalizedBlockNumber": "69859057",
+  "finalizedBlockHash": "0x4c94fd4962f774808acdb75332893f93d6f234614281fdcad2a70b67d23fd994",
+  "checkedAt": "2026-10-10T15:19:00.476Z",
+  "rpcUrl": "https://testnet-rpc.monad.xyz",
+  "scope": "One trusted RPC reported a finalized block beyond the matching publication block. This is not independent consensus or light-client verification."
+}

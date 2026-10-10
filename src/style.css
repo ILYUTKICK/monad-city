@@ -3528,3 +3528,11 @@ dialog p, .state-explain { font-size: 14px; color: var(--muted); line-height: 1.
 .governance-note, .support-note { color: var(--muted); }
 .review-status, .governance-state, .quality-flag { max-width: 100%; font-size: 11px; letter-spacing: 0; text-transform: none; line-height: 1.25; }
 .relationship-evidence summary, .relationship-scope, .evidence-meaning { font-size: 12.5px; }
+:root { --registry-border: rgba(128, 128, 128, .22); }
+.registry-publication { margin-top: 16px; padding: 14px 0 2px; border-top: 1px solid var(--registry-border); }
+.registry-publication > strong { font-size: 12px; font-weight: 600; }
+.registry-publication p, .registry-publication small { display: block; font-size: 11px; line-height: 1.55; }
+.registry-publication small { margin-top: 10px; opacity: .7; }
+.registry-check { padding: 7px 10px; border: 1px solid var(--registry-border); border-radius: 5px; background: transparent; color: inherit; font: inherit; font-size: 11px; cursor: pointer; }
+.registry-check:disabled { opacity: .5; cursor: default; }
+.registry-publication pre { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 10px; }
