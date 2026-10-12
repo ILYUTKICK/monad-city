@@ -1090,7 +1090,8 @@ function renderNavigatorResult(result) {
   const uncertainty = result.uncertainty.notes.length
     ? result.uncertainty.notes.map((note) => `<li>${escapeHtml(note)}</li>`).join('')
     : '<li>No additional uncertainty was returned.</li>';
-  const resultDetails = result.outcome === 'unsupported-request'
+  const tvlDataUnavailable = result.answer.id === 'insufficient-tvl-evidence';
+  const resultDetails = result.outcome === 'unsupported-request' || tvlDataUnavailable
     ? ''
     : `
       <details class="navigator-details" open>
@@ -1113,7 +1114,7 @@ function renderNavigatorResult(result) {
   container.innerHTML = `
     <section class="navigator-result-card outcome-${escapeHtml(result.outcome)}" aria-label="Local Navigator result">
       <div class="navigator-result-heading">
-        <span class="navigator-outcome">${escapeHtml(outcomeLabel(result.outcome))}</span>
+        <span class="navigator-outcome">${escapeHtml(tvlDataUnavailable ? 'TVL data unavailable' : outcomeLabel(result.outcome))}</span>
       </div>
       <p class="navigator-answer">${escapeHtml(result.answer.text)}</p>
       <p class="navigator-next"><strong>Next:</strong> ${escapeHtml(result.answer.nextStep)}</p>

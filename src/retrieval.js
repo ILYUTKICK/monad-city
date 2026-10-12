@@ -298,6 +298,7 @@ const EVIDENCE_REQUIREMENTS = Object.freeze({
   AVAILABLE_SOURCE: 'available-source',
   BOUNDED_CURRENT: 'bounded-current',
   TIMESTAMPED: 'timestamped',
+  TVL_VALUES: 'comparable-tvl-values',
   VERIFIED: 'verified',
 });
 
@@ -434,6 +435,45 @@ function evidenceRequirement(queryText) {
     return EVIDENCE_REQUIREMENTS.AVAILABLE_SOURCE;
   }
   return null;
+}
+
+function tvlMetricIntent(queryText) {
+  const mentionsTvl = /\b(tvl|total value locked)\b/.test(queryText);
+  if (!mentionsTvl) return null;
+
+  const asksForRanking =
+    /\b(highest|largest|biggest|top|maximum|max|ranking|ranked)\b/.test(queryText) ||
+    /\bmost\b/.test(queryText);
+  if (asksForRanking) return 'ranking';
+
+  // A request to inspect sources that happen to mention TVL is still an evidence lookup.
+  // It must be allowed to cite an exact matching record rather than being converted into a
+  // numeric answer request.
+  const asksForSources =
+    /\b(sources?|evidence|citations?)\b/.test(queryText) &&
+    !/\b(what is|how much|amount|value|number)\b/.test(queryText);
+  if (asksForSources) return null;
+
+  const queryTokens = tokens(queryText);
+  const terseProjectValue =
+    queryTokens.length <= 6 &&
+    !/^(show|find|list|which|sources?|evidence|citations?)\b/.test(queryText) &&
+    (queryTokens.at(-1) === 'tvl' || queryText.endsWith('total value locked'));
+  const asksForValue =
+    /\b(what is|how much)\b/.test(queryText) ||
+    /\b(tvl|total value locked)\b.*\b(of|for)\b/.test(queryText) ||
+    /\b(current|latest|recent)\b.*\b(tvl|total value locked)\b/.test(queryText) ||
+    /\b(tvl|total value locked)\b.*\b(current|latest|recent|amount|value|number|usd|dollars?)\b/.test(queryText) ||
+    /^(tvl|total value locked)$/.test(queryText) ||
+    terseProjectValue;
+  return asksForValue ? 'value' : null;
+}
+
+function isTvlSourceLookup(queryText) {
+  return (
+    /\b(tvl|total value locked)\b/.test(queryText) &&
+    /\b(sources?|evidence|citations?)\b/.test(queryText)
+  );
 }
 
 function unsupportedConclusion(queryText) {
@@ -737,6 +777,7 @@ function requirementLabel(requirement) {
     [EVIDENCE_REQUIREMENTS.AVAILABLE_SOURCE]: 'available source evidence',
     [EVIDENCE_REQUIREMENTS.BOUNDED_CURRENT]: 'a current or recent state',
     [EVIDENCE_REQUIREMENTS.TIMESTAMPED]: 'timestamped evidence',
+    [EVIDENCE_REQUIREMENTS.TVL_VALUES]: 'comparable, dated Monad-specific TVL values',
     [EVIDENCE_REQUIREMENTS.VERIFIED]: 'verification',
   }[requirement];
 }
@@ -751,6 +792,8 @@ function requirementFailure(requirement) {
       'A dated artifact is not enough: no matching record defines and satisfies a current observation window, subject, and measure.',
     [EVIDENCE_REQUIREMENTS.TIMESTAMPED]:
       'No matching record has both an available evidence URL and a valid timestamp.',
+    [EVIDENCE_REQUIREMENTS.TVL_VALUES]:
+      'The approved dataset has no comparable, dated Monad-specific TVL values, so it cannot identify the largest project or provide a TVL amount.',
     [EVIDENCE_REQUIREMENTS.VERIFIED]:
       'The trust model has no generic verified state, so an exact bounded claim and its evidence would be required.',
   }[requirement];
@@ -1007,6 +1050,152 @@ export function retrieveNavigator(input) {
         requestedEvidenceFilters: [],
         matchedEvidenceIds: [],
         capabilityTerms: [],
+        contextProjectIds: [],
+        unsupportedReasons: [],
+        ambiguousStateTerms: [],
+      },
+    };
+  }
+
+  const requestedTvlMetric = tvlMetricIntent(queryText);
+  const tvlUnsupportedReasons = unsupportedConclusion(queryText);
+  const hasExplicitTvlQualityConclusion =
+    tvlUnsupportedReasons.includes('quality') &&
+    /\b(best|better|good|quality)\b/.test(queryText);
+  const hasExplicitTvlProhibitedConclusion =
+    tvlUnsupportedReasons.some((reason) => reason !== 'quality') ||
+    hasExplicitTvlQualityConclusion;
+  if (requestedTvlMetric && !hasExplicitTvlProhibitedConclusion) {
+    const intent = NAVIGATOR_INTENTS.DISCOVER;
+    const outcome = NAVIGATOR_OUTCOMES.INSUFFICIENT_EVIDENCE;
+    return {
+      query: rawQuery,
+      normalizedQuery: queryText,
+      intent,
+      queryClasses: [NAVIGATOR_QUERY_CLASSES.EVIDENCE],
+      outcome,
+      answer: {
+        id: 'insufficient-tvl-evidence',
+        text: 'The approved dataset does not contain comparable, dated Monad-specific TVL values. I can’t identify the largest TVL project on Monad or provide a TVL amount from this snapshot.',
+        nextStep: 'Ask which approved sources mention a project, or inspect a Project Passport for its exact bounded evidence.',
+      },
+      selectedProjectIds: [],
+      primaryProjectId: null,
+      matches: [],
+      evidenceReferences: [],
+      relationshipContexts: [],
+      uncertainty: {
+        level: 'high',
+        codes: ['requirement-unsatisfied', 'metric-data-unavailable'],
+        notes: ['No approved records provide comparable, dated Monad-specific TVL values.'],
+      },
+      mapAction: emptyMapAction(),
+      diagnostics: {
+        datasetMode: mode,
+        searchedFields: ['approved evidence records'],
+        evidenceRequirement: EVIDENCE_REQUIREMENTS.TVL_VALUES,
+        requestedCategories: [],
+        requestedProjectStates: [],
+        requestedRelationshipTypes: [],
+        requestedEvidenceStates: [],
+        requestedEvidenceFilters: [],
+        matchedEvidenceIds: [],
+        capabilityTerms: [],
+        contextProjectIds: [],
+        unsupportedReasons: [],
+        ambiguousStateTerms: [],
+        metricIntent: requestedTvlMetric,
+      },
+    };
+  }
+
+  if (isTvlSourceLookup(queryText) && !hasExplicitTvlProhibitedConclusion) {
+    const namedTvlProjects = projects.filter((project) =>
+      includesPhrase(queryText, normalize(project.name)) || includesPhrase(queryText, normalize(project.id)),
+    );
+    const matchingTvlRecords = suppliedEvidenceRecords
+      .filter((record) => {
+        const text = exactEvidenceSearchText(record);
+        return (
+          record?.reviewStatus === 'approved' &&
+          evidenceAvailability(record).hasSource &&
+          (!namedTvlProjects.length || namedTvlProjects.some((project) => project.id === record.projectId)) &&
+          (includesPhrase(text, 'tvl') || includesPhrase(text, 'total value locked'))
+        );
+      })
+      .sort((left, right) => compareText(left.id, right.id));
+    const safeLimit = Number.isFinite(limit) ? Math.max(1, Math.min(20, Math.floor(limit))) : 10;
+    const selectedProjectIds = unique(matchingTvlRecords.map((record) => record.projectId))
+      .filter((id) => projectById.has(id))
+      .slice(0, safeLimit);
+    const selectedProjects = selectedProjectIds.map((id) => projectById.get(id));
+    const matchedEvidenceIds = matchingTvlRecords
+      .filter((record) => selectedProjectIds.includes(record.projectId))
+      .map((record) => record.id);
+    const evidenceReferences = selectedProjects.map((project) =>
+      makeEvidenceReference(
+        'project',
+        project.id,
+        project.state,
+        project.evidence,
+        matchingTvlRecords.filter((record) => record.projectId === project.id),
+      ),
+    );
+    const outcome = selectedProjects.length
+      ? NAVIGATOR_OUTCOMES.RESULTS
+      : NAVIGATOR_OUTCOMES.NO_RESULT;
+    return {
+      query: rawQuery,
+      normalizedQuery: queryText,
+      intent: NAVIGATOR_INTENTS.DISCOVER,
+      queryClasses: [NAVIGATOR_QUERY_CLASSES.EVIDENCE],
+      outcome,
+      answer: outcome === NAVIGATOR_OUTCOMES.RESULTS
+        ? {
+            id: 'tvl-source-results',
+            text: `I found ${matchedEvidenceIds.length} approved evidence record${matchedEvidenceIds.length === 1 ? '' : 's'} that explicitly mention TVL. Each source supports only its exact cited scope.`,
+            nextStep: 'Inspect the cited record; a TVL mention does not by itself establish a current amount or ranking.',
+          }
+        : {
+            id: 'no-result',
+            text: 'No matching approved evidence record explicitly mentions TVL, so this snapshot has no exact TVL source to cite for this request.',
+            nextStep: 'Ask for a named project’s approved sources or inspect its Project Passport.',
+          },
+      selectedProjectIds,
+      primaryProjectId: selectedProjectIds[0] || null,
+      matches: selectedProjects.map((project) => ({
+        projectId: project.id,
+        score: 60,
+        matchedFields: ['exact-evidence'],
+        matchedTerms: ['tvl'],
+      })),
+      evidenceReferences,
+      relationshipContexts: [],
+      uncertainty: outcome === NAVIGATOR_OUTCOMES.RESULTS
+        ? {
+            level: 'medium',
+            codes: ['bounded-evidence'],
+            notes: ['The records explicitly mention TVL only within their cited scope.'],
+          }
+        : {
+            level: 'high',
+            codes: ['no-match'],
+            notes: ['The approved snapshot contains no exact evidence record that mentions TVL.'],
+          },
+      mapAction: outcome === NAVIGATOR_OUTCOMES.RESULTS
+        ? makeMapAction({ intent: NAVIGATOR_INTENTS.DISCOVER, projects: selectedProjects, relationships: [], categories: [] })
+        : emptyMapAction(),
+      diagnostics: {
+        datasetMode: mode,
+        searchedFields: ['approved evidence claim', 'approved evidence scope', 'approved evidence limitations'],
+        evidenceRequirement: EVIDENCE_REQUIREMENTS.AVAILABLE_SOURCE,
+        requestedCategories: [],
+        requestedProjectStates: [],
+        requestedRelationshipTypes: [],
+        requestedEvidenceStates: [],
+        requestedEvidenceFilters: [],
+        matchedEvidenceIds,
+        capabilityTerms: ['tvl'],
         contextProjectIds: [],
         unsupportedReasons: [],
         ambiguousStateTerms: [],

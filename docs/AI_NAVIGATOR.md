@@ -47,7 +47,7 @@ retrieveNavigator({
 });
 ```
 
-The Frontend may pass the project array currently owned by `src/main.js`, the hybrid relationship array from `src/data.js`, and `evidenceRecords` from `src/evidence.js`. When `evidenceRecords` is absent, the retriever falls back to the existing flat project/relationship evidence fields.
+The frontend and hosted server share the project array from `src/projects.js`, the hybrid relationship array from `src/data.js`, and `evidenceRecords` from `src/evidence.js`. When `evidenceRecords` is absent, the retriever falls back to the existing flat project/relationship evidence fields.
 
 ## Deterministic query flow
 
@@ -314,3 +314,25 @@ and process-local concurrency/rate guards. Those guards are instance-local; they
 a global billing quota or authentication. No new database, dependency or wallet flow is
 introduced. Model errors retain deterministic local results. Live production verification
 is recorded separately in the release audit and Worklog when it actually completes.
+
+## Knowledge files and financial metric questions — 2026-10-13
+
+The production knowledge input is structured data, not a searchable document folder:
+`data/evidence-snapshots/phase-3.5-v9.json` is the reviewed source snapshot, its versioned
+generated JavaScript module is the promoted runtime representation, and `src/projects.js`
+provides shared profiles. Source URLs and exact bounded claims are stored in records.
+Research captures in `data/research/` do not automatically enter the model context.
+
+The local matcher controls map actions. Qwen receives only the question and results of
+its graph-tool calls, then selects eligible record IDs or queried coverage. There is no
+document chunking, embedding/vector index, independent web search or persistent chat
+memory in this path. In broad retrieval terms the tools supply context; this is not an
+implemented document-RAG pipeline.
+
+The current approved records do not contain comparable numerical TVL observations for
+Monad projects. Historical research captures and directory membership cannot establish
+which protocol has the largest Monad-only TVL now. Neutral TVL amounts/rankings require
+an explicit missing-metric result; source/document queries retain their ordinary path,
+and investment/safety/quality recommendations retain their refusal boundary. A future
+TVL capability needs dated values, chain and metric scope, source provenance, comparable
+coverage and a separately authorized ingestion/runtime integration.

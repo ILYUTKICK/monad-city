@@ -221,8 +221,15 @@ test('HTTP error text does not echo provider details into UI', async () => {
   });
 });
 
-test('prohibited conclusions and unmet activity requirements bypass provider', async () => {
-  for (const question of ['Is Kuru safe?', 'Which is the best DeFi investment?', 'Find AI projects with active contracts', '']) {
+test('prohibited conclusions and unmet evidence requirements bypass provider', async () => {
+  for (const question of [
+    'Is Kuru safe?',
+    'Which is the best DeFi investment?',
+    'Which is the best investment with the highest TVL?',
+    'Find AI projects with active contracts',
+    'What is the most  big TVL project on Monad?',
+    '',
+  ]) {
     await withResponses([], async (promise, requests) => {
       assert.equal((await promise).mode, 'local-fallback');
       assert.equal(requests.length, 0);
@@ -287,6 +294,91 @@ test('local source retrieval keeps its Passport selection', () => {
   const result = retrieveNavigator({ query: input.question, projects, relationships, evidenceRecords });
   assert.equal(result.outcome, 'results');
   assert.deepEqual(result.selectedProjectIds, ['kuru']);
+});
+
+test('TVL amount and ranking questions return a bounded evidence gap before project matching', () => {
+  const questions = [
+    'What is the most  big TVL project on Monad?',
+    'Which project has the most TVL?',
+    'Which project has the highest TVL on Monad?',
+    'Show the largest total value locked project',
+    'What is the top TVL project?',
+    'Kuru TVL',
+    'Aave TVL',
+    "What is Kuru's TVL?",
+    'What is the total value locked of Kuru?',
+  ];
+
+  for (const question of questions) {
+    const result = retrieveNavigator({
+      query: question,
+      projects,
+      relationships,
+      evidenceRecords,
+      contextProjectIds: ['beefy'],
+    });
+    assert.equal(result.outcome, 'insufficient-evidence', question);
+    assert.equal(result.answer.id, 'insufficient-tvl-evidence', question);
+    assert.match(result.answer.text, /no(?:t contain)? comparable, dated Monad-specific TVL values/i, question);
+    assert.match(result.answer.text, /can.t identify the largest TVL project/i, question);
+    assert.match(result.answer.text, /provide a TVL amount/i, question);
+    assert.deepEqual(result.selectedProjectIds, [], question);
+    assert.deepEqual(result.evidenceReferences, [], question);
+    assert.equal(result.primaryProjectId, null, question);
+    assert.equal(result.mapAction.type, 'preserve-view', question);
+    assert.equal(result.uncertainty.level, 'high', question);
+    assert.equal(result.diagnostics.evidenceRequirement, 'comparable-tvl-values', question);
+    assert.deepEqual(result.diagnostics.unsupportedReasons, [], question);
+  }
+});
+
+test('TVL source lookups remain evidence queries and true investment advice stays refused', () => {
+  const kuruSources = retrieveNavigator({ query: 'Show Kuru sources', projects, relationships, evidenceRecords });
+  assert.equal(kuruSources.outcome, 'results');
+  assert.ok(kuruSources.evidenceReferences.some((reference) => reference.subjectId === 'kuru'));
+
+  const tvlSources = retrieveNavigator({ query: 'Which sources track TVL?', projects, relationships, evidenceRecords });
+  assert.equal(tvlSources.outcome, 'no-result');
+  assert.equal(tvlSources.mapAction.type, 'preserve-view');
+  assert.deepEqual(tvlSources.evidenceReferences, []);
+
+  const tvlRecord = {
+    ...evidenceRecords[0],
+    id: 'E-TVL-FIXTURE-001',
+    claim: 'Fixture protocol TVL was recorded at the cited snapshot time.',
+  };
+  const exactTvlSources = retrieveNavigator({
+    query: 'Which sources track TVL?',
+    projects,
+    relationships,
+    evidenceRecords: [...evidenceRecords, tvlRecord],
+  });
+  assert.equal(exactTvlSources.outcome, 'results');
+  assert.equal(exactTvlSources.answer.id, 'tvl-source-results');
+  assert.deepEqual(exactTvlSources.diagnostics.matchedEvidenceIds, ['E-TVL-FIXTURE-001']);
+  assert.equal(exactTvlSources.evidenceReferences[0].records[0].id, 'E-TVL-FIXTURE-001');
+
+  const otherProjectTvlSources = retrieveNavigator({
+    query: 'Show Aave TVL sources', projects, relationships,
+    evidenceRecords: [...evidenceRecords, { ...tvlRecord, projectId: 'kuru' }],
+  });
+  assert.equal(otherProjectTvlSources.outcome, 'no-result');
+  assert.deepEqual(otherProjectTvlSources.selectedProjectIds, []);
+
+  const sourceAdvice = retrieveNavigator({ query: 'Recommend TVL sources for investment', projects, relationships, evidenceRecords });
+  assert.equal(sourceAdvice.outcome, 'unsupported-request');
+  assert.ok(sourceAdvice.diagnostics.unsupportedReasons.includes('investment'));
+
+  const investment = retrieveNavigator({ query: 'Which is the best DeFi investment?', projects, relationships, evidenceRecords });
+  assert.equal(investment.outcome, 'unsupported-request');
+  assert.ok(investment.diagnostics.unsupportedReasons.includes('investment'));
+  assert.ok(investment.diagnostics.unsupportedReasons.includes('quality'));
+
+  const mixedAdvice = retrieveNavigator({ query: 'Which is the best investment with the highest TVL?', projects, relationships, evidenceRecords });
+  assert.equal(mixedAdvice.outcome, 'unsupported-request');
+  assert.equal(mixedAdvice.answer.id, 'unsupported-request');
+  assert.ok(mixedAdvice.diagnostics.unsupportedReasons.includes('investment'));
+  assert.notEqual(mixedAdvice.diagnostics.evidenceRequirement, 'comparable-tvl-values');
 });
 
 test('registry tool requires a retrieved ID, awaits a pinned read and keeps withdrawn evidence ineligible', async () => {

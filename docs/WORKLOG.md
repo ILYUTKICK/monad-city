@@ -3677,6 +3677,24 @@ Limitations:
 Next:
 - Record the Qwen demo with Tool details visible and use the updated published article for the submission.
 
+### 2026-10-13 — Lead / TVL intent and knowledge-flow clarification
+
+Changed:
+- Reproduced the owner's exact question, `What is the most  big TVL project on Monad?`: the lexical matcher selected the literal Monad profile and reported uncertainty LOW without answering the requested metric comparison.
+- Delegated metric-intent retrieval/tests and an independent knowledge-flow review. Root owns the result display, AI Navigator documentation, release verification and this log.
+- Neutral TVL amounts/rankings now require comparable, dated Monad-specific numerical observations. The current approved snapshot lacks them, so the result preserves the view and explains the missing data. It does not select unrelated profiles or start paid provider work.
+- The TVL gap card uses `TVL data unavailable` and omits empty result groups. Documented structured snapshot/tool retrieval and the absence of document RAG, embeddings, a vector index or automatic web/source ingestion.
+
+Verified:
+- Local browser: exact double-space question displays the bounded TVL gap; previous Kuru Passport/selection remains; no empty details or model-answer section. Ordinary `Show Kuru sources` still finds Kuru. At390px the answer wraps without horizontal overflow.
+- AI28/server9 regression checks pass, including explicit advice mixed with TVL/source language, terse metric queries and preventing another project's fixture source from matching a named request. Build passes the unchanged v9 snapshot digest and217evidence/194relationship proofs. Production verification is recorded in the release audit when completed.
+
+Limitations:
+- No new financial data, external metrics API, live TVL claim, evidence payload, snapshot promotion or registry change. A useful TVL ranking still needs a separately authorized metric ingestion/runtime contract with source, observation time, chain scope and comparable coverage.
+
+Next:
+- Publish the checked revision to the existing Monad City production project and verify the exact reported question there.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?
