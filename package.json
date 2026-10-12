@@ -35,6 +35,7 @@
     "registry:verify": "node scripts/registry/verify-registry.js",
     "registry:prepare-upload": "node scripts/registry/prepare-upload.mjs",
     "contracts:build": "npm --prefix contracts run build",
-    "contracts:test": "npm --prefix contracts test"
+    "contracts:test": "npm --prefix contracts test",
+    "test:server-ai": "node --test scripts/server-ai-checks.test.js"
   }
 }

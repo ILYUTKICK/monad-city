@@ -1,17 +1,21 @@
 // Provider responses are simulated here. These tests never use user settings or the network.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import vm from 'node:vm';
-import { createProjectEvidence, relationships, validateDataContract } from '../src/data.js';
+import { relationships, validateDataContract } from '../src/data.js';
 import { evidenceRecords, evidenceSnapshot, validateEvidenceContract, validateReviewGovernanceFixtures } from '../src/evidence.js';
 import { retrieveNavigator, runDistrictNavigatorChecks } from '../src/retrieval.js';
-import { runNavigatorAgent, createToolExecutors } from '../src/ai.js';
+import {
+  AGENT_MAX_TOOL_CALLS,
+  HOSTED_AI_ENDPOINT,
+  HOSTED_AI_MODEL,
+  createToolExecutors,
+  fetchHostedAiStatus,
+  runHostedNavigator,
+  runNavigatorAgent,
+} from '../src/ai.js';
 
-// Reuse the actual prototype data without starting its DOM/3D entry point.
-const source = readFileSync(new URL('../src/main.js', import.meta.url), 'utf8');
-const projects = structuredClone(vm.runInNewContext(source.match(/const projects = (\[[\s\S]*?\n\]);/)[1]));
-projects.forEach((project) => { project.evidence = createProjectEvidence(project.state); });
+import { projects } from '../src/projects.js';
+
 const input = {
   question: 'Show Kuru sources', projects, relationships, evidenceRecords,
   snapshot: { version: evidenceSnapshot.version, recordCount: evidenceRecords.length, reviewedAt: evidenceSnapshot.reviewedAt },
@@ -42,6 +46,82 @@ async function withResponses(responses, check, overrides = {}) {
   try { await check(runNavigatorAgent({ ...input, ...overrides }), requests); }
   finally { globalThis.fetch = original; }
 }
+
+async function withFetch(mock, check) {
+  const original = globalThis.fetch;
+  globalThis.fetch = mock;
+  try { await check(); }
+  finally { globalThis.fetch = original; }
+}
+
+test('hosted availability is keyless, bounded and uses the fixed Qwen Max model', async () => {
+  await withFetch(async (url, options) => {
+    assert.equal(url, HOSTED_AI_ENDPOINT);
+    assert.equal(options.method, 'GET');
+    assert.equal(options.body, undefined);
+    assert.equal(options.headers.Authorization, undefined);
+    return { ok: true, json: async () => ({ enabled: true, model: HOSTED_AI_MODEL }) };
+  }, async () => {
+    assert.deepEqual(await fetchHostedAiStatus({ timeoutMs: 50 }), { enabled: true, model: HOSTED_AI_MODEL });
+  });
+
+  await withFetch((_url, options) => new Promise((_resolve, reject) => {
+    options.signal.addEventListener('abort', () => reject(new DOMException('timeout', 'AbortError')), { once: true });
+  }), async () => {
+    assert.deepEqual(await fetchHostedAiStatus({ timeoutMs: 2 }), { enabled: false, model: HOSTED_AI_MODEL });
+  });
+});
+
+test('hosted request sends only the question and rebuilds evidence from the local approved snapshot', async () => {
+  const local = evidenceRecords.find((record) => record.id === 'E-KURU-CAP-001');
+  const trace = Array.from({ length: 7 }, (_, index) => `tool call ${index + 1}`);
+  await withFetch(async (url, options) => {
+    assert.equal(url, HOSTED_AI_ENDPOINT);
+    assert.equal(options.method, 'POST');
+    assert.deepEqual(JSON.parse(options.body), { question: 'Show Kuru sources' });
+    assert.equal(options.headers.Authorization, undefined);
+    assert.equal(options.body.includes('artificial-test-key'), false);
+    return { ok: true, json: async () => ({
+      mode: 'evidence', model: HOSTED_AI_MODEL, evidenceIds: [local.id],
+      records: [{ id: local.id, claim: 'Injected server prose' }],
+      text: 'Kuru is safe and verified.', steps: trace,
+    }) };
+  }, async () => {
+    const answer = await runHostedNavigator({ question: 'Show Kuru sources', evidenceRecords });
+    assert.equal(answer.mode, 'evidence');
+    assert.equal(answer.records[0].claim, local.claim);
+    assert.doesNotMatch(answer.text, /safe|verified|Injected/);
+    assert.deepEqual(answer.evidenceIds, [local.id]);
+    assert.deepEqual(answer.steps, trace);
+  });
+});
+
+test('hosted evidence selections reject unknown local record IDs', async () => {
+  await withFetch(async () => ({ ok: true, json: async () => ({
+    mode: 'evidence', model: HOSTED_AI_MODEL, evidenceIds: ['E-UNKNOWN-999'], records: [], text: 'invented', steps: [],
+  }) }), async () => {
+    await assert.rejects(
+      runHostedNavigator({ question: 'Show sources', evidenceRecords }),
+      /unknown or ineligible evidence record/,
+    );
+  });
+});
+
+test('aborting a hosted request leaves the deterministic local result available', async () => {
+  const localResult = retrieveNavigator({ query: input.question, projects, relationships, evidenceRecords });
+  const controller = new AbortController();
+  await withFetch(async (_url, options) => new Promise((_resolve, reject) => {
+    options.signal.addEventListener('abort', () => reject(new DOMException('cancelled', 'AbortError')), { once: true });
+    controller.abort();
+  }), async () => {
+    await assert.rejects(
+      runHostedNavigator({ question: input.question, evidenceRecords, signal: controller.signal }),
+      (error) => error.name === 'AbortError',
+    );
+    assert.equal(localResult.outcome, 'results');
+    assert.deepEqual(localResult.selectedProjectIds, ['kuru']);
+  });
+});
 
 test('actual dataset contracts and district retrieval remain valid', () => {
   validateDataContract(projects);
@@ -186,6 +266,14 @@ test('planning rounds stay bounded', async () => {
   await withResponses(Array.from({ length: 6 }, () => tools()), async (promise, requests) => {
     await assert.rejects(promise, /used all planning rounds/);
     assert.equal(requests.length, 6);
+  });
+});
+
+test('one planning round cannot fan out into too many graph tool calls', async () => {
+  const calls = Array.from({ length: AGENT_MAX_TOOL_CALLS + 1 }, () => ['search_projects', { query: 'kuru' }]);
+  await withResponses([tools(calls)], async (promise, requests) => {
+    await assert.rejects(promise, /too many graph tools in one round/);
+    assert.equal(requests.length, 1);
   });
 });
 

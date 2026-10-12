@@ -44,3 +44,21 @@ Project data comes from a checked-in, manually reviewed snapshot. An approved re
 The optional evidence publication registry lives in [contracts](contracts/DEPLOYMENT.md). The current v9 bundle is published on Monad Testnet through registry `0x8d53153a8a25c81701954eed66154b3ebba8b8c7` in transaction `0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7`. Open a full evidence record and click **Check publication** to check exact inclusion; this does not establish source accuracy or project safety.
 
 See [AI Navigator](docs/AI_NAVIGATOR.md) and [Trust Model](docs/TRUST_MODEL.md) for details.
+
+## Hosted Qwen Max on Vercel
+
+The hosted Navigator uses OpenRouter model `qwen/qwen3.8-max-0902`. Add `OPENROUTER_API_KEY`
+as a Production Secret in the existing Vercel project, then deploy. The key is read only by
+`api/navigator.js`; it is never built into `dist/` or returned to visitors.
+
+`GET /api/navigator` reports configuration availability without invoking the model.
+`POST /api/navigator` accepts only `{ "question": "Show Kuru sources" }`, rebuilds the
+conversation from the checked-in graph and runs the same bounded evidence-selection agent.
+Visitors use the hosted model without entering a key. Local retrieval continues to control
+the map and remains available if the hosted model fails. Personal provider settings remain
+an optional browser configuration.
+
+For local server verification, run `npm run dev`; it exposes the same route. If needed,
+provide your own local secret with `node --env-file=.env.local server.js` (Node 20+).
+`.env.example` documents the variable and local secret files are ignored by Git.
+Run `npm run test:server-ai` and `npm run test:ai` for offline server/grounding checks.

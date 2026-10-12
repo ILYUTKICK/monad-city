@@ -1,6 +1,6 @@
 # Monad City — AI Navigator
 
-## Current optional agent layer — 2026-10-08
+## Browser-provider agent layer — 2026-10-08 (retained optional path)
 
 The deterministic retrieval contract below remains the authority for map selection and local
 results. The current prototype also has an optional browser-based OpenAI-compatible agent in
@@ -290,3 +290,27 @@ not automatically query the chain or claim that locally approved records are act
 The current hybrid source/Demo graph keeps structured retrieval as the first stage. Later phases may add graph traversal, document chunks, precomputed embeddings, and constrained language-model synthesis. Only retrieved, attributable chunks should reach a model, and the structured result contract should remain the authority for selected IDs, edge IDs, evidence, uncertainty, and map actions.
 
 Precompute manifests, embeddings, and summaries when sources change; cache common grounded answers; use the least expensive model that preserves grounded quality; and keep the product useful when no model is available. Do not train a custom foundation model for the MVP.
+
+## Hosted Qwen Max layer — 2026-10-12
+
+The owner explicitly authorized a Vercel backend integration using OpenRouter. The hosted
+route is `api/navigator.js`, with a fixed `qwen/qwen3.8-max-0902` model and the server-only
+Production Secret `OPENROUTER_API_KEY`. The API accepts only a question; visitors cannot
+supply messages, system instructions, tool definitions, source records, provider URLs or
+model overrides. The server uses `src/projects.js`, the existing hybrid relationships and
+the immutable promoted evidence records. Project profiles were moved intact from main.js
+to the shared module so the browser and server consume the same 176 entities.
+
+The hosted agent exposes the four local graph tools. It does not expose the optional
+browser registry-publication tool; Passport publication checks and that browser-provider
+capability retain their existing explicit boundaries. Server responses contain validated
+evidence selections and tool summaries. The browser joins evidence IDs to its own local
+approved records before rendering claims. A configuration badge means the secret is
+configured, not that a model request has already succeeded. Completed tool summaries are
+shown after the response; they are not presented as a live stream.
+
+The route applies a body/question limit, total timeout, bounded rounds/tool-call fanout
+and process-local concurrency/rate guards. Those guards are instance-local; they are not
+a global billing quota or authentication. No new database, dependency or wallet flow is
+introduced. Model errors retain deterministic local results. Live production verification
+is recorded separately in the release audit and Worklog when it actually completes.

@@ -3639,6 +3639,26 @@ Next:
 - Publication completed: application commit23e57cb10cd075e149990f95ca03cb5f267a4e44, READY productiondeploymentdpl_7Qjn1QEAejoxBUaBYG6EC4jLRNf7, aliashttps://monad-city.vercel.app/. Clean committed-tree build matches reviewedbuild; all65publicassets HTTP200 with exact sizes/hashes. Public homepage, Connections/provenance, keylessBeefy/Passport passed; no capturederrors/warnings. Audit: docs/research/2026-10-12-home-cleanup-release.json.
 - Record the demo/pitch using the cleaned homepage.
 
+### 2026-10-12 — Lead / hosted Qwen Max implementation preflight
+
+Changed:
+- Owner explicitly requested Qwen Max on Vercel and selected OpenRouter. Owner securely added OPENROUTER_API_KEY as a Production Secret; root verified only metadata, never read its value.
+- Delegated server endpoint, browser integration and trust/QA review. Root owns shared project-module extraction, local API bridge, Vercel config, docs and deployment. No dependency added.
+- New api/navigator.js runs the constrained agent with fixed qwen/qwen3.8-max-0902 over the checked-in graph; only question input accepted. Four local tools; server-only credential, bounded body/question/rounds/fanout, 80s agent deadline after parse, cancellation and instance-local rate/concurrency guards.
+- Browser hosted-first mode needs no visitor key. Exact records are rehydrated from local approved IDs. Existing custom-provider mode retained; first-query availability race cannot trigger duplicate paid calls.
+- Project profiles moved intact to src/projects.js; main and server import the same entities. Secrets excluded by .gitignore; .env.example contains an empty placeholder. Existing Vercel static settings preserved with90s function duration/cancellation.
+
+Verified:
+- All176project profiles and their initialized evidence equal the prior release. AI26/server9 tests pass, including forged response, overrides, fanout, already-cancelled requests, deadline, error redaction and rate/concurrency behavior.
+- Build passes unchanged v9 digest8147e7dedb389f2d8da5af63747aed71114692a1c2052fde0f14cd9b8133f088 and all registry proofs. Syntax and whitespace checks pass; independent review has no blocker.
+- Local bridge GET reports enabled:false with fixed model when no secret. Browser local Show Kuru sources/Passport/Graph works with AI Off and no fake agent section.
+
+Limitations:
+- Production inference remains to be checked after deployment. Origin checks are a browser boundary; process-local guards are not authentication or a global spending quota. Hosted route does not run the optional registry tool. Hackathon acceptance is not asserted.
+
+Next:
+- Publish this tested revision and verify a real Qwen tool/evidence result on the public origin.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

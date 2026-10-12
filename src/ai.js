@@ -3,12 +3,13 @@
 import { retrieveNavigator } from './retrieval.js';
 
 export const AI_SETTINGS_STORAGE_KEY = 'monad-city.ai-settings';
+export const HOSTED_AI_ENDPOINT = '/api/navigator';
+export const HOSTED_AI_MODEL = 'qwen/qwen3.8-max-0902';
+export const HOSTED_AI_STATUS_TIMEOUT_MS = 2500;
 
 export const AI_DEFAULTS = Object.freeze({
-  // Qwen Cloud is the Metropolis hackathon's official sponsor path: keys are issued in its
-  // console, the endpoint is OpenAI-compatible, and the bounty model is qwen3.8-max.
-  baseUrl: 'https://maas.qwencloudapi.com/compatible-mode/v1',
-  model: 'qwen3.8-max',
+  baseUrl: 'https://openrouter.ai/api/v1',
+  model: HOSTED_AI_MODEL,
   apiKey: '',
 });
 
@@ -28,6 +29,145 @@ export function saveAiSettings(settings) {
 
 export function aiEnabled(settings) {
   return Boolean(settings?.apiKey && settings?.baseUrl && settings?.model);
+}
+
+function hostedAbortController(signal, timeoutMs) {
+  const controller = new AbortController();
+  const forwardAbort = () => controller.abort(signal?.reason);
+  if (signal?.aborted) forwardAbort();
+  else signal?.addEventListener('abort', forwardAbort, { once: true });
+  const timeout = setTimeout(() => controller.abort(new DOMException('Hosted AI status timed out.', 'TimeoutError')), timeoutMs);
+  return {
+    signal: controller.signal,
+    cleanup() {
+      clearTimeout(timeout);
+      signal?.removeEventListener('abort', forwardAbort);
+    },
+  };
+}
+
+export async function fetchHostedAiStatus({ signal, timeoutMs = HOSTED_AI_STATUS_TIMEOUT_MS } = {}) {
+  const request = hostedAbortController(signal, Math.max(1, Number(timeoutMs) || HOSTED_AI_STATUS_TIMEOUT_MS));
+  try {
+    const response = await fetch(HOSTED_AI_ENDPOINT, {
+      method: 'GET',
+      headers: { Accept: 'application/json' },
+      cache: 'no-store',
+      signal: request.signal,
+    });
+    if (!response.ok) return { enabled: false, model: HOSTED_AI_MODEL };
+    const data = await response.json().catch(() => null);
+    if (!data || typeof data.enabled !== 'boolean' || data.model !== HOSTED_AI_MODEL) {
+      return { enabled: false, model: HOSTED_AI_MODEL };
+    }
+    return { enabled: data.enabled, model: data.model };
+  } catch {
+    return { enabled: false, model: HOSTED_AI_MODEL };
+  } finally {
+    request.cleanup();
+  }
+}
+
+function eligibleHostedRecord(record) {
+  return record?.reviewStatus === 'approved'
+    && record.supportsFactualClaims === true
+    && record.source?.available === true
+    && /^https:\/\/\S+$/i.test(record.source?.url || '')
+    && !record.quality?.unavailable
+    && ['Observed', 'Claimed', 'Attested'].includes(record.status);
+}
+
+function hostedRecordPayload(record) {
+  return {
+    id: record.id,
+    status: record.status || null,
+    claim: record.claim,
+    source: record.source?.title || record.source?.url || null,
+    sourceUrl: record.source?.url || null,
+    publishedAt: record.publishedAt || record.capturedAt || null,
+    scope: record.scope || null,
+    limitations: record.limitations || null,
+    warnings: Object.entries(record.quality || {})
+      .filter(([flag, flagged]) => flagged && flag !== 'timeBoundEligible')
+      .map(([flag]) => flag),
+  };
+}
+
+function hostedSteps(value) {
+  if (!Array.isArray(value) || value.length > AGENT_MAX_STEPS * AGENT_MAX_TOOL_CALLS) {
+    throw new Error('The hosted Navigator returned an invalid tool trace.');
+  }
+  if (value.some((step) => typeof step !== 'string' || !step.trim() || step.length > 600)) {
+    throw new Error('The hosted Navigator returned an invalid tool trace.');
+  }
+  return [...value];
+}
+
+export async function runHostedNavigator({ question, evidenceRecords, signal }) {
+  const query = String(question || '').trim();
+  if (!query) throw new Error('Ask the Navigator a question first.');
+  if (query.length > 500) throw new Error('Please keep the question under 500 characters.');
+  let response;
+  try {
+    response = await fetch(HOSTED_AI_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ question: query }),
+      signal,
+    });
+  } catch (error) {
+    if (error?.name === 'AbortError') throw error;
+    throw new Error('Hosted Qwen Max could not be reached. The local Navigator result remains available.');
+  }
+  if (!response.ok) {
+    throw new Error(`Hosted Qwen Max answered ${response.status}. The local Navigator result remains available.`);
+  }
+  const data = await response.json().catch(() => null);
+  if (!data || typeof data !== 'object' || data.model !== HOSTED_AI_MODEL) {
+    throw new Error('Hosted Qwen Max returned an invalid response.');
+  }
+  const steps = hostedSteps(data.steps);
+  if (data.mode === 'evidence') {
+    const ids = Array.isArray(data.evidenceIds)
+      ? data.evidenceIds
+      : Array.isArray(data.records) ? data.records.map((record) => record?.id) : null;
+    if (!ids || !ids.length || ids.length > 3 || new Set(ids).size !== ids.length
+      || ids.some((id) => typeof id !== 'string')) {
+      throw new Error('Hosted Qwen Max returned an invalid evidence selection.');
+    }
+    const localRecords = new Map((evidenceRecords || []).map((record) => [record.id, record]));
+    const selected = ids.map((id) => localRecords.get(id));
+    if (selected.some((record) => !eligibleHostedRecord(record))) {
+      throw new Error('Hosted Qwen Max selected an unknown or ineligible evidence record.');
+    }
+    const records = selected.map(hostedRecordPayload);
+    return {
+      mode: 'evidence',
+      model: data.model,
+      evidenceIds: ids,
+      records,
+      steps,
+      text: records.map((record) => `${record.status} — ${record.claim} [${record.id}]`).join('\n\n'),
+    };
+  }
+  if (data.mode === 'coverage') {
+    if (typeof data.text !== 'string' || !data.text.trim() || data.text.length > 1600) {
+      throw new Error('Hosted Qwen Max returned an invalid coverage result.');
+    }
+    return { mode: data.mode, model: data.model, text: data.text.trim(), steps };
+  }
+  if (data.mode === 'insufficient-evidence') {
+    return {
+      mode: data.mode,
+      model: data.model,
+      text: 'The graph tools did not establish this claim. Inspect the evidence and its bounded scope in the Passport.',
+      steps,
+    };
+  }
+  if (data.mode === 'local-fallback') {
+    return { mode: data.mode, model: data.model, steps };
+  }
+  throw new Error('Hosted Qwen Max returned an unsupported result mode.');
 }
 
 const MAX_RECORDS_IN_PROMPT = 12;
@@ -140,6 +280,7 @@ export async function groundAnswer({ result, projects, relationships, settings, 
 // the model only ever sees what the tools return.
 
 export const AGENT_MAX_STEPS = 6;
+export const AGENT_MAX_TOOL_CALLS = 8;
 
 const AGENT_SYSTEM_PROMPT = [
   'You are the AI Navigator agent of Monad City, a source-grounded map of the Monad ecosystem.',
@@ -502,6 +643,9 @@ export async function runNavigatorAgent({ question, projects, relationships, evi
     if (finishReason === 'length') throw new Error('The AI response was incomplete (token limit). No partial answer was displayed. Try a narrower question.');
     if (finishReason === 'content_filter') throw new Error('The provider declined the response. The local result remains available.');
     if (Array.isArray(message.tool_calls) && message.tool_calls.length) {
+      if (message.tool_calls.length > AGENT_MAX_TOOL_CALLS) {
+        throw new Error(`The agent requested too many graph tools in one round (maximum ${AGENT_MAX_TOOL_CALLS}).`);
+      }
       messages.push({ role: 'assistant', content: message.content || null, tool_calls: message.tool_calls });
       for (const call of message.tool_calls) {
         const name = call?.function?.name;

@@ -3,5 +3,11 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": ""
+  "installCommand": "",
+  "functions": {
+    "api/navigator.js": {
+      "maxDuration": 90,
+      "supportsCancellation": true
+    }
+  }
 }

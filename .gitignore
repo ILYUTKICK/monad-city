@@ -3,6 +3,8 @@ node_modules/
 *.log
 *.zip
 dist/
+.env*
+!.env.example
 
 # Reproducible local upload copies; canonical registry sources live in data/.
 artifacts/ipfs/

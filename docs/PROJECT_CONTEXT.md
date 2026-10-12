@@ -86,7 +86,7 @@ Implemented:
 - project selection, City/Graph, district routes and four district views, Passport,
   evidence links, quality/scope/limitation disclosures and review governance;
 - deterministic local Navigator retrieval, authoritative for map actions;
-- optional browser-based tool-calling AI, tested with Qwen via OpenRouter;
+- hosted Qwen 3.8 Max through a Vercel Function and OpenRouter, plus retained optional browser-provider tool-calling AI;
 - constrained AI evidence selection: only eligible IDs retrieved in the current tool
   conversation may supply exact record claims to the UI; arbitrary model prose is rejected;
 - build-time manual evidence review and immutable SHA-256-gated snapshot promotion;
@@ -117,10 +117,10 @@ re-review completed at `2026-10-11T21:09:41Z`. The immutable v8 pair remains his
 Limitations:
 
 - no runtime evidence synchronization, automatic discovery, document RAG, embeddings,
-  wallet flow, live blockchain feed, transaction execution or application backend;
+  wallet flow, live blockchain feed, transaction execution or persistent application database;
 - onchain checks trust one configured RPC and prove publication/inclusion only;
 - Testnet rehearsal does not satisfy production security, administration or monitoring gates;
-- optional AI requires a user-configured provider/key and browser-compatible endpoint;
+- hosted AI requires a server-only Production Secret; personal provider mode requires a user-configured browser key and compatible endpoint;
 - static evidence supports exact cited scope, often directory listing or publisher claims;
 - source freshness, safety, legitimacy, endorsement and current activity are not established
   by review approval, ID validation or the snapshot digest;
@@ -138,3 +138,12 @@ Make the interface feel like a calm, high-trust instrument for exploring a compl
 - The UI makes uncertainty visible instead of hiding it.
 - 3D adds orientation and memory without slowing down discovery.
 - The demo works with a small curated dataset and does not pretend to cover all Monad.
+
+## Hosted Navigator integration — 2026-10-12
+
+The owner explicitly requested Qwen Max on Vercel and selected OpenRouter. The Vercel
+Function accepts only a question and runs the constrained evidence-selection agent with
+four graph tools over the same checked-in project/evidence data. The fixed hosted model
+is `qwen/qwen3.8-max-0902`. The Production `OPENROUTER_API_KEY` is stored as a Secret;
+visitors receive only availability metadata and validated selections, never the key.
+Provider success and current deployment are verified separately in Worklog/release audit.
