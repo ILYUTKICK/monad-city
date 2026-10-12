@@ -3636,7 +3636,8 @@ Limitations:
 - No evidence payloads, registry pins, provider settings or contract changes. RC2 files remain the historical release boundary; this UI cleanup is a later release.
 
 Next:
-- Publish this tested UI revision to the existing GitHub/Vercel target and verify its public assets and default screen.
+- Publication completed: application commit23e57cb10cd075e149990f95ca03cb5f267a4e44, READY productiondeploymentdpl_7Qjn1QEAejoxBUaBYG6EC4jLRNf7, aliashttps://monad-city.vercel.app/. Clean committed-tree build matches reviewedbuild; all65publicassets HTTP200 with exact sizes/hashes. Public homepage, Connections/provenance, keylessBeefy/Passport passed; no capturederrors/warnings. Audit: docs/research/2026-10-12-home-cleanup-release.json.
+- Record the demo/pitch using the cleaned homepage.
 
 ## Open questions
 
