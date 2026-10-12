@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-12T22:20:53.851686+00:00",
+  "applicationCommit": "9c9f804b898cf9343a7c2469bc7ba06333208460",
+  "deploymentId": "dpl_BhtGz6erAryTUgvUPiMn26cFkeZn",
+  "deploymentState": "READY",
+  "url": "https://monad-city.vercel.app/",
+  "assets": [
+    {
+      "path": "src/main.js",
+      "status": 200,
+      "sha256": "b4028d1fc271e1cb9cd94df5f3ba15bf9220c48c5f9efa56a2cf323a45ad7660",
+      "matchesBuild": true
+    },
+    {
+      "path": "src/retrieval.js",
+      "status": 200,
+      "sha256": "072e3c610fee02f81bc962facd4b1fb37f9f1b067604fdec0b8b2b6dd56174f6",
+      "matchesBuild": true
+    }
+  ],
+  "availability": {
+    "enabled": true,
+    "model": "qwen/qwen3.8-max-0902"
+  },
+  "exactQuestion": "What is the most  big TVL project on Monad?",
+  "apiStatus": 200,
+  "apiResult": {
+    "mode": "local-fallback",
+    "model": "qwen/qwen3.8-max-0902",
+    "steps": [],
+    "reason": "The approved dataset does not contain comparable, dated Monad-specific TVL values. I can\u2019t identify the largest TVL project on Monad or provide a TVL amount from this snapshot."
+  },
+  "browser": {
+    "heading": "TVL data unavailable",
+    "emptyDetailGroups": 0,
+    "modelAnswerSections": 0,
+    "unrelatedMonadSelection": false,
+    "capturedWarningsOrErrors": [],
+    "screenshot": "docs/research/2026-10-13-tvl-public.png"
+  },
+  "localChecks": {
+    "aiTests": 28,
+    "serverTests": 9,
+    "build": "pass",
+    "evidenceSnapshotUnchanged": true,
+    "narrowViewportWidth": 390,
+    "narrowScrollWidth": 390,
+    "previousKuruSelectionPreserved": true
+  },
+  "limitations": [
+    "No live TVL metric source was added.",
+    "Only the two changed runtime assets were compared with this build.",
+    "Provider bypass is supported by empty tool steps and offline zero-provider-call regression; no provider billing logs were queried."
+  ]
+}

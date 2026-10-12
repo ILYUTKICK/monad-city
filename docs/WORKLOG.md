@@ -3693,7 +3693,7 @@ Limitations:
 - No new financial data, external metrics API, live TVL claim, evidence payload, snapshot promotion or registry change. A useful TVL ranking still needs a separately authorized metric ingestion/runtime contract with source, observation time, chain scope and comparable coverage.
 
 Next:
-- Publish the checked revision to the existing Monad City production project and verify the exact reported question there.
+- Publication completed: application commit9c9f804b898cf9343a7c2469bc7ba06333208460, READY production deploymentdpl_BhtGz6erAryTUgvUPiMn26cFkeZn at https://monad-city.vercel.app/. Public exact-question UI shows the TVL gap with no result groups/model section or captured console warnings/errors. Public POST returns HTTP200/local-fallback with zero tool steps and the same gap; GET still reports hosted Qwen enabled. Both changed runtime assets match the built bytes. Audit and screenshot: docs/research/2026-10-13-tvl-release.json and2026-10-13-tvl-public.png.
 
 ## Open questions
 
