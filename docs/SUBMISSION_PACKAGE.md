@@ -119,8 +119,8 @@ track label and eligibility in the submission form.
 
 | Item | Value / status |
 | --- | --- |
-| Repository | https://github.com/ILYUTKICK/monad-city — public, checked 2026-10-08 |
-| Public application | https://monad-city.vercel.app/ — publicly accessible on 2026-10-12, but still serves v7; the local v9/UI candidate needs a new release |
+| Repository | https://github.com/ILYUTKICK/monad-city — public; RC2 application commit 4d22c8c pushed and verified 2026-10-12 |
+| Public application | https://monad-city.vercel.app/ — current v9/RC2 production release verified 2026-10-12; 65/65 build files match |
 | Demo video | Script ready in `docs/DEMO_SCRIPT.md`; no finished video or hosted link yet |
 | Pitch video | Spoken script below; no finished video or hosted link yet |
 | Screenshot | `docs/preview.png` — actual application capture |
@@ -246,17 +246,26 @@ the portal checklist. This is saved progress, not a final submission or eligibil
 - Exact published bundle: 217 evidence records and 194 sourced relationships. The active hybrid graph contains 205 total edges, including 11 illustrative or AI-inferred edges.
 - Public manifest: `ipfs://bafybeig6zgvvotap5w4nqeyp6kezqj3mx3paayju7ffag2arsvdtdibvzq/manifest.json`; Pinata retrieval matched the local bytes, with Filebase used as an independent gateway check.
 - Publication establishes exact bundle inclusion and lifecycle at a checked block. It does not establish source truth, freshness, safety, legitimacy, activity, or endorsement.
-- The current public deployment URL remains `https://monad-city.vercel.app/`; a separate release audit must confirm its freshness and current behavior before it is submitted.
+- The current public deployment URL remains `https://monad-city.vercel.app/`; the current RC2 release was verified by the 2026-10-12 public release audit.
 
-## Release preparation — 2026-10-12
+## Historical pre-release preparation — 2026-10-12
 
-Public availability was checked today. The alias still serves v7 from commit
-`0cd8cd36b80dfb157944132eb2835eca0230eedf`; the local v9/UI changes are not yet published.
+Before publication, the alias served v7 from commit
+`0cd8cd36b80dfb157944132eb2835eca0230eedf`; the v9/UI candidate was then local.
 The candidate built successfully and passed 42 AI/onchain/registry tests. Its keyless
 Beefy/Kintsu source-record rehearsal matched the active Testnet publication at block
 `70379100` and finished with the two-project Graph.
 
-Before recording, release and test the candidate on the public origin. For an AI sponsor
-submission, also record a real configured provider run and its tool trace; the no-key
-rehearsal above demonstrates local retrieval. Required video URLs and final portal
-submission remain pending. See `research/2026-10-12-submission-deployment-audit.md`.
+The public release and verification below supersede that release gate. For an AI sponsor
+submission, record a real configured provider run and its tool trace; the no-key rehearsal
+demonstrates local retrieval. Required video URLs and final portal submission remain
+pending. The earlier state is retained in `research/2026-10-12-submission-deployment-audit.md`.
+
+## Current public RC2 release — 2026-10-12
+
+- Application commit: `4d22c8c790c9e129d5d660f3be60675291b4d1c9`, pushed to GitHub main.
+- READY production deployment: `dpl_9fwUmXGEiatryoKaprJyaosLZ1KE`; public alias https://monad-city.vercel.app/.
+- Clean committed-tree build matches all 65 RC2 files; 42 AI/onchain/registry tests pass. All 65 public asset byte sizes and hashes match RC2.
+- Public-origin AI settings Off: Beefy search, exact Kintsu dependency, record E-BEEFY-KINTSU-ASSET-001, and active/unrevoked Testnet publication matched at block 70385689. Kintsu → two-project Graph, Passport date, project scroll reset, DeFi filter, and 390×844 layout checked.
+- Release audit: `research/2026-10-12-public-release-audit.md`. The later documentation-only commit preserves these exact application bytes.
+- Demo/pitch videos, a real configured AI take if required by the chosen track, and final portal submission are still pending.

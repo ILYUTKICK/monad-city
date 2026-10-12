@@ -3599,6 +3599,25 @@ Limitations:
 Next:
 - Rebuild the exact commit, compare all 65 RC2 hashes, run release checks, push main and verify the resulting production deployment.
 
+### 2026-10-12 — Lead / RC2 published and publicly verified
+
+Changed:
+- Published application commit 4d22c8c790c9e129d5d660f3be60675291b4d1c9 to GitHub main under explicit owner authorization.
+- Exact-SHA API deployment dpl_8ywKsvY6AgkCj62TnZSN4pfcNnqW completed; delayed automatic main deployment dpl_9fwUmXGEiatryoKaprJyaosLZ1KE then became current. Both READY and serve the same application commit. Public alias: https://monad-city.vercel.app/. No protection settings changed.
+- Updated release manifest and submission inventory; retained original candidate baseline and earlier deployment audit as historical records. Documentation-only follow-up does not change any RC2 build input.
+
+Verified:
+- Fresh git archive rebuild reproduced all 65 RC2 files. AI21/onchain11/registry10 pass. Vercel build gates passed and logs report completed deployment.
+- Independent agent fetched every public asset after the automatic deployment became current: 65 HTTP200 responses, exact sizes/hashes, no mismatches.
+- Public browser AI Off: Beefy search → Kintsu dependency → full record E-BEEFY-KINTSU-ASSET-001 matched active/unrevoked v9 at Monad Testnet block70385689. Kintsu → Graph, source review Oct11,2026 and scroll reset passed. No captured console errors/warnings.
+- Fresh public tab at390×844: DeFi filter, Kintsu local search and Sources date visible; document width390 without overflow. Override reset and temporary tab closed. Saved public publication, Graph and mobile screenshots.
+
+Limitations:
+- These checks establish inclusion/lifecycle at the checked block, not source truth, freshness, safety or endorsement. No new provider run, finished video or portal submission is claimed.
+
+Next:
+- Record the approved demo/pitch and refresh the submission form; use a real configured provider take for any AI-specific track requirements.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

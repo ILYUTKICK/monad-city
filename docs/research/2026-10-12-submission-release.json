@@ -1,5 +1,5 @@
 {
-  "status": "verified-local-candidate-public-release-pending",
+  "status": "published-production-verified",
   "archive": "/Users/ilyutkinn/Documents/Codex/2026-09-08/you-are-the-lead-agent-for/artifacts/submission/monad-city-2026-10-12-rc2.zip",
   "archiveSha256": "4e10b9847ac0086803e67230be053ee877216fe66adae9a44fd74866b5428eab",
   "archiveBytes": 1258833,
@@ -372,5 +372,22 @@
       "beefy",
       "kintsu"
     ]
+  },
+  "productionRelease": {
+    "applicationCommit": "4d22c8c790c9e129d5d660f3be60675291b4d1c9",
+    "deploymentId": "dpl_9fwUmXGEiatryoKaprJyaosLZ1KE",
+    "fallbackDeploymentId": "dpl_8ywKsvY6AgkCj62TnZSN4pfcNnqW",
+    "url": "https://monad-city.vercel.app/",
+    "readyState": "READY",
+    "verifiedFiles": 65,
+    "fileMismatches": 0,
+    "publicRecordCheck": {
+      "record": "E-BEEFY-KINTSU-ASSET-001",
+      "chainId": 10143,
+      "block": "70385689",
+      "result": "matched-active-unrevoked"
+    },
+    "audit": "docs/research/2026-10-12-public-release-audit.md",
+    "baselineNote": "sourceHead/sourceState preserve the original local candidate capture; productionRelease records the later exact application commit."
   }
 }
