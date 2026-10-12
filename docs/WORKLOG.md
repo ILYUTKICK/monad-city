@@ -3618,6 +3618,26 @@ Limitations:
 Next:
 - Record the approved demo/pitch and refresh the submission form; use a real configured provider take for any AI-specific track requirements.
 
+### 2026-10-12 — Lead / homepage cleanup
+
+Changed:
+- Owner approved the four homepage declutter changes. Separate agents handled Navigator/footer/context and Connections sequentially in main.js; a third agent reviewed UX/code. Root owned CSS, camera clearance, integration and release.
+- One suggested prompt remains visible; two are under native More prompts. Connections now opens a compact panel with all four modes and provenance. Escape/outside click close it; keyboard focus returns after Escape/mode selection.
+- Removed repeated footer slogan; retained Static curated dataset. Default status shows176projects. Selection/district/Graph context remains available. Quieted panel borders/counts, narrowed desktop Navigator to280px, aligned bottom controls, and gave the city more vertical room.
+- Open Connections panel participates in label exclusions. The 320px layout hides only the repeated active-mode text visually; its accessible summary still announces the mode.
+
+Verified:
+- Build passes unchanged v9 snapshot/hash and all217evidence/194relationship proofs. Main.js andcity3d syntax and diff whitespace checks pass.
+- Browser: native More prompts opens/closes via keyboard; disabled Project withoutselection; Overview/All/Off/Project modes and active labels; Escape focus; Beefy search/Passport; City/Graph; DeFi/Infrastructure filters; Kintsu Sources Oct11,2026.
+- Desktop1280: settled island bounds fit safeRect (DeFi bottom349.62 vs safe bottom554); selected status clears Connections. 1024px panel/controls fit. At390px no overflow, all5district callouts clear bottom controls; at320px long Infrastructure status clears by8px, controls gap45px, popup fits x12–308, scrollWidth320.
+- Independent code review finds no blocker. Saved desktop/mobile screenshots and review in docs/research/2026-10-12-home-cleanup-*.
+
+Limitations:
+- No evidence payloads, registry pins, provider settings or contract changes. RC2 files remain the historical release boundary; this UI cleanup is a later release.
+
+Next:
+- Publish this tested UI revision to the existing GitHub/Vercel target and verify its public assets and default screen.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

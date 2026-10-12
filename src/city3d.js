@@ -433,7 +433,7 @@ export function createCity3D({
     let right = width - (width < 941 ? 12 : 26);
     let top = width < 941 ? 62 : 74;
     const mobileChooser = state.filter === 'All districts' && state.linkMode !== 'project';
-    const bottom = height - (width < 941 ? (mobileChooser ? 176 : 104) : 108);
+    const bottom = height - (width < 941 ? (mobileChooser ? 176 : 104) : 78);
     exclusionsCache.forEach((zone) => {
       if (zone.kind === 'focus-toolbar' && zone.bottom > 0 && zone.top < height * 0.4) {
         top = Math.max(top, zone.bottom + 14);

@@ -2975,12 +2975,17 @@ document.querySelector('#app').innerHTML = `
           <button class="prompt" data-prompt="Show me the DeFi landscape">
             <span>Show me the DeFi landscape</span><b aria-hidden="true">↗</b>
           </button>
-          <button class="prompt" data-prompt="Who’s connected to Monad?">
-            <span>Who’s connected to Monad?</span><b aria-hidden="true">↗</b>
-          </button>
-          <button class="prompt" data-prompt="Find AI projects with active contracts">
-            <span>Find AI projects with active contracts</span><b aria-hidden="true">↗</b>
-          </button>
+          <details class="prompt-more">
+            <summary>More prompts</summary>
+            <div class="prompt-more-list">
+              <button class="prompt" data-prompt="Who’s connected to Monad?">
+                <span>Who’s connected to Monad?</span><b aria-hidden="true">↗</b>
+              </button>
+              <button class="prompt" data-prompt="Find AI projects with active contracts">
+                <span>Find AI projects with active contracts</span><b aria-hidden="true">↗</b>
+              </button>
+            </div>
+          </details>
         </div>
         <div class="hr"></div>
         <section class="district-section" aria-labelledby="district-heading">
@@ -3032,9 +3037,9 @@ document.querySelector('#app').innerHTML = `
 
         <div class="city-context" aria-live="polite">
           <span class="context-dot"></span>
-          <strong id="context-label">City overview</strong>
-          <span class="context-line"></span>
-          <span id="visible-count">All districts · 10 in view</span>
+          <strong id="context-label">${projects.length} projects</strong>
+          <span class="context-line" hidden></span>
+          <span id="visible-count" hidden></span>
         </div>
 
         <div class="city-controls" aria-label="Map controls">
@@ -3045,18 +3050,28 @@ document.querySelector('#app').innerHTML = `
         </div>
 
         <div class="legend" data-mode="overview" aria-label="Map connections">
-          <div class="legend-links" role="group" aria-label="Show connections">
-            <button type="button" data-link-mode="overview" aria-pressed="true" title="Calm city scan: aggregate Monad↔district lines only">Overview</button>
-            <button type="button" data-link-mode="project" aria-pressed="false" title="Show the selected project's connection focus">Project</button>
-            <button type="button" data-link-mode="all" aria-pressed="false" title="Every connection line">All</button>
-            <button type="button" data-link-mode="off" aria-pressed="false" title="Hide connection lines">Off</button>
-          </div>
-          <span class="legend-summary">District routes · navigation only</span>
-          <details class="legend-key"><summary>Provenance key</summary><div>
-          <span class="legend-state sourced"><i></i> Sourced</span>
-          <span class="legend-state demopattern"><i></i> Declared</span>
-          <span class="legend-state inferred"><i></i> AI-inferred</span>
-          <small>Sourced means a cited record, not verification or safety. District routes are navigation summaries.</small></div></details>
+          <details class="connections-disclosure">
+            <summary class="connections-trigger">
+              <span>Connections</span>
+              <span class="connections-current" aria-live="polite">Overview</span>
+            </summary>
+            <div class="connections-panel">
+              <div class="legend-links" role="group" aria-label="Show connections">
+                <button type="button" data-link-mode="overview" aria-pressed="true" title="Calm city scan: aggregate Monad↔district lines only">Overview</button>
+                <button type="button" data-link-mode="project" aria-pressed="false" title="Show the selected project's connection focus">Project</button>
+                <button type="button" data-link-mode="all" aria-pressed="false" title="Every connection line">All</button>
+                <button type="button" data-link-mode="off" aria-pressed="false" title="Hide connection lines">Off</button>
+              </div>
+              <span class="legend-summary">District routes · navigation only</span>
+              <div class="legend-provenance" role="group" aria-label="Connection provenance">
+                <strong class="connections-provenance-title">Provenance</strong>
+                <span class="legend-state sourced"><i></i> Sourced</span>
+                <span class="legend-state demopattern"><i></i> Declared</span>
+                <span class="legend-state inferred"><i></i> AI-inferred</span>
+                <small>Sourced means a cited record, not verification or safety. District routes are navigation summaries.</small>
+              </div>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -3068,7 +3083,6 @@ document.querySelector('#app').innerHTML = `
   </main>
 
   <footer>
-    <span><span class="footer-mark">◈</span> An AI-readable trust graph. A human-explorable city.</span>
     <span>Static curated dataset</span>
   </footer>
 
@@ -3371,11 +3385,42 @@ function computePanelExclusions() {
   addZone(document.querySelector('.navigator'));
   addZone(document.querySelector('.passport'));
   addZone(document.querySelector('.legend'));
+  addZone(document.querySelector('.connections-disclosure[open] .connections-panel'));
   addZone(document.querySelector('.view-toggle'));
   addZone(document.querySelector('.city-controls'));
   addZone(document.querySelector('.city-context'));
   addZone(document.querySelector('#link-focus-bar'));
   return zones;
+}
+
+function updateCityContext(focus = null) {
+  const project = selectedProject();
+  const defaultCityOverview = !project
+    && scope !== 'district'
+    && !graph
+    && filter === 'All districts';
+  const contextLabel = document.querySelector('#context-label');
+  const contextLine = document.querySelector('.context-line');
+  const visibleCount = document.querySelector('#visible-count');
+
+  contextLabel.textContent = defaultCityOverview
+    ? `${projects.length} projects`
+    : project
+      ? `${project.name} selected`
+      : scope === 'district'
+        ? `${activeDistrict} district — select a building`
+        : graph ? 'Graph view' : 'City view';
+
+  contextLine.hidden = defaultCityOverview;
+  visibleCount.hidden = defaultCityOverview;
+  if (defaultCityOverview) {
+    visibleCount.textContent = '';
+    return;
+  }
+
+  const externalNeighbors = !graph && filter !== 'All districts' && focus
+    ? focus.routes.filter((route) => projectById(route.neighborId)?.district !== filter).length : 0;
+  visibleCount.textContent = `${filter} · ${projects.filter(visible).length} in view${externalNeighbors ? ` + ${externalNeighbors} external ${externalNeighbors === 1 ? 'neighbor' : 'neighbors'}` : ''}`;
 }
 
 function renderCity() {
@@ -3407,14 +3452,7 @@ function renderCity() {
   } else {
     renderKeyboardList();
   }
-  document.querySelector('#context-label').textContent = selectedProject()
-    ? `${selectedProject().name} selected`
-    : scope === 'district'
-      ? `${activeDistrict} district — select a building`
-      : graph ? 'Graph view' : 'City view';
-  const externalNeighbors = !graph && filter !== 'All districts' && focus
-    ? focus.routes.filter((route) => projectById(route.neighborId)?.district !== filter).length : 0;
-  document.querySelector('#visible-count').textContent = `${filter} · ${projects.filter(visible).length} in view${externalNeighbors ? ` + ${externalNeighbors} external ${externalNeighbors === 1 ? 'neighbor' : 'neighbors'}` : ''}`;
+  updateCityContext(focus);
 }
 
 // Focus toolbar (mockup C): current filter, disclosed counts, and explicit expansion.
@@ -3753,12 +3791,7 @@ function renderSvgCity() {
     };
   });
 
-  document.querySelector('#context-label').textContent = selectedProject()
-    ? `${selectedProject().name} selected`
-    : scope === 'district'
-      ? `${activeDistrict} district — select a building`
-      : 'City view';
-  document.querySelector('#visible-count').textContent = `${filter} · ${projects.filter(visible).length} in view`;
+  updateCityContext();
 }
 
 function clearNavigatorHighlights() {
@@ -4044,6 +4077,12 @@ function initAiPanel() {
 
 function refreshLinkButtons() {
   document.querySelector('.legend').dataset.mode = linkMode;
+  const activeButton = document.querySelector(`.legend-links button[data-link-mode="${linkMode}"]`);
+  const activeLabel = activeButton?.textContent?.trim() || 'Overview';
+  const currentLabel = document.querySelector('.connections-current');
+  const trigger = document.querySelector('.connections-trigger');
+  if (currentLabel) currentLabel.textContent = activeLabel;
+  if (trigger) trigger.setAttribute('aria-label', `Connections, current mode: ${activeLabel}`);
   document.querySelectorAll('.legend-links button').forEach((button) => {
     button.setAttribute('aria-pressed', String(button.dataset.linkMode === linkMode));
     if (button.dataset.linkMode === 'project') {
@@ -5180,8 +5219,31 @@ function reset() {
   setPassportExpanded(false);
 }
 
+const connectionsDisclosure = document.querySelector('.connections-disclosure');
+const connectionsTrigger = document.querySelector('.connections-trigger');
+
+function closeConnectionsDisclosure({ restoreFocus = false } = {}) {
+  if (!connectionsDisclosure?.open) return;
+  connectionsDisclosure.open = false;
+  if (restoreFocus) connectionsTrigger?.focus({ preventScroll: true });
+}
+
 document.querySelectorAll('.legend-links button').forEach((button) => {
-  button.onclick = () => setLinkMode(button.dataset.linkMode);
+  button.onclick = () => {
+    setLinkMode(button.dataset.linkMode);
+    closeConnectionsDisclosure({ restoreFocus: true });
+  };
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || !connectionsDisclosure?.open) return;
+  event.preventDefault();
+  closeConnectionsDisclosure({ restoreFocus: true });
+});
+
+document.addEventListener('pointerdown', (event) => {
+  if (!connectionsDisclosure?.open || connectionsDisclosure.contains(event.target)) return;
+  closeConnectionsDisclosure();
 });
 
 document.querySelector('#graph-view').onclick = () => {
