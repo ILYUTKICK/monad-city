@@ -1,6 +1,7 @@
 import { CHAIN, RPC, validateWallet, mon } from '../registry-deploy/core.js';
-import { validatePublication, checkAvailability, checkPublication, verifyPublicationReceipt } from './core.js';
+import { validatePublication, checkAvailability, checkPublication, verifyPublicationReceipt, PUBLICATION_PREDECESSORS } from './core.js';
 import { reviewedRegistryRelease } from '../../scripts/registry/releases.js';
+import { verifyRegistryBundle } from '../../src/registry-proof.js';
 const $ = id => document.getElementById(id);
 let request, artifact, bundle, deployment, provider, estimateResult, audit, busy = false, sent = false, validated = false;
 let storageKey;
@@ -108,15 +109,37 @@ $('download').addEventListener('click', () => {
 await action(async () => {
   if (!['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) throw new Error('This operator page must run on localhost.');
   const load = async url => { const response = await fetch(url, { cache: 'no-store' }); if (!response.ok) throw new Error('Missing publication artifact.'); return response.json(); };
-  const release = reviewedRegistryRelease(new URLSearchParams(location.search).get('version') || 'phase-3.5-v6');
+  const release = reviewedRegistryRelease(new URLSearchParams(location.search).get('version') || 'phase-3.5-v9');
   storageKey = `monad-city:testnet:publication:${release.version}:transaction`;
   const requestUrl = release.version === 'phase-3.5-v6' ? './request.json' : `./requests/${release.version}.json`;
   const directory = `../../data/registry/${release.version}`;
-  const [prepared, compiled, reviewed, manifest, evidenceArtifact, relationshipArtifact, snapshot] = await Promise.all([
-    load(requestUrl), load('../../contracts/artifacts/MonadCityRegistry.json'), load('../../data/registry/deployments/monad-testnet-genesis.json'),
+  const [compiled, reviewed, manifest, evidenceArtifact, relationshipArtifact, snapshot] = await Promise.all([
+    load('../../contracts/artifacts/MonadCityRegistry.json'), load('../../data/registry/deployments/monad-testnet-genesis.json'),
     load(`${directory}/manifest.json`), load(`${directory}/evidence-proofs.json`),
     load(`${directory}/relationship-proofs.json`), load(`../../data/evidence-snapshots/${release.version}.json`)]);
-  request = prepared; artifact = compiled; deployment = reviewed; bundle = { manifest, evidenceArtifact, relationshipArtifact, snapshot };
+  artifact = compiled; deployment = reviewed; bundle = { manifest, evidenceArtifact, relationshipArtifact, snapshot };
+  await verifyRegistryBundle(bundle);
+  if (manifest.snapshot.canonicalSha256 !== release.canonicalSha256
+    || manifest.commitments.evidence.count !== release.evidenceCount
+    || manifest.commitments.relationship.count !== release.relationshipCount) {
+    throw new Error('Snapshot differs from the reviewed release.');
+  }
+  $('contract').textContent = deployment.address;
+  $('snapshot').textContent = `${release.version} · ${release.evidenceCount} evidence records · ${release.relationshipCount} relationships`;
+  $('wallet').textContent = deployment.roles.publisher;
+  $('predecessor').textContent = 'Previous publication: ' + PUBLICATION_PREDECESSORS[release.version];
+  const preparedResponse = await fetch(requestUrl, { cache: 'no-store' });
+  if (preparedResponse.status === 404) {
+    $('content').removeAttribute('href');
+    $('content').textContent = 'Public IPFS folder not configured';
+    $('unsigned-request').hidden = true;
+    $('data-hash').textContent = 'Reviewed snapshot SHA-256: ' + release.canonicalSha256;
+    $('provider-note').textContent = 'Publish the exact reviewed folder to IPFS, then prepare its unsigned request. Wallet actions remain disabled until preparation succeeds.';
+    message(`Reviewed package verified; no transaction is prepared or published. Public IPFS upload is required before wallet confirmation. Snapshot review time: ${manifest.snapshot.reviewedAt}.`);
+    return;
+  }
+  if (!preparedResponse.ok) throw new Error('Unable to load the prepared publication request.');
+  request = await preparedResponse.json();
   await validatePublication(request, artifact, bundle, deployment);
   $('contract').textContent = deployment.address;
   $('snapshot').textContent = `${release.version} · ${release.evidenceCount} evidence records · ${release.relationshipCount} relationships`;

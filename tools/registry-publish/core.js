@@ -9,9 +9,19 @@ export const SNAPSHOT_SHA = '0x9529251e87f2f713391122e1c1373c666ed83dac97c42f5e5
 export const PUBLICATION_PREDECESSORS = Object.freeze({
   'phase-3.5-v6': ZERO,
   'phase-3.5-v7': '0x6af7ac341a2be055d1cb7f09b5af78326fb12362cc81140d231e2866adc3f6aa',
+  'phase-3.5-v8': '0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c',
+  'phase-3.5-v9': '0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c',
 });
 const SIGNATURE = 'publish((bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint64,uint64,string))';
 const fail = (ok, text) => { if (!ok) throw new Error(text); };
+export function validatePublicationTime(manifest, blockTimestamp) {
+  const createdAt = Date.parse(manifest.snapshot.createdAt) / 1000;
+  const reviewedAt = Date.parse(manifest.snapshot.reviewedAt) / 1000;
+  fail(Number.isSafeInteger(createdAt) && createdAt > 0 && Number.isSafeInteger(reviewedAt)
+    && createdAt <= reviewedAt, 'Invalid snapshot publication timestamps.');
+  fail(BigInt(reviewedAt) <= BigInt(blockTimestamp),
+    `Snapshot review is dated in the future. Publication is available from ${manifest.snapshot.reviewedAt}; reviewed bytes must remain unchanged.`);
+}
 export function publicationData(manifest, uri, previousPublicationId = ZERO) {
   hexBytes(previousPublicationId, 32);
   fail(/^ipfs:\/\/(Qm[1-9A-HJ-NP-Za-km-z]{44}|b[a-z2-7]{20,120})\/manifest\.json$/.test(uri), 'Invalid public manifest URI.');
@@ -74,6 +84,12 @@ function caller(request, artifact, read, block) {
 export async function checkPublication(request, artifact, deployment, read = rpc) {
   fail(BigInt(await read('eth_chainId')) === BigInt(CHAIN), 'RPC network mismatch.');
   const block = await read('eth_getBlockByNumber', ['latest', false]);
+  // ABI words: tuple offset, five hashes, two counts, createdAt, reviewedAt, URI offset.
+  const publicationWords = decodeWords('0x' + request.transaction.data.slice(10, 10 + 64 * 11), 11);
+  validatePublicationTime({ snapshot: {
+    createdAt: new Date(Number(BigInt(publicationWords[8])) * 1000).toISOString(),
+    reviewedAt: new Date(Number(BigInt(publicationWords[9])) * 1000).toISOString(),
+  } }, BigInt(block.timestamp));
   fail(await validateRuntime(await read('eth_getCode', [deployment.address, block.number]), artifact) === deployment.runtimeCodeSha256, 'Registry runtime pin mismatch.');
   const call = caller(request, artifact, read, block.number);
   const [head, namespace, identity, frozen, successor, role] = await Promise.all([

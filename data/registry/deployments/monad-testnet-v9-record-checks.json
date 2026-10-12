@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T21:37:08.607Z",
+  "records": [
+    {
+      "subjectKind": "evidence",
+      "subjectId": "E-BEEFY-MEM-001",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v9",
+      "blockNumber": "70220304",
+      "blockHash": "0x7971e7c939d46abf35d3cf3f9f06b1090da5c34728e06a728e3ca43d9eef9bb7",
+      "blockTimestamp": "1791754596",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "beefy-kintsu-asset",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v9",
+      "blockNumber": "70220324",
+      "blockHash": "0x87ae6ef66d536b4b869aab25fbe4469be7681c266da0029471e3e43277afc990",
+      "blockTimestamp": "1791754602",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-BEEFY-KINTSU-ASSET-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        },
+        {
+          "subjectId": "E-KINTSU-TOKEN-MAPPING-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-aave-v3",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v9",
+      "blockNumber": "70220346",
+      "blockHash": "0xcc7ac493794b71bd9518a5786c54433c9ff685740b5c3fd9503f15e84e797cd1",
+      "blockTimestamp": "1791754608",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-AAVE-V3-MEM-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-shmonad",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v9",
+      "blockNumber": "70220369",
+      "blockHash": "0x602f5de50ede266196e9a73eec00aa30adfcf0e19ee6c1e607421002a93a087c",
+      "blockTimestamp": "1791754615",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-SHMONAD-TOKEN-MAPPING-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    },
+    {
+      "subjectKind": "relationship",
+      "subjectId": "monad-aethonswap",
+      "chainId": 10143,
+      "address": "0x8d53153a8a25c81701954eed66154b3ebba8b8c7",
+      "snapshotVersion": "phase-3.5-v9",
+      "blockNumber": "70220391",
+      "blockHash": "0x05ca564621b92f0fb528f423ce62a2e7e9e0c29c25163fa3285ced1e58432142",
+      "blockTimestamp": "1791754622",
+      "status": "matched",
+      "included": true,
+      "usable": true,
+      "publicationId": "0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e",
+      "publisher": "0x9a0c8040a8c6ab9f65f544578b891fba599799f8",
+      "successor": null,
+      "membership": {
+        "included": true,
+        "active": true,
+        "revoked": false,
+        "subjectRevoked": false
+      },
+      "supports": [
+        {
+          "subjectId": "E-AETHONSWAP-REG-001",
+          "included": true,
+          "active": true,
+          "revoked": false,
+          "subjectRevoked": false
+        }
+      ],
+      "trustBoundary": "Publication and inclusion only. This does not establish source truth, safety, endorsement, or freshness. RPC responses are trusted; this is not a light-client proof."
+    }
+  ],
+  "scope": "Representative direct evidence, prior multi-support relationship and new Foundation/protocol-registry/DefiLlama memberships checked using the production read-only verifier against the candidate v9 config; publication/inclusion only."
+}

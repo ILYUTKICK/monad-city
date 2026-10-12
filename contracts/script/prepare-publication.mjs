@@ -10,7 +10,7 @@ import {verifyRegistryFiles,validateRegistrySnapshot,readJson} from '../../scrip
 import {hash,rpc,validateRequest,validateRuntime,deploymentFee} from '../../tools/registry-deploy/core.js';
 import {hexBytes,encodeWord} from '../../src/onchain-rpc.js';
 import { reviewedRegistryRelease } from '../../scripts/registry/releases.js';
-import { PUBLICATION_PREDECESSORS, validatePublication } from '../../tools/registry-publish/core.js';
+import { PUBLICATION_PREDECESSORS, validatePublication, validatePublicationTime } from '../../tools/registry-publish/core.js';
 if (!globalThis.crypto?.subtle) Object.defineProperty(globalThis,'crypto',{value:webcrypto});
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const uri=process.argv[2];
@@ -33,6 +33,9 @@ await validateRegistrySnapshot(snapshot);
 const directory=`data/registry/${release.version}`;
 const verified=await verifyRegistryFiles(path.join(root,directory),snapshot);
 const manifest=verified.manifest;
+if(BigInt(await rpc('eth_chainId'))!==10143n)throw new Error('RPC chain mismatch.');
+const block=await rpc('eth_getBlockByNumber',['latest',false]);
+validatePublicationTime(manifest,BigInt(block.timestamp));
 const files=[['manifest.json',`${directory}/manifest.json`],
  ['evidence-proofs.json',`${directory}/evidence-proofs.json`],
  ['relationship-proofs.json',`${directory}/relationship-proofs.json`],
@@ -40,8 +43,10 @@ const files=[['manifest.json',`${directory}/manifest.json`],
 const copies=[];
 for(const gateway of [primary,'https://ipfs.filebase.io/ipfs/']){
  for(const [remote,local] of files){
-  // Filebase can cache a cold-CID timeout. Its download view serves the same hash-checked bytes.
-  const retrievedUrl=gateway+cid+'/'+remote+(gateway==='https://ipfs.filebase.io/ipfs/'?'?download=true':'');
+  // The filename download view avoids a cached cold-CID timeout; every response must still
+  // match the exact local file bytes before it can enter the retrieval audit.
+  const retrievedUrl=gateway+cid+'/'+remote+(gateway==='https://ipfs.filebase.io/ipfs/'
+    ?'?download=true&filename='+encodeURIComponent(path.basename(remote)):'');
   console.log('Retrieving '+retrievedUrl);
   for(let attempt=0;attempt<2;attempt++){
    try{
@@ -62,8 +67,6 @@ for(const gateway of [primary,'https://ipfs.filebase.io/ipfs/']){
   }
  }
 }
-if(BigInt(await rpc('eth_chainId'))!==10143n)throw new Error('RPC chain mismatch.');
-const block=await rpc('eth_getBlockByNumber',['latest',false]);
 const runtime=await rpc('eth_getCode',[audit.address,block.number]);
 if(await validateRuntime(runtime,artifact)!==audit.runtimeCodeSha256)throw new Error('Runtime pin mismatch.');
 const call=async(name,args='')=>rpc('eth_call',[{to:audit.address,data:'0x'+artifact.methodIdentifiers[name]+args},block.number]);

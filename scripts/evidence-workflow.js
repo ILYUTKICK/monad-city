@@ -330,6 +330,17 @@ function validateDecisionMetadata(
     );
   } else if (kind === 'evidence') {
     assert(EVIDENCE_REVIEW_METHODS.has(metadata.reviewMethod), `${label} has invalid evidence reviewMethod`);
+  } else if (metadata.reviewMethod === 'approved-record-derivation') {
+    // Policy amendment (phase-3.7-review-policy-v1, 2026-10-11): a relationship derived
+    // mechanically from an already-approved evidence record. The human inspection lives on
+    // the supporting record; this method asserts only that endpoints, type and scope follow
+    // from that record. It must stay an approved decision and cannot carry its own
+    // limitations judgment beyond the record's.
+    assert(decision === 'approved', `${label} record-derivation review requires an approved decision`);
+    assert(
+      metadata.decisionReason === 'evidence-resolved',
+      `${label} record-derivation review requires decisionReason evidence-resolved`,
+    );
   } else {
     assert(
       metadata.reviewMethod === 'manual-relationship-evidence-inspection',

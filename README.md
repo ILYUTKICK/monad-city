@@ -8,11 +8,12 @@ Explore the Monad ecosystem through an interactive city. Find projects, inspect 
 
 ## Features
 
-- City and graph views with search and district filters.
-- Project profiles with sources and relationship details.
-- Navigator that finds projects and highlights them on the map.
-- Optional AI agent that searches the project graph and selects relevant evidence.
-- Onchain publication checks for exact evidence records on Monad Testnet.
+- City and Graph views across 176 projects in five districts.
+- Project Passports with sources, bounded claims, and relationship details.
+- A deterministic Navigator that finds projects and highlights them on the map without an API key.
+- Optional browser-based tool-calling AI for evidence-aware searches.
+- 217 approved evidence records, 194 sourced relationships, and 205 total graph edges.
+- Read-only publication checks for exact evidence records on Monad Testnet.
 
 Built with vanilla JavaScript, CSS, Three.js, and SVG.
 
@@ -24,25 +25,22 @@ Requires Node.js 18 or newer. No dependency installation is needed.
 npm run dev
 ```
 
-Open [localhost:5173](http://localhost:5173/).
+Open [localhost:5173](http://localhost:5173/). The local Navigator is the default; optional AI settings accept an OpenAI-compatible endpoint, tool-calling model, and user-provided key.
 
-## AI setup
-
-Search works without an API key. To enable the AI agent, open **AI settings**, enter an OpenAI-compatible endpoint, a model that supports tool calling, and your API key, then click **Save AI settings**. The endpoint must allow requests from the browser (CORS).
-
-Settings and the key are stored in your browser for the current site. AI requests, including queries and retrieved records, go directly to your chosen provider. Settings saved on localhost do not carry over to the hosted app.
+AI settings and the key stay in your browser storage for that site. Queries and retrieved records go directly to your chosen provider; its endpoint must support browser CORS. Localhost settings do not carry over to the public app.
 
 ## Development
 
 ```sh
-npm run build     # validate the evidence snapshot and build dist/
-npm run preview   # serve the built app
-npm run test:ai   # run AI tests without external API calls
+npm run build       # verify the evidence and registry bundles, then build dist/
+npm run test:ai
+npm run test:onchain
+npm run test:registry
+npm run preview     # serve the built app
 ```
 
-Project data comes from a checked-in snapshot. Sources support the specific claims shown; illustrative profiles and relationships are labeled. City layout and building size do not represent rankings.
+Project data comes from a checked-in, manually reviewed snapshot. An approved record supports only its exact cited scope; it does not establish project safety, legitimacy, current activity, endorsement, or global verification. Illustrative profiles, placements, geometry, and unsupported relationships remain labeled.
+
+The optional evidence publication registry lives in [contracts](contracts/DEPLOYMENT.md). The current v9 bundle is published on Monad Testnet through registry `0x8d53153a8a25c81701954eed66154b3ebba8b8c7` in transaction `0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7`. Open a full evidence record and click **Check publication** to check exact inclusion; this does not establish source accuracy or project safety.
 
 See [AI Navigator](docs/AI_NAVIGATOR.md) and [Trust Model](docs/TRUST_MODEL.md) for details.
-
-The optional evidence publication registry lives in [contracts](contracts/DEPLOYMENT.md).
-The reviewed snapshot is published on Monad Testnet. Open a full evidence record and click **Check publication** to check its inclusion. This confirms publication, not source accuracy or project safety.

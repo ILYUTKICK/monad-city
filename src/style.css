@@ -717,6 +717,10 @@ input:focus {
   cursor: grabbing;
 }
 
+#city-svg[hidden] {
+  display: none;
+}
+
 .building {
   cursor: pointer;
   outline: none;
@@ -835,6 +839,35 @@ input:focus {
   color: #817989;
   font-size: inherit;
   white-space: nowrap;
+}
+
+/* Show-links disclosure control: Districts | All | Off. Districts is the calm default;
+   'All' is the exploratory mode that can carry the full v8 graph. */
+.legend-links {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid rgba(169, 142, 230, 0.28);
+  border-radius: 6px;
+}
+
+.legend-links button {
+  padding: 4px 11px;
+  border-radius: 4px;
+  background: none;
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.legend-links button:hover {
+  color: var(--text);
+}
+
+.legend-links button[aria-pressed='true'] {
+  background: rgba(169, 142, 230, 0.2);
+  color: var(--text);
 }
 
 .legend-state {
@@ -1201,9 +1234,9 @@ input:focus {
 }
 
 .evidence-availability.unavailable {
-  border-color: #594637;
-  background: #1d1712;
-  color: #b79a78;
+  border-color: #3a3644;
+  background: #17151d;
+  color: #9a92a1;
 }
 
 .demo-value {
@@ -1339,7 +1372,7 @@ input:focus {
 
 .summary-state {
   margin-left: auto;
-  color: var(--evidence-color);
+  color: var(--muted);
 }
 
 .relationship-evidence[open] summary {
@@ -1696,6 +1729,19 @@ dialog .dialog-note {
     padding: 0 15px;
   }
 
+  /* The link-mode control wraps inside the visible map strip instead of running under
+     the City/Graph toggle. */
+  .legend {
+    right: 150px;
+    flex-wrap: wrap;
+    row-gap: 6px;
+    padding: 8px 12px;
+  }
+
+  .legend-links button {
+    padding: 4px 8px;
+  }
+
   .brand {
     font-size: 0.8125rem;
   }
@@ -1936,9 +1982,9 @@ details.navigator-evidence {
 
 .citation-record strong,
 .evidence-record-heading code { color: #d4c1ee; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.59375rem; }
-.citation-status { color: #9eb4c9; font-size: 0.5625rem; text-transform: uppercase; }
+.citation-status { color: #9a92a1; font-size: 0.5625rem; text-transform: uppercase; }
 .citation-record p { margin: 0; }
-.source-link { color: #c6b0e8; text-decoration: underline; text-decoration-color: #725a91; text-underline-offset: 2px; }
+.source-link { color: #a9a1b3; text-decoration: underline; text-decoration-color: #57505f; text-underline-offset: 2px; }
 
 .exact-evidence-list { display: grid; gap: 8px; margin-top: 8px; }
 .exact-evidence-record { overflow: hidden; border: 1px solid #383142; border-radius: 7px; background: #100f15; }
@@ -1952,25 +1998,18 @@ details.navigator-evidence {
 .record-audit[open] summary::after { content: '−'; }
 .evidence-status,
 .sourced-value,
-.quality-flag { display: inline-flex; align-items: center; width: fit-content; padding: 3px 5px; border: 1px solid #496076; border-radius: 4px; color: #a9c2db; font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
-.evidence-status.claimed { border-color: #76613e; color: #d3b97f; }
-.sourced-value,
-.relationship-card.sourced-relationship .connection-state { border-color: #527391; background: #111b24; color: #a7c7df; }
+.quality-flag { display: inline-flex; align-items: center; width: fit-content; padding: 3px 5px; border: 1px solid #3a3644; border-radius: 4px; background: #17151d; color: #9a92a1; font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase; }
 .evidence-claim { margin: 0; padding: 9px 10px 2px; color: #c4bbce; font-size: 0.6875rem; line-height: 1.5; }
 .exact-evidence-record .evidence-list { padding: 2px 10px 8px; }
 .support-note { color: #837a8c; }
 .quality-flags { display: flex; flex-wrap: wrap; gap: 4px; }
-.quality-flag.conflict { border-color: #9c625c; background: #261615; color: #e2a49d; }
-.quality-flag.incomplete,
-.quality-flag.unavailable { border-color: #816842; background: #211a11; color: #d2b47c; }
-.quality-flag.stale { border-color: #7b678d; background: #1b1622; color: #c3a8d9; }
 .quality-neutral { color: #8f8796; font-size: 0.625rem; }
 .limitations-list { display: grid; gap: 4px; margin: 0; padding-left: 14px; }
 .relationship-evidence-ids,
 .relationship-scope { margin: 9px 10px 0; color: #9a91a3; font-size: 0.65625rem; line-height: 1.5; }
 .relationship-evidence-ids { display: grid; gap: 3px; padding: 8px 0; border-top: 1px solid #25222b; border-bottom: 1px solid #25222b; }
 .relationship-evidence-ids strong { color: #7d7486; font-size: 0.5625rem; letter-spacing: 0.05em; text-transform: uppercase; }
-.relationship-evidence-ids span { overflow-wrap: anywhere; color: #c3afdc; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.59375rem; }
+.relationship-evidence-ids span { overflow-wrap: anywhere; color: #b9b1c4; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.59375rem; }
 .relationship-evidence .exact-evidence-list { padding: 0 8px 8px; }
 .relationship-card.sourceobserved { --evidence-color: #86b2cf; }
 .relationship-card.publisherclaimed { --evidence-color: #d1b17b; }
@@ -1988,15 +2027,15 @@ details.navigator-evidence {
 }
 
 .passport-snapshot > span {
-  color: #7396b2;
+  color: var(--muted);
   font-size: 0.53125rem;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .passport-snapshot strong {
-  color: #b4cce0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #b9b1c4;
+  font-family: inherit;
   font-size: 0.625rem;
   font-weight: 600;
 }
@@ -2010,9 +2049,9 @@ details.navigator-evidence {
   flex-shrink: 0;
   margin-top: 18px;
   overflow: hidden;
-  border: 1px solid #293747;
+  border: 1px solid #2a2632;
   border-radius: 6px;
-  background: #10161d;
+  background: #100f15;
 }
 
 .snapshot-audit summary {
@@ -2039,7 +2078,7 @@ details.navigator-evidence {
 }
 
 .snapshot-audit[open] summary {
-  border-bottom: 1px solid #243140;
+  border-bottom: 1px solid #2b2731;
 }
 
 .snapshot-audit[open] summary::after {
@@ -2047,9 +2086,11 @@ details.navigator-evidence {
 }
 
 .snapshot-audit summary span {
-  color: #7396b2;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--muted);
+  font-family: inherit;
   font-size: 0.5625rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .snapshot-audit .passport-snapshot {
@@ -2065,10 +2106,10 @@ details.navigator-evidence {
   align-items: center;
   width: fit-content;
   padding: 3px 5px;
-  border: 1px solid #527391;
+  border: 1px solid #3a3644;
   border-radius: 4px;
-  background: #111b24;
-  color: #a7c7df;
+  background: #17151d;
+  color: #9a92a1;
   font-size: 0.53125rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -2078,9 +2119,9 @@ details.navigator-evidence {
 
 .review-status.withheld,
 .withheld-evidence .review-status {
-  border-color: #76584b;
-  background: #211714;
-  color: #d1a78c;
+  border-color: #4a4148;
+  background: #1d1a20;
+  color: #a29aa8;
 }
 
 .governance-state {
@@ -2088,10 +2129,10 @@ details.navigator-evidence {
   align-items: center;
   width: fit-content;
   padding: 3px 5px;
-  border: 1px solid #496076;
+  border: 1px solid #3a3644;
   border-radius: 4px;
-  background: #111b24;
-  color: #a7c7df;
+  background: #17151d;
+  color: #9a92a1;
   font-size: 0.5625rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -2100,15 +2141,15 @@ details.navigator-evidence {
 }
 
 .governance-state.due {
-  border-color: #816842;
-  background: #211a11;
-  color: #d2b47c;
+  border-color: #4a4148;
+  background: #1d1a20;
+  color: #a29aa8;
 }
 
 .governance-state.unavailable {
-  border-color: #76584b;
-  background: #211714;
-  color: #d1a78c;
+  border-color: #4a4148;
+  background: #1d1a20;
+  color: #a29aa8;
 }
 
 .governance-details {
@@ -2129,7 +2170,7 @@ details.navigator-evidence {
 }
 
 .governance-details strong {
-  color: #b8cde0;
+  color: #b9b1c4;
   font-size: 0.59375rem;
   font-weight: 600;
 }
@@ -2143,17 +2184,16 @@ details.navigator-evidence {
 }
 
 .withheld-evidence {
-  border-color: #5a4038;
+  border-color: #3a3644;
 }
 
 .withheld-evidence .evidence-claim {
-  color: #be9c90;
+  color: #9a92a1;
 }
 
 @media (max-width: 680px) {
   .navigator-evidence summary small { max-width: 48%; }
   .exact-evidence-record .evidence-list > div { grid-template-columns: 64px minmax(0, 1fr); }
-  .snapshot-audit summary span { display: none; }
 }
 
 /* =====================================================================
@@ -2248,12 +2288,14 @@ details.navigator-evidence {
 }
 
 .sec {
-  margin-top: 20px;
+  margin-top: 22px;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--border);
-  color: var(--text);
-  font-size: 13.5px;
+  color: var(--muted);
+  font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .sec-row {
@@ -2264,6 +2306,156 @@ details.navigator-evidence {
 
 .sec-row .info {
   margin-top: 0;
+}
+
+.passport-head-meta {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.project-actions a {
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 0 14px;
+}
+
+.project-actions .focus-link {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  height: 39px;
+  padding: 0 2px;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.project-actions .focus-link:hover,
+.project-actions .focus-link:focus-visible {
+  color: var(--text);
+}
+
+.passport-tabs {
+  display: flex;
+  gap: 20px;
+  margin-top: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.passport-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: -1px;
+  padding: 2px 0 10px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.passport-tab:hover {
+  color: var(--text);
+}
+
+.passport-tab[aria-selected='true'] {
+  border-bottom-color: #d9d2e4;
+  color: var(--text);
+}
+
+.tab-count {
+  padding: 1px 6px;
+  border-radius: 9px;
+  background: #26232e;
+  color: #b3abbd;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.panel-heading {
+  margin: 16px 0 0;
+  color: var(--text);
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.overview-note,
+.passport-empty {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.view-all:hover {
+  color: #ffffff;
+}
+
+.sources-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px 0 2px;
+  border: none;
+  border-top: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sources-link svg {
+  flex: none;
+  color: var(--muted);
+}
+
+.sources-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.sources-copy strong {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.sources-copy small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.sources-link .connection-arrow {
+  margin-left: auto;
+  color: var(--muted);
 }
 
 .item {
@@ -2606,6 +2798,81 @@ details.navigator-evidence {
   font-weight: 500;
   white-space: nowrap;
   transition: opacity 160ms ease;
+  will-change: transform;
+}
+
+/* Quarter names come from the deterministic layout map; they are navigation furniture. */
+.city-label.quarter {
+  padding: 4px 10px;
+  border-color: rgba(169, 142, 230, 0.32);
+  background: rgba(15, 14, 22, 0.9);
+  color: #cfc6e2;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.city-label.quarter:hover {
+  border-color: rgba(190, 160, 241, 0.75);
+  color: #ffffff;
+}
+
+/* District callouts: plain text with a thin leader line — no billboard rectangles. */
+.district-callout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  gap: 1px;
+  padding: 2px 4px;
+  cursor: pointer;
+  pointer-events: auto;
+  text-shadow: 0 1px 6px rgba(6, 6, 12, 0.95), 0 0 2px rgba(6, 6, 12, 0.9);
+  transition: opacity 160ms ease;
+  will-change: transform;
+}
+
+.district-callout strong {
+  color: #f0edf7;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.district-callout span {
+  color: #b9b3c9;
+  font-size: 14px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.district-callout:hover strong {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: rgba(190, 160, 241, 0.7);
+  text-underline-offset: 4px;
+}
+
+.city-callout-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.city-callout-lines polyline {
+  fill: none;
+  stroke: rgba(185, 179, 201, 0.65);
+  stroke-width: 1;
+}
+
+.city-callout-lines circle {
+  fill: #b9b3c9;
 }
 
 .city-label.active {
@@ -2899,9 +3166,9 @@ details.navigator-evidence {
 .exact-evidence-record .evidence-claim {
   margin: 0;
   padding: 0;
-  color: #ece6f8;
-  font-size: 14px;
-  line-height: 1.55;
+  color: #dcd5e8;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .evidence-meta {
@@ -2919,11 +3186,6 @@ details.navigator-evidence {
   font-size: 12px;
   font-weight: 600;
 }
-
-.evidence-state-word[data-state="Observed"] { color: #a4c1d6; }
-.evidence-state-word[data-state="Claimed"] { color: #d3b785; }
-.evidence-state-word[data-state="Attested"] { color: #9cc7b1; }
-.evidence-state-word[data-state="AI-inferred"] { color: #c8acff; }
 
 .source-link {
   display: inline-block;
@@ -2945,13 +3207,158 @@ details.navigator-evidence {
   color: #ece6f8;
 }
 
+/* Flat record: the expander is quiet inline text, not a boxed bar. */
+.exact-evidence-list .record-audit summary {
+  min-height: 0;
+  margin-top: 7px;
+  padding: 0;
+  background: none;
+  border-top: none;
+}
+
+.exact-evidence-list .record-audit summary::after {
+  margin-left: 5px;
+}
+
+.exact-evidence-list .record-audit[open] summary {
+  border-bottom: none;
+}
+
+.exact-evidence-list .exact-evidence-record .evidence-list {
+  padding: 6px 0 2px;
+}
+
+/* Mockup pass: boxed connection cards with calm rows. */
+.connections {
+  gap: 8px;
+}
+
+.connection {
+  min-height: 52px;
+  padding: 7px 10px;
+}
+
+.relationship-evidence[open] summary {
+  background: none;
+}
+
 /* connection state chips -> quiet text */
 .connection-state {
   padding: 0 !important;
   border: none !important;
   background: none !important;
   color: #9a92b2 !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Passport Connections: calm rows with dividers (brief §10) — no nested card frames. */
+.connections-full .relationship-card {
+  border: none;
+  border-bottom: 1px solid rgba(205, 198, 225, 0.14);
+  border-radius: 0;
+  background: none;
+}
+
+.connections-full .relationship-card:last-child {
+  border-bottom: none;
+}
+
+.connections-full .connection {
+  border-radius: 0;
+}
+
+.connections-full .connection:hover {
+  background: rgba(190, 160, 241, 0.07);
+}
+
+/* ----- connection focus toolbar (mockup C) ----- */
+#link-focus-bar {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 26;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  max-width: min(92%, 580px);
+  padding: 9px 14px;
+  border: 1px solid var(--island-border);
+  border-radius: 8px;
+  background: rgba(13, 13, 19, 0.92);
+  box-shadow: 0 10px 28px rgba(4, 3, 10, 0.35);
+  color: var(--text);
+  font-size: 12.5px;
+}
+
+#link-focus-bar[hidden] {
+  display: none;
+}
+
+#link-focus-bar strong {
+  font-weight: 600;
+}
+
+#link-focus-bar .focus-eco {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+#link-focus-bar .focus-eco input {
+  accent-color: #a98ae8;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+#link-focus-bar .focus-eco small {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+#link-focus-bar .focus-count {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+#link-focus-bar .focus-cap {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+#link-focus-bar #focus-show-all {
+  padding: 5px 10px;
+  border: 1px solid rgba(169, 142, 230, 0.4);
+  border-radius: 6px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#link-focus-bar #focus-show-all:hover {
+  border-color: rgba(169, 142, 230, 0.7);
+}
+
+@media (max-width: 940px) {
+  #link-focus-bar {
+    top: 58px;
+    max-width: calc(100% - 24px);
+  }
+}
+
+@media (max-width: 680px) {
+  /* Below the wrapped legend strip. */
+  #link-focus-bar {
+    top: 118px;
+  }
 }
 
 /* =====================================================================
@@ -2961,15 +3368,16 @@ details.navigator-evidence {
 .beam-tooltip {
   position: absolute;
   z-index: 40;
-  max-width: 264px;
-  padding: 8px 11px 9px;
-  border: 1px solid rgba(169, 142, 230, 0.32);
-  border-radius: 8px;
-  background: rgba(13, 13, 19, 0.93);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
-  color: #cfc7dd;
-  font-size: 11px;
-  line-height: 1.45;
+  width: max-content;
+  max-width: min(320px, calc(100% - 24px));
+  padding: 10px 12px 11px;
+  border: 1px solid rgba(205, 198, 225, 0.2);
+  border-radius: 7px;
+  background: rgba(15, 14, 20, 0.96);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.42);
+  color: #c8c2cf;
+  font-size: 11.5px;
+  line-height: 1.42;
   text-align: left;
   pointer-events: none;
   opacity: 0;
@@ -2987,21 +3395,37 @@ details.navigator-evidence {
 
 .beam-tooltip strong {
   display: block;
-  color: #ece5f8;
-  font-size: 11.5px;
+  color: #eeeaf2;
+  font-size: 12.5px;
   font-weight: 600;
 }
 
 .beam-tooltip span {
   display: block;
-  margin-top: 2px;
-  color: #a9d0ff;
+  color: #c8c2cf;
+}
+
+.beam-tooltip-description {
+  margin-top: 4px;
+}
+
+.beam-tooltip-status {
+  margin-top: 6px;
+  color: #a8a1b0 !important;
+  font-size: 10.5px;
+  font-weight: 600;
 }
 
 .beam-tooltip small {
   display: block;
-  margin-top: 3px;
-  color: #8d8499;
+  margin-top: 4px;
+  color: #918a99;
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+.beam-tooltip-source {
+  color: #aaa3b2 !important;
 }
 
 /* ---- District experience (docs/DISTRICT_EXPERIENCE_SPEC.md) ---- */
@@ -3536,3 +3960,119 @@ dialog p, .state-explain { font-size: 14px; color: var(--muted); line-height: 1.
 .registry-check { padding: 7px 10px; border: 1px solid var(--registry-border); border-radius: 5px; background: transparent; color: inherit; font: inherit; font-size: 11px; cursor: pointer; }
 .registry-check:disabled { opacity: .5; cursor: default; }
 .registry-publication pre { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 10px; }
+
+/* Readability correction: the map and its furniture share the same free column. */
+@media (min-width: 941px) {
+  main { --map-left: 0px; --map-right: 0px; }
+  body:has(#district-bar:not([hidden])) main { height: calc(100dvh - 155px); }
+  .panel-handle.right { right: 8px; }
+  main:has(.navigator:not(.collapsed)) { --map-left: 340px; }
+  main:has(.passport:not(.collapsed)) { --map-right: 340px; }
+  .navigator { width: 308px; padding: 20px; }
+  .passport { width: 320px; padding: 20px; }
+  main .view-toggle, main .legend, main #link-focus-bar {
+    left: calc((100% + var(--map-left) - var(--map-right)) / 2);
+    transform: translateX(-50%);
+  }
+  main #link-focus-bar { max-width: min(580px, calc(100% - var(--map-left) - var(--map-right) - 32px)); }
+  main .legend {
+    width: auto;
+    max-width: calc(100% - var(--map-left) - var(--map-right) - 32px);
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+  main .city-context, main:has(.navigator:not(.collapsed)) .city-context {
+    left: calc(var(--map-left) + 16px);
+    bottom: 74px;
+    transform: none;
+  }
+  main .city-controls, main:has(.passport:not(.collapsed)) .city-controls {
+    right: calc(var(--map-right) + 16px);
+    left: auto;
+    bottom: 74px;
+    transform: none;
+  }
+  main .city-context .context-line, main .city-context #visible-count { display: inline; }
+  .navigator:has(#district-identity) .district-menu { display: none; }
+  .navigator:has(#district-identity) .district-id-note { display: none; }
+}
+
+/* The breadcrumb already names the district; a giant central plaque hides its streets. */
+.district-plaque { display: none; }
+.district-id-sub, .district-id-note, .district-menu .menu-glyph,
+.passport .connection-logo, .passport .connection-state, .passport .summary-state,
+.passport .connection-arrow, .passport .project-actions a,
+.passport .evidence-availability, .passport .sourced-value { color: #bcb5c8 !important; }
+.passport .connection-state { background: transparent; border-color: rgba(205,198,225,.18); }
+.district-id-sub { margin: 0; }
+.district-identity { padding: 0 0 12px; margin-bottom: 14px; }
+.passport-title-row h2 { flex: 1; text-align: left; }
+.passport-title-row:has(.lens-back) { flex-wrap: wrap; }
+.passport-title-row .lens-back { flex-basis: 100%; text-align: left; margin: 0 0 8px; border: none; padding: 0; }
+.passport .lens-modes button[aria-pressed="true"] {
+  color: #eee8f6; background: #302b3d; border-color: #5d526e;
+}
+.city-label.quarter { letter-spacing: 0; background: rgba(18,16,25,.92); border-color: rgba(205,198,225,.22); }
+.city-label.hover { border-color: #c8b5e8; }
+.navigator, .passport { transition: transform 220ms cubic-bezier(.23,1,.32,1); }
+@media (prefers-reduced-motion: reduce) {
+  .navigator, .passport, .city-label { transition: none; }
+}
+
+/* City correction: calm map furniture and an explicit provenance disclosure. */
+.legend-summary { color: #b9b3c9; font-size: 11px; }
+.legend:not([data-mode="overview"]) .legend-summary { display: none; }
+.legend-key { position: relative; font-size: 11px; color: #c9c1d5; }
+.legend-key summary { cursor: pointer; white-space: nowrap; }
+.legend-key > div {
+  position: absolute; bottom: 30px; right: 0; width: 265px; padding: 14px;
+  display: flex; flex-wrap: wrap; gap: 10px; border: 1px solid #47404f;
+  border-radius: 7px; background: #15131c; box-shadow: 0 8px 24px #0006;
+}
+.legend-key small { display: block; color: #b9b3c9; line-height: 1.5; }
+.passport:empty { display: none; }
+.navigator-ai-trace summary { color: #b9b3c9; font-size: 11px; cursor: pointer; margin: 10px 0; }
+.district-callout:focus-visible { outline: 1px solid #c8acff; outline-offset: 4px; }
+@media (max-width: 940px) {
+  .legend {
+    top: auto; bottom: 52px; left: 12px; right: 12px;
+    gap: 7px; padding: 5px 8px; justify-content: space-between; flex-wrap: nowrap;
+  }
+  .legend-links { gap: 2px; }
+  .legend-links button { padding: 4px 7px; font-size: 11px; }
+  .legend-summary { display: none; }
+  .legend-key summary { font-size: 10px; }
+  .district-callout { width: calc((100% - 40px) / 3); padding: 2px 4px; height: 34px; }
+  .district-callout strong { font-size: 12px; line-height: 1.1; }
+  .district-callout span { font-size: 10px; line-height: 1.1; }
+  .city-context { max-width: calc(100% - 148px); }
+  .city-context #visible-count, .city-context .context-line { display: none; }
+}
+@media (max-width: 940px) {
+  #link-focus-bar {
+    top: 64px; left: 12px; right: 12px; transform: none; width: auto; max-width: none;
+    padding: 8px 10px; gap: 6px 10px; font-size: 11px;
+  }
+  #link-focus-bar .focus-cap { display: none; }
+  #link-focus-bar .focus-count { flex: 1 1 100%; font-size: 11px; }
+  #link-focus-bar #focus-show-all { padding: 3px 7px; margin-left: auto; }
+  .district-callout { height: 30px; }
+  .district-callout span { display: none; }
+  .district-callout::after { content: attr(data-summary); font-size: 10px; color: #b9b3c9; }
+}
+@media (max-width: 940px) {
+  .legend .legend-summary { display: none; }
+}
+@media (min-width: 941px) and (max-width: 1200px) {
+  .navigator { width: 248px; padding: 16px; }
+  .passport { width: 264px; padding: 16px; }
+  main:has(.navigator:not(.collapsed)) { --map-left: 280px; }
+  main:has(.passport:not(.collapsed)) { --map-right: 296px; }
+  main .city-context .context-line, main .city-context #visible-count { display: none; }
+}
+@media (min-width: 941px) and (max-width: 1200px) {
+  .passport-tabs { gap: 10px; flex-wrap: wrap; }
+  .passport-tab { font-size: 11.5px; padding-inline: 0; }
+}
+.legend-links button:disabled { opacity: .4; cursor: default; }

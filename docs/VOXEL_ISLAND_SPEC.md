@@ -1,5 +1,12 @@
 # Monad City — Voxel Island Spec (Visual Architecture v2)
 
+Amendment for the next pass, 2026-10-11: the owner selected a more detailed night-city
+reference and clarified that the design request concerns **City**, with Graph retained
+as SVG. See [reference-city-v1](design/reference-city-v1/README.md). That package replaces
+the older geometry/material/light/billboard targets where specified and preserves City
+positions during selection. Its implementation is pending. The product, evidence and
+interaction invariants below still apply; no 3D Graph is requested.
+
 Status: approved by product owner 2026-09-26/27 (mockup iterations v1–v4, final approved
 `docs/research/2026-09-27-voxel-island-mockup-v4-guidebook-text.png`). This document is the
 binding architecture for the three.js City View rework. It supersedes the SVG city rendering in

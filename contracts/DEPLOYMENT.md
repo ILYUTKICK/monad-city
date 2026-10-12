@@ -261,6 +261,29 @@ timestamp, roots/counts, manifest URI/hash, compiler/source commit, role members
 representative proofs. Only then may a separate reviewed application change configure browser
 verification.
 
+## v8 successor preparation — 2026-10-11
+
+The existing Testnet registry supports v8 without redeployment. The reviewed release has
+217 evidence records and 194 relationships (166 membership additions; earlier records unchanged).
+Its exact predecessor is v7 publication
+`0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c`.
+
+The unchanged v8 metadata is dated `2026-10-11T22:30:00Z`; publication before that block
+timestamp is rejected by Solidity and now explicitly by preparation/browser preflight.
+The prepared folder is `../artifacts/ipfs/phase-3.5-v8/`. No public CID, unsigned request or
+real v8 publication is claimed yet. Always pass the explicit release argument:
+
+```sh
+npm run registry:prepare-upload -- phase-3.5-v8
+npm --prefix contracts run prepare:publication -- ipfs://REAL_V8_FOLDER_CID/manifest.json https://YOUR-GATEWAY.mypinata.cloud/ipfs/ phase-3.5-v8
+```
+
+Run these from the repository root. The operator URL is
+`http://localhost:5173/tools/registry-publish/index.html?version=phase-3.5-v8`.
+See `../docs/research/2026-10-11-v8-publication-handoff.md` for exact pins and remaining
+CID/time/wallet/receipt/finality gates. The app remains pinned to the verified v7 publication
+until v8 is actually signed, mined and checked.
+
 ## Migration
 
 Migration deploys another immutable registry; it never upgrades this bytecode.
@@ -294,3 +317,28 @@ deployments. A corrected subject must use a new immutable ID under the evidence 
   EVM mechanisms and would be trapped.
 - Deployment, source verification, multisig selection, publication, finality, storage replication,
   monitoring, and incident response remain external work.
+
+## Immediate v9 successor preparation — 2026-10-11
+
+The owner requested immediate publication. v9 replaces the erroneous future-dated v8 review
+metadata with a separate reviewed snapshot; v8 remains immutable. Counts remain 217/194 and
+all factual payloads are unchanged. Review/creation envelope is 2026-10-11T21:13:06Z, already
+eligible in official Testnet block 70216015. Predecessor remains actually published v7.
+
+Public upload folder: `../artifacts/ipfs/phase-3.5-v9/`. Operator now defaults to v9. Pinata
+requires owner sign-in; no CID/request/publication exists yet. Continue using the exact
+four-file folder and the explicit `phase-3.5-v9` argument to prepare:publication.
+See `../docs/research/2026-10-11-v9-publication-handoff.md` for pins and checks.
+Do not activate runtime registry config until the real owner-signed receipt/finality passes.
+
+### Verified v9 owner publication — 2026-10-11
+
+Preparation above is historical. The owner uploaded the exact four-file folder under
+`bafybeig6zgvvotap5w4nqeyp6kezqj3mx3paayju7ffag2arsvdtdibvzq` and signed transaction
+`0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7`. The real receipt verified
+v9 publication `0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e` at block `70219795`,
+with v7 as exact predecessor, 217 evidence records and 194 sourced relationships.
+Official RPC finality and lifecycle checks passed; five representative production-client
+record/support checks matched. The runtime config is now pinned to this verified v9 release.
+Audits: `../data/registry/deployments/monad-testnet-v9-{publication,publication-finality,record-checks}.json`.
+This remains a Testnet publication/inclusion check through one trusted RPC.

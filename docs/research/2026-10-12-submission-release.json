@@ -1,0 +1,376 @@
+{
+  "status": "verified-local-candidate-public-release-pending",
+  "archive": "/Users/ilyutkinn/Documents/Codex/2026-09-08/you-are-the-lead-agent-for/artifacts/submission/monad-city-2026-10-12-rc2.zip",
+  "archiveSha256": "4e10b9847ac0086803e67230be053ee877216fe66adae9a44fd74866b5428eab",
+  "archiveBytes": 1258833,
+  "sourceHead": "0cd8cd36b80dfb157944132eb2835eca0230eedf",
+  "sourceState": "local-working-tree-changes-not-yet-committed",
+  "target": {
+    "teamId": "team_rX2aKo4gs7tCSBACaKYkCwPC",
+    "projectId": "prj_ootYSvs7o3eLHox690lGti1B4E1K",
+    "alias": "https://monad-city.vercel.app/",
+    "environment": "production"
+  },
+  "snapshot": "phase-3.5-v9",
+  "snapshotSha256": "8147e7dedb389f2d8da5af63747aed71114692a1c2052fde0f14cd9b8133f088",
+  "publicationId": "0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e",
+  "tests": {
+    "ai": 21,
+    "onchain": 11,
+    "registry": 10,
+    "failed": 0
+  },
+  "rehearsal": {
+    "origin": "http://127.0.0.1:5173/",
+    "aiProvider": "Off; no-key local retrieval",
+    "record": "E-BEEFY-KINTSU-ASSET-001",
+    "status": "matched",
+    "chainId": 10143,
+    "block": "70379100",
+    "finalGraphNodes": [
+      "beefy",
+      "kintsu"
+    ]
+  },
+  "files": [
+    {
+      "path": "data/registry/deployments/monad-testnet-genesis-finality.json",
+      "bytes": 624,
+      "sha256": "32ef30af9bc94ee1b0a9215fd406ce27018757863bcf8e4f7a5b1cb4499476f9"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-genesis.json",
+      "bytes": 1895,
+      "sha256": "cbeb199e3f65b6e3c4c50813c12f34e3979b8cca7ef413e35ce90ba8adf515de"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-ipfs-availability.json",
+      "bytes": 2224,
+      "sha256": "7f9adaa286d4bd3a7fe0b8736abb2941e4203008ed02f3a0ea927de8c14b6ca4"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-publication-finality.json",
+      "bytes": 697,
+      "sha256": "0b8f6fcb5e5988cc196420de9c452aa04c46ddf72746ae8abbcc7b18be709171"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-publication.json",
+      "bytes": 955,
+      "sha256": "ad750322199c0adad757540b6fd024afeb826e71f08271fc10763ca0ee9db552"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-record-checks.json",
+      "bytes": 4711,
+      "sha256": "b21605c9b1762fc8b66286b78f31ec18c6aaa3fe24a8f19b9737ee07d0f6511f"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-source-verification.json",
+      "bytes": 834,
+      "sha256": "f3a673b818f82c08c0c53196a530a6e7625962ef172e935603785e345d9d811b"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v7-ipfs-availability.json",
+      "bytes": 3441,
+      "sha256": "494bf339b1af6ced216d6455b91509333b287d4b0cc6ffa853fa8ace734c96de"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v7-publication-finality.json",
+      "bytes": 940,
+      "sha256": "115503555ae5ec4902af743c14bbfb5bbf83b087efb340e579069a8f4ae5bfb0"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v7-publication.json",
+      "bytes": 1177,
+      "sha256": "d72c411a365170827d26eeb8625dd741bee0709264e8171d25f31d703784f425"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v7-record-checks.json",
+      "bytes": 4981,
+      "sha256": "cda4e4f3c7245f6329d350a1cd4617c29fd1b2033c5cf713eda05fcfa4bae41c"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v8-preparation.json",
+      "bytes": 1515,
+      "sha256": "f17fdcea236cde6ee2c59acd068104c812590e82ccae9c4f2a97e8ce9579077b"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v9-preparation.json",
+      "bytes": 1387,
+      "sha256": "e69add754688dad1900ea00d47fdf4caee786099a091c48b5f2cf7563b7aeef8"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v9-publication-finality.json",
+      "bytes": 940,
+      "sha256": "5a521ba9906a0088b17bc6e919e4b71b0223daeb9b6c765506ad965c5e9156ba"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v9-publication.json",
+      "bytes": 1177,
+      "sha256": "7367208da9e91672d03280e40f3330525ca71909630dbdd0b3b3737ad99a4234"
+    },
+    {
+      "path": "data/registry/deployments/monad-testnet-v9-record-checks.json",
+      "bytes": 6208,
+      "sha256": "2c9eb3a6c9a99b16dd20403cf46d8812c7abcb529e69103c71057f47b878d5aa"
+    },
+    {
+      "path": "data/registry/phase-3.5-v6/evidence-proofs.json",
+      "bytes": 892907,
+      "sha256": "ac99d8443cc2023ce4b52dc7d1c0e086743fc0b3e5a016b7f633b6ae6af5f395"
+    },
+    {
+      "path": "data/registry/phase-3.5-v6/manifest.json",
+      "bytes": 3827,
+      "sha256": "c5ec7e3c48a840987dddfd610c39ad9c1b05053ba8909cc53bdbb205aef25dc4"
+    },
+    {
+      "path": "data/registry/phase-3.5-v6/relationship-proofs.json",
+      "bytes": 10800,
+      "sha256": "0d09546a4a12ad218d8f6fa1ffd279d18d349e452f7e8ec06c5e11293b76f0c9"
+    },
+    {
+      "path": "data/registry/phase-3.5-v7/evidence-proofs.json",
+      "bytes": 997314,
+      "sha256": "63d9ff256c64e8aca2d73815e8812494738e294c6eef65b790d059496725360c"
+    },
+    {
+      "path": "data/registry/phase-3.5-v7/manifest.json",
+      "bytes": 3828,
+      "sha256": "693246e3b932eda404d12cf0907a5191d9419321ec367a1e1f8d36b18a1c007c"
+    },
+    {
+      "path": "data/registry/phase-3.5-v7/relationship-proofs.json",
+      "bytes": 59095,
+      "sha256": "a7e3c3f35fc7b99bc565f4f27f14cd6febe460840fa791c7665e984756256ab5"
+    },
+    {
+      "path": "data/registry/phase-3.5-v8/evidence-proofs.json",
+      "bytes": 997314,
+      "sha256": "e2b06bac978eea7449c089a9cd5daab1b8839bb84ebb86a66f814a998e1d4e72"
+    },
+    {
+      "path": "data/registry/phase-3.5-v8/manifest.json",
+      "bytes": 3829,
+      "sha256": "1f0bfb9a66398bfd22395e901c20fe98d266297283f9bbf7e8c08bb6ecb28f0b"
+    },
+    {
+      "path": "data/registry/phase-3.5-v8/relationship-proofs.json",
+      "bytes": 461675,
+      "sha256": "88dd35bb462b8dedf3399a3a7e15cbe4fe299d73caa00e3496a438099bf06922"
+    },
+    {
+      "path": "data/registry/phase-3.5-v9/evidence-proofs.json",
+      "bytes": 997314,
+      "sha256": "12242b34796a7f36bb5737bae0c74cd7084e99eec4790af79e5224c9873636c4"
+    },
+    {
+      "path": "data/registry/phase-3.5-v9/manifest.json",
+      "bytes": 3829,
+      "sha256": "7a2178a3c516b0e88fc23fdd8307b9ef1d9e3224d8a08afd2ed557083e1f0061"
+    },
+    {
+      "path": "data/registry/phase-3.5-v9/relationship-proofs.json",
+      "bytes": 461675,
+      "sha256": "84b225c75faabe73b6ef4313e6e3096a424bfedc91bba1185724a4a199372f27"
+    },
+    {
+      "path": "index.html",
+      "bytes": 792,
+      "sha256": "881f516b40e0d34e84b910e6823fb71caa0f6b9f5203d3dfec4d6020fdd02077"
+    },
+    {
+      "path": "src/ai.js",
+      "bytes": 26893,
+      "sha256": "270991b9cf89498cbd430e006f52bac0c9fa4f206e0734bf25337d94e276df16"
+    },
+    {
+      "path": "src/assets/fonts/instrument-sans/InstrumentSans-Bold.woff2",
+      "bytes": 35352,
+      "sha256": "3e67cdb08813ada42a8a58190c2082f60862ec84bf3d2a5033002d8475efc8da"
+    },
+    {
+      "path": "src/assets/fonts/instrument-sans/InstrumentSans-Medium.woff2",
+      "bytes": 35580,
+      "sha256": "65d25fc111c40fd6b481d9db860af365730752228dfd8a246e79648d8a01f02a"
+    },
+    {
+      "path": "src/assets/fonts/instrument-sans/InstrumentSans-Regular.woff2",
+      "bytes": 34628,
+      "sha256": "f28af62faa9eec1e5482cf6e2a3e06bc865fa2fa6937bd56c14d2be23c9b4c46"
+    },
+    {
+      "path": "src/assets/fonts/instrument-sans/InstrumentSans-SemiBold.woff2",
+      "bytes": 35812,
+      "sha256": "04235f235483213906d69cafb7a87ee197adaffacb081c8a7f809d00f9b353cd"
+    },
+    {
+      "path": "src/assets/fonts/instrument-sans/OFL.txt",
+      "bytes": 4403,
+      "sha256": "9e27a72ed30eb49a08678f6a5d6ed98ec7ba5368f541637ee0683ec9134ef966"
+    },
+    {
+      "path": "src/assets/fonts/instrument-sans/README.md",
+      "bytes": 1243,
+      "sha256": "0937c21ef8ddfd424f228e3f67a705c0be36e885c7222b7100937fd93d722926"
+    },
+    {
+      "path": "src/city-buildings.js",
+      "bytes": 20315,
+      "sha256": "30eb112baaf0680490f204853b86a4c2b01a802cd18d0e0277c2d56c6351c527"
+    },
+    {
+      "path": "src/city-environment.js",
+      "bytes": 12811,
+      "sha256": "12b2f68d4d87d5b89bb950712e11fd1ee6026bfc4f4b72043546435b379f69e4"
+    },
+    {
+      "path": "src/city-label-layout.js",
+      "bytes": 5345,
+      "sha256": "676a8ae05665b17898904c0cbf969c59c3d3ae9f23d74795cb557162c169b1c7"
+    },
+    {
+      "path": "src/city-layout.js",
+      "bytes": 5895,
+      "sha256": "d64eb2438982989ce187f497ed0c7bb20a854fde5f665026031092653e7b44b2"
+    },
+    {
+      "path": "src/city3d.js",
+      "bytes": 69086,
+      "sha256": "c5335b287fa46c08fb70bdca877c653f24b9951cd9a71341e7a48ce2817219f9"
+    },
+    {
+      "path": "src/data.js",
+      "bytes": 15972,
+      "sha256": "279bc0a1d6790b90b0c7c6a3b92b365bf251bc0306df0a08f1bf6075ed6f5f53"
+    },
+    {
+      "path": "src/districts.js",
+      "bytes": 9777,
+      "sha256": "7888b6083a695765f8c611a07b46fca21407c1bd2ec2c62e037cd109d0e8f4d0"
+    },
+    {
+      "path": "src/evidence-contract.js",
+      "bytes": 25960,
+      "sha256": "e7db13a7a0091759c582d5367566ec62ca7b47b2aa449f7e9928cb6c08cf5687"
+    },
+    {
+      "path": "src/evidence-governance/phase-3.5-v2.review.generated.js",
+      "bytes": 2965,
+      "sha256": "3e69c16c3fefd46fdbb78466f951937dd1f05be8aa0c68a06eae1fb8c57b94f1"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v1.generated.js",
+      "bytes": 58985,
+      "sha256": "b6f39cdc2dd6971ef128014a3a89d4cabc9bfbc91d49510c251b2526f2460497"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v2.generated.js",
+      "bytes": 56399,
+      "sha256": "d8c5a43f32042203c22cda552ea793cd95cf3b2e97f72656aeb4a937499e9149"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v3.generated.js",
+      "bytes": 151502,
+      "sha256": "7db82153d8e6e6c51997e01b54e484b65d9558fdc2d92cfcda51c6ad58ff04d6"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v4.generated.js",
+      "bytes": 412295,
+      "sha256": "43f6e2a7d778cce5a963e1fe504cb97744bcd8a20d540933504e8d5ef547764a"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v5.generated.js",
+      "bytes": 625218,
+      "sha256": "c84072043222d712f09781157089b917d6d713c99f6ef6d62f1bd3b353e7f36d"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v6.generated.js",
+      "bytes": 675614,
+      "sha256": "26f368e087eb08fa462ff2fa9ffb577d1827dca15d424e57ff315aae21521637"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v7.generated.js",
+      "bytes": 781014,
+      "sha256": "6da4550d48c673242859d32b0a5afb36320fd1d93af2736bd7c75afc16fde3b1"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v8.generated.js",
+      "bytes": 998072,
+      "sha256": "94f4c2d1a0353c5f98407628f617ef4504858b9a838cd0edc0a3c1ad0fce9a82"
+    },
+    {
+      "path": "src/evidence-snapshots/phase-3.5-v9.generated.js",
+      "bytes": 998072,
+      "sha256": "b56aed37a7aaae0c94c224e6fa9e44bfae834de0f6c7e6b7381812cc86c0753d"
+    },
+    {
+      "path": "src/evidence.js",
+      "bytes": 62576,
+      "sha256": "e2cf0cd38c73c5303b35ca13aa596cba65e8f4b2beeeacd9757067ae39fc3227"
+    },
+    {
+      "path": "src/main.js",
+      "bytes": 193582,
+      "sha256": "3348b88a36339720ffd44cb317f1f3716c156b89b3753d13f7746730024d961a"
+    },
+    {
+      "path": "src/onchain-rpc.js",
+      "bytes": 4772,
+      "sha256": "345b462a9d4ae5c9e2d8becc91b084c28e8637af68069ec3dff458bf210f3456"
+    },
+    {
+      "path": "src/onchain.js",
+      "bytes": 14114,
+      "sha256": "bd08b1bb7ead5e80b5c8cf0dc4f519a56b9d72e76a5e7d919239d53e544d12da"
+    },
+    {
+      "path": "src/registry-abi.js",
+      "bytes": 721,
+      "sha256": "d9cf05273a87bdd9702c6512a87b281ba9c0b1fcf7ec6221adb7cad5f7c4e65a"
+    },
+    {
+      "path": "src/registry-config.js",
+      "bytes": 1324,
+      "sha256": "ff8d04c4f94ae5e1e9d1ef67eccc7843f964041f666aa559edb04992c12ba6c1"
+    },
+    {
+      "path": "src/registry-proof.js",
+      "bytes": 24182,
+      "sha256": "64f41696d38a5660d768bb36caccbe300500510a605cc760055ff2577dec19d0"
+    },
+    {
+      "path": "src/relationship-tooltip.js",
+      "bytes": 5252,
+      "sha256": "07a54c07dc5dadec883ec9f82747abfd5a313415252b51c5ce4b3625b2f4659d"
+    },
+    {
+      "path": "src/retrieval.js",
+      "bytes": 72955,
+      "sha256": "d53c6a9b8a93b0f3435a46a9766726883ddf640e8361a8ced12e7f5f43c977fd"
+    },
+    {
+      "path": "src/style.css",
+      "bytes": 77689,
+      "sha256": "862b392bc794016ec403b355fe5d06150cb866ea25579c1533f3d363e9e01722"
+    },
+    {
+      "path": "src/vendor/three.module.min.js",
+      "bytes": 691648,
+      "sha256": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7"
+    }
+  ],
+  "candidate": "rc2",
+  "previousCandidate": {
+    "archive": "/Users/ilyutkinn/Documents/Codex/2026-09-08/you-are-the-lead-agent-for/artifacts/submission/monad-city-2026-10-12.zip",
+    "archiveSha256": "8ff61af8fa35775ad4757255b8a3c3b22f2687147a17c6250b76122f43338a46",
+    "status": "superseded-by-rc2-after-bounded-passport-fixes"
+  },
+  "uiChecks": {
+    "sourceHeaderStatus": "exact primary record, four legacy profiles checked",
+    "projectJumpScroll": "2515 -> 0; Kintsu title visible at y101 inside Passport y80",
+    "finalGraph": [
+      "beefy",
+      "kintsu"
+    ]
+  }
+}

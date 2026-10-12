@@ -9,9 +9,11 @@ const { estimate, validateRequest, verifyReceipt, hash } = await import('../../t
 const request = JSON.parse(fs.readFileSync(new URL('../../tools/registry-deploy/request.json', import.meta.url)));
 const artifact = JSON.parse(fs.readFileSync(new URL('../artifacts/MonadCityRegistry.json', import.meta.url)));
 const { validatePublication, checkPublication, verifyPublicationReceipt, publicationData, PUBLICATION_PREDECESSORS } = await import('../../tools/registry-publish/core.js');
-const { encodeWord, hexBytes } = await import('../../src/onchain-rpc.js');
+const { encodeWord, hexBytes, decodeWords } = await import('../../src/onchain-rpc.js');
 const pubRequest = JSON.parse(fs.readFileSync(new URL('../../tools/registry-publish/request.json', import.meta.url)));
 const json = p => JSON.parse(fs.readFileSync(new URL('../../' + p, import.meta.url)));
+const successorVersion = process.argv[2] || 'phase-3.5-v8';
+assert.ok(['phase-3.5-v8', 'phase-3.5-v9'].includes(successorVersion), 'Unknown reviewed successor');
 const bundle = { manifest: json('data/registry/phase-3.5-v6/manifest.json'), evidenceArtifact: json('data/registry/phase-3.5-v6/evidence-proofs.json'), relationshipArtifact: json('data/registry/phase-3.5-v6/relationship-proofs.json'), snapshot: json('data/evidence-snapshots/phase-3.5-v6.json') };
 const port = 20000 + randomInt(10000);
 const endpoint = `http://127.0.0.1:${port}`;
@@ -23,7 +25,10 @@ async function local(method, params = []) {
   if (body.error) throw new Error(body.error.message);
   return body.result;
 }
-const child = spawn('anvil', ['--silent', '--host', '127.0.0.1', '--port', String(port), '--chain-id', '10143'], { stdio: ['ignore', 'ignore', 'pipe'] });
+// Keep the fixture clock reproducible even when this test runs after the v8 review date.
+const initialTimestamp = Date.parse(json('data/registry/phase-3.5-v7/manifest.json').snapshot.reviewedAt) / 1000 + 60;
+const child = spawn('anvil', ['--silent', '--host', '127.0.0.1', '--port', String(port), '--chain-id', '10143',
+  '--timestamp', String(initialTimestamp)], { stdio: ['ignore', 'ignore', 'pipe'] });
 let stderr = ''; child.stderr.on('data', data => { stderr += data; });
 try {
   let started = false;
@@ -75,37 +80,66 @@ try {
     return method === 'eth_getTransactionByHash' ? { ...result, input: '0x1234' } : result;
   };
   await assert.rejects(verifyPublicationReceipt(pubHash, prepared, artifact, bundle, audit, wrongInput), /differs from/);
-  // A synthetic commitment fixture exercises CAS publication history on loopback only.
-  // It is never exported, approved, uploaded, or accepted by production bundle validation.
   assert.equal(published.publicationId, PUBLICATION_PREDECESSORS['phase-3.5-v7']);
-  const successorManifest = structuredClone(bundle.manifest);
-  successorManifest.snapshot.version = 'phase-3.5-v7';
-  successorManifest.snapshot.versionHash = await hash(new TextEncoder().encode('disposable-second-publication-fixture'));
-  successorManifest.snapshot.portableSnapshotId = await hash(hexBytes(successorManifest.domains.snapshotId.id
-    + successorManifest.namespace.id.slice(2) + successorManifest.snapshot.versionHash.slice(2)
-    + successorManifest.snapshot.canonicalSha256Bytes32.slice(2)));
-  const successor = structuredClone(prepared);
-  successor.snapshotVersion = 'phase-3.5-v7';
-  successor.previousPublicationId = published.publicationId;
-  successor.portableSnapshotId = successorManifest.snapshot.portableSnapshotId;
-  successor.transaction.data = publicationData(successorManifest, successor.manifestUri, successor.previousPublicationId);
-  successor.transactionDataSha256 = await hash(hexBytes(successor.transaction.data));
-  successor.expectedPublicationId = await hash(hexBytes(successorManifest.domains.publicationId.id
-    + encodeWord(10143n, 'uint256') + encodeWord(audit.address, 'address') + successor.portableSnapshotId.slice(2)));
-  const successorBundle = { ...bundle, manifest: successorManifest };
-  await assert.rejects(validatePublication(successor, artifact, successorBundle, audit));
-  const successorFee = await checkPublication(successor, artifact, audit, local);
-  const successorHash = await local('eth_sendTransaction', [{ ...successor.transaction, gas: successorFee.gas, gasPrice: successorFee.gasPrice }]);
-  let replaced;
-  for (let attempt = 0; attempt < 50; attempt++) {
-    replaced = await verifyPublicationReceipt(successorHash, successor, artifact, successorBundle, audit, local);
-    if (replaced) break;
-    await new Promise(resolve => setTimeout(resolve, 100));
+  // Actual reviewed release bytes are rehearsed only on this disposable chain.
+  // The successor request/URI fixture stays in memory; it is not an upload or external request.
+  const v7Request = json('tools/registry-publish/requests/phase-3.5-v7.json');
+  let latestPublication = published;
+  for (const version of ['phase-3.5-v7', successorVersion]) {
+    const directory = 'data/registry/' + version + '/';
+    const successorBundle = { manifest: json(directory + 'manifest.json'),
+      evidenceArtifact: json(directory + 'evidence-proofs.json'),
+      relationshipArtifact: json(directory + 'relationship-proofs.json'),
+      snapshot: json('data/evidence-snapshots/' + version + '.json') };
+    const manifest = successorBundle.manifest;
+    const successor = structuredClone(v7Request);
+    successor.snapshotVersion = version;
+    successor.deployment = audit;
+    successor.transaction.to = audit.address;
+    successor.previousPublicationId = latestPublication.publicationId;
+    successor.portableSnapshotId = manifest.snapshot.portableSnapshotId;
+    successor.transaction.data = publicationData(manifest, successor.manifestUri, successor.previousPublicationId);
+    successor.transactionDataSha256 = await hash(hexBytes(successor.transaction.data));
+    successor.expectedPublicationId = await hash(hexBytes(manifest.domains.publicationId.id
+      + encodeWord(10143n, 'uint256') + encodeWord(audit.address, 'address') + successor.portableSnapshotId.slice(2)));
+    if (version === successorVersion) {
+      const files = ['manifest.json', 'evidence-proofs.json', 'relationship-proofs.json', manifest.snapshot.sourcePath];
+      const gateways = [...new Set(successor.storageCopies.map(copy => copy.gateway))];
+      successor.storageCopies = [];
+      for (const gateway of gateways) for (const file of files) {
+        const relative = file.startsWith('data/') ? file : directory + file;
+        successor.storageCopies.push({ gateway, path: file,
+          sha256: await hash(fs.readFileSync(new URL('../../' + relative, import.meta.url))) });
+      }
+      const timestamp = Date.parse(manifest.snapshot.reviewedAt) / 1000;
+      // Time travel is confined to loopback Anvil; approved release bytes never change.
+      await local('evm_setNextBlockTimestamp', [timestamp - 1]);
+      await local('evm_mine');
+      await assert.rejects(checkPublication(successor, artifact, audit, local), /dated in the future/);
+      await assert.rejects(local('eth_call', [{ from: successor.transaction.from,
+        to: successor.transaction.to, data: successor.transaction.data }, 'latest']));
+      await local('evm_setNextBlockTimestamp', [timestamp]);
+      await local('evm_mine');
+    }
+    await validatePublication(successor, artifact, successorBundle, audit);
+    const successorFee = await checkPublication(successor, artifact, audit, local);
+    const successorHash = await local('eth_sendTransaction', [{ ...successor.transaction,
+      gas: successorFee.gas, gasPrice: successorFee.gasPrice }]);
+    let replaced;
+    for (let attempt = 0; attempt < 50; attempt++) {
+      replaced = await verifyPublicationReceipt(successorHash, successor, artifact, successorBundle, audit, local);
+      if (replaced) break;
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    assert.equal(replaced?.previousPublicationId, latestPublication.publicationId);
+    assert.equal(replaced?.publicationId, successor.expectedPublicationId);
+    const fields = decodeWords(await local('eth_call', [{ to: audit.address,
+      data: '0x' + artifact.methodIdentifiers['getPublication(bytes32)'] + encodeWord(replaced.publicationId) }, 'latest']), 17);
+    assert.equal(BigInt(fields[11]), BigInt(manifest.commitments.relationship.count));
+    latestPublication = replaced;
+    await assert.rejects(checkPublication(successor, artifact, audit, local), /head changed|already published/);
   }
-  assert.equal(replaced?.previousPublicationId, published.publicationId);
-  assert.equal(replaced?.publicationId, successor.expectedPublicationId);
-  await assert.rejects(checkPublication(successor, artifact, audit, local), /head changed|already published/);
   console.log(JSON.stringify({ environment: 'disposable-loopback-only', result: 'pass',
-    checks: ['request', 'estimate', 'constructor simulation', 'actual receipt and runtime', 'identity and roles', 'wrong sender rejected', 'publication simulation and receipt', 'duplicate publication blocked', 'wrong publication input rejected', 'successor with nonzero predecessor', 'previous publication becomes superseded', 'synthetic successor bundle rejected by production validation'],
+    checks: ['request', 'estimate', 'constructor simulation', 'actual receipt and runtime', 'identity and roles', 'wrong sender rejected', 'publication simulation and receipt', 'duplicate publication blocked', 'wrong publication input rejected', 'successor with nonzero predecessor', 'previous publication becomes superseded', `actual v7 and ${successorVersion} proof bundles`, 'future timestamp rejected by client and contract', 'exact timestamp boundary succeeds'],
     externalTransaction: false }, null, 2));
 } finally { child.kill('SIGTERM'); }

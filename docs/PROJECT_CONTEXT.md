@@ -77,8 +77,12 @@ and SVG for Graph View. Current implementation and `docs/WORKLOG.md` supersede t
 Implemented:
 
 - 176 projects across five districts; 172 have approved bounded evidence records;
-- active snapshot `phase-3.5-v7`: 217 records and 28 sourced relationships;
-- hybrid graph: 39 edges, including 11 illustrative or AI-inferred patterns;
+- active snapshot `phase-3.5-v9`: 217 records and 194 sourced relationships, including 166
+  Monad-membership edges derived from approved records (Monad App Portal, the pinned Monad
+  protocol registry, DefiLlama) under the `approved-record-derivation` review method;
+- hybrid graph: 205 edges, including 11 illustrative or AI-inferred patterns; 171 of 176
+  projects hold at least one sourced Monad-membership edge (4 demo profiles stay honestly
+  unconnected);
 - project selection, City/Graph, district routes and four district views, Passport,
   evidence links, quality/scope/limitation disclosures and review governance;
 - deterministic local Navigator retrieval, authoritative for map actions;
@@ -89,19 +93,26 @@ Implemented:
 - responsive UI and self-hosted Instrument Sans.
 - isolated Solidity evidence registry implementation with immutable history, permanent subject
   revocations, publisher/revoker roles, delayed admin transfer and explicit migration;
-- deterministic SHA-256/Merkle bundles for all 217 records and 28 sourced relationships;
+- deterministic SHA-256/Merkle bundles for all 217 records and 194 sourced relationships;
 - explicit read-only Passport publication checks and an optional Navigator publication tool.
   The registry is deployed on Monad Testnet at `0x8d53153a8a25c81701954eed66154b3ebba8b8c7`;
   receipt, runtime/constructor bindings and roles were checked through the official RPC.
-  The owner published v7 in transaction
-  `0x3e0fa8cc915fc02ef9590ef22420e61c1e9b15cf20362f99b39c09785e039d14`, block `69899471`.
+  The owner published v9 in transaction
+  `0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7`, block `70219795`.
   Exact commitments and representative evidence/relationship proofs match; the official RPC
   reports that block finalized. Source correspondence is verified in Sourcify.
   The app pins this Testnet publication for explicit read-only checks.
 
 The active evidence pair must match SHA-256
-`6a6c7cf9830460fca3ce75bdbfd8510b72b6fba70ada136eb145e45a95155d28`.
+`8147e7dedb389f2d8da5af63747aed71114692a1c2052fde0f14cd9b8133f088`.
 Prior immutable snapshot pairs remain in the repository as explicit historical boundaries.
+The v9 registry proof bundle is published and the runtime pins its verified publication
+`0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e`.
+Its exact predecessor is v7, now superseded; v8 was never published. Receipt, finalized block,
+current lifecycle and five representative record/support proofs were checked through the
+official RPC. Audits are in `data/registry/deployments/monad-testnet-v9-*.json`.
+v9 preserves v8 factual payloads and corrects future-dated review metadata after a bounded
+re-review completed at `2026-10-11T21:09:41Z`. The immutable v8 pair remains historical.
 
 Limitations:
 

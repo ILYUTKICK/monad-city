@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "status": "publication-finality-observed",
+  "transactionHash": "0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7",
+  "publicationId": "0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e",
+  "publicationBlockNumber": "70219795",
+  "publicationBlockHash": "0x70e802ea61d525729cd92fbcce2aec94f835f6b4a589ce66ab7fee6913fe7c23",
+  "finalizedBlockNumber": "70220297",
+  "finalizedBlockHash": "0x0ee15b1913d879b7dc56144ec2e1ea356648e4e56fec0557ea503a0976044d7f",
+  "currentHead": "0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e",
+  "currentPublicationState": "active",
+  "previousPublicationId": "0x749a1fa2b3b731ba051f7d18697b8db563adc0b038cb9b3c864430187b62421c",
+  "previousPublicationState": "superseded",
+  "checkedAt": "2026-10-11T21:36:35.460Z",
+  "scope": "Finalized block and current publication lifecycle observed through one trusted Monad Testnet RPC."
+}

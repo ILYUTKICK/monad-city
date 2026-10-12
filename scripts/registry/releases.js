@@ -1,5 +1,17 @@
 // Exact, reviewed portable snapshot pins. Adding a release is an explicit code change.
 export const REGISTRY_RELEASES = Object.freeze({
+  'phase-3.5-v9': Object.freeze({
+    version: 'phase-3.5-v9',
+    canonicalSha256: '8147e7dedb389f2d8da5af63747aed71114692a1c2052fde0f14cd9b8133f088',
+    evidenceCount: 217,
+    relationshipCount: 194,
+  }),
+  'phase-3.5-v8': Object.freeze({
+    version: 'phase-3.5-v8',
+    canonicalSha256: '8ca75224fa4d0c0772387aacb332acbdeb40237d048b7eeacde7b9984b03eb6c',
+    evidenceCount: 217,
+    relationshipCount: 194,
+  }),
   'phase-3.5-v7': Object.freeze({
     version: 'phase-3.5-v7',
     canonicalSha256: '6a6c7cf9830460fca3ce75bdbfd8510b72b6fba70ada136eb145e45a95155d28',

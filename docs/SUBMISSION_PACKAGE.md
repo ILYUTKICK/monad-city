@@ -1,6 +1,6 @@
 # Monad City — Metropolis submission package
 
-Updated: 2026-10-10. Public copy below describes the implemented build, not the roadmap.
+Updated: 2026-10-12. Public copy below describes the implemented build, not the roadmap.
 
 ## Submission fields
 
@@ -37,10 +37,10 @@ eligible evidence IDs retrieved during that conversation. The application displa
 claims rather than model-written factual prose, retaining source status, scope, and limitations.
 If evidence cannot establish an activity claim, the Navigator explains the gap.
 
-The current build contains 176 projects, with 217 approved evidence records covering 172 of them.
-Twenty-eight relationships have source-backed evidence; other displayed edges remain explicitly
-illustrative or AI-inferred. Evidence comes from manually reviewed, versioned snapshots. The
-build verifies that the reviewed snapshot matches its runtime module.
+The current build contains 176 projects, with 217 approved evidence records covering 172 project
+entries. It contains 194 sourced relationships and 205 total graph edges; the remaining 11 edges
+are explicitly illustrative or AI-inferred. Evidence comes from manually reviewed, versioned
+snapshots, and the build verifies that the reviewed snapshot matches its runtime module.
 
 The reviewed snapshot is also published in an immutable registry on Monad Testnet. Each record
 can be checked against its Merkle root and the publication's current lifecycle. The full snapshot,
@@ -48,9 +48,10 @@ manifest and proofs are publicly available through IPFS. These checks establish 
 committed those exact bytes; they do not establish source truth, freshness or project safety.
 
 Monad City is implemented in vanilla JavaScript and CSS with vendored Three.js. The optional AI
-path has been tested using Qwen through OpenRouter. It is a read-only prototype without a wallet
-flow, live indexer, or transaction execution. Sources support bounded claims, not a declaration
-that a project is safe, active, or endorsed.
+path has been tested using Qwen through OpenRouter; deterministic local retrieval works without a
+provider key. It is a read-only prototype without a wallet flow, live indexer, or transaction
+execution. Sources support bounded claims, not a declaration that a project is safe, active, or
+endorsed.
 
 ### Problem
 
@@ -70,10 +71,11 @@ reasoning inspectable.
 The dataset, districts, project identities, source records, and relationship inspection are
 specific to the Monad ecosystem. Monad City helps users discover its applications and helps
 builders inspect documented integrations. This version is an ecosystem research interface;
-the app reads a deployed evidence registry on Monad Testnet (chain 10143). The owner published
-v7 in transaction `0x3e0fa8cc915fc02ef9590ef22420e61c1e9b15cf20362f99b39c09785e039d14`.
-Passport checks verify the exact record's inclusion and current publication state. No user wallet
-is required to explore or check records.
+the app reads a deployed evidence registry on Monad Testnet (chain 10143). The current v9
+publication was owner-signed in transaction
+`0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7`.
+Passport checks verify exact record inclusion at a checked block. No user wallet is required to
+explore or check records.
 
 ### How AI is used
 
@@ -97,8 +99,9 @@ OpenZeppelin 5.7.0 and SHA-256 Merkle proofs; the app performs read-only chain q
 
 Working static prototype with an optional real AI agent, local discovery without credentials,
 responsive City/Graph views, district navigation, Passport/source disclosure, a validated
-snapshot pipeline and an active Monad Testnet evidence publication. Nineteen bounded AI/dataset tests pass; real source and relationship queries
-were exercised with the configured Qwen model.
+snapshot pipeline and an active Monad Testnet evidence publication. The deterministic AI and
+dataset checks pass; real source and relationship queries were exercised with the configured
+Qwen model.
 
 ### Next steps
 
@@ -117,7 +120,7 @@ track label and eligibility in the submission form.
 | Item | Value / status |
 | --- | --- |
 | Repository | https://github.com/ILYUTKICK/monad-city — public, checked 2026-10-08 |
-| Public application | https://monad-city.vercel.app/ — production build, opened without a Vercel login on 2026-10-08; local discovery works without a provider key |
+| Public application | https://monad-city.vercel.app/ — publicly accessible on 2026-10-12, but still serves v7; the local v9/UI candidate needs a new release |
 | Demo video | Script ready in `docs/DEMO_SCRIPT.md`; no finished video or hosted link yet |
 | Pitch video | Spoken script below; no finished video or hosted link yet |
 | Screenshot | `docs/preview.png` — actual application capture |
@@ -125,27 +128,40 @@ track label and eligibility in the submission form.
 | Logo | `docs/assets/monad-city-logo.png` — 1024 × 1024 PNG, 32,230 bytes; exported from the existing diamond identity |
 | Team / presenter | Owner to supply the actual name and team details in the form |
 
-## Short spoken pitch (about 60–75 seconds)
+## Short spoken pitch (about 75–90 seconds)
 
-Monad has a growing ecosystem, but understanding a project still means opening directories,
-documentation, registries, and explorers, then deciding which claims to trust.
+Monad has a growing ecosystem, but understanding one project still means moving between
+directories, documentation, registries, and explorers, then deciding which claims are supported.
 
-Monad City brings that research into one interface. Each building is a project, each district
-is a discovery category, and each sourced relationship leads back to its evidence.
+Monad City brings that research into one interface. Each building is a project, each district is
+a discovery category, and each sourced relationship leads back to an exact evidence record.
 
-You can ask the Navigator for Kuru's sources, inspect a Project Passport, or explore a documented
-connection between projects. The AI agent uses local graph tools to find relevant evidence.
-The app displays exact source records, with their status and limitations, rather than letting
-the model invent factual explanations.
+Start without an API key: the deterministic Navigator can find Kuru, focus the map, and open its
+Project Passport. From there, a judge can inspect a source, its claim status, scope, timestamp,
+limitations, and the read-only publication check. City and Graph views show the same projects and
+typed connections from two perspectives.
 
-The current prototype has 176 projects and 217 evidence records. It also shows when the data
-cannot establish a requested claim, such as current contract activity.
+The optional AI agent uses local graph tools to select relevant evidence IDs, but the interface
+renders the canonical records rather than model-written factual prose. If the evidence cannot
+establish a request such as current contract activity, the Navigator says so.
 
-Our next step is to expand reviewed relationship coverage and make this structured knowledge
-easier for other agents to use. Monad City gives people a city to explore and agents a graph
-they can inspect.
+The current build contains 176 projects, 217 evidence records, 194 sourced relationships, and
+205 total edges. Monad City gives people a city to explore and agents a graph they can inspect.
 
-## Owner-only release checklist
+## Practical judge run
+
+1. Open the public deployment or run `npm run dev` and use the app without an API key. Local retrieval is the default.
+2. Search for **Kuru**, select the project, and open its Passport. In **Sources**, expand **Full record** to inspect the exact claim, source link, scope, timestamp, limitations, and review state.
+3. Click **Check publication** in the full record and inspect the returned Monad Testnet block. This is a read-only inclusion check and does not require a wallet.
+4. Open **Connections** to inspect typed edges and their evidence state, then switch between **City** and **Graph** to see the same relationship context spatially and explicitly.
+5. Use a district filter or search for **Beefy** to test discovery across the larger graph. Try an activity request such as “show active contracts” to see the bounded insufficient-evidence response.
+6. To exercise the optional agent, open **AI settings**, provide your own browser-compatible OpenAI-compatible endpoint, model, and key, then repeat a source query. Leave this step out when judging the deterministic path.
+
+## Historical release and form notes
+
+The checklist and portal details below preserve the saved 2026-10-08 state. They are historical
+audit notes, not a claim that the current portal is complete. Refresh the current form, assets,
+deployment URL, and video links before submitting.
 
 - [x] Current counts checked against source and active snapshot.
 - [x] English submission copy and truthful AI explanation prepared.
@@ -155,22 +171,25 @@ they can inspect.
 - [x] Read form-specific fields, required assets and exact limits from the owner's screenshots and live form.
 - [x] Deploy the current tested build and test the public URL without the owner's browser key.
 - [x] Update the public build and repository with the verified Testnet registry configuration: application commit `a3417d06f60d50e6a60924f54c31f3dd248fb948`, READY production deployment `dpl_7fCezkRkTADKhJFBqud1WUrvHr8P` on 2026-10-10; public-origin Kuru publication check passed.
-- [x] Activate and publish expanded v7: 217 records, 28 sourced relationships; application commit `da110172e7006e0361ea02171b01140c305b4762`, READY production deployment `dpl_H4AAAFKTQYndJinL4NzkwUwKXHdt`; public Beefy publication check passed at block 69908916.
+- [x] Historical v7 checkpoint: 217 records, 28 sourced relationships; the v7 application deployment and public Beefy publication check were recorded at block 69908916.
+- [x] Current v9 Testnet publication was later verified: 217 records, 194 sourced relationships, owner transaction `0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7`, block `70219795`.
 - [ ] Record the real AI path; edit waiting time transparently if needed.
 - [ ] Upload demo/pitch videos to the chosen service and test judge access.
 - [ ] Fill actual team details, selected track, links and assets; review the final form.
 - [ ] Submit on the portal and retain its confirmation.
 
-Authenticated portal checked 2026-10-08: deadline **14 October 2026, 06:59 GMT+3**.
-Form limits: project name 120 characters; one-line description 200; description, go-to-market
-and judge instructions 8,000 each. Logo: PNG/JPG/WEBP, max 2 MB, at least 500 px, max 4 million
-pixels. Technical demo: working product, max 3 minutes. Pitch: team, problem and motivation,
-max 2 minutes. Videos require hosted HTTPS links. Optional ad: max 30 seconds; X profile optional.
+Historical portal snapshot checked 2026-10-08: deadline **14 October 2026, 06:59 GMT+3**.
+Historical form limits recorded at that time: project name 120 characters; one-line description
+200; description, go-to-market and judge instructions 8,000 each. Logo: PNG/JPG/WEBP, max 2 MB,
+at least 500 px, max 4 million pixels. Technical demo: working product, max 3 minutes. Pitch:
+team, problem and motivation, max 2 minutes. Videos require hosted HTTPS links. Optional ad: max
+30 seconds; X profile optional. Confirm all limits and deadline in the current form before use.
 
-The live-product field explicitly requires "Must run on Monad Mainnet or Testnet". The app now uses an immutable evidence registry deployed on Monad Testnet and verifies exact
+The historical live-product field explicitly required "Must run on Monad Mainnet or Testnet".
+The app now uses an immutable evidence registry deployed on Monad Testnet and verifies exact
 record publication/inclusion through read-only RPC calls. The source snapshot remains reviewed
-and static; there is no live indexer. This is a concrete chain integration. Final track/bounty
-eligibility remains the organizer's decision.
+and static; there is no live indexer. Final track or bounty eligibility remains the organizer's
+decision.
 
 ## Sponsor bounty notes
 
@@ -181,12 +200,12 @@ require a direct Qwen Cloud endpoint or a particular publishing host. We documen
 use and supply a public GitHub article; eligibility and acceptance of that article format are
 not guaranteed. Other sponsor integrations are not implemented.
 
-## Form progress (2026-10-08)
+## Historical form progress (2026-10-08; pending current refresh)
 
-Track retained: Trust, Identity & AI Infrastructure. Name retained: Monad City. Updated tagline
-and description to include the current optional agent, actual counts and read-only boundaries.
-Added go-to-market plan, public app URL, judge instructions and PNG logo. No team credentials,
-shared API key, existing partnerships or traction claims were invented.
+At that saved checkpoint, the track was Trust, Identity & AI Infrastructure and the name was
+Monad City. The tagline and description included the then-current optional agent, counts and
+read-only boundaries. A go-to-market plan, public app URL, judge instructions and PNG logo were
+saved. No team credentials, shared API key, existing partnerships or traction claims were invented.
 
 Go-to-market plan: first users are Monad newcomers and builders researching infrastructure.
 Planned acquisition uses practical project research posts and short demos on X and in Monad
@@ -195,9 +214,9 @@ check source links. Planned measures are reaching a relevant Passport, opening a
 returning for another research task. Structured agent access and source submissions are future
 steps, not implemented functionality.
 
-Judge instructions cover keyless Kuru source search, full-record inspection, Magma–Switchboard
-relationship inspection, City/Graph, district filters and the active-contract evidence gap.
-Optional agent setup specifies the user's own OpenRouter key, endpoint
+The saved judge instructions covered keyless Kuru source search, full-record inspection,
+Magma–Switchboard relationship inspection, City/Graph, district filters and the active-contract
+evidence gap. The saved optional agent setup specified the user's own OpenRouter key, endpoint
 `https://openrouter.ai/api/v1` and tested model `qwen/qwen3.8-max-0902`. No key is supplied.
 
 Owner confirmed no videos exist yet. Required technical-demo and pitch URLs stay empty.
@@ -207,7 +226,7 @@ Portal progress was saved at 2026-10-08 12:58 UTC (15:58 Moscow): **5/6 sections
 including the Qwen article field. Only the required demo/pitch section remains incomplete in
 the portal checklist. This is saved progress, not a final submission or eligibility approval.
 
-## Verified Testnet integration (2026-10-10)
+## Historical Testnet integration checkpoint (2026-10-10; v7)
 
 - Contract: `0x8d53153a8a25c81701954eed66154b3ebba8b8c7`, Monad Testnet 10143.
 - Publication: [transaction](https://testnet.monadscan.com/tx/0x3e0fa8cc915fc02ef9590ef22420e61c1e9b15cf20362f99b39c09785e039d14), block 69899471.
@@ -217,3 +236,27 @@ the portal checklist. This is saved progress, not a final submission or eligibil
 - Public manifest: `ipfs://bafybeie73hfukkqxrap2mtfp5lw2o3pv4qztrgusm4fnvibwlibw7sbat4/manifest.json`.
 - Add to judge instructions: open a source-backed Passport, expand **Inspect full record**, click **Check publication**, and inspect the returned block. No wallet or API key is needed for this check.
 - Portal text saved on 2026-10-08 predates this integration and must be refreshed before final submission.
+
+## Current verified Testnet integration (v9)
+
+- Registry: `0x8d53153a8a25c81701954eed66154b3ebba8b8c7`, Monad Testnet chain `10143`.
+- Publication ID: `0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e`.
+- Owner-signed transaction: `0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7`.
+- Publication block: `70219795`; official RPC finality and representative record/support proofs passed.
+- Exact published bundle: 217 evidence records and 194 sourced relationships. The active hybrid graph contains 205 total edges, including 11 illustrative or AI-inferred edges.
+- Public manifest: `ipfs://bafybeig6zgvvotap5w4nqeyp6kezqj3mx3paayju7ffag2arsvdtdibvzq/manifest.json`; Pinata retrieval matched the local bytes, with Filebase used as an independent gateway check.
+- Publication establishes exact bundle inclusion and lifecycle at a checked block. It does not establish source truth, freshness, safety, legitimacy, activity, or endorsement.
+- The current public deployment URL remains `https://monad-city.vercel.app/`; a separate release audit must confirm its freshness and current behavior before it is submitted.
+
+## Release preparation — 2026-10-12
+
+Public availability was checked today. The alias still serves v7 from commit
+`0cd8cd36b80dfb157944132eb2835eca0230eedf`; the local v9/UI changes are not yet published.
+The candidate built successfully and passed 42 AI/onchain/registry tests. Its keyless
+Beefy/Kintsu source-record rehearsal matched the active Testnet publication at block
+`70379100` and finished with the two-project Graph.
+
+Before recording, release and test the candidate on the public origin. For an AI sponsor
+submission, also record a real configured provider run and its tool trace; the no-key
+rehearsal above demonstrates local retrieval. Required video URLs and final portal
+submission remain pending. See `research/2026-10-12-submission-deployment-audit.md`.

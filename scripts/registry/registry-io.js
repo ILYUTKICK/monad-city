@@ -25,7 +25,7 @@ if (!globalThis.crypto?.subtle) {
   });
 }
 
-export const ACTIVE_REGISTRY_SNAPSHOT = reviewedRegistryRelease('phase-3.5-v7');
+export const ACTIVE_REGISTRY_SNAPSHOT = reviewedRegistryRelease('phase-3.5-v9');
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);

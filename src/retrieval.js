@@ -1602,6 +1602,9 @@ export function retrieveNavigator(input) {
 // matches stay visible but are labeled, and the answer explains the scope expansion.
 // No relationship is ever inferred from a shared district.
 function applyDistrictScopeToResult(result, { districtScope, projects, rankedCount, selectedCount }) {
+  // Full-result size, stored separately from the bounded displayed subset so the map layer
+  // can keep a large answer off the canvas while the panel discloses it.
+  result.rankProjectCount = rankedCount;
   // Bounded-subset disclosure: when the deterministic limit truncated the matches, the
   // answer says so instead of implying the list is exhaustive.
   if (result.outcome === 'results' && rankedCount > selectedCount) {

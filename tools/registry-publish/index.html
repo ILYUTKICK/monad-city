@@ -12,6 +12,8 @@
     <header><span class="label">MONAD TESTNET · 10143</span>
       <h1>Publish the reviewed snapshot.</h1>
       <p>Anchor the snapshot hash, evidence roots and public IPFS manifest in the existing registry.</p>
+      <p>Open the <a href="http://localhost:5173/tools/registry-publish/index.html?version=phase-3.5-v9">v9 publication page on localhost</a>
+        in Chrome with your wallet extension. Opening this HTML file directly does not initialize publication.</p>
     </header>
     <section aria-labelledby="settings-title">
       <h2 id="settings-title">Publication settings</h2>
@@ -23,7 +25,7 @@
         <div><dt>History</dt><dd id="predecessor" class="address">Loading…</dd></div>
         <div><dt>Transfer value</dt><dd>0 MON · network fee only</dd></div>
       </dl>
-      <details><summary>Inspect prepared transaction</summary>
+      <details><summary>Inspect publication details</summary>
         <p>This transaction publishes commitments to exact snapshot bytes. It does not establish source truth, project safety or endorsement.</p>
         <p class="address" id="data-hash"></p>
         <a id="unsigned-request" href="./request.json" download="monad-city-testnet-publication.json">Download unsigned request</a>
@@ -44,7 +46,7 @@
       </dl>
       <p class="hint">The gas limit includes a 10% buffer. Monad charges against the gas limit. Review the final fee in your wallet.</p>
       <button id="publish" disabled>Publish snapshot — confirm in wallet</button>
-      <p id="status" role="status" aria-live="polite">Validating the prepared request…</p>
+      <p id="status" role="status" aria-live="polite">Open the localhost link above to initialize publication. A prepared request and wallet extension are required.</p>
     </section>
     <section aria-labelledby="receipt-title">
       <h2 id="receipt-title">Publication receipt</h2>

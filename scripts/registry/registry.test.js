@@ -37,7 +37,7 @@ test('active snapshot and every generated membership proof verify', async () => 
   await validateRegistrySnapshot(snapshot);
   const verified = await verifyRegistryFiles(registryDirectory, snapshot);
   assert.equal(verified.evidenceArtifact.entries.length, 217);
-  assert.equal(verified.relationshipArtifact.entries.length, 28);
+  assert.equal(verified.relationshipArtifact.entries.length, 194);
   assert.equal(verified.manifest.deployment.status, 'unconfigured');
 });
 

@@ -104,8 +104,13 @@ for `proposed` and `needs-review` candidates:
   a compatibility companion or future inline decision.
 - `reviewMethod` is exactly one of `manual-source-and-payload-inspection`,
   `manual-artifact-and-payload-inspection`, `manual-cross-source-inspection`,
-  `manual-relationship-evidence-inspection`, `manual-governance-withdrawal`, or
-  `legacy-approved-projection-import`.
+  `manual-relationship-evidence-inspection`, `approved-record-derivation`,
+  `manual-governance-withdrawal`, or `legacy-approved-projection-import`.
+  `approved-record-derivation` (added 2026-10-11, same policy version) is a relationship-only
+  method for edges derived mechanically from exactly one already-approved evidence record: the
+  human inspection lives on the supporting record, and the derivation asserts only that
+  endpoints, type, and scope follow from that record. It requires `decisionReason:
+  evidence-resolved` and cannot be used for evidence records or for non-approved decisions.
 - `decisionReason` is a controlled code from the decision tables below. Free-form reason strings
   are not accepted. Claim nuance remains in bounded scope, conflicts, quality flags, and
   limitations rather than in an unvalidated reason field.

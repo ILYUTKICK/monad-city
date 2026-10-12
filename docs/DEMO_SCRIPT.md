@@ -1,74 +1,81 @@
-# Monad City — demo recording script
+# Monad City — 60–90 second demo
 
-## Recording target
+## Recording setup
 
-Approximately 2 minutes 40 seconds, within the form's confirmed maximum of 3 minutes.
-The technical demo must show the working product, not slides or a code walkthrough.
-A separate pitch (maximum 2 minutes) must introduce the team, problem, and motivation;
-its spoken draft is in `docs/SUBMISSION_PACKAGE.md`. Add the actual presenter/team introduction.
+- Open [monad-city.vercel.app](https://monad-city.vercel.app/) at `#/city`, reset the view, and confirm the deployed build exposes the v9 publication check before recording.
+- The core flow uses the deterministic local Navigator and works without an AI provider key. Do not describe this keyless flow as “live AI.”
+- If a separate sponsor take requires provider-backed AI, configure the endpoint, model, and user key privately, then collapse settings before recording. The provider selects eligible evidence IDs retrieved in that run; local retrieval still controls the map and evidence context.
+- Rehearse the Beefy → Kintsu path once so the exact record is already familiar.
 
-Record actual application interaction and real provider output. No prepared answer should be
-shown as a live model response. A finished video has not yet been created.
+## Timed screen actions and narration
 
-## Before recording
+### 0:00–0:10 — Establish the city
 
-- Use https://monad-city.vercel.app/ — confirm the deployed registry configuration matches the verified Testnet publication before recording.
-- Configure the owner's provider in **AI settings** on this origin before recording the agent path; localhost settings do not transfer. Keep the key out of the recording.
-- Use a desktop viewport around 1440×900. Start at `#/city` and reset the map.
-- Configure your own endpoint/model/key privately, then collapse AI settings. Record no key.
-- Confirm that `Show Kuru sources` and the Magma–Switchboard query finish with actual evidence
-  and a tool trace. Source selection and number of tool calls may vary; narration must match.
-- Keep a local no-key run available for provider failure. Label it local retrieval, and do not
-  describe it as a live AI run.
+**Screen:** Start in **City** view and let the district labels settle.
 
-## Screen actions and English narration
+**Say:** “Monad City helps you understand the Monad ecosystem. Each building is a project, and every sourced connection can be traced to its evidence.”
 
-| Time | Screen action | Spoken narration |
-| --- | --- | --- |
-| 0:00–0:15 | Show the city overview and districts. | “Understanding a Monad project often means jumping between directories, documentation, registries, and explorers. Monad City brings project discovery, relationships, and their sources into one interface.” |
-| 0:15–0:35 | Ask `Show Kuru sources`. Keep the local result and actual AI tool activity visible. | “I’ll start with Kuru. Local graph retrieval finds the project and controls the map. The optional AI agent uses graph tools to inspect evidence and select relevant records.” |
-| 0:35–1:00 | Open the Kuru Passport. Show one Claimed record, its source link, and `Inspect full record`. | “The Passport shows the exact claim, who published it, and what the source supports. Claimed and Observed are distinct. We can inspect the full record and its limitations; one source does not make the whole project verified.” |
-| 1:00–1:35 | Ask `Explain the Magma Switchboard declared integration sources`. Expand the returned relationship and its record, then switch Graph View. | “Now I can inspect a documented connection. This record is a publisher's declaration about Magma and Switchboard. The graph shows its endpoints, but the evidence remains bounded: it is not reciprocal confirmation or a live service-health check.” |
-| 1:35–1:55 | Ask `Find AI projects with active contracts`. Show `Evidence unavailable`. | “A project can match the AI category without evidence of current activity. Here the Navigator explains that gap. It does not turn a listing or an inferred connection into proof.” |
-| 1:55–2:15 | Expand a Kuru source record and click **Check publication**. Keep the matched result and checked block visible. | “This exact record is included in our published snapshot on Monad Testnet. The check reads the registry and verifies its proof and current publication state. It proves publication of the data, not the truth of the source.” |
-| 2:15–2:30 | Return to City, open DeFi Overview, briefly show Projects or Evidence. | “The current build contains 176 projects and 193 evidence records. District views help narrow the search. Sourced connections remain separate from illustrative or inferred edges.” |
-| 2:30–2:40 | Finish on the city or one clear Passport. | “Monad City gives people a city to explore and agents a graph they can inspect, with the sources and uncertainty kept visible.” |
+### 0:10–0:22 — Find Beefy with the local Navigator
 
-The AI waits are not guaranteed to fit these slots. If editing removes waiting time, add a simple
-“AI response wait shortened” caption to that cut. Do not speed up output to imply latency that
-was not observed. If the real query fails, retry outside the recording or include the honest
-failure/local-result state.
+**Screen:** Open **Navigator**, enter `Beefy`, and select the result so the city and Passport focus Beefy.
 
-## What must be visible
+**Say:** “Let’s find Beefy. Local search works without an API key and brings the map and project Passport to the same result.”
 
-1. A city action tied to a query or project selection.
-2. A real agent tool call and resulting selected evidence in at least one recorded run.
-3. A source record's claim status, source and scope/limitations.
-4. A sourced relationship with its precise claim status.
-5. The evidence-gap response.
-6. A real Monad Testnet publication check with the exact record and checked block visible.
+### 0:22–0:38 — Inspect the Beefy–Kintsu connection
 
-The live agent layer selects 1–3 records. The local result may expose more. Do not promise that
-all five Kuru records will appear in the AI selection or a fixed sequence of tool calls.
+**Screen:** Open **Connections**. On the **Kintsu** card, expand **Evidence** without using the project-jump button, so Beefy stays selected.
 
-## Short version if the form limit is tighter
+**Say:** “Here Beefy’s saved configuration includes sMON, whose published address maps to Kintsu. This is a documented asset dependency, labelled Claimed because it comes from the publisher’s configuration.”
 
-Keep Kuru search → Passport/source disclosure and Testnet publication check → one relationship in Graph View → evidence gap.
-Remove the district tour. Retain the explanation of what the model selects and what the source
-can establish.
+### 0:38–0:55 — Open the source and full record
 
-## Three rehearsal runs
+**Screen:** In the expanded evidence, show the Beefy configuration source link, then expand **Full record** for `E-BEEFY-KINTSU-ASSET-001`.
 
-| Run | Mode | Pass condition | Status |
-| --- | --- | --- | --- |
-| 1 | No provider key / local discovery | City, Passport, source disclosure, districts and Graph work. | Passed on the public build 2026-10-08, including Kuru search, full record, Graph, DeFi filter, active-contract evidence gap, and 390px layout. |
-| 2 | Owner's configured Qwen provider | Real tool calls end in eligible selected records; sources and limits visible. | Source/relationship queries passed previous QA; full timed rehearsal pending. |
-| 3 | Final recording conditions | Complete the chosen script, readable screen, actual output, no exposed key. | Pending recording. |
+**Say:** “I can inspect the exact claim, named publisher, source link, and limitations. The record distinguishes that asset dependency from a broader partnership claim.”
 
-## Export and hosting
+### 0:55–1:08 — Check the real v9 Testnet publication
 
-Record at 1080p if the capture tool permits, with readable browser zoom and clear narration.
-Use a standard MP4 (H.264/AAC) and retain the original recording. The form accepts HTTPS links
-to YouTube, Loom, Vimeo, or another video host: demo up to 3 minutes, pitch up to 2 minutes.
-The optional promotional clip is up to 30 seconds. No file-size limit for hosted videos was
-displayed in the form. Test judge access without the presenter's account before entering links.
+**Screen:** In **Onchain publication**, click **Check publication** and wait for the real result. Hold on the displayed Testnet block and match state.
+
+**Say:** “Now the app checks this record against its published snapshot on Monad Testnet. The returned block confirms exact inclusion; source accuracy and freshness still require separate review.”
+
+### 1:08–1:20 — Close on the focused graph
+
+**Screen:** After the record check, use the **Kintsu** connection button to follow the project. Switch to **Graph**; its **Project** neighborhood shows just Kintsu and Beefy, with their sourced connection.
+
+**Say:** “Following Kintsu opens the same sourced connection in Graph view. People explore the city; sources explain the graph.”
+
+Target recording length: about 75–85 seconds including clicks and the RPC wait. The narration is 139 words; rehearse at your own pace.
+
+## Required proof points in frame
+
+1. `Beefy` search result, focused city, and synchronized Passport.
+2. Beefy → Kintsu connection with **Claimed · publisher-claimed** visible.
+3. Exact relationship scope and limitations.
+4. Source publisher and expanded **Full record**.
+5. A real v9 **Check publication** result with the inspected Testnet block.
+6. Kintsu **Project** focus in Graph view with Beefy visible.
+
+## Optional provider-backed AI insert
+
+Use this only when a bounty or submission category requires visible provider-backed AI. After the local Beefy result, run the configured provider and show its actual tool trace or eligible project selection. Describe it as an optional agent layer over the same bounded retrieval and evidence records. Do not stage an answer or promise a fixed model result. Allow 10–15 extra seconds.
+
+The submission portal displayed a three-minute technical-demo cap on October 8, 2026. Treat that as historical context and recheck the portal before upload.
+
+## Короткие заметки для записи
+
+- Не говорить, что проект целиком “verified”: статусы относятся только к конкретному утверждению и источнику.
+- Если RPC недоступен или ответ неокончательный, оставить честный статус в кадре либо перезаписать позже. Не имитировать успешную проверку.
+- После **Check publication** дождаться настоящего результата; паузу можно сократить монтажом, но текст результата не подменять.
+- Перед записью проверить читаемость текста, отсутствие ключа в кадре и доступность внешней страницы источника.
+
+## Rehearsal — 2026-10-12
+
+The built candidate was rehearsed without an AI provider key at `http://127.0.0.1:5173/`.
+Beefy search, Kintsu relationship, exact full record and its publication check passed.
+`E-BEEFY-KINTSU-ASSET-001` matched the active publication at Testnet block `70379100`.
+Following Kintsu produced the two-node Beefy/Kintsu Graph neighborhood. The default Beefy
+focus shows only six neighbors, so it does not initially include Kintsu; the final step above
+uses the verified shorter route instead of assuming all 17 connections are visible.
+This was an interaction rehearsal, not a finished video or a timed live-provider take.
+The public alias still serves v7 until the reviewed candidate is released.

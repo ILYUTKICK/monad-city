@@ -9,7 +9,6 @@ import {
 } from './data.js';
 import {
   REVIEW_GOVERNANCE_AS_OF,
-  REVIEW_GOVERNANCE_POLICY_VERSION,
   evidenceRecords,
   evidenceSnapshot,
   governanceRowBySubjectId,
@@ -35,7 +34,9 @@ import {
   getDistrictTypes,
   plural,
 } from './districts.js';
+import { computeCityLayout } from './city-layout.js';
 import { createCity3D } from './city3d.js';
+import { formatRelationshipTooltip, relationshipTooltipText } from './relationship-tooltip.js';
 
 const projects = [
   {
@@ -2874,10 +2875,21 @@ validateDataContract(projects);
 
 const districts = ['All districts', 'DeFi', 'AI', 'Infrastructure', 'Gaming', 'Identity'];
 
-let selected = 'monad';
+let selected = null;
 let filter = 'All districts';
 let zoom = 1;
-let showLinks = true;
+// Link disclosure for the City and Graph views. Selection and link display are separate
+// states: choosing a project never implies "show all of its incident edges".
+//   overview — calm city scan: aggregate Monad↔district lines only;
+//   project  — connection focus: the selected project's edges (Ecosystem listing layer
+//              filtered out by default, bounded shown set, counts disclosed);
+//   all      — every connection line;
+//   off      — individual links hidden and excluded from hit testing.
+// Small Navigator results may light their matched lines in any mode except off
+// (matchBeams); a large result highlights buildings and keeps the fan out of the map.
+let linkMode = 'overview';
+let showEcosystemListings = false;
+let showAllProjectLinks = false;
 let offset = { x: 0, y: 0 };
 let graph = false;
 let scope = 'city'; // 'city' | 'district'
@@ -2890,6 +2902,9 @@ let districtSelectedEdgeId = null;
 let districtPlaqueDismissed = false;
 let navigatorProjectHighlights = new Set();
 let navigatorRelationshipHighlights = new Set();
+// Full retrieval result size, kept separately from the bounded displayed subset (brief §7:
+// the full answer and the visual subset are distinct states).
+let navigatorTotalMatches = 0;
 
 const stateClass = (state) => state.toLowerCase().replace(/[\s-]/g, '');
 const selectedProject = () => projects.find((project) => project.id === selected);
@@ -3013,9 +3028,11 @@ document.querySelector('#app').innerHTML = `
           <button id="graph-view">⌘ <span>Graph</span></button>
         </div>
 
+        <div id="link-focus-bar" hidden></div>
+
         <div class="city-context" aria-live="polite">
           <span class="context-dot"></span>
-          <strong id="context-label">Monad selected</strong>
+          <strong id="context-label">City overview</strong>
           <span class="context-line"></span>
           <span id="visible-count">All districts · 10 in view</span>
         </div>
@@ -3027,13 +3044,19 @@ document.querySelector('#app').innerHTML = `
           <button id="reset" aria-label="Reset city view">⌖</button>
         </div>
 
-        <div class="legend" aria-label="Relationship provenance classes">
-          <button id="links-toggle" aria-pressed="true">
-            <span class="line-sample"></span> Relationships
-          </button>
+        <div class="legend" data-mode="overview" aria-label="Map connections">
+          <div class="legend-links" role="group" aria-label="Show connections">
+            <button type="button" data-link-mode="overview" aria-pressed="true" title="Calm city scan: aggregate Monad↔district lines only">Overview</button>
+            <button type="button" data-link-mode="project" aria-pressed="false" title="Show the selected project's connection focus">Project</button>
+            <button type="button" data-link-mode="all" aria-pressed="false" title="Every connection line">All</button>
+            <button type="button" data-link-mode="off" aria-pressed="false" title="Hide connection lines">Off</button>
+          </div>
+          <span class="legend-summary">District routes · navigation only</span>
+          <details class="legend-key"><summary>Provenance key</summary><div>
           <span class="legend-state sourced"><i></i> Sourced</span>
           <span class="legend-state demopattern"><i></i> Declared</span>
           <span class="legend-state inferred"><i></i> AI-inferred</span>
+          <small>Sourced means a cited record, not verification or safety. District routes are navigation summaries.</small></div></details>
         </div>
       </div>
     </section>
@@ -3088,21 +3111,42 @@ function iso(x, y, z = 0) {
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const STATUS_COPY = {
-  Observed: 'Public signal observed at snapshot time; not an endorsement.',
-  Claimed: 'Stated by the project; independent proof pending.',
-  Attested: 'Attested by a named third party within its stated scope.',
-  'AI-inferred': 'Proposed by model similarity; never proof.',
-};
 const beaconByProject = Object.fromEntries(projects.map((project) => {
   if (project.state === 'AI-inferred') return [project.id, '#9d81bd'];
   return [project.id, evidenceForProject(project.id).length ? '#8ebbd7' : '#7d7490'];
 }));
+// District aggregate beams: a district is a navigation category, so no relationship record
+// exists for it. The label counts the district's projects holding at least one approved
+// Monad-mainnet record; city3d discloses the aggregate in the hover tooltip. This is a
+// derived wayfinding line, never a relationship claim.
+const districtMonadLinks = (() => {
+  const counts = new Map();
+  projects.forEach((project) => {
+    if (project.id === 'monad') return;
+    if (!counts.has(project.district)) counts.set(project.district, { total: 0, withRecords: 0 });
+    const entry = counts.get(project.district);
+    entry.total += 1;
+    if (evidenceForProject(project.id).length) entry.withRecords += 1;
+  });
+  return [...counts.entries()].map(([district, entry]) => ({
+    district,
+    total: entry.total,
+    withRecords: entry.withRecords,
+    label: `${entry.withRecords} of ${entry.total} projects have approved Monad-mainnet records`,
+  }));
+})();
+// Deterministic presentation layout: quarters per district via the existing classifier.
+// Purely visual — factual profiles, evidence records and relationship endpoints are untouched.
+const cityLayout = computeCityLayout(projects, DISTRICT_EXPERIENCES);
 const city3d = createCity3D({
   container: document.querySelector('#city-gl'),
   labelContainer: document.querySelector('#city-labels'),
   projects,
   relationships,
+  districtLinks: districtMonadLinks,
+  layoutPositions: cityLayout.positions,
+  quarters: cityLayout.quarters,
+  getExclusions: computePanelExclusions,
   onSelect: (id) => select(id),
   onDistrictActivate: (district) => navigateToDistrict(district),
   reducedMotion,
@@ -3219,17 +3263,145 @@ function visible(project) {
   return filter === 'All districts' || project.district === filter;
 }
 
+// Connection-focus partition (brief §9): records group into one visual route per neighbor,
+// groups are ordered by type then name (never a hidden score), and the City shows at most
+// PROJECT_FOCUS_NEIGHBOR_CAP neighbors. Counts in the focus bar always describe records —
+// X of Y — while one route may group several records behind a single arc. The full list
+// stays available in the Passport Connections tab.
+const PROJECT_FOCUS_NEIGHBOR_CAP = 6;
+function projectFocusPartition(projectId) {
+  const incident = relationships.filter(
+    (relationship) => relationship.from === projectId || relationship.to === projectId,
+  );
+  const typeOrder = (relationship) => {
+    const label = RELATIONSHIP_TYPES[relationship.type]?.label ?? relationship.type;
+    return `${relationship.type === 'ecosystem_membership' ? 1 : 0}:${label}`;
+  };
+  const ordered = [...incident].sort((left, right) => {
+    const byType = typeOrder(left).localeCompare(typeOrder(right));
+    if (byType !== 0) return byType;
+    const leftName = connectedProject(left, projectId)?.name ?? left.to;
+    const rightName = connectedProject(right, projectId)?.name ?? right.to;
+    return leftName.localeCompare(rightName) || left.id.localeCompare(right.id);
+  });
+
+  // Group records by neighbor; each group keeps the primary type label of its records.
+  const groupsByNeighbor = new Map();
+  ordered.forEach((relationship) => {
+    const neighborId = relationship.from === projectId ? relationship.to : relationship.from;
+    if (!groupsByNeighbor.has(neighborId)) groupsByNeighbor.set(neighborId, []);
+    groupsByNeighbor.get(neighborId).push(relationship);
+  });
+  const groups = [...groupsByNeighbor.entries()]
+    .map(([neighborId, records]) => ({
+      neighborId,
+      records,
+      typeLabel: RELATIONSHIP_TYPES[records[0].type]?.label ?? records[0].type,
+      isListing: records.every((record) => record.type === 'ecosystem_membership'),
+      key: `route:${neighborId}:${records.map((record) => record.id).join('+')}`,
+    }))
+    .sort((left, right) => {
+      const byListing = (left.isListing ? 1 : 0) - (right.isListing ? 1 : 0);
+      if (byListing !== 0) return byListing;
+      const byType = left.typeLabel.localeCompare(right.typeLabel);
+      if (byType !== 0) return byType;
+      return (connectedProject({ to: left.neighborId }, projectId)?.name ?? left.neighborId)
+        .localeCompare(connectedProject({ to: right.neighborId }, projectId)?.name ?? right.neighborId);
+    });
+
+  const integrations = groups.filter((group) => !group.isListing);
+  const listings = groups.filter((group) => group.isListing);
+  // The listing toggle changes the eligible layer, while the normal focus remains bounded.
+  // Reserve up to two listing endpoints; only explicit Show all removes the route budget.
+  const listingSlice = showEcosystemListings ? listings.slice(0, 2) : [];
+  const shownGroups = showAllProjectLinks ? [...groups]
+    : [...integrations.slice(0, PROJECT_FOCUS_NEIGHBOR_CAP - listingSlice.length), ...listingSlice];
+
+  const shownRecords = shownGroups.flatMap((group) => group.records);
+  const shownIds = new Set(shownRecords.map((record) => record.id));
+  const shownRecordCount = shownRecords.length;
+  const listingRecordCount = listings.reduce((sum, group) => sum + group.records.length, 0);
+  const listingShownRecords = shownGroups.filter((group) => group.isListing)
+    .reduce((sum, group) => sum + group.records.length, 0);
+  const integrationRecordCount = integrations.reduce((sum, group) => sum + group.records.length, 0);
+  const integrationShownRecords = shownGroups.filter((group) => !group.isListing)
+    .reduce((sum, group) => sum + group.records.length, 0);
+
+  return {
+    incident,
+    groups,
+    shownGroups,
+    shownIds,
+    shownList: shownRecords,
+    routes: shownGroups.map((group) => ({
+      key: group.key,
+      fromId: projectId,
+      neighborId: group.neighborId,
+      records: group.records,
+    })),
+    total: incident.length,
+    shown: shownRecordCount,
+    shownNeighborCount: shownGroups.length,
+    neighborCount: groups.length,
+    listingCount: listingRecordCount,
+    listingHidden: listingRecordCount - listingShownRecords,
+    integrationHidden: integrationRecordCount - integrationShownRecords,
+  };
+}
+
+// Panel and toolbar zones the label layer must stay out of, in #city-gl CSS pixels.
+function computePanelExclusions() {
+  const container = document.querySelector('#city-gl');
+  if (!container) return [];
+  const bounds = container.getBoundingClientRect();
+  const zones = [];
+  const addZone = (element, margin = 10) => {
+    if (!element) return;
+    const rect = element.getBoundingClientRect();
+    if (rect.width === 0 && rect.height === 0) return;
+    zones.push({
+      kind: element.id === 'link-focus-bar' ? 'focus-toolbar' : 'panel-or-control',
+      left: rect.left - bounds.left - margin,
+      top: rect.top - bounds.top - margin,
+      right: rect.right - bounds.left + margin,
+      bottom: rect.bottom - bounds.top + margin,
+    });
+  };
+  addZone(document.querySelector('header'), 4);
+  addZone(document.querySelector('.navigator'));
+  addZone(document.querySelector('.passport'));
+  addZone(document.querySelector('.legend'));
+  addZone(document.querySelector('.view-toggle'));
+  addZone(document.querySelector('.city-controls'));
+  addZone(document.querySelector('.city-context'));
+  addZone(document.querySelector('#link-focus-bar'));
+  return zones;
+}
+
 function renderCity() {
+  refreshLinkButtons();
   if (graph) dismissPlaque();
-  document.querySelector('#city-svg').hidden = !graph;
+  document.querySelector('#city-svg').toggleAttribute('hidden', !graph);
+  // City labels are projected by the Three.js camera and therefore do not belong over the
+  // independently pannable/zoomable SVG Graph. Graph district callouts are rendered inside
+  // #world below so they share the graph's exact transform.
+  document.querySelector('#city-labels').toggleAttribute('hidden', graph);
+  const focus = selected && (linkMode === 'project' || graph) ? projectFocusPartition(selected) : null;
   city3d.sync({
     selected,
     filter,
-    showLinks,
+    linkMode,
+    projectFocusRoutes: focus?.routes ?? null,
+    projectFocusIds: focus?.shownIds ?? null,
+    projectFocusNeighborIds: focus ? new Set(focus.routes.map((route) => route.neighborId)) : null,
+    matchBeams: navigatorRelationshipHighlights.size > 0
+      && navigatorRelationshipHighlights.size <= 12
+      && navigatorTotalMatches <= 12,
     highlightProjects: navigatorProjectHighlights,
     highlightRelationships: navigatorRelationshipHighlights,
     graph,
   });
+  renderLinkFocusBar(focus);
   if (graph) {
     renderSvgCity();
   } else {
@@ -3239,8 +3411,53 @@ function renderCity() {
     ? `${selectedProject().name} selected`
     : scope === 'district'
       ? `${activeDistrict} district — select a building`
-      : 'City view';
-  document.querySelector('#visible-count').textContent = `${filter} · ${projects.filter(visible).length} in view`;
+      : graph ? 'Graph view' : 'City view';
+  const externalNeighbors = !graph && filter !== 'All districts' && focus
+    ? focus.routes.filter((route) => projectById(route.neighborId)?.district !== filter).length : 0;
+  document.querySelector('#visible-count').textContent = `${filter} · ${projects.filter(visible).length} in view${externalNeighbors ? ` + ${externalNeighbors} external ${externalNeighbors === 1 ? 'neighbor' : 'neighbors'}` : ''}`;
+}
+
+// Focus toolbar (mockup C): current filter, disclosed counts, and explicit expansion.
+// Rendered only in Project focus; every number is computed from the loaded dataset.
+function renderLinkFocusBar(focus) {
+  const bar = document.querySelector('#link-focus-bar');
+  if (!bar) return;
+  const active = linkMode === 'project' && selected && focus && (focus.total > 0 || linkMode === 'project');
+  bar.hidden = !active;
+  if (!active) return;
+  const project = selectedProject();
+  if (focus.total === 0) {
+    bar.innerHTML = `
+      <strong>${escapeHtml(project?.name ?? '')} connections</strong>
+      <span class="focus-count">No relationship records touch this project yet — connections appear only from records.</span>`;
+    return;
+  }
+  const ecosystemToggle = `
+    <label class="focus-eco">
+      <input type="checkbox" id="eco-toggle" aria-pressed="${showEcosystemListings}" ${showEcosystemListings ? 'checked' : ''} />
+      <span>Ecosystem listing</span>
+      ${focus.listingHidden ? `<small>${focus.listingHidden} hidden</small>` : ''}
+    </label>`;
+  const expand = focus.shown < focus.total
+    ? `<button type="button" id="focus-show-all">Show all ${focus.total} →</button>`
+    : '';
+  const capNote = !showAllProjectLinks && focus.integrationHidden
+    ? `<small class="focus-cap">${focus.integrationHidden} more by type — use Show all</small>`
+    : '';
+  bar.innerHTML = `
+    <strong>${escapeHtml(project?.name ?? '')} connections</strong>
+    ${ecosystemToggle}
+    <span class="focus-count">${focus.shown} of ${focus.total} records · ${focus.shownNeighborCount} neighbors shown</span>
+    ${capNote}
+    ${expand}`;
+  bar.querySelector('#eco-toggle')?.addEventListener('change', (event) => {
+    showEcosystemListings = event.currentTarget.checked;
+    renderCity();
+  });
+  bar.querySelector('#focus-show-all')?.addEventListener('click', () => {
+    showAllProjectLinks = true;
+    renderCity();
+  });
 }
 
 function renderSvgCity() {
@@ -3248,8 +3465,11 @@ function renderSvgCity() {
   // layout scales with the city (archipelago coordinates span much wider than the original ten).
   // District Relationships tab: render the relationship subgraph (nodes incident to the
   // qualifying edges plus their external endpoints) instead of the full district population.
+  // Project connection focus (linkMode 'project' + selection): a readable local layout of the
+  // selected node and its shown neighbors — City building positions are never touched.
   const inRelationshipsTab = scope === 'district' && districtTab === 'relationships';
   const districtIds = scope === 'district' ? districtProjectIdSet() : null;
+  const graphFocus = graph && selected && linkMode === 'project';
   let subgraphIds = null;
   if (inRelationshipsTab && districtIds) {
     subgraphIds = new Set(
@@ -3261,14 +3481,43 @@ function renderSvgCity() {
           || (districtRelFilter === 'declared' && !isApprovedSourcedRelationship(relationship) && relationship.evidenceState !== 'AI-inferred' && relationship.evidenceState !== 'illustrative'))
         .flatMap((relationship) => [relationship.from, relationship.to]),
     );
+  } else if (graphFocus) {
+    const focus = projectFocusPartition(selected);
+    subgraphIds = new Set([selected, ...focus.shownList.flatMap((relationship) => [relationship.from, relationship.to])]);
+  }
+  // Apply the current graph viewport before measuring it for annotation sizing. Focused
+  // subgraphs occupy the panel-safe center column, while the whole graph keeps the full SVG.
+  const svgEl = document.querySelector('#city-svg');
+  const desktopWide = window.matchMedia('(min-width: 941px)').matches;
+  svgEl.classList.toggle('subgraph', Boolean(subgraphIds));
+  if (subgraphIds && desktopWide) {
+    svgEl.style.position = 'absolute';
+    svgEl.style.left = 'var(--map-left, 0px)';
+    svgEl.style.right = 'var(--map-right, 0px)';
+    const topInset = document.querySelector('#link-focus-bar').hidden ? '76px' : '160px';
+    svgEl.style.top = topInset;
+    svgEl.style.bottom = '110px';
+    // SVG is a replaced element: auto height follows its viewBox ratio and ignores the
+    // bottom inset. Explicit dimensions keep both small and large graphs inside the map.
+    svgEl.style.width = 'calc(100% - var(--map-left, 0px) - var(--map-right, 0px))';
+    svgEl.style.height = `calc(100% - ${topInset} - 110px)`;
+  } else {
+    svgEl.style.position = '';
+    svgEl.style.left = '';
+    svgEl.style.right = '';
+    svgEl.style.top = '';
+    svgEl.style.bottom = '';
+    svgEl.style.width = '';
+    svgEl.style.height = '';
   }
   const framedProjects = subgraphIds ? projects.filter((project) => subgraphIds.has(project.id)) : projects;
   // Schematic layout for the subgraph: real archipelago coordinates collapse a district
   // diagonal into one corner under the isometric projection, so the analytical view lays the
   // subgraph out deterministically instead — in-district nodes on an inner ring, external
-  // endpoints on an outer ring (sorted ids, so the arrangement is stable).
+  // endpoints on an outer ring (sorted ids, so the arrangement is stable). Whole-graph mode
+  // consumes the shared quarter layout so City and Graph agree on where a project lives.
   const layoutPositions = new Map();
-  if (subgraphIds) {
+  if (subgraphIds && inRelationshipsTab) {
     const inside = [...subgraphIds].filter((id) => districtIds.has(id)).sort();
     const outside = [...subgraphIds].filter((id) => !districtIds.has(id)).sort();
     inside.forEach((id, index) => {
@@ -3279,6 +3528,24 @@ function renderSvgCity() {
       const angle = (index / Math.max(outside.length, 1)) * Math.PI * 2;
       layoutPositions.set(id, { x: Math.round(Math.cos(angle) * 290), y: Math.round(Math.sin(angle) * 145) });
     });
+  } else if (subgraphIds && graphFocus) {
+    const focus = projectFocusPartition(selected);
+    // The focus toolbar overlays the top of the plate, so the ring center sits below it.
+    layoutPositions.set(selected, { x: 0, y: 60 });
+    const neighbors = focus.shownList.length;
+    const rx = Math.max(215, neighbors * 30);
+    const ry = Math.max(120, neighbors * 17);
+    focus.shownList.forEach((relationship, index) => {
+      const otherId = relationship.from === selected ? relationship.to : relationship.from;
+      if (layoutPositions.has(otherId)) return;
+      const angle = (index / Math.max(neighbors, 1)) * Math.PI * 2 - Math.PI / 2;
+      layoutPositions.set(otherId, {
+        x: Math.round(Math.cos(angle) * rx),
+        y: Math.round(60 + Math.sin(angle) * ry),
+      });
+    });
+  } else {
+    cityLayout.positions.forEach((pos, id) => layoutPositions.set(id, pos));
   }
   const projected = framedProjects.map((project) => {
     const layout = layoutPositions.get(project.id);
@@ -3290,6 +3557,23 @@ function renderSvgCity() {
     minY: Math.min(...projected.map(([, y]) => y)),
     maxY: Math.max(...projected.map(([, y]) => y)),
   };
+
+  const graphDistricts = new Map();
+  framedProjects.forEach((project) => {
+    const layout = layoutPositions.get(project.id);
+    const [x, y] = layout ? [layout.x, layout.y] : iso(project.x, project.y);
+    if (!graphDistricts.has(project.district)) graphDistricts.set(project.district, []);
+    graphDistricts.get(project.district).push({ x, y });
+  });
+  const graphCallouts = [...graphDistricts.entries()].map(([district, points]) => ({
+    district,
+    count: points.length,
+    centerX: points.reduce((sum, point) => sum + point.x, 0) / points.length,
+    nodeAnchorY: Math.min(...points.map((point) => point.y)) - 52,
+    labelWidth: Math.max(116, district.length * 9 + 42),
+    color: projects.find((project) => project.district === district)?.color ?? '#9b93aa',
+  }));
+
   const pad = 90;
   const plateHalfW = (bounds.maxX - bounds.minX) / 2 + pad;
   const plateHalfH = plateHalfW * 0.5;
@@ -3297,14 +3581,55 @@ function renderSvgCity() {
   const plateCy = (bounds.maxY + bounds.minY) / 2;
   svgPlateCenter = { x: plateCx, y: plateCy };
 
+  // SVG text uses graph units and would be only ~4–5px in the whole-graph fit. Scale the
+  // complete annotation (label, leader, and dot) to a 13px initial caption target using the
+  // actual SVG viewport/viewBox ratio. Focused subgraphs naturally scale back down. The
+  // iterative fit includes the resulting annotation bounds, so top labels remain in-frame.
+  const baseVbWidth = Math.max(640, plateHalfW * 2 + 80);
+  const baseVbHeight = Math.max(460, plateHalfH * 2 + 140, bounds.maxY - bounds.minY + 180);
+  const baseVb = {
+    minX: plateCx - baseVbWidth / 2,
+    maxX: plateCx + baseVbWidth / 2,
+    minY: plateCy - baseVbHeight / 2,
+    maxY: plateCy + baseVbHeight / 2,
+  };
+  const svgRect = svgEl.getBoundingClientRect();
+  const viewportWidth = Math.max(1, svgRect.width);
+  const viewportHeight = Math.max(1, svgRect.height);
+  const viewToggleBottom = document.querySelector('.view-toggle').getBoundingClientRect().bottom;
+  const topClearance = Math.max(0, viewToggleBottom - svgRect.top + 12);
+  let annotationScale = 1;
+  let fittedVb = { ...baseVb };
+  for (let iteration = 0; iteration < 4; iteration += 1) {
+    const unitsToPixels = Math.min(
+      viewportWidth / Math.max(1, fittedVb.maxX - fittedVb.minX),
+      viewportHeight / Math.max(1, fittedVb.maxY - fittedVb.minY),
+    );
+    annotationScale = Math.max(0.55, Math.min(5.5, 13 / (14 * unitsToPixels)));
+    fittedVb = { ...baseVb };
+    graphCallouts.forEach((callout) => {
+      const annotationHalfWidth = (callout.labelWidth / 2 + 6) * annotationScale;
+      fittedVb.minX = Math.min(fittedVb.minX, callout.centerX - annotationHalfWidth - 10);
+      fittedVb.maxX = Math.max(fittedVb.maxX, callout.centerX + annotationHalfWidth + 10);
+      fittedVb.minY = Math.min(fittedVb.minY, callout.nodeAnchorY - 60 * annotationScale - 10 - topClearance / unitsToPixels);
+    });
+  }
+  const vbWidth = fittedVb.maxX - fittedVb.minX;
+  const vbHeight = fittedVb.maxY - fittedVb.minY;
+
   let out = `<path d="M${plateCx} ${plateCy - plateHalfH}L${plateCx + plateHalfW} ${plateCy} ${plateCx} ${plateCy + plateHalfH} ${plateCx - plateHalfW} ${plateCy}Z" fill="#111019" stroke="#2a2634" stroke-width="1" />`;
 
-  if (showLinks) {
+  if (linkMode !== 'off' || navigatorRelationshipHighlights.size) {
+    // High-degree selections (Monad: 171 edges) must not repaint the whole graph as a fan —
+    // active-edge emphasis steps down once the degree passes the focus cap.
+    const selectedDegree = selected
+      ? relationships.filter((item) => item.from === selected || item.to === selected).length
+      : 0;
+    const activeOpacity = selectedDegree > 12 ? 0.12 : 0.86;
     relationships.forEach((relationship) => {
       if (subgraphIds && (!subgraphIds.has(relationship.from) || !subgraphIds.has(relationship.to))) return;
       const project = projects.find((item) => item.id === relationship.from);
       const connected = projects.find((item) => item.id === relationship.to);
-      const evidenceState = RELATIONSHIP_STATES[relationship.evidenceState];
       // The map encodes only the provenance class (sourced / demo / inferred);
       // the exact evidence state stays in the title and data attributes.
       const sourcedEdge = isApprovedSourcedRelationship(relationship);
@@ -3318,16 +3643,42 @@ function renderSvgCity() {
       const active = relationship.from === selected || relationship.to === selected;
       const navigatorMatch = navigatorRelationshipHighlights.has(relationship.id);
       const pairVisible = subgraphIds ? true : visible(project) && visible(connected);
-      const relationshipDisclosure = isApprovedSourcedRelationship(relationship)
-        ? `Limited sourced relationship; exact evidence IDs: ${(relationship.evidenceIds || []).join(', ')}; ${relationship.claimStatus} claim status.`
-        : relationship.dataMode === 'sourced-limited'
-          ? 'Withheld review candidate; it is not displayed as source-backed support.'
-          : 'Demo illustrative relationship; unavailable evidence placeholder.';
-      const title = `${project.name} to ${connected.name}: ${RELATIONSHIP_TYPES[relationship.type].label}; ${evidenceState.label}; ${relationshipDisclosure}`;
+      const title = escapeHtml(relationshipTooltipText(formatRelationshipTooltip(
+        relationship, project.name, connected.name,
+      )));
 
-      out += `<path class="relationship-line ${navigatorMatch ? 'navigator-match' : ''}" data-relationship="${relationship.id}" data-evidence-state="${relationship.evidenceState}" d="M${start} L${end}" fill="none" stroke="${lineColor}" stroke-width="${navigatorMatch ? 2.5 : active ? 1.8 : 0.7}" opacity="${pairVisible ? (navigatorMatch ? 1 : active ? 0.86 : 0.24) : 0.035}" ${lineDash ? `stroke-dasharray="${lineDash}"` : ''} vector-effect="non-scaling-stroke"><title>${title}</title></path>`;
+      out += `<path class="relationship-line ${navigatorMatch ? 'navigator-match' : ''}" data-relationship="${relationship.id}" data-evidence-state="${relationship.evidenceState}" d="M${start} L${end}" fill="none" stroke="${lineColor}" stroke-width="${navigatorMatch ? 2.5 : active ? 1.8 : 0.7}" opacity="${pairVisible ? (navigatorMatch ? 1 : active ? activeOpacity : 0.24) : 0.035}" ${lineDash ? `stroke-dasharray="${lineDash}"` : ''} vector-effect="non-scaling-stroke"><title>${title}</title></path>`;
+      if (graphFocus) {
+        // Relationship type is text next to the line — color stays a secondary cue only.
+        const midX = (start[0] + end[0]) / 2;
+        const midY = (start[1] + end[1]) / 2;
+        out += `<text x="${midX}" y="${midY - 7}" text-anchor="middle" font-size="10.5" fill="#9a92a8">${RELATIONSHIP_TYPES[relationship.type]?.label ?? relationship.type}</text>`;
+      }
     });
   }
+
+  // District callouts in Graph View are graph-space annotations derived from the nodes that
+  // are actually framed. Keeping them inside #world makes pan/zoom move the label, leader,
+  // and nodes together; the separate City screen-space callouts stay hidden in this mode.
+  graphCallouts.forEach((callout) => {
+    const districtVisible = filter === 'All districts' || filter === callout.district;
+    out += `
+      <g class="graph-district-callout" data-district="${callout.district}" tabindex="0" role="button"
+        aria-label="Explore ${callout.district}, ${callout.count} ${callout.count === 1 ? 'project' : 'projects'}"
+        opacity="${districtVisible ? 0.96 : 0.18}" style="cursor:pointer"
+        transform="translate(${callout.centerX} ${callout.nodeAnchorY}) scale(${annotationScale})">
+        <path d="M0 -25L0 0" fill="none" stroke="${callout.color}" stroke-width="1"
+          opacity="0.72" vector-effect="non-scaling-stroke" />
+        <circle cx="0" cy="0" r="2.4" fill="${callout.color}"
+          vector-effect="non-scaling-stroke" />
+        <rect x="${-callout.labelWidth / 2}" y="-54" width="${callout.labelWidth}" height="38" rx="6"
+          fill="#0d0c13ee" stroke="#3a3545" stroke-width="1" vector-effect="non-scaling-stroke" />
+        <text x="0" y="-38" text-anchor="middle" fill="#eee9f4"
+          font-size="14" font-weight="650">${callout.district}</text>
+        <text x="0" y="-24" text-anchor="middle" fill="#8f889b"
+          font-size="10.5">${callout.count} ${callout.count === 1 ? 'project' : 'projects'}</text>
+      </g>`;
+  });
 
   [...framedProjects]
     .sort((a, b) => a.x + a.y - (b.x + b.y))
@@ -3336,7 +3687,7 @@ function renderSvgCity() {
       const [x, y] = layout ? [layout.x, layout.y] : iso(project.x, project.y);
       const active = project.id === selected;
       const navigatorMatch = navigatorProjectHighlights.has(project.id);
-      const external = Boolean(subgraphIds) && project.district !== activeDistrict;
+      const external = inRelationshipsTab && project.district !== activeDistrict;
       const isVisible = subgraphIds ? true : visible(project);
       const projectOpacity = isVisible ? (active || navigatorMatch ? 1 : navigatorProjectHighlights.size ? 0.48 : 0.78) : 0.1;
       const current = active ? ' aria-current="true"' : '';
@@ -3369,44 +3720,16 @@ function renderSvgCity() {
         out += `<text x="${x}" y="${y - 14}" fill="${active ? '#f3edff' : project.color}" font-size="19" text-anchor="middle">${project.abbr}</text>`;
       }
 
-      const labelWidth = project.name.length * 7 + 24;
-      const labelHeight = active ? 26 : 22;
+      const labelWidth = project.name.length * 9 + 26;
+      const labelHeight = active ? 32 : 28;
       out += `<rect x="${x - labelWidth / 2}" y="${y + 11}" width="${labelWidth}" height="${labelHeight}" rx="5" fill="${active ? '#382b50' : '#121119e8'}" stroke="${active ? '#d1b9ff' : '#34303e'}" stroke-width="${active ? 1.4 : 0.8}" vector-effect="non-scaling-stroke" />`;
-      out += `<text x="${x}" y="${y + (active ? 28 : 26)}" text-anchor="middle" fill="${active ? '#f5efff' : '#bbb4c5'}" font-size="${active ? 11.5 : 10.5}" font-weight="${active ? 650 : 500}">${project.name}</text>${external ? `<text x="${x}" y="${y + (active ? 41 : 39)}" text-anchor="middle" fill="#8f86a8" font-size="9">outside district</text>` : ''}`;
+      out += `<text x="${x}" y="${y + (active ? 32 : 30)}" text-anchor="middle" fill="${active ? '#f5efff' : '#bbb4c5'}" font-size="${active ? 15 : 14}" font-weight="${active ? 650 : 500}">${project.name}</text>${external ? `<text x="${x}" y="${y + (active ? 53 : 49)}" text-anchor="middle" fill="#8f86a8" font-size="11">outside district</text>` : ''}`;
       out += '</g>';
     });
 
   document.querySelector('#world').innerHTML = out;
-  // Subgraph mode insets the SVG to the zone between the floating panels (inline styles:
-  // style.css is cached separately from main.js and a stale cache would drop the rule).
-  // Desktop only — the narrow layout stacks panels below the city.
-  const svgEl = document.querySelector('#city-svg');
-  const desktopWide = window.matchMedia('(min-width: 941px)').matches;
-  svgEl.classList.toggle('subgraph', Boolean(subgraphIds));
-  if (subgraphIds && desktopWide) {
-    svgEl.style.position = 'absolute';
-    svgEl.style.left = '384px';
-    svgEl.style.right = '320px';
-    svgEl.style.top = '0px';
-    svgEl.style.bottom = '0px';
-    svgEl.style.width = 'auto';
-    svgEl.style.height = 'auto';
-  } else {
-    svgEl.style.position = '';
-    svgEl.style.left = '';
-    svgEl.style.right = '';
-    svgEl.style.top = '';
-    svgEl.style.bottom = '';
-    svgEl.style.width = '';
-    svgEl.style.height = '';
-  }
   if (graph && projects.length) {
-    const vbMinX = plateCx - plateHalfW - 40;
-    const vbMinY = plateCy - plateHalfH - 70;
-    document.querySelector('#city-svg').setAttribute(
-      'viewBox',
-      `${vbMinX} ${vbMinY} ${plateHalfW * 2 + 80} ${plateHalfH * 2 + 140}`,
-    );
+    svgEl.setAttribute('viewBox', `${fittedVb.minX} ${fittedVb.minY} ${vbWidth} ${vbHeight}`);
   }
   transform();
 
@@ -3416,6 +3739,16 @@ function renderSvgCity() {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         select(element.dataset.id);
+      }
+    };
+  });
+  document.querySelectorAll('.graph-district-callout').forEach((element) => {
+    const activate = () => navigateToDistrict(element.dataset.district);
+    element.onclick = activate;
+    element.onkeydown = (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        activate();
       }
     };
   });
@@ -3431,11 +3764,15 @@ function renderSvgCity() {
 function clearNavigatorHighlights() {
   navigatorProjectHighlights = new Set();
   navigatorRelationshipHighlights = new Set();
+  navigatorTotalMatches = 0;
 }
 
 function select(id, { preserveNavigatorHighlights = false } = {}) {
   if (!preserveNavigatorHighlights) clearNavigatorHighlights();
   selected = id;
+  // Connection focus is re-derived for every selection: the explicit "Show all" expansion
+  // never leaks from one project to the next.
+  showAllProjectLinks = false;
   dismissPlaque();
   if (!visible(selectedProject())) {
     filter = 'All districts';
@@ -3444,6 +3781,7 @@ function select(id, { preserveNavigatorHighlights = false } = {}) {
   renderCity();
   renderPassport();
   setPassportExpanded(true);
+  if (!graph) focusProjectOnMap(id, { neighborhood: linkMode === 'project' });
 }
 
 function setMapView(view) {
@@ -3458,6 +3796,9 @@ function focusProjectOnMap(id, { neighborhood = false } = {}) {
   if (!project) return;
   if (!graph) {
     city3d.focusProject(id, { neighborhood });
+    if (matchMedia('(max-width: 940px)').matches) {
+      document.querySelector('#city-gl').scrollIntoView({ block: 'start', behavior: reducedMotion ? 'instant' : 'smooth' });
+    }
     return;
   }
   const [x, y] = iso(project.x, project.y);
@@ -3610,7 +3951,7 @@ function queueGroundedAnswer(result) {
   if (!aiEnabled(settings) || ['unsupported-request', 'insufficient-evidence', 'invalid-query'].includes(result.outcome)) return;
   const mount = document.createElement('section');
   mount.className = 'navigator-ai';
-  mount.innerHTML = '<p class="navigator-ai-label">Agent · planning…</p><div class="navigator-ai-steps"></div>';
+  mount.innerHTML = '<p class="navigator-ai-label">Agent · planning…</p><details class="navigator-ai-trace"><summary>Tool details</summary><div class="navigator-ai-steps"></div></details>';
   card.append(mount);
   const steps = mount.querySelector('.navigator-ai-steps');
   groundedAiAbort = new AbortController();
@@ -3662,7 +4003,7 @@ function queueGroundedAnswer(result) {
         </section>`).join('');
       mount.innerHTML = `
         <p class="navigator-ai-label">${escapeHtml(labels[mode] || 'Local graph result')} · ${escapeHtml(model)}</p>
-        <div class="navigator-ai-steps">${steps.innerHTML}</div>
+        <details class="navigator-ai-trace"><summary>Tool details</summary><div class="navigator-ai-steps">${steps.innerHTML}</div></details>
         ${recordHtml || `<p class="navigator-ai-text">${escapeHtml(text)}</p>`}
         <p class="navigator-ai-note">${mode === 'evidence' ? 'AI selects relevance; source records retain their exact scope. Citation IDs were checked against eligible records retrieved by the tools.' : 'This result uses only the local graph tool output.'} The local result controls the map.</p>`;
     })
@@ -3670,7 +4011,7 @@ function queueGroundedAnswer(result) {
       if (signal.aborted || error?.name === 'AbortError') return;
       mount.innerHTML = `
         <p class="navigator-ai-label">${error?.message?.includes('incomplete (token limit)') ? 'AI response incomplete' : 'Grounded AI unavailable'}</p>
-        <div class="navigator-ai-steps">${steps.innerHTML}</div>
+        <details class="navigator-ai-trace"><summary>Tool details</summary><div class="navigator-ai-steps">${steps.innerHTML}</div></details>
         <p class="navigator-ai-status">${escapeHtml(error?.message || 'Unknown error')}</p>
         <p class="navigator-ai-note">The deterministic result above is unaffected.</p>`;
     });
@@ -3701,12 +4042,39 @@ function initAiPanel() {
   };
 }
 
+function refreshLinkButtons() {
+  document.querySelector('.legend').dataset.mode = linkMode;
+  document.querySelectorAll('.legend-links button').forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.linkMode === linkMode));
+    if (button.dataset.linkMode === 'project') {
+      button.disabled = !selected;
+      button.title = selected ? 'Show the selected project’s connection focus' : 'Select a building to explore its connections';
+    }
+  });
+}
+
+function setLinkMode(mode) {
+  linkMode = mode;
+  // Transition 4/6 (brief §7): entering Project focus frames the selected project; returning
+  // to Overview restores the district/overview camera context.
+  if (mode === 'project' && selected) {
+    city3d.focusProject(selected, { neighborhood: true });
+  } else if (mode === 'overview') {
+    if (scope === 'district' && activeDistrict) city3d.enterDistrict(activeDistrict, { animate: !reducedMotion });
+    else city3d.reset();
+  }
+  refreshLinkButtons();
+  renderCity();
+  if (matchMedia('(max-width: 940px)').matches) {
+    document.querySelector('#city-gl').scrollIntoView({ block: 'start', behavior: reducedMotion ? 'instant' : 'smooth' });
+  }
+}
+
 function focusNavigatorRelationship(id) {
   const relationship = relationships.find((item) => item.id === id);
   if (!relationship) return;
   setMapView('graph');
-  showLinks = true;
-  document.querySelector('#links-toggle').setAttribute('aria-pressed', 'true');
+  refreshLinkButtons();
   navigatorProjectHighlights = new Set([relationship.from, relationship.to]);
   navigatorRelationshipHighlights = new Set([relationship.id]);
   selected = relationship.from;
@@ -3727,11 +4095,15 @@ function applyNavigatorMapAction(result) {
   clearNavigatorHighlights();
   navigatorProjectHighlights = new Set(action.highlightProjectIds);
   navigatorRelationshipHighlights = new Set(action.highlightRelationshipIds);
-  if (navigatorRelationshipHighlights.size) {
-    showLinks = true;
-    document.querySelector('#links-toggle').setAttribute('aria-pressed', 'true');
+  navigatorTotalMatches = Number(result.rankProjectCount ?? navigatorProjectHighlights.size ?? 0);
+  // A large result never yanks the map into the dense whole-graph view: the buildings carry
+  // the highlight, the full answer stays in the Navigator panel, and the connection focus
+  // (Project mode) is the explicit way to draw the lines.
+  const largeResult = navigatorTotalMatches > 12 || navigatorRelationshipHighlights.size > 12;
+  refreshLinkButtons();
+  if (!largeResult) {
+    setMapView(action.view);
   }
-  setMapView(action.view);
   if (action.type === 'focus-district' && action.district) {
     filter = action.district;
     zoom = 1;
@@ -3778,6 +4150,13 @@ function formatTimestamp(timestamp) {
   }).format(new Date(timestamp));
 }
 
+function formatReviewDate(timestamp) {
+  if (!timestamp) return 'Unavailable';
+  return new Intl.DateTimeFormat('en', {
+    month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
+  }).format(new Date(timestamp));
+}
+
 function formatSnapshotDate(timestamp) {
   if (!timestamp) return 'Unavailable';
   return new Intl.DateTimeFormat('en', {
@@ -3794,7 +4173,7 @@ function formatSnapshotDate(timestamp) {
 
 function reviewStatusLabel(status) {
   return {
-    approved: 'Approved for snapshot',
+    approved: 'Approved source record',
     proposed: 'Proposed · withheld',
     'needs-review': 'Needs review · withheld',
     rejected: 'Rejected · withheld',
@@ -3857,11 +4236,11 @@ function evidenceRecordCard(record, { compact = false } = {}) {
         ${sourceLink}
       </div>
       <details class="record-audit">
-        <summary>Inspect full record</summary>
+        <summary>Full record</summary>
         <dl class="evidence-list">
           <div><dt>Record</dt><dd>${escapeHtml(record.id)}</dd></div>
           <div><dt>Claim type</dt><dd>${escapeHtml(record.evidenceType || 'Unavailable')}</dd></div>
-          <div><dt>Snapshot review</dt><dd><span class="review-status approved">${escapeHtml(reviewStatusLabel(record.reviewStatus))}</span>${record.reviewedAt ? `<br />${escapeHtml(formatTimestamp(record.reviewedAt))}` : ''}</dd></div>
+          <div><dt>Source review</dt><dd><span class="review-status approved">${escapeHtml(reviewStatusLabel(record.reviewStatus))}</span>${record.reviewedAt ? `<br />${escapeHtml(formatTimestamp(record.reviewedAt))}` : ''}</dd></div>
           <div><dt>Governance</dt><dd>${governanceState(reviewGovernanceRow)}${reviewGovernanceRow ? `<br /><span class="support-note">Next review ${escapeHtml(formatSnapshotDate(reviewGovernanceRow.nextReviewAt))}</span>` : ''}</dd></div>
           <div><dt>Review action</dt><dd>${governanceDetails('evidence', record.id)}</dd></div>
           <div><dt>Support</dt><dd>${escapeHtml(record.supportMode || 'unavailable-only')}<br /><span class="support-note">${escapeHtml(record.supportedProposition || record.scope || '')}</span></dd></div>
@@ -3953,18 +4332,150 @@ function evidenceList(evidence) {
   `;
 }
 
+let passportTab = 'overview';
+let passportTabProject = null;
+
+function passportConnectionRow({ relationship, project: connected }) {
+  const evidenceState = RELATIONSHIP_STATES[relationship.evidenceState];
+  const relationshipType = RELATIONSHIP_TYPES[relationship.type];
+  const sourced = isApprovedSourcedRelationship(relationship);
+  const label = sourced ? relationship.claimStatus : evidenceState.shortLabel;
+  return `
+    <article class="relationship-card ${sourced ? 'sourced-relationship' : ''}" data-relationship="${relationship.id}">
+      <button class="connection" data-project="${connected.id}">
+        <span class="connection-logo" style="color:${connected.color}">${connected.abbr}</span>
+        <span class="connection-copy">
+          <strong>${connected.name}</strong>
+          <small>${relationshipType.label}</small>
+        </span>
+        <span class="connection-state">${escapeHtml(label)}</span>
+        <span class="connection-arrow" aria-hidden="true">›</span>
+      </button>
+    </article>`;
+}
+
+function passportConnectionCard({ relationship, project: connected }) {
+  const evidenceState = RELATIONSHIP_STATES[relationship.evidenceState];
+  const relationshipType = RELATIONSHIP_TYPES[relationship.type];
+  const evidenceClass = stateClass(relationship.evidenceState);
+  const sourced = isApprovedSourcedRelationship(relationship);
+  const records = evidenceForRelationship(relationship);
+  const label = sourced ? 'Sourced' : evidenceState.shortLabel;
+  return `
+    <article class="relationship-card ${evidenceClass} ${sourced ? 'sourced-relationship' : ''}" data-relationship="${relationship.id}">
+      <button class="connection" data-project="${connected.id}">
+        <span class="connection-logo" style="color:${connected.color}">${connected.abbr}</span>
+        <span class="connection-copy">
+          <strong>${connected.name}</strong>
+          <small>${relationshipType.label}</small>
+        </span>
+        <span class="connection-state ${evidenceClass}">${escapeHtml(label)}</span>
+        <span class="connection-arrow" aria-hidden="true">↗</span>
+      </button>
+      <details class="relationship-evidence">
+        <summary>
+          <span>Evidence</span>
+          <span class="summary-state">${sourced ? `${relationship.claimStatus} · ${relationship.evidenceState}` : evidenceState.label}</span>
+        </summary>
+        <p class="evidence-meaning">${sourced ? `This relationship is a limited source-backed ${relationship.claimStatus} claim. It is not a global verification, endorsement, or current-operation statement.` : evidenceState.meaning}</p>
+        <div class="relationship-type">
+          <span>Relationship type</span>
+          <strong>${relationshipType.label}</strong>
+          <code>${relationship.type}</code>
+        </div>
+        ${sourced ? `<div class="relationship-evidence-ids"><strong>Exact evidence IDs</strong><span>${relationship.evidenceIds.map(escapeHtml).join(', ')}</span></div><p class="relationship-scope">${escapeHtml(relationship.scope)}</p>${governanceDetails('relationship', relationship.id)}${registryPublicationControl('relationship', relationship.id)}<div class="exact-evidence-list">${records.map((record) => evidenceRecordCard(record)).join('')}</div>` : evidenceList(relationship)}
+      </details>
+    </article>`;
+}
+
+function passportOverviewHtml(projectRecords, connections) {
+  const sourcedConnections = connections.filter(({ relationship }) => isApprovedSourcedRelationship(relationship));
+  const featured = (sourcedConnections.length ? sourcedConnections : connections).slice(0, 3);
+  const headingLabel = sourcedConnections.length
+    ? 'Documented connections'
+    : connections.length ? 'Connections' : 'No connections yet';
+  const rows = featured.map(passportConnectionRow).join('');
+  const scopeNote = featured[0]?.relationship.scope;
+  const viewAll = connections.length > featured.length
+    ? `<button type="button" class="view-all" data-tab="connections">View all ${connections.length} connections <span aria-hidden="true">→</span></button>`
+    : '';
+  return `
+    <h3 class="panel-heading">${headingLabel}</h3>
+    ${featured.length ? `<div class="connections">${rows}</div>` : '<p class="passport-empty">Connections appear only from relationship records — never from proximity or shared category.</p>'}
+    ${scopeNote ? `<p class="overview-note">${escapeHtml(scopeNote)}</p>` : ''}
+    ${viewAll}
+    <button type="button" class="sources-link" data-tab="sources">
+      <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 1.5h5.2L13 5.3V14.5H4z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M9 1.8V5.4h3.7" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M6 8.2h5M6 10.6h5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+      <span class="sources-copy"><strong>Sources &amp; publication</strong><small>${projectRecords.length ? `${plural(projectRecords.length, 'record')} · Inspect details` : 'Illustrative profile · no evidence records'}</small></span>
+      <span class="connection-arrow" aria-hidden="true">›</span>
+    </button>`;
+}
+
+function passportConnectionsHtml(connections) {
+  // Pinned Monad row: every profile lives in Monad City, so the L1 is offered as navigation.
+  // It is identity, not a relationship claim — projects with a real monad edge already list
+  // it among their sourced connections and get no duplicate row.
+  const hasMonadEdge = connections.some(({ relationship }) => relationship.from === 'monad' || relationship.to === 'monad');
+  const monadRow = hasMonadEdge ? '' : `
+    <article class="relationship-card">
+      <button class="connection" data-project="monad">
+        <span class="connection-logo" style="color:#a58aff">M</span>
+        <span class="connection-copy">
+          <strong>Monad</strong>
+          <small>Layer 1 network</small>
+        </span>
+        <span class="connection-state">L1</span>
+        <span class="connection-arrow" aria-hidden="true">›</span>
+      </button>
+    </article>`;
+  if (!connections.length) {
+    return `${monadRow}<p class="passport-empty">Connections appear only from relationship records — never from proximity or shared category.</p>`;
+  }
+  return `${monadRow}<div class="connections connections-full">${connections.map(passportConnectionCard).join('')}</div>`;
+}
+
+function passportSourcesHtml(projectRecords, project) {
+  return `
+    ${projectRecords.length
+      ? `<div class="exact-evidence-list">${projectRecords.map((record) => evidenceRecordCard(record)).join('')}</div>`
+      : `<div class="evidence-panel project-evidence">${evidenceList(project.evidence)}</div>`}
+    <details class="snapshot-audit">
+      <summary>Source review <span>${escapeHtml(formatReviewDate(evidenceSnapshot.reviewedAt))}</span></summary>
+      <div class="passport-snapshot">
+        <span>APPROVED SOURCE SET</span>
+        <strong>Reviewed ${escapeHtml(formatSnapshotDate(evidenceSnapshot.reviewedAt))}</strong>
+        <small>Created ${escapeHtml(formatSnapshotDate(evidenceSnapshot.createdAt))} · review recorded ${escapeHtml(formatSnapshotDate(evidenceSnapshot.reviewedAt))}</small>
+        <small>Governance checked ${escapeHtml(formatSnapshotDate(REVIEW_GOVERNANCE_AS_OF))}</small>
+        <small>${reviewGovernance.summary.reviewCurrent} review current · ${reviewGovernance.summary.reviewDue} due across ${reviewGovernance.summary.subjects} governed subjects</small>
+      </div>
+    </details>`;
+}
+
 function renderPassport() {
   if (scope === 'district' && !selected) {
     renderDistrictLens();
     return;
   }
   const project = selectedProject();
-  if (!project) return;
+  if (!project) {
+    document.querySelector('#passport').innerHTML = '';
+    return;
+  }
   const projectRecords = evidenceForProject(project.id);
   const connections = relationshipsForProject(project.id).map((relationship) => ({
     relationship,
     project: connectedProject(relationship, project.id),
   }));
+  const passportProjectChanged = passportTabProject !== project.id;
+  if (passportProjectChanged) {
+    passportTab = 'overview';
+    passportTabProject = project.id;
+  }
+  const primaryRecord = projectRecords[0];
+  const primarySourceTitle = primaryRecord?.source?.title || '';
+  const headMeta = projectRecords.length
+    ? `${escapeHtml(primarySourceTitle)} · ${escapeHtml(primaryRecord.status)}`
+    : escapeHtml(project.state);
 
   document.querySelector('#passport').innerHTML = `
     <div class="passport-head">
@@ -3973,84 +4484,50 @@ function renderPassport() {
         <h2>${project.name}</h2>
         <button class="panel-collapse" id="passport-collapse" aria-expanded="true" aria-label="Collapse project passport">—</button>
       </div>
-      <p class="passport-subtitle">${project.type}, ${project.district} district</p>
+      <p class="passport-subtitle">${escapeHtml(project.type)} · ${escapeHtml(project.district)}</p>
       <p class="project-description">${project.description}</p>
+      <p class="passport-head-meta">${headMeta}</p>
       <div class="project-actions">
         ${
           project.site
-            ? `<a href="https://${project.site}" target="_blank" rel="noopener noreferrer">Open website <span>↗</span></a>`
+            ? `<a href="https://${project.site}" target="_blank" rel="noopener noreferrer">Website <span>↗</span></a>`
             : '<span class="mock-site">Concept profile — no public site</span>'
         }
-        <button id="focus-project" aria-label="Focus ${project.name} on map">⌖</button>
+        <button type="button" id="focus-project" class="focus-link" aria-label="Focus ${project.name} on map">Focus on map</button>
       </div>
     </div>
 
     <div class="passport-body">
-      <div class="sec">Status</div>
-      ${projectRecords.length
-        ? '<div class="item"><b>Source-backed</b><span>Exact records below; each carries its own status and cited scope.</span></div>'
-        : `<div class="item"><b>${project.state}</b><span>${escapeHtml(STATUS_COPY[project.state] || '')}</span></div>`}
-
-      <div class="sec sec-row">
-        <span>Evidence</span>
-        <button class="info" id="trust-info" title="Open evidence-state definitions" aria-label="Open evidence-state definitions">ⓘ</button>
+      <div class="passport-tabs" role="tablist" aria-label="Passport sections">
+        <button type="button" class="passport-tab" role="tab" data-tab="overview" aria-selected="${passportTab === 'overview'}">Overview</button>
+        <button type="button" class="passport-tab" role="tab" data-tab="connections" aria-selected="${passportTab === 'connections'}">Connections <span class="tab-count">${connections.length}</span></button>
+        <button type="button" class="passport-tab" role="tab" data-tab="sources" aria-selected="${passportTab === 'sources'}">Sources <span class="tab-count">${projectRecords.length}</span></button>
       </div>
-      ${projectRecords.length ? `<div class="exact-evidence-list">${projectRecords.map((record) => evidenceRecordCard(record)).join('')}</div>` : `<div class="evidence-panel project-evidence">${evidenceList(project.evidence)}</div>`}
-
-      <div class="sec">Relationships</div>
-      <div class="connections">
-        ${connections
-          .map(({ relationship, project: connected }) => {
-            const evidenceState = RELATIONSHIP_STATES[relationship.evidenceState];
-            const relationshipType = RELATIONSHIP_TYPES[relationship.type];
-            const evidenceClass = stateClass(relationship.evidenceState);
-            const sourced = isApprovedSourcedRelationship(relationship);
-            const records = evidenceForRelationship(relationship);
-            const label = sourced ? 'Sourced' : evidenceState.shortLabel;
-            return `
-              <article class="relationship-card ${evidenceClass} ${sourced ? 'sourced-relationship' : ''}" data-relationship="${relationship.id}">
-                <button class="connection" data-project="${connected.id}">
-                  <span class="connection-logo" style="color:${connected.color}">${connected.abbr}</span>
-                  <span class="connection-copy">
-                    <strong>${connected.name}</strong>
-                    <small>${relationshipType.label}</small>
-                  </span>
-                  <span class="connection-state ${evidenceClass}">${escapeHtml(label)}</span>
-                  <span class="connection-arrow" aria-hidden="true">↗</span>
-                </button>
-                <details class="relationship-evidence">
-                  <summary>
-                    <span>Inspect evidence</span>
-                    <span class="summary-state">${sourced ? `${relationship.claimStatus} · ${relationship.evidenceState}` : evidenceState.label}</span>
-                  </summary>
-                  <p class="evidence-meaning">${sourced ? `This relationship is a limited source-backed ${relationship.claimStatus} claim. It is not a global verification, endorsement, or current-operation statement.` : evidenceState.meaning}</p>
-                  <div class="relationship-type">
-                    <span>Relationship type</span>
-                    <strong>${relationshipType.label}</strong>
-                    <code>${relationship.type}</code>
-                  </div>
-                  ${sourced ? `<div class="relationship-evidence-ids"><strong>Exact evidence IDs</strong><span>${relationship.evidenceIds.map(escapeHtml).join(', ')}</span></div><p class="relationship-scope">${escapeHtml(relationship.scope)}</p>${governanceDetails('relationship', relationship.id)}${registryPublicationControl('relationship', relationship.id)}<div class="exact-evidence-list">${records.map((record) => evidenceRecordCard(record)).join('')}</div>` : evidenceList(relationship)}
-                </details>
-              </article>
-            `;
-          })
-          .join('')}
+      <div class="passport-tabpanel" role="tabpanel">
+        ${
+          passportTab === 'connections'
+            ? passportConnectionsHtml(connections)
+            : passportTab === 'sources'
+              ? passportSourcesHtml(projectRecords, project)
+              : passportOverviewHtml(projectRecords, connections)
+        }
       </div>
-
-      <details class="snapshot-audit">
-        <summary>Snapshot &amp; governance audit <span>${escapeHtml(evidenceSnapshot.version)}</span></summary>
-        <div class="passport-snapshot">
-          <span>APPROVED SNAPSHOT</span>
-          <strong>${escapeHtml(evidenceSnapshot.version)}</strong>
-          <small>Created ${escapeHtml(formatSnapshotDate(evidenceSnapshot.createdAt))} · reviewed ${escapeHtml(formatSnapshotDate(evidenceSnapshot.reviewedAt))}</small>
-          <small>Policy ${escapeHtml(REVIEW_GOVERNANCE_POLICY_VERSION)} · as of <code>${escapeHtml(REVIEW_GOVERNANCE_AS_OF)}</code></small>
-          <small>${reviewGovernance.summary.reviewCurrent} review current · ${reviewGovernance.summary.reviewDue} due across ${reviewGovernance.summary.subjects} governed subjects</small>
-        </div>
-      </details>
-
-      <p class="passport-note">States apply to their exact cited scope.</p>
     </div>
+
+    <p class="passport-note">Statuses apply to individual claims.</p>
   `;
+
+  if (passportProjectChanged) document.querySelector('#passport').scrollTop = 0;
+
+  document.querySelectorAll('.passport-tab, .view-all, .sources-link').forEach((element) => {
+    element.onclick = () => {
+      passportTab = element.dataset.tab;
+      // Opening the connection surface is the explicit transition into connection focus
+      // (brief §7, transition 4): the map shows the selected project's edges with counts.
+      if (passportTab === 'connections' && linkMode === 'overview') setLinkMode('project');
+      renderPassport();
+    };
+  });
 
   document.querySelectorAll('.connection').forEach((element) => {
     element.onclick = () => select(element.dataset.project);
@@ -4059,8 +4536,6 @@ function renderPassport() {
   document.querySelector('#focus-project').onclick = () => {
     focusProjectOnMap(project.id);
   };
-
-  document.querySelector('#trust-info').onclick = () => document.querySelector('#about-dialog').showModal();
 
   document.querySelector('#back-to-lens')?.addEventListener('click', () => {
     selected = null;
@@ -4685,6 +5160,9 @@ document.querySelector('#reset').onclick = reset;
 function reset() {
   zoom = 1;
   offset = { x: 0, y: 0 };
+  linkMode = 'overview';
+  showAllProjectLinks = false;
+  refreshLinkButtons();
   if (scope === 'district') {
     // District framing: reset returns to the island view, not the global camera.
     city3d.enterDistrict(activeDistrict, { animate: !reducedMotion });
@@ -4692,18 +5170,19 @@ function reset() {
     return;
   }
   filter = 'All districts';
+  selected = null;
   clearNavigatorHighlights();
   document.querySelector('#search').value = '';
   city3d.reset();
   renderDistricts();
   renderCity();
+  renderPassport();
+  setPassportExpanded(false);
 }
 
-document.querySelector('#links-toggle').onclick = (event) => {
-  showLinks = !showLinks;
-  event.currentTarget.setAttribute('aria-pressed', showLinks);
-  renderCity();
-};
+document.querySelectorAll('.legend-links button').forEach((button) => {
+  button.onclick = () => setLinkMode(button.dataset.linkMode);
+});
 
 document.querySelector('#graph-view').onclick = () => {
   setMapView('graph');
@@ -4747,9 +5226,19 @@ document.querySelector('.brand').onclick = (event) => {
 
 let drag = null;
 const svg = document.querySelector('#city-svg');
+let graphResizeFrame = null;
+
+window.addEventListener('resize', () => {
+  if (!graph) return;
+  if (graphResizeFrame !== null) cancelAnimationFrame(graphResizeFrame);
+  graphResizeFrame = requestAnimationFrame(() => {
+    graphResizeFrame = null;
+    renderSvgCity();
+  });
+});
 
 svg.onpointerdown = (event) => {
-  if (event.target.closest('.building')) return;
+  if (event.target.closest('.building, .graph-district-callout')) return;
   drag = { x: event.clientX, y: event.clientY, ox: offset.x, oy: offset.y };
   svg.setPointerCapture(event.pointerId);
   svg.classList.add('dragging');

@@ -2826,6 +2826,779 @@ Limitations / next:
 - Submission copy now contains v7 counts and actual transaction/IPFS references. The portal
   itself still needs refreshing, and the technical demo/pitch recordings are still outstanding.
 
+### 2026-10-10 — Side-panel simplification pass (owner request)
+
+Changed:
+- Passport (right panel): removed the standalone "Status" section and its repeating
+  "Source-backed / Exact records below…" boilerplate item. The status now lives as a colored
+  inline chip in the subtitle ("Source-backed · Layer 1 network, Infrastructure district");
+  non-source-backed projects show their state word (Observed/Claimed/Attested/AI-inferred)
+  with the STATUS_COPY definition as a tooltip; full definitions remain in the About dialog
+  via the Evidence ⓘ button.
+- Section headers (`.sec`) restyled quiet: 11px uppercase, muted color. Applies to Passport
+  and District Lens sections (Coverage/Categories/Featured projects/…). Evidence and
+  Relationships headers now carry counts ("Evidence · 3", "Relationships · 8").
+- Evidence records: "Inspect full record" renamed to "Full record" and restyled from a boxed
+  bar into quiet inline text with a + marker; claim text reduced 14px→13px and slightly dimmed
+  so records stop competing with the identity description. All 18 audit fields stay in DOM.
+- Relationship cards flattened (no border/background boxes; hairline separators like the
+  evidence records); the details summary renamed "Inspect evidence" → "Evidence".
+- Files: `src/main.js` (renderPassport, evidenceRecordCard, relationship summary label),
+  `src/style.css` (.sec, .passport-state-chip, flat record/relationship rules).
+
+Verified:
+- `npm run build` passes; active snapshot pair still matches SHA-256
+  `6a6c7cf9830460fca3ce75bdbfd8510b72b6fba70ada136eb145e45a95155d28` (data untouched).
+- Browser QA on localhost:5173 (desktop 1440×900 and narrow 390×844): Monad passport shows
+  chip + counts + flat records; "Full record" expands with all fields (Record…Data mode);
+  Talus (illustrative) shows the AI-inferred chip with tooltip, demo evidence panel, and no
+  Status section; DeFi District Lens renders quiet uppercase section headers; relationship
+  rows and Snapshot & governance audit row intact.
+
+Limitations:
+- The PRODUCT_SPEC "Status" passport section is now satisfied at identity level (chip +
+  per-record states) instead of a dedicated section; the scope boundary line "States apply to
+  their exact cited scope." stays at the passport bottom.
+- Chip tooltips are not accessible on touch; state definitions remain reachable through the
+  Evidence ⓘ About dialog.
+- Narrow-layout in-app-browser screenshot scrolling was unreliable (fixed canvas capture
+  artifact); narrow QA relied on viewport screenshots plus DOM reads.
+
+Next:
+- Refresh the submission portal copy if the simplified passport should be reflected there;
+  demo/pitch recordings still outstanding.
+
+### 2026-10-10 — Passport rebuilt to owner mockup (tabs, neutral copy)
+
+Changed:
+- Owner supplied a drawn mockup for the project Passport and asked for it verbatim, plus: no
+  yellow or light-blue text anywhere in the expanded record lists — "it reads AI-made".
+- Passport restructured to three tabs (owner mockup): Overview / Connections (count) /
+  Sources (count). Overview shows "Documented connections" (first 3 sourced rows, else first
+  3 rows, else empty note), the first featured relationship's scope line, "View all N
+  connections →", and a "Sources & publication" row linking to the Sources tab. Connections
+  tab keeps the full expandable relationship cards; Sources tab keeps the evidence records
+  and the Snapshot & governance audit details. Tab resets to Overview when the selected
+  project changes; the passport ⓘ button was removed (state definitions stay in the About
+  dialog, which the header already opens).
+- Head per mockup: subtitle "Type · District", description, muted "Primary source · state"
+  line (e.g. "Monad App Portal · Observed"; demo projects show the state alone), bordered
+  "Website ↗" button plus text-only "Focus on map".
+- Trust copy: bottom note now reads "Statuses apply to individual claims."; per-record
+  "Full record" expanders unchanged; all 18 audit fields and the LIMITED SOURCED data-mode
+  boundary remain in DOM.
+- Neutralized state colors in the passport (owner request): state words, review/governance/
+  quality chips, source links, summary states, snapshot audit accents are now neutral grays.
+  States stay distinct through their labels; map/legend and city colors are untouched.
+  Connection state labels render sentence case ("Claimed"), 12px.
+- Connection cards restored to boxed rounded rows per the mockup; rows are taller
+  (52px) with 8px gaps.
+- STATUS_COPY const removed (no longer referenced).
+- Files: `src/main.js` (renderPassport split into passportOverviewHtml/ConnectionsHtml/
+  SourcesHtml + row/card helpers), `src/style.css` (tabs, panel headings, sources row,
+  head meta, focus link, neutral chips, boxed rows).
+
+Verified:
+- `npm run build` passes twice (SHA-256
+  `6a6c7cf9830460fca3ce75bdbfd8510b72b6fba70ada136eb145e45a95155d28` untouched).
+- Desktop 1440×900 QA: Beefy Overview matches the mockup (title, "Yield Aggregator · DeFi",
+  description, "Monad App Portal · Observed", Website/Focus on map, tabs with counts 16/17,
+  three boxed "Claimed" rows, scope note, view-all link, Sources row, bottom note); Sources
+  tab expanded record shows zero yellow/blue; Connections tab shows boxed rows with quiet
+  "Sourced" and "Claimed · publisher-claimed" expanders; Talus demo profile renders state-only
+  head meta, "Connections" heading, "Inferred" rows, "Sources 0" tab.
+- Narrow 390×844 QA via DOM measurement (viewport screenshots blocked by the known in-app
+  browser fixed-canvas scroll limitation): zero overflowing elements in the passport, tab bar
+  fits (350px), head meta and note correct, sentence-case "Claimed" rows.
+
+Limitations:
+- Overview "Documented connections" order follows the runtime relationship array (demo
+  replacements first, then id-sorted extras), so the first three rows may differ from the
+  mockup's example projects; counts and behavior match.
+- The District Lens keeps its quiet uppercase section headers; only the Passport was rebuilt
+  to the mockup. Lens and left-rail colors were not part of this pass.
+- Chip tooltips were removed together with the Status chip; state definitions remain in the
+  About dialog only.
+
+Next:
+- Owner review of the tabbed passport; then refresh the submission portal copy and record
+  the outstanding demo/pitch videos.
+
+### 2026-10-11 — Relationship audit prepared by separate agent (owner request)
+
+- A read-only audit agent recomputed all graph numbers from `APPROVED_EVIDENCE_SNAPSHOT`
+  and wrote `docs/research/2026-10-11-relationship-audit.md` (the only file it created;
+  no data, code, or snapshot changes, no build run).
+- Key results: all 28 sourced relationships pass integrity checks (evidenceIds approved,
+  endpoints real, scope/limitations present). 38 MEM records (36 Monad App Portal + 2
+  Monad Infrastructure Directory) vs 5 existing monad→X edges, of which only 3 are MEM-backed
+  (aPriori/magma edges are registry-backed) → **35 ready-to-implement membership edges** for
+  v8 (expected v8: 217 records / 63 relationships, hybrid 74).
+- Nuances recorded: demo relationships are 15 raw (11 remain after 4 sourced replacements);
+  `nadfun` (demo, Nad Arcade) vs `nad-fun` (MEM record, Nad.fun) entity-confusion trap;
+  bonus candidate `fastlane → shmonad` needs an owner type/status ruling; earliest review
+  due 2026-10-22 — v8 promotion should happen before that date or due subjects get re-reviewed.
+- Owner decision pending: approve the 35-edge v8 scope (map visual load of 40+ beams into
+  the central monad tower is the open question), then run
+  evidence:export → prepare ×35 → review ×35 → snapshot → promote → build.
+
+### 2026-10-11 — District aggregate beams + pinned Monad connection (owner request, while audit agent ran)
+
+Changed:
+- City View: five big Monad↔district beams (thick 0.55-box, sourced blue, opacity 0.3) from
+  the central spire to each island centroid. A district is a navigation category, so these
+  are runtime aggregates, NOT relationship records: `districtMonadLinks` in main.js counts
+  per district how many projects hold ≥1 approved Monad-mainnet record, and the hover
+  tooltip discloses "Monad ↔ X · N of M projects have approved Monad-mainnet records" plus
+  an explicit "not an individual relationship claim" line. Districts with zero evidenced
+  projects (Identity: moca has no records) keep the wayfinding line but render faint
+  (0.12/0.2 instead of 0.3/0.8). Relationship-beam hovers take priority where hitboxes
+  overlap; beam hover state was unified for both kinds (`hoveredBeam` token). District beams
+  respect showLinks, district filters and selection (selected project's district or monad
+  itself brightens them).
+- Passport Connections tab: a pinned "Monad · Layer 1 network · L1" navigation row heads the
+  list for every project that has no actual monad relationship edge (the 5 projects with
+  real monad edges keep only their sourced row; Monad's own passport gets none). Clicking
+  navigates to the Monad passport; the row is identity/navigation, styled like a connection
+  card but carrying no trust state.
+- Files: `src/main.js` (districtMonadLinks, passportConnectionsHtml), `src/city3d.js`
+  (districtLinks option, district beam meshes/hitboxes, unified hover, per-district opacity).
+
+Verified:
+- `npm run build` passes (SHA `6a6c…55d28` untouched). Desktop QA: city shows the five big
+  beams; synthetic-pointermove hover on the Monad→AI beam shows the aggregate tooltip
+  ("2 of 3 projects…"); Beefy Connections tab renders the pinned Monad row above its 16
+  sourced cards; relationship-beam hover unaffected.
+
+Limitations:
+- Beam labels count "approved Monad-mainnet records", which today means any approved record
+  (all v7 records sit on Monad mainnet); after v8 lands this can be tightened to actual
+  monad→X edges if the owner prefers.
+- The pinned Monad row is product identity, not evidence; it intentionally carries no
+  Observed/Claimed state.
+
+Next:
+- Owner decides the extended v8 scope (sections 8–11 of the audit report): 166 edges
+  (35 MEM + 56 registry + 75 DefiLlama) vs strict-first, fastlane→shmonad, re-review cadence;
+  promotion deadline 2026-10-22.
+
+### 2026-10-11 — Link-disclosure control for the v8 edge load (owner decision: ship all 166)
+
+Owner approved shipping all 166 edges into v8 and asked for the packaging to be designed so
+the map does not turn to noise. Implemented the packaging now (works with today's 39 edges,
+future-proof for 205):
+
+- The legend's on/off "Relationships" toggle became a three-state segmented control:
+  **Districts | All | Off** (`.legend-links`).
+  - **Districts** (new default): only the five aggregate Monad↔district beams; a selected
+    project keeps its own lines readable (0.6) so selection still explains itself.
+  - **All**: every project beam (today 39; after v8 ~205) plus the district beams.
+  - **Off**: no beams — buildings and labels only.
+- Focused-disclosure override: beams matched by the Navigator (and beams of the selected
+  project in Districts mode) stay visible in every mode, so an answer never disappears
+  behind the packaging. In Graph view the SVG draws lines when the mode is not Off or when
+  Navigator highlights exist.
+- State: `showLinks: boolean` → `linkMode: 'districts' | 'all' | 'off'`, propagated through
+  `city3d.sync`; `focusNavigatorRelationship`/`applyNavigatorMapAction` no longer force the
+  toggle, they just refresh button states.
+- Files: `src/main.js` (legend markup, linkMode, setLinkMode/refreshLinkButtons, SVG gate),
+  `src/city3d.js` (state.linkMode, beamBaseOpacity/districtBeamBaseOpacity per mode,
+  frame loop), `src/style.css` (segmented control).
+
+Verified:
+- `npm run build` passes (SHA untouched). Browser QA: default Districts shows only the five
+  big beams; All shows project beams; Off hides everything; running the "Who's connected to
+  Monad?" prompt in Off still surfaces the matched edges (Graph view override); mode returns
+  to Districts cleanly.
+
+v8 data-packaging plan (from audit report secs 8–11, owner confirmed 166-edge scope):
+1. Amend the review policy/validator to add a legitimate batch derivation method (e.g.
+   `approved-record-derivation` with decisionReason `derived-from-approved-record`) — the
+   validator currently hardcodes `manual-relationship-evidence-inspection`, and claiming
+   manual inspection for a mechanical batch would be dishonest. Owner must approve the
+   policy version bump.
+2. Derive the 166 proposals mechanically from approved records (35 MEM + 56 registry +
+   75 DefiLlama), one node script, deterministic; watch the `nadfun`/`nad-fun` trap.
+3. Run evidence workflow: prepare ×166 → review ×166 (batch method) → snapshot → promote →
+   build; new SHA pair; deadline 2026-10-22.
+4. Post-promotion: consider tightening the district-beam aggregate from "projects with
+   approved Monad-mainnet records" to actual monad→X edge counts, and re-check City visual
+   load in All mode (40+ beams into the spire).
+
+### 2026-10-11 — v8 promoted: all 166 Monad-membership edges live (owner approved)
+
+Owner approved shipping all 166 edges and the `approved-record-derivation` policy amendment.
+
+Changed:
+- `scripts/evidence-workflow.js`: relationship review methods now accept
+  `approved-record-derivation` (approved decisions only, `decisionReason: evidence-resolved`).
+  Documented in `docs/EVIDENCE_DATA_CONTRACT.md`; policy version stays
+  `phase-3.7-review-policy-v1` (bumping would invalidate all existing inline metadata).
+- `scripts/research/derive-v8-monad-edges.mjs`: parses the reviewed audit tables (sections
+  4/8.2/8.3) and derives 166 monad→X edges (35 MEM + 56 registry + 75 DefiLlama), one
+  approved record each; scope/limitations inherited verbatim; batch decision
+  2026-10-11T22:00:00Z, opaque reviewer ref `reviewer:r-9d2c41a7b08e5f63`. Restores the four
+  superseded/withdrawn history predecessors (E-KURU-MEM-001, E-PYTH-CAP-001, monad-kuru,
+  monad-pyth) as stale/superseded from the runtime's retained candidate history so revision
+  lineage validates; they stay outside the approved projection.
+- Pipeline: workspace validated against v7 (217 approved records + 194 approved
+  relationships, 2 stale of each) → snapshot `phase-3.5-v8` → promoted to
+  `src/evidence-snapshots/phase-3.5-v8.generated.js`. Canonical SHA-256
+  `8ca75224fa4d0c0772387aacb332acbdeb40237d048b7eeacde7b9984b03eb6c`.
+- Runtime switch: `src/evidence.js` imports v8 (version/created/reviewed constants updated),
+  `EXPECTED_SNAPSHOT_COUNTS['phase-3.5-v8'] = { records: 217, relationships: 194 }`;
+  `package.json` verify-promotion paths → v8.
+- Registry: `data/registry/phase-3.5-v8/` bundle generated (217 evidence + 194 relationship
+  proofs; relationship root `0x2ca701…c13`); v8 pinned in `scripts/registry/releases.js` and
+  `ACTIVE_REGISTRY_SNAPSHOT`. v8 is NOT published onchain yet — the registry still pins v7,
+  so runtime publication checks report honest `not-published` until the owner transaction.
+- Test expectations updated for v8 counts: ai-checks coverage (194 sourced / 11 illustrative)
+  and registry entries length (194).
+
+Verified:
+- `npm run build` passes on the v8 pair (evidence:verify-promotion + registry:verify +
+  dist). Tests: ai-checks 21/21, onchain 11/11, relationship-expansion 3/3, registry 10/10,
+  publication 6/6, operator 6/6.
+- Browser QA on localhost:5173: Navigator "Who's connected to Monad?" now matches 175
+  projects; Monad passport shows Connections 174; Beefy Connections 17 including the sourced
+  `monad-beefy` Ecosystem membership edge (no duplicate pinned row); DeFi lens and
+  district-beam aggregates consistent; link modes Districts/All/Off behave (All shows the
+  full 205-edge web, Districts stays calm by default).
+
+Limitations:
+- v8 onchain publication is outstanding (owner wallet transaction); publication checks
+  report `not-published` until then.
+- District-beam aggregate still counts "projects with approved Monad-mainnet records"
+  rather than actual monad→X edges; can be tightened later.
+- The workspace artifact (`phase-3.5-v8.workspace.json`) and the derivation script are
+  checked in for reproducibility; the workspace includes stale history predecessors.
+
+Next:
+- Owner: publish v8 to the onchain registry (existing wallet flow), then re-verify a
+  representative publication match; update submission copy counts; demo/pitch recordings.
+
+### 2026-10-11 — City readability pass (brief `docs/research/2026-10-11-city-readability-handoff/`)
+
+Implemented the handoff brief: city → district → quarter → project → connections/sources.
+Files owned and changed: `src/city-layout.js` (new), `src/city-label-layout.js` (new),
+`src/city3d.js`, `src/main.js`, `src/style.css`, `server.js` (one header). Existing v8 work
+preserved; no snapshot, evidence, registry-bundle or contract file touched by this pass.
+
+Changed (P0 — overload):
+- Selection and link display are separate states. Legend toggle became a four-state control
+  `Overview | Project | All | Off` (`linkMode`, default Overview). Overview draws only the
+  five aggregate Monad↔district beams — the default-selected Monad no longer fans.
+- Hidden lines are excluded from raycasting: sync rebuilds `shownBeamHitboxes` /
+  `shownDistrictHitboxes`; `Off` hides every individual line and its tooltip/hit area.
+- High-degree cap: a selected node with >12 incident edges drops active-edge emphasis to
+  0.12/0.4 (graph/city) — selecting Monad never repaints the graph as a fan.
+- Navigator: full result size stored separately (`rankProjectCount` added by retrieval,
+  `navigatorTotalMatches` in main). A large result (>12 matches) highlights buildings, keeps
+  the current view (never auto-jumps to the dense graph), discloses "the first 11 of 175" in
+  the panel; small results light their matched lines (except in Off).
+
+Changed (P0/P1 — labels):
+- New `src/city-label-layout.js`: screen-space placement with measured pill rects, six
+  candidate offsets, 8px gaps, panel-zone exclusion and per-label hysteresis. Priorities:
+  selected > hover > Navigator matches > focus neighbors > quarter names (mid zoom) >
+  full-detail layer (radius < 95). The old array-order "two landmarks per district" rule is
+  gone. Labels are pointer-events: none.
+- Label rects avoid the navigator/passport/header/legend/controls/focus-bar zones
+  (container-relative rects refreshed at most every 300ms).
+
+Changed (P1 — quarters):
+- New `src/city-layout.js`: deterministic quarter layout per district from the existing
+  `districtClusterList` classifier (DeFi: Trading 51 / Credit 33 / Yield & staking 26 /
+  Assets & payments 10 / Other 20 — computed, never stored). Stable grid (8-col cap, CELL 48
+  data units ≈ 4.8 world for 4.1-wide buildings), streets ~1.6× the building pitch, quarter
+  blocks packed into rows and centered on the district centroid; `Identity` keeps its single
+  authored placement; Monad untouched. Positions live in a computed map consumed by City
+  (three.js) and Graph (SVG) through `posOf` — factual profiles never carry view geometry.
+- Quarter pills (`label · count`) render at block centroids in the 42–175 radius band and
+  hide in Project focus.
+
+Changed (P2 — focus, Graph, panel):
+- Connection focus (Project mode): entering it frames the selected project; a focus toolbar
+  discloses `N of M connections shown`, an `Ecosystem listing` layer toggle with hidden
+  count (listings are a separate slice on top of the integration budget, not competing with
+  it), `Show all M →` explicit expansion, and a bounded shown set (cap 12, stable
+  type-then-name order). Empty projects get an honest "No relationship records touch this
+  project yet".
+- Graph: `linkMode project` + selection renders a local ellipse layout (selected center,
+  neighbors ringed, edge type as text on every line) without moving City positions;
+  whole-graph mode consumes the shared quarter layout so both views agree. The false
+  "outside district" marker outside district scope was fixed.
+- Watchdog: rAF self-chaining + a 250ms timer heartbeat — compositor-throttled webviews no
+  longer freeze the city (found during QA: the in-app browser pane stopped dispatching rAF).
+- `server.js`: `Cache-Control: no-cache` on dev responses (stale module caching masked
+  changes during QA).
+
+Verified:
+- `npm run build` green on the unchanged v8 pair
+  (`8ca75224fa4d0c0772387aacb332acbdeb40237d048b7eeacde7b9984b03eb6c`); 57/57 tests
+  (ai 21, expansion 3, registry 10+6+6, onchain 11) — `test:ai` re-run after the Navigator
+  display changes.
+- Browser scenarios (in-app browser; rAF required the watchdog in this environment):
+  load City overview calm; select building → Passport; Connections → Project focus with
+  counts 12 of 17 + Show all; Eco listing toggle adds its edge; Navigator "Who's connected
+  to Monad?" (175 matches) stays in City without a fan and keeps the full bounded answer;
+  small search result highlights; City/Graph switch preserves selection; DeFi quarters with
+  street gaps and non-overlapping quarter/project labels; Off hides lines from picking;
+  Identity/Gaming/AI small districts render honestly.
+- Viewports with real innerWidth×innerHeight (dpr 1): 1440×900, 1280×720, 768×1024, 390×844.
+  Screenshots: after-state captured in-session (overview, DeFi quarters, Beefy City focus,
+  Graph focus, Project focus mobile); before-state is the brief's `images/01-current-city.png`.
+
+Limitations:
+- Neighbor labels inside dense quarters still lose collision battles at mid zoom — the
+  engine hides them by design; zooming in (Project focus frames the project) restores them.
+- The default overview camera (radius 330) crops the larger DeFi island at 1280×720 until
+  the user zooms out one step.
+- Quarter streets and building grids are presentation: no trust, ranking, or evidence
+  meaning; the district-beam aggregate still counts records, not edges.
+- The rAF watchdog is a runtime resilience fix, but this QA environment still throttles
+  compositor repaints — screenshots there can lag one beat behind DOM state.
+
+Next:
+- Owner review of the readability pass; optional tightening of the district-beam aggregate
+  to real monad→X edges; onchain publication of v8 remains the outstanding owner action.
+
+### 2026-10-11 — UX / Frontend visual correction after owner review
+
+Changed:
+- Owned `src/city-layout.js`, `src/city-label-layout.js`, `src/city3d.js`,
+  `src/main.js`, `src/style.css`, and this worklog. Preserved the existing readability
+  implementation and unrelated owner changes.
+- Repacked DeFi into two rows of five quarters with wider streets. Smaller districts
+  use compact blocks; rounded island footprints follow their real building bounds.
+- Replaced tall, repetitive towers with restrained low buildings, modest silhouette
+  variation, quiet facade openings, and desaturated roofs. Reduced filler scenery.
+- Corrected camera elevation math and added fitting to the area available between
+  panels and controls. District mode hides unrelated islands. District names and counts
+  keep a readable screen size; quarter labels retain collision protection and hysteresis.
+- Kept Instrument Sans. Narrowed desktop panels, aligned map controls to the free
+  column, removed the duplicate district plaque, and neutralized Passport accents.
+- Framed SVG Graph within the free column, increased node labels, and fixed small
+  graphs whose intrinsic SVG height overflowed the viewport. Fixed Graph → City hiding:
+  SVG needs an actual hidden attribute plus an explicit CSS rule, not an HTML-only property.
+- Saved before/after screenshots under `docs/research/2026-10-11-visual-correction/`.
+
+Verified:
+- `npm run build` passed after the final fix, including evidence promotion and registry
+  checks. v8 SHA-256 remains
+  `8ca75224fa4d0c0772387aacb332acbdeb40237d048b7eeacde7b9984b03eb6c`.
+- Bounded layout assertions: 176 unique deterministic project positions, quarter totals
+  match district counts, and padded island bounds do not overlap.
+- Browser: overview, DeFi filter, building click and keyboard selection, matching
+  Passport, expanded exact source record, Navigator search for Beefy, City/Graph switching,
+  two-node and multi-neighbor Graph, panel collapse, and reset.
+- Checked City at 1440×900, 1280×720, and 390×844; no horizontal overflow at 390 px.
+  All five DeFi quarter labels are visible at the default district framing. No captured
+  browser console errors during the checked flows.
+
+Limitations:
+- Island geometry and building variation remain presentation only. Claims, source
+  scopes, relationship statuses, registry commitments, and publication state are unchanged.
+- Graph remains the existing schematic SVG view. The narrow layout retains stacked
+  panels; mobile City was inspected, without a complete mobile Graph audit or FPS benchmark.
+
+Next:
+- Owner review of the corrected local interface. Deployment and v8 onchain publication
+  remain separate tasks.
+
+### 2026-10-11 — Product / Visual documentation: reference City design
+
+Changed:
+- Owned the new `docs/design/reference-city-v1/` package, links in VISUAL_DIRECTION
+  and VOXEL_ISLAND_SPEC, and this entry. No application code changed in this task.
+- Prepared the Russian design specification, implementation plan, acceptance checklist
+  and ready-to-use agent prompt, with a portable HTML reading copy and ZIP.
+- Preserved the owner's supplied overview and selection concepts, the later City-only
+  clarification image, and two actual current application screenshots. The repeated
+  overview attachments are byte-identical and deduplicated; assets have hashes and origin kinds.
+- Incorporated the owner's correction: the target is City architecture and artistic
+  rendering. Graph stays SVG; the Beefy concept is a secondary City-selection styling
+  reference, not a requirement for a new 3D Graph or relocated neighbor buildings.
+- Specified building families, height tiers, streets, island edges, water/light, callouts,
+  quiet panels, deterministic presentation, performance targets and real browser acceptance.
+  Targets and proposed modules are labelled as proposals, not implemented capabilities.
+
+Verified:
+- Documentation links, image headers/dimensions and hashes, embedded HTML image references,
+  and ZIP integrity checked locally. All five reference/baseline images are included.
+- Opened the HTML reading copy in the local browser: section navigation works, all five
+  images have nonzero natural dimensions, and the page has no overflow at 1280×720.
+- Main design scope and prompt explicitly preserve project positions, claim/source scopes,
+  existing optional AI and onchain publication state. No snapshot or registry edits.
+
+Limitations:
+- Generated references are illustrative; runtime counts, relationship types and evidence
+  must come from the current dataset. The new visual result is not yet implemented.
+- Performance numbers are implementation targets requiring device-specific measurement.
+
+Next:
+- Implement the City design using the package, then review real overview/district/selection
+  screenshots and complete its functional, narrow and accessibility acceptance checklist.
+
+
+### 2026-10-11 — Night-city art pass (brief `docs/design/reference-city-v1/`)
+
+Implemented the volumetric night-city look for City per the reference package. Files:
+new `src/city-buildings.js`, `src/city-environment.js`; changed `src/city3d.js`,
+`src/city-layout.js`, `src/main.js`, `src/style.css`, `server.js`. All v8 data, snapshot
+hashes, Graph SVG, evidence flows untouched (build verifies the pair; 57/57 tests green
+before this pass, 24/24 core re-run after).
+
+Changed:
+- Buildings (new `city-buildings.js`): six deterministic families from hash(projectId) —
+  slab, stepped, narrow tower with crown, low courtyard, cylinder with roof ring, plus
+  technical (Infrastructure) and arena (Gaming) bias. Facades are canvas textures with
+  mostly dark panes, 10–25% warm windows driving an emissive map; parapets, roof units,
+  masts. Monad = small light complex (core + two blocks + deck), no giant beacon. The old
+  box/pedestal/turquoise-roof generator, monogram planes, filler houses, boats and stars
+  are removed. Footprint ~3–4 world units at the layout pitch (6 world).
+- Environment (new `city-environment.js`): lighting rig (moon key + hemisphere + cool fill,
+  shadow frustum follows the layout extent), unlit dark water plane + faint streak layer +
+  per-island blurred reflection blobs (no second scene render), stone island rims (ring
+  extrusion wrapping the terrain footprint, seeded ledge), instanced shore trees, few lamps.
+  Renderer: ACES tone mapping, sRGB output, exposure 1.6; background #090a12; fog pushed
+  back (900–2600). sRGB gotcha learned: dark hex values lift strongly through linear→sRGB —
+  water needed near-black linear tones.
+- Composition: `DISTRICT_CENTERS` in the layout place districts per the reference (DeFi
+  back-left dominant, Infrastructure right, Gaming bottom-right, AI left, Identity front);
+  Monad central. Preserved by the parallel readability work: quarters, streets, link modes.
+- District routes: curved tube bands (seeded lateral bend, road-like, sunk into the ground)
+  with the aggregate tooltip; project focus arcs: smooth tubes between real building facade
+  anchors (sourced solid, declared/inferred dashed), grouped per neighbor, arc hitboxes only
+  when shown.
+- Callouts: billboard sprites replaced by DOM district callouts (21px name + 14px count)
+  with 1px two-segment leader lines and anchor dots in an SVG overlay; click opens the
+  district; collision + panel exclusion via the existing pipeline.
+- Selection: dimming switched from transparency to per-building color/emissive
+  multiplication (dimmed facades stay readable); focus neighbor dim 0.85/0.45.
+- Partition: Project focus caps at 6 NEIGHBORS (records grouped per neighbor, order =
+  type → name → ID); focus-bar counts describe records (`6 of 17 connections shown`,
+  `10 more by type — use Show all`); grouped routes keep exact record IDs in the tooltip.
+- `server.js`: Cache-Control no-cache (dev convenience, kept from the QA round).
+
+Verified:
+- `npm run build` green on the unchanged v8 pair; `test:ai` 21/21; expansion 3/3.
+- Browser scenarios (in-app browser): load overview calm (no fan, routes as navigation);
+  Beefy search → Project focus with arcs, neighbor labels, focus bar `6 of 17 connections
+  shown` + Eco listing `1 hidden` + `Show all 17`; DeFi district with five labeled quarters;
+  Off hides lines from picking; big Navigator result stays in City without a fan (verified
+  in the readability pass, unchanged).
+- Viewports (real innerWidth×innerHeight, dpr 1): 1672×941 (main comparison — composition
+  matches `images/01-overview-target.png`: five islands, DeFi dominant, callouts, curved
+  routes), 1440×900, 1280×720, 768×1024 (earlier pass, layout unchanged since), 390×844
+  (no horizontal overflow; callouts visible; Gaming callout runs off-frame right — known).
+- Performance: 121 rAF frames / 2s ≈ 60 fps at 1672×941 in the foreground pane (method:
+  rAF counter, dpr 1, in-app browser). Caveat recorded: the same pane throttles rAF to 0 in
+  background — the 250ms watchdog covers it; no cross-device claim. Draw-call budget was
+  not measured with renderer.info (not exposed); per-building material cloning keeps the
+  count near ~3–6 meshes per building — flagged as the first optimization target.
+
+Limitations:
+- Building shapes are stylized volumes; the reference's window-level detail appears only at
+  close zoom. Trees are cones, lamps are simple dots (per spec, context only).
+- `Graph` unchanged (SVG); regression-checked by scenario, not pixel-diffed.
+- 768×1024 screenshot from the readability pass remains valid for layout; the scene content
+  changed since — re-capture pending if the owner needs it.
+- Reduced motion: water is static by construction; intro/flights unchanged.
+
+Next:
+- Owner review of the night look; optional: renderer.info draw-call instrumentation,
+  quarter-level roads texture pass, mobile callout culling (Gaming off-frame at 390).
+
+### 2026-10-11 — Fix: district callouts now clickable; quarters navigate (owner feedback)
+
+Owner report: clicking "DeFi" on the map did not enter the district, and in-district
+quarter switching was wanted.
+
+- Root cause: `#city-labels` is `pointer-events: none` and the new callouts inherited it —
+  district callouts (and quarter pills) were visually present but click-through. The
+  district LIST was never broken (verified: click → `#/district/defi/overview`).
+- Fixes: `.district-callout` and visible `.city-label.quarter` get `pointer-events: auto`;
+  invisible quarter pills explicitly get `pointer-events: none` per frame so they never
+  intercept building clicks at overview zoom; callouts carry `data-district`.
+- New: quarter navigation. Clicking a quarter pill frames that quarter's block (buildings,
+  streets, tops via `focusQuarter` + a `quarter` framing branch in `updateFraming`);
+  clicking the same pill again returns to the whole island. Camera-only — no filters,
+  no building movement, no evidence claims.
+- Verified in-browser: DeFi callout click → `#/district/defi/overview`; district list →
+  `#/district/gaming/overview`; Gaming quarter pills visible (Games 5 / Studios 4 /
+  Markets 2); Games click frames the quarter. `npm run build` + `test:ai` 21/21 green.
+
+Next: unchanged (owner review, v8 onchain publication).
+
+### 2026-10-11 — Repeat fix2 City review and correction handoff
+
+Changed:
+- Added docs/design/2026-10-11-fix2-review: CHECK_RESULTS_RU.md, FIX_GUIDE_RU.md, AGENT_PROMPT_RU.md, README, standalone REVIEW.html, asset/source hashes and 9 images (6 actual captures, 3 concepts).
+- Documented camera/label focus problems, double shoreline margin, district environment filtering, full-facade emissive map, street/greenery/water corrections and acceptance criteria. City only; Graph remains SVG.
+- No application source, dataset, registry or contract edits made in this review.
+
+Verified:
+- npm run build passed (v8: 217 evidence records / 194 relationships, matching promoted SHA); npm run test:ai passed 21/21.
+- Browser: clean City, DeFi filter, keyboard selection of Beefy, Passport Connections/Sources, Project mode, City→Graph→City, reset, Navigator Beefy local retrieval and grounded Qwen answer.
+- Viewports DOM-confirmed 1440×900 and 390×844; no page horizontal overflow. Browser viewport override reset.
+- Repeated stable captures distinguish mobile transition cropping from stable result: islands fit after settling, but Infrastructure/Gaming callouts disappear and city is too small. Beefy background-label overload and hidden endpoints persist after settling.
+- Package ZIP integrity and byte-for-byte contents passed; image links and embedded HTML images checked. HTML browser preview was blocked by local-file URL policy, so rendering of the guide itself was not browser-verified.
+
+Limitations:
+- Pointer raycast, all districts/projects, performance/GPU measurements and Vercel were not tested in this pass. Captured warn/error sample was empty; not a full error audit.
+- Desktop screenshot transport is 1417 px wide at DOM viewport 1440; edge capture loss is not treated as a proven app bug.
+- Qwen checked for one query; v8 deployment remains unconfigured per build verification.
+
+Next:
+- Implementation agent should follow FIX_GUIDE_RU.md, preserve stable project positions and exact evidence semantics, then deliver all City states plus full verification matrix.
+
+### 2026-10-11 — Fix3 City correction implementation / lead, environment, buildings, QA
+
+Changed:
+- Implemented the supplied fix2 guide across City: projected bounds fit and panel-aware
+  centering; actual neighbor/roof framing; background label suppression; combined six-neighbor
+  Ecosystem budget and explicit Show all; consistent record/count copy.
+- Unified stone/ground outline, per-island environment filtering, connected streets,
+  footprint-aware greenery/lamps, restrained water/contact reflections and district routes.
+- Separate window emissive mask, larger floors, restrained roofs, shared geometry/instanced
+  accessories; corrected dimming initialization and static shadow updates.
+- Clean initial overview, compact mobile controls, central Monad count, Navigator Details;
+  pointer selection camera focus, hidden-project raycast rejection, hover cleanup, beacon disposal.
+- Added important-label diagonal slots after resize exposed a hidden long neighbor name.
+- Files: src/city3d.js, city-buildings.js, city-environment.js, city-layout.js,
+  city-label-layout.js, main.js, style.css; docs/research/2026-10-11-fix3-qa.md and
+  docs/research/2026-10-11-fix3/. Preserved unrelated existing edits and evidence/registry data.
+
+Verified:
+- Build passes unchanged approved v8 pair (217 records / 194 relationships, matching SHA);
+  AI tests 21/21; application syntax and diff whitespace checks pass.
+- Browser: all districts, Beefy six-neighbor focus/full 17 records, external Monad listing,
+  Navigator bounded answer and unsupported/no-evidence queries, City/Graph/City, pointer and
+  keyboard selection, quarters, zoom/reset/orbit, panel collapse and desktop→mobile resize.
+- Viewports: 1672×941, 1440×900, 1280×720, 1024×768, 768×1024, 390×844. No measured page
+  overflow; five overview controls available; Project endpoints fit the safe rectangle.
+  All 176 world positions identical across captured states. Latest warn/error sample empty.
+- Apple M2 / ANGLE Metal, in-app browser Chrome 155, DPR1: overview 844 calls, 73 geometries,
+  357 textures, 240-frame mean 16.67ms / p95 18.90ms. Ten toggle cycles kept memory
+  at 104 geometries / 357 textures. Full screenshots/measurements in the QA handoff.
+
+Limitations:
+- Draw-call target ~200 overview / 300 focus unmet (down from 2581 overview).
+  No physical-phone/weak-GPU result claimed. Reflections and architecture remain simpler than
+  the concept; Show all can cull names. Reduced motion source-checked only; full accessibility
+  and exhaustive project audit pending. Graph regression functional, not pixel-diffed.
+  v8 publication stays unconfigured.
+
+Next:
+- Owner review; targeted body/material batching preserving project-ID picking, then physical
+  mobile verification. Evidence publication remains a separate task.
+
+### 2026-10-11 — v8 onchain successor preparation / lead + Trust/Data audit
+
+Owner asked to update the contract for the new relationships. Existing immutable registry
+supports a normal successor publication; Solidity redeployment is unnecessary.
+
+Changed:
+- Added the exact v7 predecessor pin for v8 in tools/registry-publish/core.js; timestamp
+  preflight rejects future review before gas/simulation or expensive gateway retrieval.
+- Prepared artifacts/ipfs/phase-3.5-v8/ with four exact files (217 evidence / 194 links).
+- Updated isolated app.js/index.html to show verified local release and disabled signing
+  when its request is missing. Added v8 unit coverage and actual v6→v7→v8 Anvil lifecycle test.
+- Added docs/research/2026-10-11-v8-publication-handoff.md and preparation-only RPC audit;
+  updated DEPLOYMENT.md and corrected PROJECT_CONTEXT proof count. Kept existing runtime
+  registry-config.js, approved v8 pair, Solidity, v7 audits/requests and unrelated edits intact.
+
+Verified:
+- Trust/Data agent: 166 approved membership additions, 28 unchanged links, 217 unchanged
+  records; Merkle bundle valid. Existing publish function supports the new counts.
+- Official RPC block 70184981 / 2026-10-11T18:38:49Z: code pin, active/unrevoked v7 head,
+  publisher role, unfrozen registry and empty v8 lookup confirmed. One-provider observation.
+- Build/registry gates pass; publication 8/8; read-only client 11/11; loopback E2E passes
+  actual reviewed v7/v8 bundles, predecessor supersession, duplicate rejection and client +
+  Solidity rejection at review minus one second / acceptance at exact boundary.
+
+Remaining:
+- Approved v8 reviewedAt is 2026-10-11T22:30:00Z (12 October 01:30 MSK), still future at
+  preparation. Do not rewrite reviewed bytes. Public v8 CID/gateway requested from owner;
+  no public upload or unsigned request exists yet, and no external transaction occurred.
+- After CID/time: retrieve all files through both gateways, encode/simulate unsigned request,
+  hand final signing to owner wallet, then verify receipt/finality/proofs before runtime activation.
+  Full current state and exact pins are in the handoff. v7 stays the real onchain publication.
+
+### 2026-10-11 — Publication page launch correction
+
+Owner could not confirm a transaction while viewing the publication HTML under file:// in
+the in-app browser. The operator is localhost-only and requires an injected wallet.
+
+Changed:
+- Root owns tools/registry-publish/app.js and index.html for this correction. The default
+  release is now v8; explicit ?version preserves access to historical v6/v7 tooling.
+- Static HTML now gives a visible localhost v8 link and Chrome/wallet instructions even if
+  file-origin module initialization fails. Initial status explains the required launch context.
+
+Verified:
+- Supported localhost page without a version now renders v8 / 217 records / 194 relationships;
+  missing request is disclosed and signing stays disabled. Browser capture:
+  docs/research/2026-10-11-v8-launch-correction.jpg. Syntax, build and diff checks pass.
+
+Remaining:
+- No real v8 unsigned request exists: public IPFS CID/gateway remains missing. The unchanged
+  review timestamp is eligible from 2026-10-11T22:30:00Z / 12 October 01:30 MSK.
+  No signing/publication control was bypassed and no external transaction was submitted.
+
+### 2026-10-11 — Lead / Trust-Data — immediate v9 publication preparation
+
+Changed:
+- User requested publication now. Trust/Data specialist re-reviewed all 166 derived edges at
+  actual 2026-10-11T21:09:41Z; no deviations. Sources were not re-fetched.
+- Created a separate immutable v9 workspace/snapshot/module/registry bundle with envelope time
+  21:13:06Z and canonical SHA-256 8147e7dedb389f2d8da5af63747aed71114692a1c2052fde0f14cd9b8133f088.
+  217 evidence records and prior 28 relationships are exact unchanged; only review metadata
+  on 166 derived relationships changes. Four excluded stale predecessors keep withdrawal,
+  with future governance dates corrected in the candidate workspace only. v8 remains intact.
+- Updated active local evidence/release pins and operator default to v9. The onchain predecessor
+  is v7 because v8 was never published; public runtime registry config remains v7.
+- Generated four-file upload folder and official-RPC preparation audit. No upload/transaction.
+
+Verified:
+- Build/approved pair/registry; registry 10/10, publication 9/9, AI 21/21.
+- Actual v9 bundle on disposable local Anvil: publish, receipt, supersession, duplicate rejection,
+  future timestamp rejection and acceptance at corrected boundary all pass.
+- Official Testnet block 70216015: code/head/role/lifecycle match and v9 time gate passes.
+
+Remaining:
+- Pinata browser session requires owner sign-in. No public CID or unsigned v9 request exists.
+  Await sign-in or actual folder CID; verify public bytes and prepare request, then owner signs.
+- Handoff: docs/research/2026-10-11-v9-publication-handoff.md.
+
+### 2026-10-11 — Lead / operator — public v9 upload
+
+Changed:
+- Owner confirmed Pinata sign-in in Chrome and continuation of the publication flow.
+- Uploaded exactly the reviewed four-file phase-3.5-v9 folder to the existing public Pinata workspace.
+  Manifest URI: ipfs://bafybeig6zgvvotap5w4nqeyp6kezqj3mx3paayju7ffag2arsvdtdibvzq/manifest.json.
+  Public gateway: https://turquoise-written-perch-899.mypinata.cloud/ipfs/.
+- Opened the v9 localhost operator in Chrome; the previous raw file page did not initialize.
+
+Verified:
+- Public folder viewer has all four exact paths; all four Pinata file bytes match the canonical package.
+  Upload screenshot: docs/research/2026-10-11-v9-ipfs-upload.png.
+
+Remaining:
+- Unsigned preparation failed closed on Filebase evidence-proofs.json timeout/504. Rechecking
+  availability; no request/signature/external transaction yet. A second gateway remains required.
+
+### 2026-10-11 — Lead / operator — v9 unsigned request verified
+
+Changed:
+- Public Filebase cache warmed successfully; all eight gateway/path copies match exact local bytes.
+- Prepared tools/registry-publish/requests/phase-3.5-v9.json with the real public folder CID.
+  No signature or broadcast. The expected publication ID is
+  0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e.
+- Added the standard filename parameter to future Filebase download URLs in the generator;
+  live diagnostic GETs confirmed exact byte matches for both proof files on that URL form.
+  The completed request retains the original URLs it actually used after cache warming.
+
+Verified:
+- Full unsigned request validation, two gateways, code/head/role, independent ABI, fee/balance,
+  and official-RPC simulation passed. Prepared maximum fee 0.043894578 test MON; transfer zero.
+- Publication tests 9/9 and syntax/diff checks pass.
+
+Remaining:
+- MetaMask in Chrome is locked. Owner unlock, connect/check, then owner Publish/final signature.
+  Runtime registry config remains the actually published v7 until receipt/finality checks.
+
+### 2026-10-11 — Lead / operator — v9 ready for owner signature in Chrome
+
+Verified:
+- Chrome localhost v9 page validates the prepared request/public CID and detects wallet provider.
+- Connect wallet passed exact publisher account and Monad Testnet validation. Fresh Check
+  publication passed public bytes, head/code/role, balance, fee and simulation.
+- Page shows Ready for wallet confirmation, balance 4.562186 MON, fee 0.043894 MON,
+  and enabled Publish snapshot — confirm in wallet. Transfer value remains zero.
+- Capture: docs/research/2026-10-11-v9-wallet-ready.png.
+
+Remaining:
+- Owner must click Publish and perform the final wallet confirmation. Lead did not click Publish,
+  request a transaction signature or broadcast. After owner confirmation verify real receipt,
+  finality and proofs, then update runtime registry config to the verified v9 publication.
+
+### 2026-10-11 — Lead / verified v9 publication and runtime activation
+
+Changed:
+- Owner supplied actual signed transaction 0x71a3ccee9f6d928a9ddb58caa89945dae445c42d33fbcb8e287e160b8296f8e7. Lead only performed read-only verification.
+- Activated src/registry-config.js for verified v9 publication 0xcaae763cd989d32777036d2d443bdae036d24ab5217ecf6324ecb10dd485bc7e, exact v7 predecessor, real CID, block/hash/time/transaction pins.
+- Wrote exclusive v9 publication, finality and representative record audits in data/registry/deployments/. Updated PROJECT_CONTEXT, DEPLOYMENT and v9 handoff; preserved immutable v8/v9 content and prior preparation history.
+
+Verified:
+- Real receipt succeeded at block 70219795; exact contract code, calldata, publisher, roots, 217 records, 194 sourced relationships, URI, timestamps and predecessor matched. Official RPC reported finalized block 70220297. v9 active/current/unrevoked, v7 superseded, registry unfrozen/no successor.
+- Production verifier matched E-BEEFY-MEM-001, beefy-kintsu-asset, monad-aave-v3, monad-shmonad, monad-aethonswap, including all support proofs and revocation checks. Initial HTTP 429 resolved with sequential throttled read-only checks.
+- Build passed; onchain tests 11/11 and registry tests 10/10 passed.
+- Browser: city loaded, Beefy selected, Passport Sources/full record and Check publication matched active v9 at block 70220933. Graph/City, DeFi filter (140), local Navigator Beefy search and grounded agent record output, 390×844 responsive layout checked. Temporary viewport reset. Screenshot: docs/research/2026-10-11-v9-publication-verified.png.
+
+Limitations:
+- Testnet publication/inclusion and lifecycle observed through one trusted RPC. No source truth, freshness, safety or endorsement is implied. No production deployment performed.
+
+Next:
+- v9 update is complete. Future releases need their own review, immutable bundle and owner-signed publication.
+
+### 2026-10-12 — Lead / three submission UI corrections
+
+Changed:
+- Delegated one agent per requested task; main.js ownership was serialized. Graph agent attached district captions to SVG nodes/world; Passport agent replaced displayed snapshot/policy phases with actual review dates in the shared renderer; tooltip agent introduced a common plain-language formatter and neutral CSS.
+- Integrated Graph native titles with the same formatter, concise UTC review date, readable responsive Graph captions and clearance below the view toggle. Date remains visible on mobile.
+- Files: src/main.js, src/city3d.js, src/style.css, new src/relationship-tooltip.js; QA artifacts in docs/research/2026-10-12-submission-*.
+
+Verified:
+- All 176 Passport Sources/expanded review audits display Oct 11, 2026 without phase/hackathon labels in the audit. Browser audit JSON retained.
+- All 205 relationship formatter outputs lack double arrows, middle-dot separators and missing values. Actual City hover showed neutral text, source, Observed status and exact saved registry scope; Graph native title matched the same meaning.
+- Final Graph: captions/node widths scale by 1.15 together; pan moves both identically (+12.7147px/+7.2656px). Infrastructure label clears City/Graph controls. Keyboard district navigation, City/Graph, district filter, project selection, Passport, Navigator search, 390×844 layout and focused Beefy subgraph passed. Temporary viewport reset.
+- Final build, syntax and diff checks pass; v9 immutable snapshot SHA and registry roots unchanged.
+
+Limitations:
+- Evidence/project identity, source scopes and Testnet publication pins are unchanged. Technical onchain inspection preserves exact identifiers; normal Passport review UI uses dates.
+
+Next:
+- Continue with the owner's next submission correction.
+
+### 2026-10-12 — Lead / submission preparation and reviewed release candidate
+
+Changed:
+- Delegated deployment audit, submission copy/README and 60–90 second demo script to separate agents. Reconciled existing SUBMISSION_PACKAGE instead of creating a competing document. Updated Qwen article current counts while preserving historical provider evidence.
+- Root adjusted the narrated demo to 139 words and the rehearsed Beefy source -> Kintsu -> two-node Graph path. Added browser-origin key/CORS notes to README.
+- Bounded Passport fixes from the copy agent: source header uses the exact primary evidence status, not the illustrative project state; reset Passport scroll only on project change.
+- Created deterministic local RC2 archive with per-file SHA-256 manifest at docs/research/2026-10-12-submission-release.json. Prior RC1 remains a superseded local artifact. No Git push, Vercel release, portal update, video upload or final submission performed.
+
+Verified:
+- Production alias publicly accessible but stale: v7, deployment dpl_GiqwMLm7vSsdW8We37wanMibxu1i, source main 0cd8cd36b80dfb157944132eb2835eca0230eedf. Target monad-city/prj_ootYSvs7o3eLHox690lGti1B4E1K in team_rX2aKo4gs7tCSBACaKYkCwPC.
+- Current build passed v9 promotion/hash/all-proof integrity. Dataset/AI tests 21, onchain client tests 11 and registry tests 10 all passed.
+- Built dist served on 127.0.0.1:5173 with AI settings Off: Beefy local search, exact Kintsu dependency, full record E-BEEFY-KINTSU-ASSET-001 and real publication matched active v9 at block 70379100. Final Graph contains Beefy and Kintsu.
+- Four original source-backed headers now correctly read Claimed. Scroll test reset 2515 -> 0 and showed Kintsu title at y101 inside Passport y80. RC2 zip and every file hash verified.
+
+Limitations:
+- Public alias/repository await an explicitly authorized release of this candidate. Existing live model checks remain historical Oct8; no new provider run or finished video is claimed.
+- Demo/pitch videos, team introduction and final portal refresh/submission remain owner work. Historical Oct8 form rules/deadline are not treated as a fresh verification.
+
+Next:
+- On owner approval, commit/publish the reviewed source and release RC2 to the known Vercel production target, then verify the public v9/keyless/record flow before recording.
+
+### 2026-10-12 — Lead / authorized RC2 production release preflight
+
+Changed:
+- Owner explicitly authorized GitHub main publication and production release to monad-city.vercel.app. Root owns Git/deployment mutations and shared release docs; agents own independent integrity and deployment audits.
+- Release boundary is RC2: 65 files, archive SHA-256 4e10b9847ac0086803e67230be053ee877216fe66adae9a44fd74866b5428eab. Private wallet/browser captures and design reference trees remain local.
+
+Verified:
+- Independent integrity audit matches manifest, ZIP, dist and source/data for every file. Remote main matches the existing local base 0cd8cd36b80dfb157944132eb2835eca0230eedf.
+- Required source, immutable v8/v9 provenance, registry data and validation dependencies selected explicitly for the release commit.
+
+Limitations:
+- Exact committed-tree rebuild and production checks are pending; no successful public v9 deployment is claimed here.
+
+Next:
+- Rebuild the exact commit, compare all 65 RC2 hashes, run release checks, push main and verify the resulting production deployment.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

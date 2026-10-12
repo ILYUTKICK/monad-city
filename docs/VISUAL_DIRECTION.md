@@ -2,6 +2,18 @@
 
 ## Current direction
 
+Owner clarification, 2026-10-11: the next visual pass targets **City itself** in the
+supplied night-city reference: expressive buildings, varied floors, streets, island
+edges, restrained greenery, water, lighting and district callouts. Graph remains SVG.
+The reference package is [reference-city-v1](design/reference-city-v1/README.md);
+its [design specification](design/reference-city-v1/01-DESIGN_SPEC_RU.md) and acceptance
+criteria guide this next implementation. The documents are a plan, not evidence that
+the new look has been implemented. Geometry, lighting and label proposals supersede
+older visual choices where explicitly stated; trust and data rules remain binding.
+Panel statuses use neutral text while preserving their distinct meanings.
+
+## Previous approved foundation
+
 The owner approved the Voxel Island rework on 2026-09-26/27 (mockup iterations
 `docs/research/2026-09-27-voxel-island-mockup-v4-guidebook-text.png` is the approved look):
 City View moves to a three.js night-island in the previous version's dark purple palette, panels
@@ -100,4 +112,3 @@ guidance informs typography and preservation of the existing product.
 - dashboard widgets without a user decision behind them;
 - a chat panel that hides the map;
 - decorative bridges without provenance.
-
