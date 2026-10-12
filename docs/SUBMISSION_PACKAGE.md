@@ -90,9 +90,9 @@ map actions, and missing evidence or provider errors preserve the local experien
 ### Technical stack
 
 Vanilla JavaScript, CSS, vendored Three.js r170, SVG Graph View, Node.js build tooling,
-versioned JSON evidence snapshots, and an optional OpenAI-compatible tool-calling provider.
+versioned JSON evidence snapshots, a Vercel Function and OpenRouter-hosted Qwen Max.
 The tested provider path is OpenRouter with qwen/qwen3.8-max-0902. No model training,
-embeddings, document RAG or backend API is implemented. The registry uses Solidity 0.8.30,
+embeddings or document RAG is implemented. The bounded backend accepts only Navigator questions and keeps the provider key server-side. The registry uses Solidity 0.8.30,
 OpenZeppelin 5.7.0 and SHA-256 Merkle proofs; the app performs read-only chain queries.
 
 ### Current status
@@ -150,12 +150,12 @@ The current build contains 176 projects, 217 evidence records, 194 sourced relat
 
 ## Practical judge run
 
-1. Open the public deployment or run `npm run dev` and use the app without an API key. Local retrieval is the default.
+1. Open the public deployment without entering an API key. Local retrieval controls the map; the hosted Qwen Max agent is available through the Vercel server. Local `npm run dev` remains usable without a server secret.
 2. Search for **Kuru**, select the project, and open its Passport. In **Sources**, expand **Full record** to inspect the exact claim, source link, scope, timestamp, limitations, and review state.
 3. Click **Check publication** in the full record and inspect the returned Monad Testnet block. This is a read-only inclusion check and does not require a wallet.
 4. Open **Connections** to inspect typed edges and their evidence state, then switch between **City** and **Graph** to see the same relationship context spatially and explicitly.
 5. Use a district filter or search for **Beefy** to test discovery across the larger graph. Try an activity request such as “show active contracts” to see the bounded insufficient-evidence response.
-6. To exercise the optional agent, open **AI settings**, provide your own browser-compatible OpenAI-compatible endpoint, model, and key, then repeat a source query. Leave this step out when judging the deterministic path.
+6. Ask **Show Kuru sources** and open **Tool details** in the Qwen Max result. The hosted agent invokes graph tools and selects exact evidence records. No visitor key is needed. Personal provider settings remain optional.
 
 ## Historical release and form notes
 
@@ -269,3 +269,10 @@ pending. The earlier state is retained in `research/2026-10-12-submission-deploy
 - Public-origin AI settings Off: Beefy search, exact Kintsu dependency, record E-BEEFY-KINTSU-ASSET-001, and active/unrevoked Testnet publication matched at block 70385689. Kintsu → two-project Graph, Passport date, project scroll reset, DeFi filter, and 390×844 layout checked.
 - Release audit: `research/2026-10-12-public-release-audit.md`. The later documentation-only commit preserves these exact application bytes.
 - Demo/pitch videos, a real configured AI take if required by the chosen track, and final portal submission are still pending.
+
+## Hosted Qwen Max release
+
+The public app now uses `qwen/qwen3.8-max-0902` through OpenRouter from a Vercel Function,
+with the key stored as a Production Secret. Real Kuru sources and DeFi coverage checks
+passed. The Qwen article now documents the server path and these checks. This records
+actual agentic use; it does not claim organizer acceptance or a finished demo video.

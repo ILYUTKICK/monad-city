@@ -3659,6 +3659,24 @@ Limitations:
 Next:
 - Publish this tested revision and verify a real Qwen tool/evidence result on the public origin.
 
+### 2026-10-12 — Lead / hosted Qwen production inference verified (21:05:59 UTC)
+
+Changed:
+- Published application commit2ca38a735c7a725f03183039ecd23eadbd75d6bd; automatic READY production deploymentdpl_HLnpHfB2AUCWE4BpePcXKF97qyqa assigned monad-city.vercel.app. Build logs report completion. User-added Production Secret is consumed only by the function.
+- Updated Qwen build article and judge instructions for hosted access without visitor credentials. Retained historical browser-provider QA. Saved real production screenshot, coverage response and bounded release audit.
+
+Verified:
+- Public GET/api/navigator returns enabled:true and qwen/qwen3.8-max-0902 without a credential value. All66static asset bytes match the built source. API deployed alongside staticdist without a stack/dependency change.
+- Real public browser Show Kuru sources: Qwen called search_projects(query="Kuru") and get_project_evidence(projectId="kuru"), read5records and selected E-KURU-CAP-001/Claimed and E-KURU-REGISTRY-001/Observed. Conflict/incomplete warnings remain visible. Tool details exposed actual calls; no visitor key entered; no captured console errors/warnings.
+- Second real POST Show me the DeFi landscape: HTTP200 coverage, get_district_coverage,140/140profiles with evidence,166touching relationships (163sourced/3illustrative-or-declared). Returned counts are fixed graph output, not model-written facts.
+- AI26/server9offline checks and build pass. Local no-secret bridge honestly reports disabled and local Kuru search/Passport/Graph remains usable. Exact176profile extraction verified against prior commit.
+
+Limitations:
+- Hosted availability badge reports configuration; successful inference was independently checked by the two calls above. No sponsor acceptance, video completion, portal update or submission claimed. Instance-local guards are not a global budget.
+
+Next:
+- Record the Qwen demo with Tool details visible and use the updated published article for the submission.
+
 ## Open questions
 
 - Which independent third-party source could support a genuinely bounded `Attested` record without implying endorsement?

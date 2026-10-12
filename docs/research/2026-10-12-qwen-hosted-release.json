@@ -1,0 +1,66 @@
+{
+  "status": "verified-public-hosted-inference",
+  "verifiedAtUTC": "2026-10-12T21:05:59Z",
+  "timezone": "Europe/Moscow",
+  "applicationCommit": "2ca38a735c7a725f03183039ecd23eadbd75d6bd",
+  "deploymentId": "dpl_HLnpHfB2AUCWE4BpePcXKF97qyqa",
+  "readyState": "READY",
+  "url": "https://monad-city.vercel.app/",
+  "model": "qwen/qwen3.8-max-0902",
+  "provider": "OpenRouter",
+  "credential": "OPENROUTER_API_KEY Production Secret; metadata only inspected; value not read",
+  "serverApi": "/api/navigator",
+  "statusGet": {
+    "enabled": true,
+    "model": "qwen/qwen3.8-max-0902"
+  },
+  "publicAssetsVerified": 66,
+  "tests": {
+    "ai": 26,
+    "server": 9,
+    "failed": 0
+  },
+  "realBrowserQuery": {
+    "question": "Show Kuru sources",
+    "mode": "evidence",
+    "toolSteps": [
+      "search_projects(query=\"Kuru\") → 1 match(es)",
+      "get_project_evidence(projectId=\"kuru\") → 5 record(s)"
+    ],
+    "evidenceIds": [
+      "E-KURU-CAP-001",
+      "E-KURU-REGISTRY-001"
+    ],
+    "statuses": [
+      "Claimed",
+      "Observed"
+    ],
+    "warningsPreserved": [
+      "conflict",
+      "incomplete"
+    ],
+    "visitorKeyRequired": false,
+    "capturedConsoleErrors": 0,
+    "capturedConsoleWarnings": 0
+  },
+  "realCoverageQuery": {
+    "httpStatus": 200,
+    "question": "Show me the DeFi landscape",
+    "result": {
+      "mode": "coverage",
+      "model": "qwen/qwen3.8-max-0902",
+      "steps": [
+        "get_district_coverage(district=\"DeFi\") → 140/140 projects with evidence"
+      ],
+      "text": "Local graph · defi: 140 project profiles; 140 carry approved evidence records. 166 relationships touch this scope: 163 sourced, 3 illustrative or declared. These are computed dataset counts, not evidence of current project activity."
+    }
+  },
+  "screenshot": "docs/research/2026-10-12-qwen-hosted-public.png",
+  "boundaries": [
+    "four local graph tools; no registry tool on hosted endpoint",
+    "80-second agent deadline after body parse; 90-second Vercel duration",
+    "instance-local guards are not a global quota",
+    "source record scope/status and v9 snapshot unchanged",
+    "sponsor eligibility not asserted"
+  ]
+}

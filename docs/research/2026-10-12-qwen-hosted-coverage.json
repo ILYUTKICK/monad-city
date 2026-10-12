@@ -1,0 +1,12 @@
+{
+  "httpStatus": 200,
+  "question": "Show me the DeFi landscape",
+  "result": {
+    "mode": "coverage",
+    "model": "qwen/qwen3.8-max-0902",
+    "steps": [
+      "get_district_coverage(district=\"DeFi\") → 140/140 projects with evidence"
+    ],
+    "text": "Local graph · defi: 140 project profiles; 140 carry approved evidence records. 166 relationships touch this scope: 163 sourced, 3 illustrative or declared. These are computed dataset counts, not evidence of current project activity."
+  }
+}
